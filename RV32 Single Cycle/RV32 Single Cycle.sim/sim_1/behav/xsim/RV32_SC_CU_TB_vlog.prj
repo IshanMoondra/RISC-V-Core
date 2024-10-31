@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../RV32 Single Cycle.srcs/sources_1/new/RV32_SC_CU.v" \
+"../../../../RV32 Single Cycle.srcs/sim_1/new/RV32_SC_CU_TB.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

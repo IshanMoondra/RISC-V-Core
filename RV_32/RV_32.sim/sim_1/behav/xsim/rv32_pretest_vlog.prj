@@ -1,0 +1,20 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../RV_32.srcs/sources_1/new/rv32_alu.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_barrel_shifter.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_cpu_top.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_cu.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_data_32bit.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_ex_ex2_delay.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_id_ex_queue.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_if_id_queue.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_pc.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_ram_32bit.v" \
+"../../../../RV_32.srcs/sources_1/new/rv32_register_bank.v" \
+"../../../../RV_32.srcs/sim_1/new/rv32_pretest.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

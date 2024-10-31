@@ -1,0 +1,483 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Mon Jun 10 00:48:30 2024
+# Process ID: 3664
+# Current directory: F:/Vivado/Projects/RV_32/RV_32.runs/synth_1
+# Command line: vivado.exe -log BASYS3_RV_Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source BASYS3_RV_Top.tcl
+# Log file: F:/Vivado/Projects/RV_32/RV_32.runs/synth_1/BASYS3_RV_Top.vds
+# Journal file: F:/Vivado/Projects/RV_32/RV_32.runs/synth_1\vivado.jou
+# Running On: LAPTOP-7C3ITM62, OS: Windows, CPU Frequency: 2688 MHz, CPU Physical cores: 6, Host memory: 16905 MB
+#-----------------------------------------------------------
+source BASYS3_RV_Top.tcl -notrace
+create_project: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 471.027 ; gain = 199.434
+Command: read_checkpoint -auto_incremental -incremental F:/Vivado/Projects/RV_32/RV_32.srcs/utils_1/imports/synth_1/rv32_cu.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from F:/Vivado/Projects/RV_32/RV_32.srcs/utils_1/imports/synth_1/rv32_cu.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top BASYS3_RV_Top -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 13968
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1286.875 ; gain = 411.211
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'BASYS3_RV_Top' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/BASYS3_RV_Top.v:23]
+INFO: [Synth 8-6157] synthesizing module 'RV_Mux' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/RV_Mux.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_cpu_top' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cpu_top.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_code_32bit' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ram_32bit.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_code_32bit' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ram_32bit.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_if_id_queue' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_if_id_queue.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_if_id_queue' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_if_id_queue.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_cu' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:26]
+INFO: [Synth 8-155] case statement is not full and has no default [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:404]
+INFO: [Synth 8-155] case statement is not full and has no default [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:483]
+INFO: [Synth 8-155] case statement is not full and has no default [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:539]
+INFO: [Synth 8-155] case statement is not full and has no default [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:97]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_cu' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cu.v:26]
+INFO: [Synth 8-6157] synthesizing module 'rv32_id_ex_queue' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_id_ex_queue.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_id_ex_queue' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_id_ex_queue.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_register_bank' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_register_bank.v:25]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_register_bank' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_register_bank.v:25]
+INFO: [Synth 8-6157] synthesizing module 'rv32_data_32bit' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_data_32bit.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_data_32bit' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_data_32bit.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_ex_ex2_delay' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ex_ex2_delay.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_ex_ex2_delay' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ex_ex2_delay.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_alu' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_alu.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_alu' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_alu.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_barrel_shifter' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_barrel_shifter.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_barrel_shifter' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_barrel_shifter.v:23]
+INFO: [Synth 8-6157] synthesizing module 'rv32_pc' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_pc.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_pc' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_pc.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'rv32_cpu_top' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cpu_top.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'RV_Mux' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/RV_Mux.v:23]
+INFO: [Synth 8-6157] synthesizing module 'BASYS3_7Seg_Driver' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_7Seg_Driver.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'BASYS3_7Seg_Driver' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_7Seg_Driver.v:1]
+INFO: [Synth 8-6157] synthesizing module 'BASYS3_Switch_Buttons_Driver_r3' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_Switch_Buttons_Driver_r3.v:1]
+INFO: [Synth 8-155] case statement is not full and has no default [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_Switch_Buttons_Driver_r3.v:19]
+INFO: [Synth 8-6155] done synthesizing module 'BASYS3_Switch_Buttons_Driver_r3' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_Switch_Buttons_Driver_r3.v:1]
+INFO: [Synth 8-6157] synthesizing module 'BASYS3_LED_Driver' [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/new/BASYS3_LED_Driver.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'BASYS3_LED_Driver' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/new/BASYS3_LED_Driver.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'BASYS3_RV_Top' (0#1) [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/BASYS3_RV_Top.v:23]
+WARNING: [Synth 8-3848] Net PSD1 in module/entity rv32_cpu_top does not have driver. [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_cpu_top.v:50]
+WARNING: [Synth 8-6014] Unused sequential element ENABLE_reg was removed.  [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/imports/Verilog/BASYS3_7Seg_Driver.v:51]
+WARNING: [Synth 8-7129] Port data_bus[6] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[5] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[4] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[3] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[2] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[1] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_bus[0] in module rv32_pc is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[31] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[30] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[29] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[28] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[27] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[26] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[25] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[19] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[18] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[17] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[16] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[15] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[14] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[13] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[12] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[11] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[10] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[9] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[8] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[7] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[6] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[5] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[4] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[3] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[2] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[1] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[0] in module rv32_barrel_shifter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[11] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[10] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[9] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[8] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[7] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[6] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[5] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[4] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[3] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[2] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[1] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[0] in module rv32_alu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[31] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[30] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[29] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[28] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[27] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[26] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[25] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[24] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[23] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[22] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[21] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[20] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[19] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[18] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[17] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[16] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[15] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[14] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[13] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[12] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[11] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[10] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[9] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port data_addr[8] in module rv32_data_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[19] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[18] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[17] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[16] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[15] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[14] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[13] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[12] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[6] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[5] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[4] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[3] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[2] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[1] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[0] in module rv32_register_bank is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[31] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[29] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[28] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[27] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[26] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port code_bus[25] in module rv32_cu is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[31] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[30] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[29] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[28] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[27] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[26] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[25] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[24] in module rv32_code_32bit is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[23] in module rv32_code_32bit is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1386.941 ; gain = 511.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1386.941 ; gain = 511.277
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1386.941 ; gain = 511.277
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 1386.941 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [F:/Vivado/Projects/RV_32/RV_32.srcs/constrs_1/imports/digilent-xdc-master/Basys-3-Master.xdc]
+Finished Parsing XDC File [F:/Vivado/Projects/RV_32/RV_32.srcs/constrs_1/imports/digilent-xdc-master/Basys-3-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/Vivado/Projects/RV_32/RV_32.srcs/constrs_1/imports/digilent-xdc-master/Basys-3-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/BASYS3_RV_Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/BASYS3_RV_Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1492.863 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1492.863 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rv32_register_bank'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'BASYS3_Switch_Buttons_Driver_r3'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                               00
+                 iSTATE0 |                              010 |                               01
+                 iSTATE1 |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'rv32_register_bank'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                               00
+                 iSTATE0 |                              010 |                               01
+                 iSTATE1 |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'BASYS3_Switch_Buttons_Driver_r3'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 8     
+	   3 Input   32 Bit       Adders := 2     
+	   2 Input   17 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
++---Registers : 
+	               32 Bit    Registers := 31    
+	               19 Bit    Registers := 3     
+	               17 Bit    Registers := 1     
+	               16 Bit    Registers := 3     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 13    
+	                4 Bit    Registers := 6     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 8     
+	                1 Bit    Registers := 16    
++---RAMs : 
+	               8K Bit	(256 X 32 bit)          RAMs := 1     
+	             1024 Bit	(32 X 32 bit)          RAMs := 1     
++---Muxes : 
+	 257 Input   32 Bit        Muxes := 1     
+	   4 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 24    
+	  16 Input   32 Bit        Muxes := 1     
+	   9 Input   32 Bit        Muxes := 1     
+	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	  17 Input    7 Bit        Muxes := 1     
+	   6 Input    5 Bit        Muxes := 2     
+	   4 Input    5 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 3     
+	   8 Input    4 Bit        Muxes := 2     
+	   4 Input    4 Bit        Muxes := 2     
+	   7 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	  11 Input    2 Bit        Muxes := 4     
+	   2 Input    2 Bit        Muxes := 2     
+	   6 Input    1 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 27    
+	   4 Input    1 Bit        Muxes := 6     
+	  11 Input    1 Bit        Muxes := 10    
+	   8 Input    1 Bit        Muxes := 6     
+	   7 Input    1 Bit        Muxes := 1     
+	  10 Input    1 Bit        Muxes := 1     
+	   3 Input    1 Bit        Muxes := 3     
+	  16 Input    1 Bit        Muxes := 1     
+	   9 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3936] Found unconnected internal register 'DELAY/bshift_out_reg' and it is trimmed from '4' to '3' bits. [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ex_ex2_delay.v:99]
+WARNING: [Synth 8-3936] Found unconnected internal register 'DELAY/alu_out_reg' and it is trimmed from '5' to '4' bits. [F:/Vivado/Projects/RV_32/RV_32.srcs/sources_1/new/rv32_ex_ex2_delay.v:98]
+WARNING: [Synth 8-3332] Sequential element (reg_d1_regi_74) is unused and will be removed from module rv32_cpu_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|\MUX/CPU    | DATA/DATA_reg | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+----------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object           | Inference | Size (Depth x Width) | Primitives   | 
++------------+----------------------+-----------+----------------------+--------------+
+|\MUX/CPU    | RB/register_bank_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+----------------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object    | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|\MUX/CPU    | DATA/DATA_reg | 256 x 32(READ_FIRST)   | W |   | 256 x 32(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
++------------+---------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+
+Distributed RAM: Final Mapping Report
++------------+----------------------+-----------+----------------------+--------------+
+|Module Name | RTL Object           | Inference | Size (Depth x Width) | Primitives   | 
++------------+----------------------+-----------+----------------------+--------------+
+|\MUX/CPU    | RB/register_bank_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+----------------------+-----------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance MUX/CPU/DATA/DATA_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:37 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    81|
+|3     |LUT1     |     8|
+|4     |LUT2     |   204|
+|5     |LUT3     |    76|
+|6     |LUT4     |    86|
+|7     |LUT5     |    88|
+|8     |LUT6     |   218|
+|9     |MUXF7    |    32|
+|10    |RAM32M   |    10|
+|11    |RAM32X1D |     4|
+|12    |RAMB18E1 |     1|
+|13    |FDRE     |   921|
+|14    |IBUF     |    17|
+|15    |OBUF     |    28|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 121 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 1492.863 ; gain = 511.277
+Synthesis Optimization Complete : Time (s): cpu = 00:00:43 ; elapsed = 00:00:43 . Memory (MB): peak = 1492.863 ; gain = 617.199
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 1492.863 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 128 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1492.863 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 4 instances
+
+Synth Design complete | Checksum: 5e024c19
+INFO: [Common 17-83] Releasing license: Synthesis
+64 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:50 . Memory (MB): peak = 1492.863 ; gain = 997.000
+INFO: [Common 17-1381] The checkpoint 'F:/Vivado/Projects/RV_32/RV_32.runs/synth_1/BASYS3_RV_Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file BASYS3_RV_Top_utilization_synth.rpt -pb BASYS3_RV_Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Jun 10 00:49:34 2024...
