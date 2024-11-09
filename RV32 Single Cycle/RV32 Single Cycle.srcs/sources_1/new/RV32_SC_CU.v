@@ -20,62 +20,57 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module RV32_SC_CU(
-    input clk,
-    output reg [15:0] led,
-    output reg [7:0] JA,
-    output reg [7:0] JB,
-    output reg [31:0] PC
+module RV32_SC_CU
+    (
+        input clk,
+        input [31:0] code_bus,
+        inout [31:0] data_bus,
+        output wire [31:0] data_addr,
+        output reg [31:0] Destination,
+        output reg [31:0] PC
     );
 
 //RISC V Single Cycle Implementation.
-//Will keep Code and Data Memories inside the CU itself.      
+//Will keep Code and Data Memories outside the CU.      
 
 // Register File
 reg signed [31:0] RF [31:0];
 
 // Program Counter
-//reg [31:0] PC;
+//reg [31:0] PC; 
 
-// Code Memory
-reg [31:0] CODE [255:0]; 
-
-// Data Memory
-reg [31:0] DATA [255:0];
+reg data_bus_direction;
 
 // Instruction Buffer.
 reg [31:0] IBUF;
 
-// Helper Registers.
-reg [8:0] counter; 
+// Helper Registers. For What??
+//reg [8:0] counter; 
 
 initial
 begin
-    led <= 0;
-    JA <= 0;
-    JB <= 0;
+    Destination <= 0;
     //counter <= 0;
     IBUF <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};      //Replace with the NOP Instruction.
     PC <= 0;
-    for (counter = 0; counter < 32; counter = counter + 1)
-    begin
-        RF [counter] <= 0;
-    end
-    for (counter = 0; counter < 256; counter = counter + 1)
-    begin
-        CODE [counter] <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};    //Replace with the NOP instruction.
-        DATA [counter] <= counter; 
-    end
-    
-    CODE[1] <= {12'd4, 5'd0, 3'd0, 5'd1, 7'b0010011};
-    CODE[2] <= {12'd4, 5'd1, 3'd0, 5'd2, 7'b0010011};
-    CODE[3] <= {12'd8, 5'd1, 3'd0, 5'd3, 7'b0010011}; 
-    
 end
+
+always @(posedge clk, negedge rst_n) 
+    begin
+        if (!rst_n)
+            begin
+                IBUF <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+                //PC <= 0;
+            end
+        else
+            begin
+                IBUF <= code_bus;
+            end        
+    end
 
 always@(posedge clk)
 begin
-    IBUF <= CODE[PC];
+    //IBUF <= code_bus;
     case (IBUF[6:0])
         7'b0110011:
             begin
@@ -164,8 +159,8 @@ begin
                         end
                 endcase
             end
-        7'b0000011: RF[IBUF[11:7]] <= DATA[RF[IBUF[19:15]] + {{20{IBUF[31]}}, IBUF[31:20]}];
-        7'b0100011: DATA[RF[IBUF[19:15]] + {IBUF[31:25], IBUF[11:7]}] <= RF[IBUF[24:20]];
+        7'b0000011: data_bus_direction <= 0;
+        7'b0100011: data_bus_direction <= 1;
         7'b1100011: 
             begin
                 case (IBUF[14:12])
@@ -262,9 +257,14 @@ begin
         PC <= PC + 1;
 end
 
+assign data_addr = (data_bus_direction) ? 
+    (RF[IBUF[19:15]] + {IBUF[31:25], IBUF[11:7]}) : (RF[IBUF[19:15]] + {{20{IBUF[31]}}, IBUF[31:20]});
+
+assign data_bus = (data_bus_direction) ? (RF[IBUF[24:20]]) : (32'hZZZZ_ZZZZ);
+
 always@(negedge clk)
 begin
-    {JB, JA, led} = RF[IBUF[11:7]];
+    Destination <= RF[IBUF[11:7]];
 end
     
 endmodule
