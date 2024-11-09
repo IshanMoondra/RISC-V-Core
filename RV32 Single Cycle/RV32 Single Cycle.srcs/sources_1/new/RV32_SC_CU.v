@@ -23,6 +23,7 @@
 module RV32_SC_CU
     (
         input clk,
+        input rst_n,
         input [31:0] code_bus,
         inout [31:0] data_bus,
         output wire [31:0] data_addr,
