@@ -31,6 +31,15 @@ module rv32_cpu_top(
     */
     
     input clk,
+    input rst,
+    output wire pc_fetch,
+    input wire [31:0] code_fetch,
+    output wire data_mem_enable,
+    output wire [31:0] data_addr_bus,
+    output wire [31:0] write_data,
+    input wire [31:0] read_data,
+    output wire data_mem_read,
+    /*
     output reg [31:0] alu,   
     output reg [31:0] bshift,
     output reg [31:0] data,
@@ -41,18 +50,21 @@ module rv32_cpu_top(
     output reg [31:0] id_ex_q,
     output reg [31:0] c_ex2,
     output reg [31:0] d_addr,
+    */
     output reg BUSY,
-    output reg FLUSH,
+    output reg FLUSH
+    /*
     output reg [4:0] PC_CTRL,
     output reg [1:0] RAM_CTRL,
     output reg [18:0] RB_CTRL,    
     output reg [1:0] PSSD,
     output reg [1:0] PSD1
+    */
     );
     
     
-wire [31:0] code_fetch;
-wire [31:0] pc_fetch;
+//wire [31:0] code_fetch;
+//wire [31:0] pc_fetch;
 wire flush;
 
 wire [31:0] code_decode;
@@ -80,7 +92,7 @@ wire [4:0] alu_ex2;
 wire [3:0] bshift_ex2;
 wire [4:0] pc_ctrl_ex2;
 
-wire [31:0] data_addr_bus;
+//wire [31:0] data_addr_bus;
 wire [31:0] register_s1;
 wire [31:0] register_s2;
 wire [31:0] alu_register_d1;
@@ -89,10 +101,12 @@ wire [31:0] pc_register_d1;
 wire [31:0] data_register_d1;
 wire [1:0] prev_ssd;
 
+/*
 rv32_code_32bit CODE (
     .clk(clk),
     .address(pc_fetch),
     .data_out(code_fetch));      
+*/
 
 rv32_if_id_queue IF_ID_QUEUE (
     .clk(clk),
@@ -152,6 +166,7 @@ rv32_register_bank RB (
     .data_reg_d1(data_register_d1),
     .prev_ssd(prev_ssd));
 
+/*
 rv32_data_32bit DATA (
     .clk(clk),
     //.enable(data_ctrl_ex[1] | data_ctrl_decode[1]),
@@ -160,6 +175,7 @@ rv32_data_32bit DATA (
     .data_in(register_s2),
     .data_out(data_register_d1),
     .read(data_ctrl_ex[0]));
+*/
 
 rv32_ex_ex2_delay DELAY(
     .clk(clk),
@@ -220,7 +236,7 @@ begin
     JA <= 0;
     JB <= 0;
     */
-    
+    /*
     alu <= 0;
     bshift <= 0;
     data <= 0;
@@ -236,7 +252,7 @@ begin
     RB_CTRL <= 0;
     PC_CTRL <= 0;
     RAM_CTRL <= 0;
-           
+    */       
 end
 
 always@(negedge clk)
@@ -246,19 +262,23 @@ begin
     JA <= alu_register_d1[23:16];
     JB <= alu_register_d1[31:24];
     */
-    
+    /*
     alu <= alu_register_d1;    
     bshift <= bshift_register_d1;
     data <= data_register_d1;
     pc <= pc_ex2;
     if_id_q <= code_decode;
+    */
     BUSY <= busy;
+    /*
     c_ex2 <= code_ex2;
     d_addr <= data_addr_bus;
     PSSD <= prev_ssd;
+    */
     
 end
 
+/*
 always@(posedge clk)
 begin
     
@@ -270,5 +290,10 @@ begin
     RAM_CTRL <= data_ctrl_ex;
       
 end
-    
+*/
+
+assign write_data = register_s2;
+assign data_register_d1 = read_data;
+assign data_mem_read = data_ctrl_ex[0];
+
 endmodule
