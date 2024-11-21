@@ -27,11 +27,29 @@ module rv_32_barrel_shifter(
     input logical,
     input direction,
     input [4:0] shift_amount,
-    input [31:0] data_to_shift,
-    output reg [31:0] shift_out
+    input signed [31:0] data_to_shift,
+    output signed reg [31:0] shift_out
     );
-    
-always@(negedge clk)
+
+//Implementation 2 trusting the Synthesis tool
+always @(posedge clk)
+begin
+    if (enable)
+        begin
+            if (direction)
+                if (logical)
+                    shift_out <= data_to_shift >> shift_amount;     //SRL
+                else
+                    shift_out <= data_to_shift >>> shift_amount;    //SRA
+            else
+                shift_out <= data_to_shift << shift_amount;         //SLL
+        end
+    else
+        shift_out <= 32'hZZZZ_ZZZZ;
+end
+
+/*    
+always@(posedge clk)
 begin
     if (enable)
     begin
@@ -155,5 +173,5 @@ begin
         end
     end
 end    
-    
+*/    
 endmodule

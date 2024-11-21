@@ -32,63 +32,20 @@ module rv32_barrel_shifter(
     output reg [31:0] rd1
     );
 
-initial
-begin
-    rd1 <= 32'bz;
-end
-    
-always@(negedge clk)
+signed wire [31:0] shift_amt;
+assign shift_amt = (immediate) ? (code_bus[24:20]) : (rs2); //Immediate or Register as Shift Amount
+
+always@(posedge clk)
 begin
     if (enable)
     begin
-        if (immediate)
-        begin
-            if (direction)
-            begin
-                if (logical)
-                begin
-                    //Right Shift, Logical.
-                    rd1 <= rs1 >> code_bus[24:20];                
-                end
-                else
-                begin
-                    //Right Shift, Arithmetic.
-                    //Will use of an additonal If Else Block help reduce on chip complexity?
-                    rd1 <= rs1 >>> code_bus[24:20];                
-                end
-            end
-            else
-            begin
-                //Left Shift, Logical.
-                rd1 <= rs1 << code_bus[24:20];
-            end
-        end
-        else
-        begin
-            if (direction)
-            begin
-                if (logical)
-                begin
-                    //Right Shift, Logical.
-                    rd1 <= rs1 >> rs2;
-                end
-                else
-                begin
-                    //Right Shift, Arithmetic.
-                    //Will use of an additonal If Else Block help reduce on chip complexity?
-                    rd1 <= rs1 >>> rs2;
-                end
-            end
-            else
-            begin
-                //Left Shift, Logical.
-                rd1 <= rs1 << rs2;
-            end
-        end
+        casex({direction, logical})
+            2'b11: rd1 <= rs1 >>    shift_amt;  //SRL
+            2'b10: rd1 <= rs1 >>>   shift_amt;  //SRA
+            default: rd1 <= rs1 <<  shift_amt;  //SLL
+        endcase    
     end
     else
         rd1 <= 32'bz;
-end    
-    
+end
 endmodule
-

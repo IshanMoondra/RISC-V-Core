@@ -22,24 +22,27 @@
 //This Module does not have the Program Counter. 
 //The Program Counter Module will be defined seperately.
 
-module rv32_register_bank(
-    input clk,
-    input load,
-    input store,    
-    input [4:0] sel_s1,
-    input [4:0] sel_s2,
-    input [4:0] sel_d1,
-    input [31:0] code_bus,
-    output reg [31:0] data_addr_bus,
-    output reg [31:0] reg_s1,
-    output reg [31:0] reg_s2,
-    input [31:0] alu_reg_d1,
-    input [31:0] bshift_reg_d1,
-    input [31:0] pc_reg_d1,
-    input [31:0] data_reg_d1,
-    input [1:0] source_sel_d1,
-    output reg busy,
-    output reg [1:0] prev_ssd
+//Probably needs RF Bypass
+
+module rv32_register_bank
+    (
+        input clk,
+        input load,
+        input store,    
+        input [4:0] sel_s1,
+        input [4:0] sel_s2,
+        input [4:0] sel_d1,
+        input [31:0] code_bus,
+        output reg [31:0] data_addr_bus,
+        output reg [31:0] reg_s1,
+        output reg [31:0] reg_s2,
+        input [31:0] alu_reg_d1,
+        input [31:0] bshift_reg_d1,
+        input [31:0] pc_reg_d1,
+        input [31:0] data_reg_d1,
+        input [1:0] source_sel_d1,
+        output reg busy,
+        output reg [1:0] prev_ssd
     );
     
 reg [5:0] i;
@@ -51,21 +54,6 @@ reg [1:0] prev_ssl;
 reg [1:0] prev_sel_d1;
 reg [31:0] write_back;
 */
-
-initial
-begin
-    prev_ssd <= 0;
-    ssd <= 0;
-    busy <= 0;
-    state <= 0;
-    reg_s1 <= 0;
-    reg_s2 <= 0;
-    data_addr_bus <= 0;
-    for ( i = 0; i < 32; i = i + 1)
-    begin
-        register_bank[i] <= 0;
-    end
-end
 
 always@(posedge clk)
 begin
@@ -128,71 +116,63 @@ begin
     */    
 end
 
-always@(negedge clk)
+always@(posedge clk, negedge rst_n)
 begin    
-    case(state)
-    0:
+    if (!rst_n)
         begin
-            state <= 1;
-            busy <= 1;
-            ssd <= source_sel_d1;            
-            //register_bank[prev_sel_d1] <= write_back;
-            
-            if (sel_s1 != 0)
-            begin
-                reg_s1 <= register_bank[sel_s1];
-            end
-            else
-            begin
-                reg_s1 <= 0;
-            end
-            
-            if (sel_s2 != 0)
-            begin
-                reg_s2 <= register_bank[sel_s2];
-            end
-            else
-            begin
-                reg_s2 <= 0;
-            end
-            
-            if (load)
-            begin
-                if (sel_s1 != 0)
-                    data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:20]} + register_bank[sel_s1];
-                else
-                    data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:20]};
-                //state <= 2;                
-            end
-            
-            if (store)
-            begin
-                if (sel_s1 != 0)                   
-                    data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:25], code_bus[11:7]} + register_bank[sel_s1];
-                else
-                    data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:25], code_bus[11:7]};             
-            end
-            end
-    1: 
-        begin
-            state <= 2;
-            busy <= 1;
-            prev_ssd <= ssd;             
-            //register_bank[prev_sel_d1] <= write_back;          
-        end
-    2:
-        begin
-            state <= 0;
+            prev_ssd <= 0;
+            ssd <= 0;
             busy <= 0;
-        end
-    3:
-        begin
             state <= 0;
-            busy <= 0;
-        end    
-    endcase
+            reg_s1 <= 0;
+            reg_s2 <= 0;
+            data_addr_bus <= 0;        
+        end
+    else
+        begin
+            case(state)
+            0:
+                begin
+                    state <= 1;
+                    busy <= 1;
+                    ssd <= source_sel_d1;            
+                    //register_bank[prev_sel_d1] <= write_back;
+                    reg_s1 <= (sel_s1 == 0) ? (0) : (register_bank[sel_s1]);
+                    reg_s2 <= (sel_s2 == 0) ? (0) : (register_bank[sel_s2]);               
+                    if (load)
+                        begin
+                            if (sel_s1 != 0)
+                                data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:20]} + register_bank[sel_s1];
+                            else
+                                data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:20]};
+                            //state <= 2;                
+                        end
+                    if (store)
+                        begin
+                            if (sel_s1 != 0)                   
+                                data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:25], code_bus[11:7]} + register_bank[sel_s1];
+                            else
+                                data_addr_bus <= {{20{code_bus[31]}}, code_bus[31:25], code_bus[11:7]};             
+                        end
+                    end
+            1: 
+                begin
+                    state <= 2;
+                    busy <= 1;
+                    prev_ssd <= ssd;             
+                    //register_bank[prev_sel_d1] <= write_back;          
+                end
+            2:
+                begin
+                    state <= 0;
+                    busy <= 0;
+                end
+            3:
+                begin
+                    state <= 0;
+                    busy <= 0;
+                end    
+            endcase
+        end
 end
-
-//assign busy = state;
-
 endmodule

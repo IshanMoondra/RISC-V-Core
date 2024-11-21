@@ -63,40 +63,20 @@ begin
         case(alu_opsel)
         0: reg_d1 <= reg_s1 + reg_s2;   //Add
         1: reg_d1 <= reg_s1 - reg_s2;   //Sub
-        2: reg_d1 <= reg_s1 && reg_s2;  //AND
-        3: reg_d1 <= reg_s1 || reg_s2;  //OR
+        2: reg_d1 <= reg_s1 & reg_s2;  //AND
+        3: reg_d1 <= reg_s1 | reg_s2;  //OR
         4: reg_d1 <= reg_s1 ^ reg_s2;   //XOR
         5: begin                        //SLT
-               if (reg_s1[31] && reg_s2[31])    //Both operands negative.
-               begin
-                   if (temp_s1 > temp_s2)       //Reverse condition.
-                    reg_d1 <= 1;
-                   else
-                    reg_d1 <= 0;
-               end
-               
-               if (reg_s1[31] && ~reg_s2[31])   //Operand 1 Negative & Operand 2 Positive
-                reg_d1 <= 1;                    //By default less than Operand 2.
-               
-               if (~reg_s1[31] && reg_s2[31])   //Operand 1 Positive & Operand 2 Negative
-                reg_d1 <= 0;                    //By default more than Operand 2.
-                
-               if (~reg_s1[31] && ~reg_s2[31])  //Both Operands Positive.
-                if (reg_s1 < reg_s2)            //Same as SLTU. 
-                    reg_d1 <= 1;
-                else
-                    reg_d1 <= 0;
+               if (reg_s1[31] && reg_s2[31])        //Both operands negative.
+                reg_d1 <= (reg_s1 > reg_s2);        //Reverse Condition for Negative Operands.               
+               else if (reg_s1[31] && ~reg_s2[31])  //Operand 1 Negative & Operand 2 Positive
+                reg_d1 <= 1;                        //By default less than Operand 2.
+               else if (~reg_s1[31] && reg_s2[31])  //Operand 1 Positive & Operand 2 Negative
+                reg_d1 <= 0;                        //By default more than Operand 2.
+               else                                 //Both Operands Positive.
+                reg_d1 <= (reg_s1 < reg_s2);        //Same as SLTU
            end
-        6: begin                        //SLTU
-                if (reg_s1 < reg_s2)
-                begin
-                    reg_d1 <= 1;
-                end
-                else
-                begin
-                    reg_d1 <= 0;
-                end    
-           end
+        6: reg_d1 <= (reg_s1 < reg_s2);             //Same as SLTU
         15: reg_d1 <= next_pc + {data_bus[31:12], 12'b0} - 3;    //AUiPC
         endcase
     end

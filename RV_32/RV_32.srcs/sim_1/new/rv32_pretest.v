@@ -68,19 +68,18 @@ reg [4:0] i;
 initial
 begin
     //Universal Control Signals.
-    clk <= 0;
-    i <= 0;
+    clk = 0;
+    i = 0;
     #5;
     
     //Simulation Start.
     for ( i = 0; i < 32; i = i + 1)
     begin
-        clk <= 0;
+        clk = 0;
         #5;
-        clk <= 1;
+        clk = 1;
         #5;
     end
-    
 end
 
 endmodule

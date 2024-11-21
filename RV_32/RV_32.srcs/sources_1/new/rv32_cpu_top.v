@@ -20,46 +20,51 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module rv32_cpu_top(
-    
-    /*
-    input clk,
-    output reg [15:0] led,
-    output reg [7:0] JA,
-    output reg [7:0] JB
-    );
-    */
-    
-    input clk,
-    input rst,
-    output wire pc_fetch,
-    input wire [31:0] code_fetch,
-    output wire data_mem_enable,
-    output wire [31:0] data_addr_bus,
-    output wire [31:0] write_data,
-    input wire [31:0] read_data,
-    output wire data_mem_read,
-    /*
-    output reg [31:0] alu,   
-    output reg [31:0] bshift,
-    output reg [31:0] data,
-    output reg [31:0] pc,
-    output reg [31:0] s1,
-    output reg [31:0] s2,
-    output reg [31:0] if_id_q,
-    output reg [31:0] id_ex_q,
-    output reg [31:0] c_ex2,
-    output reg [31:0] d_addr,
-    */
-    output reg BUSY,
-    output reg FLUSH
-    /*
-    output reg [4:0] PC_CTRL,
-    output reg [1:0] RAM_CTRL,
-    output reg [18:0] RB_CTRL,    
-    output reg [1:0] PSSD,
-    output reg [1:0] PSD1
-    */
+module rv32_cpu_top
+    (
+        
+        /*
+        input clk,
+        output reg [15:0] led,
+        output reg [7:0] JA,
+        output reg [7:0] JB
+        );
+        */
+        //Universal Signals
+        input clk,
+        input rst_n,
+        //Code Memory Signals
+        output wire pc_fetch,
+        input wire [31:0] code_fetch,
+        //Data Memory Signals
+        //Using Memory with write and read ports seperate
+        output wire data_mem_enable,
+        output wire [31:0] data_addr_bus,
+        output wire [31:0] write_data,
+        input wire [31:0] read_data,
+        //Read Enable for Data Memory
+        output wire data_mem_read,
+        /*
+        output reg [31:0] alu,   
+        output reg [31:0] bshift,
+        output reg [31:0] data,
+        output reg [31:0] pc,
+        output reg [31:0] s1,
+        output reg [31:0] s2,
+        output reg [31:0] if_id_q,
+        output reg [31:0] id_ex_q,
+        output reg [31:0] c_ex2,
+        output reg [31:0] d_addr,
+        */
+        output reg BUSY,
+        output reg FLUSH
+        /*
+        output reg [4:0] PC_CTRL,
+        output reg [1:0] RAM_CTRL,
+        output reg [18:0] RB_CTRL,    
+        output reg [1:0] PSSD,
+        output reg [1:0] PSD1
+        */
     );
     
     

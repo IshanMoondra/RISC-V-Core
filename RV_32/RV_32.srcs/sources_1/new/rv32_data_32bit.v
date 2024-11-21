@@ -42,7 +42,7 @@ begin
 end
 
 //Output from the Memory.
-always@(negedge clk)
+always@(posedge clk)
 begin
     if (EN)
     begin
