@@ -1,0 +1,64 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'rv32_cpu_top' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Sat Dec 14 19:01:38 2024
+****************************************
+
+
+Library(s) Used:
+
+    tcbn40lpbwp12ttc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp12t_110b/tcbn40lpbwp12ttc.db)
+
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwp12ttc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+rv32_cpu_top           TSMC32K_Lowk_Conservative
+                                         tcbn40lpbwp12ttc
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   3.7998 mW   (97%)
+  Net Switching Power  = 128.9336 uW    (3%)
+                         ---------
+Total Dynamic Power    =   3.9287 mW  (100%)
+
+Cell Leakage Power     =   2.9653 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      3.6844            0.0000            0.0000            3.6844  (  93.71%)  i
+register       2.7959e-02        7.2550e-03        1.0380e+03        3.6258e-02  (   0.92%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  8.7415e-02            0.1217        1.9273e+03            0.2110  (   5.37%)
+--------------------------------------------------------------------------------------------------
+Total              3.7998 mW         0.1289 mW     2.9653e+03 nW         3.9317 mW
+1

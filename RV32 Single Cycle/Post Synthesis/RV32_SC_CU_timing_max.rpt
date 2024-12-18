@@ -1,0 +1,77 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : RV32_SC_CU
+Version: V-2023.12-SP5
+Date   : Tue Dec 17 21:59:36 2024
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwp12ttc
+Wire Load Model Mode: segmented
+
+  Startpoint: IBUF_reg[17]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: data_addr[31]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  RV32_SC_CU         ZeroWireload          tcbn40lpbwp12ttc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  IBUF_reg[17]/CP (DFCND4BWP12T)           0.00 #     0.00 r
+  IBUF_reg[17]/Q (DFCND4BWP12T)            0.08       0.08 f
+  U11498/ZN (INVD4BWP12T)                  0.02       0.10 r
+  U11416/ZN (ND2D2BWP12T)                  0.02       0.12 f
+  U11415/ZN (INVD2BWP12T)                  0.02       0.14 r
+  U11482/ZN (IND3D2BWP12T)                 0.03       0.16 f
+  U10066/Z (BUFFXD4BWP12T)                 0.04       0.20 f
+  U11267/ZN (CKND4BWP12T)                  0.02       0.22 r
+  U11266/ZN (RCAOI22D2BWP12T)              0.03       0.25 f
+  U11582/Z (OA221D4BWP12T)                 0.05       0.30 f
+  U11911/ZN (ND4D2BWP12T)                  0.02       0.32 r
+  U9995/ZN (TPND2D1BWP12T)                 0.02       0.33 f
+  U9996/ZN (ND2D1BWP12T)                   0.02       0.36 r
+  U9998/ZN (ND2D1BWP12T)                   0.03       0.38 f
+  U10709/ZN (ND2D1BWP12T)                  0.02       0.41 r
+  U11758/ZN (IOA21D2BWP12T)                0.04       0.45 r
+  U12469/ZN (IOA21D2BWP12T)                0.04       0.49 r
+  U10976/ZN (TPND2D2BWP12T)                0.02       0.51 f
+  U11234/ZN (CKND2BWP12T)                  0.01       0.52 r
+  U12320/Z (OA211D4BWP12T)                 0.05       0.57 r
+  U9854/ZN (INVD1BWP12T)                   0.01       0.58 f
+  U9855/ZN (NR2XD1BWP12T)                  0.02       0.60 r
+  U9857/ZN (ND2D2BWP12T)                   0.02       0.63 f
+  U11016/ZN (IND2XD4BWP12T)                0.04       0.66 f
+  U11094/ZN (INR4D1BWP12T)                 0.03       0.69 r
+  U10205/ZN (TPND2D1BWP12T)                0.02       0.72 f
+  U10140/ZN (IND2D2BWP12T)                 0.04       0.75 f
+  U11530/Z (XOR2XD4BWP12T)                 0.05       0.81 f
+  U11525/ZN (TPAOI21D8BWP12T)              0.03       0.84 r
+  U10207/ZN (INVD15BWP12T)                 0.04       0.88 f
+  data_addr[31] (out)                      0.00       0.88 f
+  data arrival time                                   0.88
+
+  clock clk (rise edge)                    1.43       1.43
+  clock network delay (ideal)              0.00       1.43
+  clock uncertainty                       -0.15       1.28
+  output external delay                   -0.40       0.88
+  data required time                                  0.88
+  -----------------------------------------------------------
+  data required time                                  0.88
+  data arrival time                                  -0.88
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

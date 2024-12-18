@@ -1,0 +1,133 @@
+###Script for Design Vision CLI tool.
+###For RISC V 32I Single Cycle CPU
+### Single File contains both libraries as well as cells.
+### File will track Area Efficient, Max Speed implementations for both SAED32 and TSMC40 libraries.
+
+### Results:
+### SAED 32nm Library:	
+###                     Area Efficient:	266.7 MHz, 31.7k sq microns, 14.3 mW
+###			            Max Speed:	    609.7 MHz, 37.2k sq microns, 16.3 mW
+### TSMC 40nm Library:
+### General Purpose:	
+###                     Area Efficient:	300.0 MHz, 11.8k sq microns, 2.00 mW
+###			            Max Speed:	    632.9 MHz, 13.9k sq microns, 4.01 mW
+### High Performance:	
+###                     Area Efficient:	300.0 MHz, 16.4k sq microns, 2.57 mW
+###	              		Max Speed:	    699.3 MHz, 19.4k sq microns, 5.82 mW
+
+###Reading in the Verilog Files
+read_file -format verilog { RV32_SC_CU.v }
+
+###Set the top of the heirarchy.
+set current_design RV32_SC_CU
+
+##Constraining the Design
+
+###Creating the clock
+
+### SAED32 Parameters
+#create_clock -name "clk" -period 1.64 {clk}
+#create_clock -name "clk" -period 3.75 {clk}
+
+### TSMC40 Parameters
+### General Purpose Cell
+#create_clock -name "clk" -period 1.58 {clk}
+#create_clock -name "clk" -period 3.33 {clk}
+
+### High Performance Cell
+create_clock -name "clk" -period 1.43 {clk}
+#create_clock -name "clk" -period 3.33 {clk}
+
+set_dont_touch_network [find port clk]
+
+###Creating the Primary Inputs
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+
+###Setting Input Delays
+set_input_delay -clock clk 0.4 $prim_inputs
+
+###Setting the Drive Strength of Inputs
+### SAED32 Library
+#set_driving_cell -lib_cell NAND2X2_LVT -library saed32lvt_tt0p85v25c $prim_inputs
+
+### TSMC40 Library
+### General Purpose
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
+### High Performance
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwp12ttc $prim_inputs
+
+###No Reset Pins in the Design
+###Setting the RST_N signal to be very strongly driven, the value is in M Ohm
+set_drive 0.0001 rst_n 
+
+###Setting the Output Delays
+set_output_delay -clock clk 0.4 [all_outputs]
+
+###Set Capacitive Load 0.10 pF on all Output Pins (in pF)
+set_load 0.100 [all_outputs]
+
+###Setting the Wireload Model Constraint
+### SAED32 Library
+#set_wire_load_model -name 16000 -library saed32lvt_tt0p85v25c
+
+### TSMC40 Library
+### General Purpose Cell
+#set_wire_load_model -name TSMCK_Lowk_Conservative -library tcbn40lpbwptc
+### High Performance
+set_wire_load_model -name TSMCK_Lowk_Conservative -library tcbn40lpbwp12ttc
+
+###Setting Max Transition Times for the design
+set_max_transition 0.15 [current_design]
+
+### First Compile
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+###Setting up some clock skew and fixes for clock skew
+set_clock_uncertainty 0.15 clk
+set_fix_hold clk
+
+###Flatten the Heirarchy
+ungroup -all -flatten
+
+###2nd Compile
+compile -map_effort high
+#compile_ultra
+#compile -map_effort medium
+
+#Bunch of Incremental Mapping XD
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+##Writing the Area, Min & Max Timing Reports to files
+report_power > RV32_SC_CU_power.rpt
+report_area > RV32_SC_CU_area.rpt
+report_timing -delay max > RV32_SC_CU_timing_max.rpt
+report_timing -delay min > RV32_SC_CU_timing_min.rpt
+
+###Write out the netlist
+write -format verilog RV32_SC_CU -output RV32_SC_CU.vg
+
+###Write out the Synopsys Design Constraints format script (.sdc file)
+write_sdc RV32_SC_CU.sdc
