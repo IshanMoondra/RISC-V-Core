@@ -34,7 +34,7 @@ module rv32_cpu_top
         input clk,
         input rst_n,
         //Code Memory Signals
-        output wire pc_fetch,
+        output wire [31:0] pc_fetch,
         input wire [31:0] code_fetch,
         //Data Memory Signals
         //Using Memory with write and read ports seperate
@@ -56,8 +56,8 @@ module rv32_cpu_top
         output reg [31:0] c_ex2,
         output reg [31:0] d_addr,
         */
-        output reg BUSY,
-        output reg FLUSH
+        output wire BUSY,
+        output wire FLUSH
         /*
         output reg [4:0] PC_CTRL,
         output reg [1:0] RAM_CTRL,
@@ -124,6 +124,7 @@ rv32_if_id_queue IF_ID_QUEUE (
 
 rv32_cu CU (
     .clk(clk),
+    .rst_n(rst_n),
     .code_bus(code_decode),
     .rb_ctrl(rb_decode),
     .alu_ctrl(alu_decode),
@@ -154,6 +155,7 @@ rv32_id_ex_queue ID_EX_QUEUE (
         
 rv32_register_bank RB (
     .clk(clk),
+    .rst_n(rst_n),
     .load(rb_ex[3]),
     .store(rb_ex[2]),
     .sel_s1(rb_ex[18:14]),
@@ -222,6 +224,7 @@ rv32_barrel_shifter BShift (
 
 rv32_pc PC (
     .clk(clk),
+    .rst_n(rst_n),
     .enable(pc_ctrl_ex2[4]),
     .data_bus(code_ex2),
     .reg_s1(register_s1),
@@ -274,7 +277,7 @@ begin
     pc <= pc_ex2;
     if_id_q <= code_decode;
     */
-    BUSY <= busy;
+    //BUSY <= busy;
     /*
     c_ex2 <= code_ex2;
     d_addr <= data_addr_bus;
@@ -300,5 +303,7 @@ end
 assign write_data = register_s2;
 assign data_register_d1 = read_data;
 assign data_mem_read = data_ctrl_ex[0];
+assign FLUSH = flush;
+assign BUSY = busy;
 
 endmodule

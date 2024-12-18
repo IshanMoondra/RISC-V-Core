@@ -27,6 +27,7 @@
 module rv32_register_bank
     (
         input clk,
+        input rst_n,
         input load,
         input store,    
         input [4:0] sel_s1,

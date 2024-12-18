@@ -202,6 +202,8 @@ begin
                     endcase
                 end     
         end
+    else
+        pc <= pc;    
 end
 
 endmodule

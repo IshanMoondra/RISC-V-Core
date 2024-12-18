@@ -29,10 +29,10 @@ module rv32_barrel_shifter(
     input [31:0] code_bus,
     input [31:0] rs2,
     input signed [31:0] rs1,
-    output reg [31:0] rd1
+    output reg signed [31:0] rd1
     );
 
-signed wire [31:0] shift_amt;
+wire signed [31:0] shift_amt;
 assign shift_amt = (immediate) ? (code_bus[24:20]) : (rs2); //Immediate or Register as Shift Amount
 
 always@(posedge clk)
@@ -46,6 +46,6 @@ begin
         endcase    
     end
     else
-        rd1 <= 32'bz;
+        rd1 <= rd1;
 end
 endmodule

@@ -44,7 +44,8 @@ reg store;
 reg [1:0] source_sel_dest;
 
 //Control Signals for Program Counter.
-reg pc_enable;
+wire pc_enable;
+assign pc_enable = 1'b1;
 reg [2:0] pc_operation_sel;
 reg normal_op;
 
@@ -105,7 +106,7 @@ begin
             source_sel_dest <= 0;
             
             //Control Signals for Program Counter.
-            pc_enable <= 1;
+            //pc_enable <= 1;
             pc_operation_sel <= 0;
             normal_op <= 1;
             

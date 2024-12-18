@@ -63,7 +63,7 @@ begin
         11: reg_d1 <= reg_s1 ^ {{20{code_bus[31]}}, code_bus[31:20]};    //XORi
         12: begin                                                        //SLTi
                 if (reg_s1[31] & code_bus[31])              //Both operands negative.
-                    reg_d1 = (reg_s1 > {{20{code_bus[31]}}, code_bus[31:20]});  //Reverse Condition
+                    reg_d1 <= (reg_s1 > {{20{code_bus[31]}}, code_bus[31:20]});  //Reverse Condition
                else if (reg_s1[31] & ~code_bus[31])         //Operand 1 Negative & Operand 2 Positive
                     reg_d1 <= 1;                            //By default less than Operand 2.
                else if (~reg_s1[31] & code_bus[31])         //Operand 1 Positive & Operand 2 Negative
@@ -77,7 +77,7 @@ begin
         endcase
     end
     else
-        reg_d1 <= 32'bz;
+        reg_d1 <= reg_d1;
 end
 
 endmodule

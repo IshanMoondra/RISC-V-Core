@@ -1,0 +1,92 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Wed Dec 11 20:03:46 2024
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt0p85v25c   Library: saed32lvt_tt0p85v25c
+Wire Load Model Mode: enclosed
+
+  Startpoint: ID_EX_QUEUE/rb_out_reg[17]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: RB/data_addr_bus_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       16000                 saed32lvt_tt0p85v25c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  ID_EX_QUEUE/rb_out_reg[17]/CLK (DFFX1_LVT)              0.00 #     0.00 r
+  ID_EX_QUEUE/rb_out_reg[17]/QN (DFFX1_LVT)               0.07       0.07 r
+  U3731/Y (AND2X1_LVT)                                    0.05       0.12 r
+  U3723/Y (NAND2X0_LVT)                                   0.07       0.19 f
+  U7988/Y (INVX1_LVT)                                     0.07       0.26 r
+  U8162/Y (INVX1_LVT)                                     0.05       0.31 f
+  U3203/Y (OA22X1_LVT)                                    0.06       0.37 f
+  U3202/Y (OA221X1_LVT)                                   0.05       0.42 f
+  U3195/Y (NAND4X0_LVT)                                   0.04       0.46 r
+  U3186/Y (AO22X1_LVT)                                    0.07       0.53 r
+  U3184/Y (AND2X1_LVT)                                    0.05       0.58 r
+  RB/add_154_aco/U1_1/CO (FADDX1_LVT)                     0.08       0.66 r
+  RB/add_154_aco/U1_2/CO (FADDX1_LVT)                     0.08       0.74 r
+  RB/add_154_aco/U1_3/CO (FADDX1_LVT)                     0.08       0.82 r
+  RB/add_154_aco/U1_4/CO (FADDX1_LVT)                     0.08       0.91 r
+  RB/add_154_aco/U1_5/CO (FADDX1_LVT)                     0.08       0.99 r
+  RB/add_154_aco/U1_6/CO (FADDX1_LVT)                     0.08       1.07 r
+  RB/add_154_aco/U1_7/CO (FADDX1_LVT)                     0.08       1.15 r
+  RB/add_154_aco/U1_8/CO (FADDX1_LVT)                     0.08       1.23 r
+  RB/add_154_aco/U1_9/CO (FADDX1_LVT)                     0.08       1.31 r
+  RB/add_154_aco/U1_10/CO (FADDX1_LVT)                    0.08       1.40 r
+  RB/add_154_aco/U1_11/CO (FADDX1_LVT)                    0.08       1.48 r
+  RB/add_154_aco/U1_12/CO (FADDX1_LVT)                    0.08       1.56 r
+  RB/add_154_aco/U1_13/CO (FADDX1_LVT)                    0.08       1.64 r
+  RB/add_154_aco/U1_14/CO (FADDX1_LVT)                    0.08       1.72 r
+  RB/add_154_aco/U1_15/CO (FADDX1_LVT)                    0.08       1.80 r
+  RB/add_154_aco/U1_16/CO (FADDX1_LVT)                    0.08       1.89 r
+  RB/add_154_aco/U1_17/CO (FADDX1_LVT)                    0.08       1.97 r
+  RB/add_154_aco/U1_18/CO (FADDX1_LVT)                    0.08       2.05 r
+  RB/add_154_aco/U1_19/CO (FADDX1_LVT)                    0.08       2.13 r
+  RB/add_154_aco/U1_20/CO (FADDX1_LVT)                    0.08       2.21 r
+  RB/add_154_aco/U1_21/CO (FADDX1_LVT)                    0.08       2.30 r
+  RB/add_154_aco/U1_22/CO (FADDX1_LVT)                    0.08       2.38 r
+  RB/add_154_aco/U1_23/CO (FADDX1_LVT)                    0.08       2.46 r
+  RB/add_154_aco/U1_24/CO (FADDX1_LVT)                    0.08       2.54 r
+  RB/add_154_aco/U1_25/CO (FADDX1_LVT)                    0.08       2.62 r
+  RB/add_154_aco/U1_26/CO (FADDX1_LVT)                    0.08       2.70 r
+  RB/add_154_aco/U1_27/CO (FADDX1_LVT)                    0.08       2.79 r
+  RB/add_154_aco/U1_28/CO (FADDX1_LVT)                    0.08       2.87 r
+  RB/add_154_aco/U1_29/CO (FADDX1_LVT)                    0.08       2.95 r
+  RB/add_154_aco/U1_30/CO (FADDX1_LVT)                    0.08       3.03 r
+  RB/add_154_aco/U1_31/S (FADDX1_LVT)                     0.10       3.14 f
+  U2277/Y (AO222X1_LVT)                                   0.06       3.20 f
+  U5202/Y (NBUFFX2_LVT)                                   0.04       3.24 f
+  RB/data_addr_bus_reg[31]/D (DFFARX1_LVT)                0.01       3.25 f
+  data arrival time                                                  3.25
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  clock uncertainty                                      -0.15       9.85
+  RB/data_addr_bus_reg[31]/CLK (DFFARX1_LVT)              0.00       9.85 r
+  library setup time                                     -0.02       9.83
+  data required time                                                 9.83
+  --------------------------------------------------------------------------
+  data required time                                                 9.83
+  data arrival time                                                 -3.25
+  --------------------------------------------------------------------------
+  slack (MET)                                                        6.58
+
+
+1
