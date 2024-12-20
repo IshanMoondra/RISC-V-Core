@@ -21,7 +21,6 @@
 
 
 module rv32_barrel_shifter(
-    input clk,
     input enable,
     input logical,
     input direction,
@@ -35,7 +34,7 @@ module rv32_barrel_shifter(
 wire signed [31:0] shift_amt;
 assign shift_amt = (immediate) ? (code_bus[24:20]) : (rs2); //Immediate or Register as Shift Amount
 
-always@(posedge clk)
+always @(*)
 begin
     if (enable)
     begin
@@ -46,6 +45,6 @@ begin
         endcase    
     end
     else
-        rd1 <= rd1;
+        rd1 <= 0;
 end
 endmodule

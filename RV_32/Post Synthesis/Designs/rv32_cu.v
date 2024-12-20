@@ -62,7 +62,7 @@ reg shifter_immediate;
 //Control Signals for Data RAM.
 reg data_read;
 reg data_enable;
-
+/*
 initial
 begin
     //Control Signals for Register Bank.
@@ -92,7 +92,7 @@ begin
     data_read <= 1;
     data_enable <= 0;
 end
-
+*/
 always@(posedge clk, negedge rst_n)
 begin
     if (!rst_n)

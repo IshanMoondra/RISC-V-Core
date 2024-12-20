@@ -25,14 +25,18 @@ module RV32_SC_CU
         input clk,
         input rst_n,
         input [31:0] code_bus,
-        inout [31:0] data_bus,
-        output wire [31:0] data_addr,
-        output reg [31:0] Destination,
-        output reg [31:0] PC
+        inout [31:0] data_bus
+        //output wire [31:0] data_addr
+        //output reg [31:0] Destination,
+        //output reg [31:0] PC
     );
 
 //RISC V Single Cycle Implementation.
 //Will keep Code and Data Memories outside the CU.      
+
+//wire [31:0] data_addr, data_bus;
+wire [31:0] data_addr;
+reg [31:0] Destination, PC;
 
 // Register File
 reg signed [31:0] RF [31:0];

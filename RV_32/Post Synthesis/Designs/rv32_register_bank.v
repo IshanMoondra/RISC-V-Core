@@ -46,7 +46,6 @@ module rv32_register_bank
         output reg [1:0] prev_ssd
     );
     
-reg [5:0] i;
 reg [31:0] register_bank [31:0];
 reg [1:0] state;
 reg [1:0] ssd;
