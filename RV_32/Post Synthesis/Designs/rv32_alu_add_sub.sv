@@ -1,5 +1,6 @@
 /*
-rv32_alu_add/sub unit
+rv32_alu_add_sub.sv
+Submodule will handle additions and subtractions for the ALU of RV32I Core.
 */
 
 module rv32_alu_add_sub

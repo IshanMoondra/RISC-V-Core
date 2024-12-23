@@ -21,7 +21,6 @@
 
 
 module rv32_alu_v2(
-    input clk,
     input [31:0] reg_s1,
     input [31:0] reg_s2,
     output reg [31:0] reg_d1,
@@ -32,59 +31,98 @@ module rv32_alu_v2(
     );
 
 // How best to approach this power optimization method?
-// Create individual modules for every operation?
-// Have enables for each of them. Based on the enable signal select the operands from inside the submodules
-// Have one large mux outside to select the required output.
-// Need to pass alu_opsel to all submodules
-// Need to modify Barrel Shifter for the new approach.
+// Create individual modules for every operation? Modules for every class of instruction
+// Have enables for each of them. Based on the enable signal select the operands from inside the submodules. Not needed
+// Have one large mux outside to select the required output. Done with nested If/Else
+// Need to pass alu_opsel to all submodules. Done
+// Need to modify Barrel Shifter for the new approach. Not Needed
 
-always@(posedge clk)
-begin
-    if (enable)
-    begin
-        //Operation List:
-        //{Add, Addi, Sub, Subi, AND, ANDi, OR, ORi, 
-        // XOR, XORi, SLT, SLTU, SLTi, SLTUi, LUi (reg_d1[31:12] <= immediate)
-        // AUiPC (PC[31:12] <= PC[31:12] + immediate)} 
-        case(alu_opsel)
-        0: reg_d1 <= reg_s1 + reg_s2;           //Add
-        1: reg_d1 <= reg_s1 - reg_s2;           //Sub
-        2: reg_d1 <= reg_s1 & reg_s2;           //AND
-        3: reg_d1 <= reg_s1 | reg_s2;           //OR
-        4: reg_d1 <= reg_s1 ^ reg_s2;           //XOR
-        5: begin                                //SLT
-               if (reg_s1[31] && reg_s2[31])        //Both operands negative.
-                reg_d1 <= (reg_s1 > reg_s2);        //Reverse Condition for Negative Operands.               
-               else if (reg_s1[31] && ~reg_s2[31])  //Operand 1 Negative & Operand 2 Positive
-                reg_d1 <= 1;                        //By default less than Operand 2.
-               else if (~reg_s1[31] && reg_s2[31])  //Operand 1 Positive & Operand 2 Negative
-                reg_d1 <= 0;                        //By default more than Operand 2.
-               else                                 //Both Operands Positive.
-                reg_d1 <= (reg_s1 < reg_s2);        //Same as SLTU
-           end
-        6: reg_d1 <= (reg_s1 < reg_s2);         //SLTU
-        7: reg_d1 <= reg_s1 + {{20{code_bus[31]}}, code_bus[31:20]};     //Addi 
-        8: reg_d1 <= reg_s1 - {{20{code_bus[31]}}, code_bus[31:20]};     //Subi
-        9: reg_d1 <= reg_s1 & {{20{code_bus[31]}}, code_bus[31:20]};     //ANDi
-        10: reg_d1 <= reg_s1 | {{20{code_bus[31]}}, code_bus[31:20]};    //ORi
-        11: reg_d1 <= reg_s1 ^ {{20{code_bus[31]}}, code_bus[31:20]};    //XORi
-        12: begin                                                        //SLTi
-                if (reg_s1[31] & code_bus[31])              //Both operands negative.
-                    reg_d1 <= (reg_s1 > {{20{code_bus[31]}}, code_bus[31:20]});  //Reverse Condition
-               else if (reg_s1[31] & ~code_bus[31])         //Operand 1 Negative & Operand 2 Positive
-                    reg_d1 <= 1;                            //By default less than Operand 2.
-               else if (~reg_s1[31] & code_bus[31])         //Operand 1 Positive & Operand 2 Negative
-                    reg_d1 <= 0;                            //By default more than Operand 2.
-               else                                         //Both Operands Positive.
-                    reg_d1 <= reg_s1 < ({{20{code_bus[31]}}, code_bus[31:20]}); //Same as SLTUi.
-            end
-        13: reg_d1 <= reg_s1 < ({{20{code_bus[31]}}, code_bus[31:20]}); //SLTUi
-        14: reg_d1 <= {code_bus[31:12], 12'b0};             //LUi Can a 12bit Mask be a faster method than this concat?  
-        15: reg_d1 <= pc + {code_bus[31:12], 12'b0};        //AUiPC
-        endcase
-    end
+// Instantiating the sub modules
+// Adder needs to handle AUiPC case as well
+// The other cases need to choose between RT or IMM Data 
+wire [31:0] add_A, add_B;
+wire [31:0] comp_B;
+wire [31:0] logical_B;
+wire [31:0] add_result, comp_result, logical_result, LUi_result;
+
+assign LUi_result = (alu_opsel == 14) ? ({code_bus[31:12], 12'b0}) : (0);
+
+rv32_alu_add_sub iAdd_Sub
+    (
+        .opA(add_A),
+        .opB(add_B),
+        .alu_opsel(alu_opsel),
+        .result(add_result)
+    );
+
+rv32_alu_comp iComp
+    (
+        .opA(reg_s1),
+        .opB(comp_B),
+        .alu_opsel(alu_opsel),
+        .result(comp_result)
+    );
+
+rv32_alu_logical iLogical
+    (
+        .opA(reg_s1),
+        .opB(logical_B),
+        .alu_opsel(alu_opsel),
+        .result(logical_result)
+    );
+
+// Case Statement Mux to provide correct inputs
+always @(*) begin
+    // Defining Defaults:
+    add_A       = 0;
+    add_B       = 0;
+    comp_B      = 0;
+    logical_B   = 0;
+    reg_d1      = 0;
+    // Nested If Else cases
+    if (alu_opsel == 0 || alu_opsel == 1)
+        begin
+            add_A = reg_s1;
+            add_B = reg_s2;
+            reg_d1 = add_result;
+        end
+    else if (alu_opsel == 2 || alu_opsel == 3 || alu_opsel == 4)
+        begin
+            logical_B = reg_s2;
+            reg_d1 = logical_B;
+        end
+    else if (alu_opsel == 5 || alu_opsel == 6)
+        begin
+            comp_B = reg_s2;
+            reg_d1 = comp_result;
+        end
+    else if (alu_opsel == 7 || alu_opsel == 8)
+        begin
+            add_A = reg_s1;
+            add_B = {{20{code_bus[31]}}, code_bus[31:20]};
+            reg_d1 = add_result;
+        end
+    else if (alu_opsel == 9 || alu_opsel == 10 || alu_opsel == 11)
+        begin
+            logical_B = {{20{code_bus[31]}}, code_bus[31:20]};
+            reg_d1 = logical_B;
+        end
+    else if (alu_opsel == 12 || alu_opsel == 13)
+        begin
+            comp_B = {{20{code_bus[31]}}, code_bus[31:20]};
+            reg_d1 = comp_result;
+        end
+    else if (alu_opsel == 14)
+        begin
+            reg_d1 = LUi_result;
+        end
+    else if (alu_opsel == 15)
+        begin
+            add_A = pc;
+            add_B = {code_bus[31:12], 12'b0};
+            reg_d1 = add_result;
+        end
     else
-        reg_d1 <= reg_d1;
+        reg_d1 = 0;
 end
-
 endmodule
