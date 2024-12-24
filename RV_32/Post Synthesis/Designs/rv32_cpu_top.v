@@ -205,10 +205,22 @@ rv32_ex_ex2_delay DELAY(
     .bshift_out(bshift_ex2),
     .pc_ctrl_in(pc_ctrl_ex),
     .pc_ctrl_out(pc_ctrl_ex2));
-
-
-rv32_alu ALU (
+/*
+//ALU V1: Older and simple.
+rv32_alu_v2 ALU (
     .clk(clk),
+    .code_bus(code_ex2),
+    .reg_s1(register_s1),
+    .reg_s2(register_s2),
+    .reg_d1(alu_register_d1),
+    .pc(pc_ex2),
+    //.enable(alu_ex2[4] | alu_ex[4]),
+    .enable(1'b1),
+    .alu_opsel(alu_ex2[3:0]));
+*/
+
+// ALU V2: Power Optimized
+rv32_alu_v2 ALU (
     .code_bus(code_ex2),
     .reg_s1(register_s1),
     .reg_s2(register_s2),
@@ -219,7 +231,6 @@ rv32_alu ALU (
     .alu_opsel(alu_ex2[3:0]));
     
 rv32_barrel_shifter BShift (
-    .clk(clk),
     .rs1(register_s1),
     .rs2(register_s2),
     .rd1(bshift_register_d1),

@@ -7,8 +7,9 @@ module rv32_alu_add_sub
     (
         input [3:0] alu_opsel,
         //Need muxes to select between RS, RT, PC, IMM Data: Special Case for AUiPC
-        input [31:0] wire opA, opB,
-        output logic [31:0] result,
+        input wire [31:0] opA,
+        input wire [31:0] opB,
+        output logic [31:0] result
     );
 
 always_comb

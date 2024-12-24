@@ -14,7 +14,7 @@ module rv32_alu_logical
 always_comb
     begin   :Logical
         //AND Operation
-        if (alu_opsel == 2 || alu_opsel === 9 )
+        if (alu_opsel == 2 || alu_opsel == 9 )
             result = opA & opB;
         //OR Operation
         else if (alu_opsel == 3 || alu_opsel == 10 )

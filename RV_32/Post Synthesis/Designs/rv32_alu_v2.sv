@@ -40,10 +40,10 @@ module rv32_alu_v2(
 // Instantiating the sub modules
 // Adder needs to handle AUiPC case as well
 // The other cases need to choose between RT or IMM Data 
-wire [31:0] add_A, add_B;
-wire [31:0] comp_B;
-wire [31:0] logical_B;
-wire [31:0] add_result, comp_result, logical_result, LUi_result;
+logic [31:0] add_A, add_B;
+logic [31:0] comp_B;
+logic [31:0] logical_B;
+logic [31:0] add_result, comp_result, logical_result, LUi_result;
 
 assign LUi_result = (alu_opsel == 14) ? ({code_bus[31:12], 12'b0}) : (0);
 
@@ -89,7 +89,7 @@ always @(*) begin
     else if (alu_opsel == 2 || alu_opsel == 3 || alu_opsel == 4)
         begin
             logical_B = reg_s2;
-            reg_d1 = logical_B;
+            reg_d1 = logical_result;
         end
     else if (alu_opsel == 5 || alu_opsel == 6)
         begin
@@ -105,7 +105,7 @@ always @(*) begin
     else if (alu_opsel == 9 || alu_opsel == 10 || alu_opsel == 11)
         begin
             logical_B = {{20{code_bus[31]}}, code_bus[31:20]};
-            reg_d1 = logical_B;
+            reg_d1 = logical_result;
         end
     else if (alu_opsel == 12 || alu_opsel == 13)
         begin
