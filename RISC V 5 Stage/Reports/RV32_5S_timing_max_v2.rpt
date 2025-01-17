@@ -1,0 +1,94 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Thu Jan 16 19:18:12 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iID_EX/code_queue_reg[9]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iEX_MEM/alu_res_queue_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iID_EX/code_queue_reg[9]/CP (DFCNQD2BWP)                0.00 #     0.00 r
+  iID_EX/code_queue_reg[9]/Q (DFCNQD2BWP)                 0.14       0.14 f
+  U7607/ZN (XNR2D2BWP)                                    0.09       0.23 r
+  U4712/ZN (CKND2D3BWP)                                   0.03       0.26 f
+  U6655/Z (OR4D4BWP)                                      0.13       0.39 f
+  U4776/ZN (IND2D4BWP)                                    0.04       0.42 r
+  U4715/ZN (CKND4BWP)                                     0.02       0.45 f
+  U10272/Z (AO222D4BWP)                                   0.14       0.59 f
+  U5510/ZN (CKND4BWP)                                     0.04       0.63 r
+  U4860/ZN (MOAI22D2BWP)                                  0.10       0.73 f
+  U4948/ZN (CKND2BWP)                                     0.03       0.76 r
+  U5039/ZN (ND2D2BWP)                                     0.03       0.79 f
+  U6637/Z (AN2D4BWP)                                      0.04       0.84 f
+  U6636/Z (AN2D4BWP)                                      0.04       0.87 f
+  U6618/Z (AO221D4BWP)                                    0.12       0.99 f
+  U6700/Z (AN2D4BWP)                                      0.05       1.03 f
+  U4723/Z (OA33D1BWP)                                     0.09       1.13 f
+  U6224/ZN (IND2D2BWP)                                    0.06       1.18 f
+  U6749/ZN (AOI31D4BWP)                                   0.05       1.24 r
+  U6747/ZN (OAI21D4BWP)                                   0.04       1.27 f
+  U4731/ZN (IOA21D2BWP)                                   0.03       1.30 r
+  U4789/ZN (ND2D2BWP)                                     0.03       1.33 f
+  U8208/ZN (ND3D1BWP)                                     0.03       1.36 r
+  U8210/Z (AN2D2BWP)                                      0.05       1.42 r
+  U6330/ZN (CKND2D4BWP)                                   0.03       1.44 f
+  U4675/ZN (CKND2BWP)                                     0.02       1.46 r
+  U6712/Z (AO221D4BWP)                                    0.05       1.51 r
+  U4757/ZN (DCCKND4BWP)                                   0.02       1.53 f
+  U6728/Z (AN2D4BWP)                                      0.04       1.57 f
+  U6727/ZN (INR2D2BWP)                                    0.02       1.59 r
+  U9527/Z (AO221D1BWP)                                    0.06       1.65 r
+  U6607/ZN (ND2D2BWP)                                     0.03       1.68 f
+  U4777/ZN (INVD3BWP)                                     0.02       1.70 r
+  U6723/ZN (OAI21D4BWP)                                   0.03       1.73 f
+  U6725/ZN (CKND2D4BWP)                                   0.02       1.75 r
+  U6344/ZN (CKND4BWP)                                     0.02       1.77 f
+  U4955/ZN (ND2D1BWP)                                     0.02       1.79 r
+  U6371/ZN (AOI32D4BWP)                                   0.10       1.89 f
+  U6370/CON (FCICOND2BWP)                                 0.11       2.00 r
+  U6294/ZN (INVD4BWP)                                     0.02       2.02 f
+  U6632/ZN (ND2D2BWP)                                     0.02       2.04 r
+  U6623/ZN (ND3D3BWP)                                     0.03       2.07 f
+  U6713/ZN (CKND2BWP)                                     0.02       2.09 r
+  U6624/ZN (CKND2D2BWP)                                   0.02       2.11 f
+  U6709/ZN (OAI211D2BWP)                                  0.03       2.14 r
+  iEX_MEM/alu_res_queue_reg[31]/D (DFCNQD2BWP)            0.00       2.14 r
+  data arrival time                                                  2.14
+
+  clock clk (rise edge)                                   2.25       2.25
+  clock network delay (ideal)                             0.00       2.25
+  clock uncertainty                                      -0.08       2.17
+  iEX_MEM/alu_res_queue_reg[31]/CP (DFCNQD2BWP)           0.00       2.17 r
+  library setup time                                     -0.03       2.14
+  data required time                                                 2.14
+  --------------------------------------------------------------------------
+  data required time                                                 2.14
+  data arrival time                                                 -2.14
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

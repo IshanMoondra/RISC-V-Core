@@ -1,0 +1,162 @@
+###Script for Design Vision CLI tool.
+###For RISC V 32I 3 Stage Pipelined CPU
+### Using the TSMC 40nm Library: Professor's Parameters
+### Using New Parameters to Target GHz+ Clock Frequency
+### New Parameters: 0.20 ns Input & Output Delays
+###                 0.08 ns Clock skew
+###                 0.05 ns Max Transition Time
+###                 Capacitive Loading stays same
+
+###Reading in the Verilog Files
+read_file -format sverilog {    ./Designs/rv32_if_id_queue.v\
+                                ./Designs/rv32_cu.v\
+                                ./Designs/rv32_id_ex_queue.v\
+                                ./Designs/rv32_register_bank.v\
+                                ./Designs/rv32_ex_ex2_delay.v\
+                                ./Designs/rv32_alu_add_sub.sv\
+                                ./Designs/rv32_alu_comp.sv\
+                                ./Designs/rv32_alu_logical.sv\
+                                ./Designs/rv32_alu_v2.sv\
+                                ./Designs/rv32_barrel_shifter.v\
+                                ./Designs/rv32_pc.v\
+                                ./Designs/rv32_cpu_top.v }
+
+###Set the top of the heirarchy.
+set current_design rv32_cpu_top
+
+##Constraining the Design
+
+### Creating the clock
+
+### Basically, architecturally not able to hit 1 GHz, need a full 5 stage pipeline.
+### For General Purpose Cell:
+### Works at 909.1 MHz, 18702.28 sq microns, 8.85 mW for General Purpose Cell
+# create_clock -name "clk" -period 1.10 {clk}
+
+### Most Area Efficient: 300 MHz, 14516 sq microns, 2.86 mW
+# create_clock -name "clk" -period 3.33 {clk}
+
+### For High Performance Cell:
+### Works at 1.087 GHz, 26466 sq microns, 13.89 mW for High Performance Cell
+# create_clock -name "clk" -period 0.92 {clk}
+
+### Area Efficient: 312.5 MHz, 20467 sq microns, 3.93 mW
+# create_clock -name "clk" -period 3.20 {clk}
+
+### Take Two with new parameters
+
+### Synopsys 32nm Standard Cell
+### Max Speed: , Area, Power
+# create_clock -name "clk" -period 1.10 {clk}
+### Area Efficient: , Area, Power
+# create_clock -name "clk" -period 1.10 {clk}
+
+### TSMC 40nm Standard Cell
+### General Purpose
+### Max Speed: 1053 MHz, 21.2k sq microns, 9.75 mW
+ create_clock -name "clk" -period 0.95 {clk}
+### Area Efficient: 333.33 MHz, 17.6k sq microns, 3.07 mW
+# create_clock -name "clk" -period 3.00 {clk}
+
+### High Performance
+### Max Speed: 1669 MHz, 4553 sq microns, 2.08 mW
+### Max Speed: 1715 MHz, 6324 sq microns, 2.52 mW
+# create_clock -name "clk" -period 0.583 {clk}
+# create_clock -name "clk" -period 0.599 {clk}
+### Area Efficient: 1000 MHz, 2410 sq microns, 0.92 mW 
+# create_clock -name "clk" -period 1.00 {clk}
+
+set_dont_touch_network [find port clk]
+
+###Creating the Primary Inputs
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+
+### Setting Input Delays
+set_input_delay -clock clk 0.2 $prim_inputs
+
+### Setting the Drive Strength of Inputs
+# General Purpose Cell
+# set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
+# High Performance Cell
+# set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwp12ttc $prim_inputs
+
+### Setting the RST_N signal to be very strongly driven, the value is in M Ohm
+set_drive 0.0001 rst_n 
+
+### Setting the Output Delays
+set_output_delay -clock clk 0.2 [all_outputs]
+
+### Set Capacitive Load 0.10 pF on all Output Pins (in pF)
+set_load 0.100 [all_outputs]
+
+### Setting the Wireload Model Constraint
+# General Purpose Cell
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+# High Performance Cell
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwp12ttc
+
+### Setting Max Transition Times for the design
+set_max_transition 0.05 [current_design]
+
+### Max Area Constraint
+#set_max_area 50000
+
+###Compiling the Design
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+###Setting up some clock skew and fixes for clock skew
+set_clock_uncertainty 0.08 clk
+set_fix_hold clk
+
+###Flatten the Heirarchy
+ungroup -all -flatten
+
+###2nd Compile
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+##Writing the Area, Min & Max Timing Reports to files
+report_power > ./Reports/RV32_3S_power_v2.rpt
+report_area > ./Reports/RV32_3S_area_v2.rpt
+report_timing -delay max > ./Reports/RV32_3S_timing_max_v2.rpt
+report_timing -delay min > ./Reports/RV32_3S_timing_min_v2.rpt
+
+###Flatten the Heirarchy
+#ungroup -all -flatten
+
+###Write out the netlist
+write -format verilog rv32_cpu_top -output ./Netlists/RV32_3S_v2.vg
+
+###Write out the Synopsys Design Constraints format script (.sdc file)
+write_sdc ./SDCs/RV32_3S_v2.sdc

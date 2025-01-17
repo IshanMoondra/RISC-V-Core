@@ -44,6 +44,7 @@ module rv32_cpu_top
         input wire [31:0] read_data,
         //Read Enable for Data Memory
         output wire data_mem_read,
+        /*
         //Outputs of Stages & Functional Units
         output reg [31:0] alu,   
         output reg [31:0] bshift,
@@ -55,16 +56,18 @@ module rv32_cpu_top
         output reg [31:0] id_ex_q,
         output reg [31:0] c_ex2,
         output reg [31:0] d_addr,
+        */
         //Processor Status Signals: Branch stuff
         output wire BUSY,
-        output wire FLUSH,
+        output wire FLUSH
+        /*
         //Processor Status Signals: Dataflow Control Signals
         output reg [4:0] PC_CTRL,
         output reg [1:0] RAM_CTRL,
         output reg [18:0] RB_CTRL,    
         output reg [1:0] PSSD,
         output reg [1:0] PSD1
-        
+        */
     );
     
 //Setting some dummy wires for implementation onto BASYS3 board.

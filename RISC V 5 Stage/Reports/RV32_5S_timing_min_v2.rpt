@@ -1,0 +1,51 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Thu Jan 16 19:18:12 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: iID_EX/pc_ret_queue_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iEX_MEM/pc_ret_queue_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iID_EX/pc_ret_queue_reg[0]/CP (EDFQD1BWP)               0.00 #     0.00 r
+  iID_EX/pc_ret_queue_reg[0]/Q (EDFQD1BWP)                0.12       0.12 f
+  iEX_MEM/pc_ret_queue_reg[0]/D (DFCNQD1BWP)              0.00       0.12 f
+  data arrival time                                                  0.12
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.08       0.08
+  iEX_MEM/pc_ret_queue_reg[0]/CP (DFCNQD1BWP)             0.00       0.08 r
+  library hold time                                       0.03       0.11
+  data required time                                                 0.11
+  --------------------------------------------------------------------------
+  data required time                                                 0.11
+  data arrival time                                                 -0.12
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1
