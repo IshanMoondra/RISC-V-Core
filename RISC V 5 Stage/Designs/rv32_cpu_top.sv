@@ -12,13 +12,18 @@ module rv32_cpu_top
         output wire [31:0] pc_fetch,
         input wire [31:0] code_fetch,
         // Ports for Data Memory
+        output wire data_enable,
+        output wire data_read,
         output wire [31:0] data_addr,
+        output wire [31:0] data_store,
         input wire [31:0] data_fetch,
         // CPU Status Signals
         output wire flush,
         output wire stall,
         // output wire busy,
-        output wire halt
+        output wire halt,
+        // Output of the CPU
+        output logic [31:0] wb_result
     );
 
 // Creating Wires for Fetch/Decode Stage
@@ -67,6 +72,7 @@ wire [31:0] execute_bshift_res;
 
 // Creating Wires for Execute/Memory Stages
 
+wire [31:0] memory_data_store;
 wire [31:0] memory_code_bus;
 wire [31:0] memory_pc_ret;
 wire [31:0] memory_alu_res;
@@ -86,7 +92,7 @@ wire [31:0] wb_data_res;
 wire [2:0] wb_rf_ctrl;
 wire wb_pc_hlt;
 
-wire [31:0] wb_result;
+// wire [31:0] wb_result;
 
 // Instantiating the Modules
 
@@ -99,7 +105,7 @@ rv32_pc_v2 iPC
         .clk(clk),
         .rst_n(rst_n),
         .enable(wb_pc_hlt),
-        //.enable(1'b0),
+        //.enable(1'b1),
         .branch(pc_branch),
         .code_bus(decode_code_bus),
         .reg_s1(decode_rs1),
@@ -142,6 +148,7 @@ rv32_register_file iRF
     (
         .clk(clk),
         .rst_n(rst_n),
+        // .pc_halt(decode_pc_ctrl[4]),
         .write_reg(wb_rf_ctrl[0]),
         .sel_s1(decode_code_bus[19:15]),
         .sel_s2(decode_code_bus[24:20]),
@@ -207,6 +214,7 @@ forwarding_unit iForward
     (
         .ID2EX_RS2(decode_code_bus[24:20]),
         .ID2EX_RS1(decode_code_bus[19:15]),
+        .EX2Mem_RS1(execute_code_bus[19:15]),
         .EX2Mem_RD1(execute_code_bus[11:7]),
         .EX2Mem_RegWrite(execute_rf_ctrl[0]),
         .Mem2WB_RegWrite(memory_rf_ctrl[0]),
@@ -267,10 +275,12 @@ rv32_ex_mem_queue iEX_MEM
         .alu_res_in(execute_alu_res),
         .bshift_in(execute_bshift_res),
         .pc_ret_in(execute_pc_ret),
+        .data_store_in(operandB),
         .alu_res_out(memory_alu_res),
         .bshift_out(memory_bshift_res),
         .pc_ret_out(memory_pc_ret),
-        
+        .data_store_out(memory_data_store),
+
         .data_ctrl_in(execute_data_ctrl),
         .rf_in(execute_rf_ctrl),
         .pc_hlt_in(execute_pc_hlt),
@@ -284,6 +294,9 @@ rv32_ex_mem_queue iEX_MEM
 
 // Data Memory Unit
 assign data_addr = (memory_data_ctrl[1]) ? (memory_alu_res) : (0);
+assign data_enable = memory_data_ctrl[1];
+assign data_read = memory_data_ctrl[0];
+assign data_store = memory_data_store;
 
 // Write Back Stage
 rv32_mem_wb_queue iMEM_WB

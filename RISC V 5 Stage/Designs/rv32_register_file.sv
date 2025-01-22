@@ -28,13 +28,14 @@ module rv32_register_file
     (
         input clk,
         input rst_n,
+        // input pc_halt,
         input write_reg,
         input [4:0] sel_s1,
         input [4:0] sel_s2,
         input [4:0] sel_d1,
         input wire [31:0] reg_d1,
-        output reg [31:0] reg_s1,
-        output reg [31:0] reg_s2
+        output logic [31:0] reg_s1,
+        output logic [31:0] reg_s2
     );
 
 // Thirty Two 32bit Registers for RV32 ISA requirement    
@@ -43,7 +44,10 @@ reg [31:0] registers [0:31];
 logic [31:0] rf_s1; 
 logic [31:0] rf_s2;
 
-always@(posedge clk, negedge rst_n)
+// Changing to synchronous negative edge triggered reset
+// to facilitate BRAM implementation in Artix 7 FPGAs
+// always@(posedge clk, negedge rst_n)
+always@(posedge clk)
 begin    
     if (!rst_n)
         begin
@@ -53,8 +57,8 @@ begin
     else
         begin
             // Registered Outputs
-            rf_s1 <= (sel_s1 == 0) ? (0) :(registers[sel_s1]);
-            rf_s2 <= (sel_s2 == 0) ? (0) :(registers[sel_s2]);
+            rf_s1 <= (sel_s1 == 0) ? (0) : (registers[sel_s1]);
+            rf_s2 <= (sel_s2 == 0) ? (0) : (registers[sel_s2]);
             // Register File Input
             // Conditionally Writing to Register File based on write_reg signal
             if (write_reg)

@@ -19,12 +19,14 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module rv32_code_32bit
+module rv32_ram_32bit
     (
         input clk,
+        input enable,
+        input read,
         input [31:0] address,
-        output reg [31:0] data_out
+        input [31:0] data_write,
+        output reg [31:0] data_read
     );
     
 reg [31:0] RAM [255:0];    
@@ -35,7 +37,7 @@ integer i;
 
 initial
 begin
-    data_out = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; //NOP Instruction.
+    data_read = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; //NOP Instruction.
     for ( i = 0; i < 256; i = i + 1)
     begin
         RAM[i] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};        
@@ -86,7 +88,7 @@ begin
     RAM[4] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};
     */ 
     /*
-    //Verification Testing Code
+    // Verification Testing Code
     RAM[1] = {12'd2, 5'd0, 3'd0, 5'd1, 7'b0010011};
     RAM[2] = {12'd1, 5'd0, 3'd0, 5'd2, 7'b0010011};
     RAM[3] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};   //Addition
@@ -318,20 +320,60 @@ begin
     //RAM[5] = {12'h1, 5'd4, 3'b0, 5'd4, 7'b0010011};
     //RAM[8] = {1'b0, 6'h0f, 5'd4, 5'd0, 3'd0, 4'he, 1'b000, 7'b1100011};    //BEQ for $r0 & $r0. Works
     */
+    /*
+    RAM[0] = {12'd24, 5'd0, 3'd0, 5'd1, 7'b0010011};
+    RAM[1] = {12'd12, 5'd0, 3'd0, 5'd2, 7'b0010011};
+    RAM[2] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};   //Addition
+    RAM[3] = {7'd0, 5'd3, 5'd0, 3'd0, 5'd3, 7'b0110011};   //Addition
+    // RAM[2] = {7'd0, 5'h2, 5'd2, 3'b001, 5'd2, 7'b0010011};  //Shift Left Logical Immediate !Works!
+    // RAM[5] = {1'b0, -10'd2, 1'b0, 8'd0, 5'd5, 7'b1101111};    //JAL Works!
+    RAM[4] = 32'hFFFF_FFFF;
+    */
     
-    RAM[0] = {12'h2, 5'd0, 3'd0, 5'd1, 7'b0010011};
-    RAM[1] = {12'h1, 5'd0, 3'd0, 5'd2, 7'b0010011};
-    RAM[2] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd2, 7'b0110011};   //Addition
-    RAM[3] = {7'd0, 5'd2, 5'd2, 3'd0, 5'd2, 7'b0110011};   //Addition
-    //RAM[2] = {7'd0, 5'h2, 5'd2, 3'b001, 5'd2, 7'b0010011};  //Shift Left Logical Immediate !Works!
-    RAM[4] = {1'b0, -10'd2, 1'b0, 8'd0, 5'd5, 7'b1101111};    //JAL Works!
-    RAM[5] = {12'h0, 5'd5, 3'd0, 5'd0, 7'b0010011};
-                    
+    // Program Start
+    RAM[0] = {12'd0, 5'd0, 3'd0, 5'd31, 7'b0010011};
+    RAM[1] = {12'd6, 5'd0, 3'd0, 5'd01, 7'b0010011};
+    RAM[2] = {12'd3, 5'd0, 3'd0, 5'd02, 7'b0010011};
+    RAM[6] = {7'd0, 5'd02, 5'd01, 3'd0, 5'd01, 7'b0110011};   //Addition
+    // RAM[4] = {7'd0, 5'd01, 5'd0, 3'd0, 5'd0, 7'b0110011};
+    RAM[10] = {7'd0, 5'd01, 5'd0, 3'd0, 5'd0, 7'b0110011};
+    RAM[11] = 32'hFFFF_FFFF;
+
+    // // Verification Testing Code
+    // RAM[1] = {12'd16, 5'd0, 3'd0, 5'd1, 7'b0010011};
+    // RAM[2] = {12'd10, 5'd0, 3'd0, 5'd2, 7'b0010011};
+    // RAM[3] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};   //Addition
+    // // RAM[4] = {12'd0, 5'd3, 3'd0, 5'd3, 7'b0010011};
+    // RAM[4] = {7'h00, 5'd3, 5'd0, 3'b010, 5'h00, 7'b0100011};  //Store Instruction. !Issue!
+    // // RAM[5] = {7'b0100000, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011}; //Subtraction
+    // RAM[5] = {12'h00, 5'd0, 3'b010, 5'd19, 7'b0000011};    //Load Instruction.
+    // RAM[6] = {12'h0, 5'd19, 3'd0, 5'd19, 7'b0010011};      //Load Verified.
+    // RAM[6] = {12'd3, 5'd0, 3'd0, 5'd3, 7'b0010011};
+    // RAM[7] = {7'd0, 5'd3, 5'd1, 3'b111, 5'd3, 7'b0110011}; //Bitwise AND
+    // RAM[8] = {12'd0, 5'd3, 3'd0, 5'd3, 7'b0010011};
+    // RAM[9] = {7'd0, 5'd2, 5'd1, 3'b110, 5'd3, 7'b0110011}; //Bitwise OR
+    // RAM[10] = {12'd0, 5'd3, 3'd0, 5'd3, 7'b0010011};
+    // RAM[11] = {7'd0, 5'd3, 5'd0, 3'b100, 5'd3, 7'b0110011}; //Bitwise XOR
+    // RAM[12] = {12'd0, 5'd0, 3'd0, 5'd3, 7'b0010011};
+    // RAM[13] = {12'h840, 5'd0, 3'd0, 5'd1, 7'b0010011};
+    // RAM[14] = {12'd2, 5'd3, 3'd0, 5'd2, 7'b0010011};
+    // RAM[15] = {7'd0, 5'd2, 5'd1, 3'b001, 5'd3, 7'b0110011}; //Shift Left Logical !Issues!
+    // RAM[16] = {7'd0, 5'd2, 5'd1, 3'b101, 5'd3, 7'b0110011}; //Shift Right Logical !Issues!
+    // RAM[17] = {7'b0100000, 5'd2, 5'd1, 3'b101, 5'd3, 7'b0110011}; //Shift Right Arithmetic !Issues!
+    // RAM[18] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+    // RAM[7] = 32'hFFFF_FFFF;
+    
  end
 
 always@(posedge clk)
 begin
-    data_out <= RAM[address[7:0]];
+    if (enable)
+        if (read)
+            data_read <= RAM[address[7:0]];
+        else
+            RAM[address[7:0]] <= data_write;
+    else
+        data_read <= 0;
 end
     
 endmodule

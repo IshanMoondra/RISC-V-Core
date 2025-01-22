@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="rv32_system_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="rv32_system_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="57.164 ns"></ZoomStartTime>
+      <ZoomEndTime time="242.165 ns"></ZoomEndTime>
+      <Cursor1Time time="135.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="229"></NameColumnWidth>
+      <ValueColumnWidth column_width="101"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="55" />
+   <wvobject fp_name="/rv32_system_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/rst_n" type="logic">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/flush" type="logic">
+      <obj_property name="ElementShortName">flush</obj_property>
+      <obj_property name="ObjectShortName">flush</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/halt" type="logic">
+      <obj_property name="ElementShortName">halt</obj_property>
+      <obj_property name="ObjectShortName">halt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/count" type="array">
+      <obj_property name="ElementShortName">count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Debug Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iPC/return_d1" type="array">
+      <obj_property name="ElementShortName">return_d1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">return_d1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iPC/pc" type="array">
+      <obj_property name="ElementShortName">pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCode/data_read" type="array">
+      <obj_property name="ElementShortName">data_read[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_read[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iIF_ID/code_out" type="array">
+      <obj_property name="ElementShortName">code_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">code_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iID_EX/code_out" type="array">
+      <obj_property name="ElementShortName">code_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">code_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iEX_MEM/code_out" type="array">
+      <obj_property name="ElementShortName">code_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">code_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iMEM_WB/code_out" type="array">
+      <obj_property name="ElementShortName">code_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">code_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Halt Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iControl/hlt" type="logic">
+      <obj_property name="ElementShortName">hlt</obj_property>
+      <obj_property name="ObjectShortName">hlt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iID_EX/pc_hlt_out" type="logic">
+      <obj_property name="ElementShortName">pc_hlt_out</obj_property>
+      <obj_property name="ObjectShortName">pc_hlt_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iEX_MEM/pc_hlt_out" type="logic">
+      <obj_property name="ElementShortName">pc_hlt_out</obj_property>
+      <obj_property name="ObjectShortName">pc_hlt_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iMEM_WB/pc_hlt_out" type="logic">
+      <obj_property name="ElementShortName">pc_hlt_out</obj_property>
+      <obj_property name="ObjectShortName">pc_hlt_out</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Write Back Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/wb_result" type="array">
+      <obj_property name="ElementShortName">wb_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/wb_pc_ret" type="array">
+      <obj_property name="ElementShortName">wb_pc_ret[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_pc_ret[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/wb_alu_res" type="array">
+      <obj_property name="ElementShortName">wb_alu_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_alu_res[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/wb_bshift_res" type="array">
+      <obj_property name="ElementShortName">wb_bshift_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_bshift_res[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/wb_data_res" type="array">
+      <obj_property name="ElementShortName">wb_data_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_data_res[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Execute ALU Outputs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/operandA" type="array">
+      <obj_property name="ElementShortName">operandA[31:0]</obj_property>
+      <obj_property name="ObjectShortName">operandA[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/operandB" type="array">
+      <obj_property name="ElementShortName">operandB[31:0]</obj_property>
+      <obj_property name="ObjectShortName">operandB[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/reg_d1" type="array">
+      <obj_property name="ElementShortName">reg_d1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_d1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/add_A" type="array">
+      <obj_property name="ElementShortName">add_A[31:0]</obj_property>
+      <obj_property name="ObjectShortName">add_A[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/add_B" type="array">
+      <obj_property name="ElementShortName">add_B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">add_B[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/add_result" type="array">
+      <obj_property name="ElementShortName">add_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">add_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/comp_result" type="array">
+      <obj_property name="ElementShortName">comp_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">comp_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iALU/logical_result" type="array">
+      <obj_property name="ElementShortName">logical_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">logical_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Forwarding RS1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/decode_rs1" type="array">
+      <obj_property name="ElementShortName">decode_rs1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">decode_rs1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/execute_rs1" type="array">
+      <obj_property name="ElementShortName">execute_rs1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">execute_rs1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/memory_alu_res" type="array">
+      <obj_property name="ElementShortName">memory_alu_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_alu_res[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/wb_data_res" type="array">
+      <obj_property name="ElementShortName">wb_data_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_data_res[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/wb_result" type="array">
+      <obj_property name="ElementShortName">wb_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Forwarding RS2</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/decode_rs2" type="array">
+      <obj_property name="ElementShortName">decode_rs2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">decode_rs2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/execute_rs2" type="array">
+      <obj_property name="ElementShortName">execute_rs2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">execute_rs2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/memory_alu_res" type="array">
+      <obj_property name="ElementShortName">memory_alu_res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_alu_res[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/wb_result" type="array">
+      <obj_property name="ElementShortName">wb_result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_result[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider76">
+      <obj_property name="label">Monitoring RF Outputs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/write_reg" type="logic">
+      <obj_property name="ElementShortName">write_reg</obj_property>
+      <obj_property name="ObjectShortName">write_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/sel_s1" type="array">
+      <obj_property name="ElementShortName">sel_s1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">sel_s1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/sel_s2" type="array">
+      <obj_property name="ElementShortName">sel_s2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">sel_s2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/sel_d1" type="array">
+      <obj_property name="ElementShortName">sel_d1[4:0]</obj_property>
+      <obj_property name="ObjectShortName">sel_d1[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/reg_d1" type="array">
+      <obj_property name="ElementShortName">reg_d1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_d1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/rf_s1" type="array">
+      <obj_property name="ElementShortName">rf_s1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rf_s1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/rf_s2" type="array">
+      <obj_property name="ElementShortName">rf_s2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">rf_s2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/reg_s1" type="array">
+      <obj_property name="ElementShortName">reg_s1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_s1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rv32_system_tb/iSoC/iCPU/iRF/reg_s2" type="array">
+      <obj_property name="ElementShortName">reg_s2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_s2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

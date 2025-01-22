@@ -53,7 +53,7 @@ always_ff @( posedge clk, negedge rst_n )
                 alu_res_queue   <= alu_res_in;
                 bshift_queue    <= bshift_in;
                 pc_ret_queue    <= pc_ret_in;
-                pc_hlt_queue    <= pc_hlt_queue;
+                pc_hlt_queue    <= pc_hlt_in;
                 data_res_queue  <= data_res_in;
                 rf_queue        <= rf_in;
                 code_queue      <= code_in;

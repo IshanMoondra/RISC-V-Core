@@ -77,7 +77,10 @@ always_ff @( posedge clk, negedge rst_n )
             begin
                 // Some redundant logic here ?
                 if (normal_op)
-                    pc <= normal_op;
+                    begin
+                        pc <= normal_pc;
+                        flush <= 0;
+                    end
                 else
                     begin
                         flush <= 1;
@@ -90,7 +93,7 @@ always_ff @( posedge clk, negedge rst_n )
                             BGT:    pc <= sb_pc;
                             BLTU:   pc <= sb_pc;
                             BGTU:   pc <= sb_pc;
-                            default: pc <= normal_op;
+                            default: pc <= normal_pc;
                         endcase
                     end
             end
