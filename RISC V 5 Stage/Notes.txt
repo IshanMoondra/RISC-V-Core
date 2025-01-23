@@ -1,0 +1,98 @@
+Date: 29th December 2024
+Author: Ishan Moondra
+Title: Notes for RISC V 32I 5 Stage Revamp.
+
+Approach:
+Let's look at the top level definition of the WISC 5 stage processor.
+We can replace the WISC components with the required RISC components.
+Most of the components can be ported directly into the top level. 
+Need to modify the pipelines, make some parts of the WISC code more "SV". 
+Starting off with clean up of top level module.
+
+Old implementation keeps the write back mux inside the Register File itself. 
+Probably should keep the mux in the write back stage and only have one data_in port
+for the register file.
+Register File updated to support RF Bypass. 29th December 2024
+Need to add write_reg control signal to pipeline registers and also control unit.
+
+HLT can just be a freeze PC + set bit high to indicate end of program for Testbench.
+HLT must pass through and then freeze the PC at end of Write Back stage. 
+
+Functional Modules List:
+Instruction Memory: No change needed
+IF/ID Pipeline: No changes, just top level connections
+Control Unit:   Changes needed.
+                Need to add HLT instruction. // Added. HLT instruction is 32'hFFFF_FFFF 
+                Need to add write_reg signal. // Done, needs a go through though.
+                Need to add mux control signals for ALU operands // Not needed, ALU already does that.
+Register File:  Need to change top level module to always read the register operands regardless.
+ID/EX Pipeline: No changes needed, just top level connections
+ALU:            Top level changes plus some muxes in the top level (passing through the pipeline)
+EX/ME Pipeline: Need to write/update from WISC module.
+Data Memory:    No changes needed
+ME/WB Pipeline: Need to write/update from WISC module.
+Write Back Mux: Need to rework from old top level.
+PC Module:      Need to rework. Delay Slot vs Resolution in Decode: TBD 
+
+Next Module to update: 
+1. Control Unit     // Done, needs a go through.
+2. EX/MEM Pipeline  // All pipelines need reconfirmation
+3. MEM/WB Pipeline
+4. Write Back Mux   // Pending // Done!
+5. Decide on Delay Slot vs Resolution in Decode: Resolution in Decode is the Way
+    Can break every branch into regular instruction followed by BNE/BE type branch. 
+    This means some assembly level manipulation but allows for simpler implementation.
+    Also requires a bypass/forwarding path, which I need to check in testing.
+6. PC Module: Added halt signal // Need supports for stalls // Done!
+
+# 30th December 2024
+Some ideas for testing:
+    Can define parameters for every supported instruction in the RAM module, and then simply 
+    do concats to directly write in assembly, rather than machine code. 
+
+Updating Control Unit Module:
+    Need to remove some of the register file control lines. 
+    Added write_reg signal in the control unit. (Need to update to disable on Jumps)
+
+# 1st January 2025
+Branch Resolution in Decode:
+    Will need to break every complex branch into a SLT + BNE/BE style instruction sequence. 
+    For this to work properly, will need some new forwarding paths. 
+    Analyzing Instruction/Data Flow:
+        For safe branch: No forwarding or bypass needed for simple branch
+            BNE/BE type branches: Comparator immediately after Register File, providing
+            Branch taken or not taken information and allowing PC to update accordingly. 
+            Need to flush the IF/ID pipeline if branch is taken. 
+        For riskier branches: 
+            Need forwarding from ALU output, to this Comparator directly, which means
+            new path from output of Full Comparator (ALU) to output of Register File,
+            which then provides information to PC to update accordingly.
+        Can keep the Comparator unit before the PC control, and a mux that selects between
+        the forwarded values vs regular Register File output.
+        Can also keep some keep two temporary registers specifically for this splitting of 
+        branches into SLT + BNE style design. (Need some more thought here)  
+
+# 6th January 2025
+Going through the ISA:
+    AUiPC: Needs to be treated as a branch taken. (Fancy way of Forced Branching) // Not a branch
+    All complex branches can be broken into SLT, SLTU, SLTi, SLTUi followed by BNE, BEQ. 
+
+# 9th January 2025
+    Reworked the PC module fully.
+    Branch Resolution Module also done. Just need to add the {opcode, funct3} numbers. // Done! 
+    Need to calculate the Pipeline widths, and make them as well. 
+    Write Back Mux will probably just be combinational casex. // Done!
+    Need to check the Forwarding Unit and the Hazard Detection Unit next. 
+    Need a forwarding path for RS1, so that latest RS1 value is available to the PC. // Later
+    IF/ID Pipeline Stage:   Done
+    ID/EX Pipeline Stage:   Done
+    EX/MEM Pipeline Stage:  Done
+    MEM/WB Pipeline Stage:  Done
+
+13th January 2025
+    Need to see what MEM to MEM forwarding actually does.
+    // Just changing one RT to RD1 and just connecting it up, probably won't work.
+    // Kinda think it works now?
+    Just final data forwarding muxes left now.
+    Everything Done!
+    (Not sure if everything will work correctly though)

@@ -1,3 +1,7 @@
 work/
 filenames.log
 default.svf
+*.cr.mti
+*.mpf
+*.wlf
+transcript

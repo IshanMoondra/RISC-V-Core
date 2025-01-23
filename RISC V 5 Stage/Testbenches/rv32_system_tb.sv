@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 /*
 rv32_system_tb.sv
 Testbench file for the RV32I System
