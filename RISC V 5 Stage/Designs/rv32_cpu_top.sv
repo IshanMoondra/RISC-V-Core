@@ -39,8 +39,14 @@ wire [3:0] decode_bshift_ctrl;
 wire [2:0] decode_rf_ctrl;
 wire [1:0] decode_data_ctrl;
 
+wire [4:0] decode_sel_rs1;
+wire [4:0] decode_sel_rs2;
+
 wire [31:0] decode_rs1;
 wire [31:0] decode_rs2;
+
+assign decode_sel_rs1 = decode_code_bus[19:15];
+assign decode_sel_rs2 = decode_code_bus[24:20];
 
 // Creating Wires for Decode/Execute Stage
 
@@ -56,6 +62,14 @@ wire [1:0] execute_data_ctrl;
 wire [2:0] execute_rf_ctrl;
 wire execute_pc_hlt;
 
+// Debug Wires
+wire [4:0] execute_sel_rs1;
+wire [4:0] execute_sel_rs2;
+wire [4:0] execute_sel_rd1;
+assign execute_sel_rs1 = execute_code_bus[19:15];
+assign execute_sel_rs2 = execute_code_bus[24:20];
+assign execute_sel_rd1 = execute_code_bus[11:7];
+
 // Wires related to Forwarding Muxes
 wire RS1_EX2EX;
 wire RS2_EX2EX;
@@ -63,8 +77,8 @@ wire RS1_Mem2EX;
 wire RS2_Mem2EX;
 wire RS1_Mem2Mem;
 
-wire [31:0] operandA;
-wire [31:0] operandB;
+logic [31:0] operandA;
+logic [31:0] operandB;
 
 wire [31:0] execute_alu_res;
 wire [31:0] execute_comp_res;
@@ -84,6 +98,7 @@ wire memory_pc_hlt;
 // Creating Wires for Memory/WriteBack Stage
 
 wire [31:0] wb_code_bus;
+wire [4:0] wb_sel_reg_d1;
 wire [31:0] wb_pc_ret;
 wire [31:0] wb_alu_res;
 wire [31:0] wb_bshift_res;
@@ -91,6 +106,8 @@ wire [31:0] wb_data_res;
 
 wire [2:0] wb_rf_ctrl;
 wire wb_pc_hlt;
+
+assign wb_sel_reg_d1 = wb_code_bus[11:7];
 
 // wire [31:0] wb_result;
 
@@ -150,9 +167,9 @@ rv32_register_file iRF
         .rst_n(rst_n),
         // .pc_halt(decode_pc_ctrl[4]),
         .write_reg(wb_rf_ctrl[0]),
-        .sel_s1(decode_code_bus[19:15]),
-        .sel_s2(decode_code_bus[24:20]),
-        .sel_d1(wb_code_bus[11:7]),
+        .sel_s1(decode_sel_rs1),
+        .sel_s2(decode_sel_rs2),
+        .sel_d1(wb_sel_reg_d1),
         .reg_d1(wb_result),
         .reg_s1(decode_rs1),
         .reg_s2(decode_rs2)
@@ -228,9 +245,48 @@ forwarding_unit iForward
     );
 
 // Forwarding MUXes
-// May or may not work
-assign operandA = RS1_Mem2Mem ? (wb_data_res) : RS1_EX2EX ? (memory_alu_res) : RS1_Mem2EX ? (wb_result) : execute_rs1;
-assign operandB = RS2_EX2EX ? (memory_alu_res) : RS2_Mem2EX ? (wb_result) : execute_rs2;
+// May or may not work // Works one way, not the other
+// assign operandA = (RS1_Mem2Mem) ? (wb_data_res) : (RS1_EX2EX) ? (execute_alu_res) : (RS1_Mem2EX) ? (memory_alu_res) : (execute_rs1);
+// assign operandB = (RS2_EX2EX) ? (memory_alu_res) : (RS2_Mem2EX) ? (memory_alu_res) : (execute_rs2);
+
+// assign operandA = (RS1_Mem2Mem & execute_data_ctrl[1]) ? (wb_data_res) : (RS1_EX2EX) ? (memory_alu_res) : (RS1_Mem2EX) ? (wb_result) : (execute_rs1);
+// assign operandB = (RS2_EX2EX) ? (memory_alu_res) : (RS2_Mem2EX) ? (wb_result) : (execute_rs2);
+
+always_comb
+    begin
+        // Forwarding for Operands A & B
+        casex ({RS1_EX2EX, RS1_Mem2EX, (RS1_Mem2Mem && data_enable)})
+            3'b1xx: operandA = memory_alu_res;
+            3'b01x: operandA = wb_result;
+            3'b001: operandA = wb_data_res; 
+            3'b000: operandA = execute_rs1;
+        endcase
+
+        casex ({RS2_EX2EX, RS2_Mem2EX})
+            2'b1x: operandB = memory_alu_res;
+            2'b01: operandB = wb_result; 
+            2'b00: operandB = execute_rs2;
+        endcase
+
+        // if (RS1_EX2EX)
+        //     operandA = memory_alu_res;
+        // else if (RS1_Mem2EX)
+        //     operandA = wb_alu_res;
+        // else if (RS1_Mem2Mem & data_enable)
+        //     operandA = wb_data_res;
+        //     // operandA = 32'hX;
+        // else
+        //     operandA = execute_rs1;
+        
+        // if (RS2_EX2EX)
+        //     operandB = memory_alu_res;
+        // else if (RS2_Mem2EX)
+        //     operandB = wb_result;
+        // else
+        //     operandB = execute_rs2;
+ 
+    end
+
 
 // ALU
 rv32_alu_v2 iALU
@@ -294,7 +350,7 @@ rv32_ex_mem_queue iEX_MEM
 
 // Data Memory Unit
 assign data_addr = (memory_data_ctrl[1]) ? (memory_alu_res) : (0);
-assign data_enable = memory_data_ctrl[1];
+assign data_enable = 0; // memory_data_ctrl[1];
 assign data_read = memory_data_ctrl[0];
 assign data_store = memory_data_store;
 

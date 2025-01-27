@@ -40,7 +40,7 @@ module rv32_register_file
 
 // Thirty Two 32bit Registers for RV32 ISA requirement    
 reg [31:0] registers [0:31];
-
+logic [5:0] count;
 logic [31:0] rf_s1; 
 logic [31:0] rf_s2;
 
@@ -53,6 +53,9 @@ begin
         begin
             rf_s1 <= 0;
             rf_s2 <= 0;
+            // Better way to reset the entire RF without wasting the count variable?
+            for (count = 0; count < 32; count = count + 1)
+                registers[count] <= 0;
         end
     else
         begin

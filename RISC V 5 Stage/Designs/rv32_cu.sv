@@ -560,7 +560,7 @@ begin
     begin
         //  ADD R0, R0, R0: NOP
         normal_op = 1;         // Not a Branch Instruction        
-        alu_enable = 1;                    // Enable the ALU
+        alu_enable = 0;                    // Enable the ALU
         shifter_enable = 0;                // Disable the Barrel Shifter.
         data_enable = 0;                   // Disable the Data RAM.
         load = 0;                          // Not a Load Instruction.

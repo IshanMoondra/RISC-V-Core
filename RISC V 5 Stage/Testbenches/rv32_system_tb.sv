@@ -31,28 +31,28 @@ initial
 begin
 
     clk     = 0;
-    rst_n   = 1;
-
-    @(negedge clk);
     rst_n   = 0;
-    repeat(5) @(negedge clk);
+    count = 0;
+    repeat(1) @(negedge clk);
     rst_n   = 1;
-
+    
     @(posedge clk);
     fork
         begin: Timeout            
-            while (count < 100)
+            while (count < 200)
                 begin
                     @(posedge clk);
                     count = count + 1;                    
                 end
-            $display("More than 100 cycles of simulation, timeout!");
+            $display("More than 200 cycles of simulation, timeout!");
             $stop();
         end: Timeout
         begin: Testing
             @(posedge halt);
             disable Timeout;
+            @(posedge clk);
             $display("Processor Halted!");
+            $display("Cycle Count: %d", count);
             // @(posedge clk);
             $stop("Test done!");
         end: Testing

@@ -40,19 +40,30 @@ begin
     data_read = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; //NOP Instruction.
     for ( i = 0; i < 256; i = i + 1)
     begin
-        RAM[i] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};        
+        // RAM[i] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; 
+        // RAM[i] = 32'hFFFF_FFFF;
+        RAM[i] = 0;       
     end
-    /*
-    //Program Start
-    RAM[0] = {12'd32, 5'd0, 3'd0, 5'd1, 7'b0010011};
-    RAM[1] = {12'd34, 5'd0, 3'd0, 5'd2, 7'b0010011};
-    RAM[2] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    RAM[3] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    RAM[4] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    RAM[5] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    RAM[6] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    RAM[7] = {7'd0, 5'd2, 5'd1, 3'd0, 5'd1, 7'b0110011};
-    */
+    // /*
+    // Note: This program adds 2 numbers properly, with the required forwarding.
+    // However, the results seem to be stored back in the wrong spot. 
+    // Program Start
+    // RAM[0] = {12'd0, 5'd0, 3'd0, 5'd31, 7'b0010011};    // Load 0 into x31
+    // RAM[1] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};     // NOP
+    RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};    // Load 8 into x1
+    RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};     // Load 1 into x2
+    // RAM[4] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};     // NOPs
+    // RAM[5] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+    // RAM[6] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+    // RAM[0] = {12'h0, 5'd0, 3'b010, 5'd1, 7'b0000011};    //Load Instruction. 
+    // RAM[3] = {12'h0, 5'd0, 3'b010, 5'd2, 7'b0000011};    //Load Instruction. 
+    RAM[2] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};    // x3 = x2 + x1
+    // RAM[3] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};    // x3 = x2 + x1
+    // RAM[3] = {7'd0, 5'd0, 5'd1, 3'd0, 5'd1, 7'b0110011};    // x1 = x1 + 0
+    // RAM[4] = {7'd0, 5'd0, 5'd2, 3'd0, 5'd2, 7'b0110011};    // x2 = x2 + 0
+    // RAM[5] = {7'd0, 5'd0, 5'd3, 3'd0, 5'd3, 7'b0110011};   // x3 = x3 + 0
+    RAM[4] = 32'hFFFF_FFFF;    // HLT
+    // */
     /*
     RAM[1] = {12'd1, 5'd0, 3'd0, 5'd1, 7'b0010011};
     RAM[2] = {12'd4, 5'd1, 3'd0, 5'd1, 7'b0010011};
@@ -87,8 +98,9 @@ begin
     RAM[3] = {7'd0, 5'd2, 5'd1, 3'd0, 5'd1, 7'b0110011};
     RAM[4] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};
     */ 
-    
-    // Verification Testing Code
+     /*
+    // Verification Testing Code    
+    RAM[0] = {12'd0, 5'd0, 3'd0, 5'd31, 7'b0010011};
     RAM[1] = {12'd2, 5'd0, 3'd0, 5'd1, 7'b0010011};
     RAM[2] = {12'd1, 5'd0, 3'd0, 5'd2, 7'b0010011};
     RAM[3] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};   //Addition
@@ -175,7 +187,7 @@ begin
     RAM[84] = {12'h0, 5'd16, 3'd0, 5'd16, 7'b0010011};    
     RAM[85] = {12'h1, 5'd15, 3'd0, 5'd15, 7'b0010011};     //Somehow works!?
     RAM[86] = 32'hFFFF_FFFF;
-    
+    */
     //RAM[18] = {12'd0, 5'd3, 3'd0, 5'd3, 7'b0010011};
     /*
     RAM[0] = {12'h78, 5'd0, 3'd0, 5'd20, 7'b0010011};
@@ -277,13 +289,14 @@ begin
     //Loads Verified and Stores Verified and Store Loads also Verified!
     RAM[0] = {12'h78, 5'd0, 3'd0, 5'd20, 7'b0010011};
     RAM[1] = {12'h10, 5'd0, 3'd0, 5'd01, 7'b0010011};
-    RAM[2] = {12'h04, 5'd0, 3'b010, 5'd19, 7'b0000011};    //Load Instruction.
+    RAM[2] = {12'h00, 5'd0, 3'b010, 5'd19, 7'b0000011};    //Load Instruction.
     RAM[3] = {12'h0, 5'd19, 3'd0, 5'd19, 7'b0010011};      //Load Verified.
-    RAM[4] = {12'h06, 5'd01, 3'b010, 5'd21, 7'b0000011};    //Load Instruction.
+    // RAM[4] = {12'h00, 5'd1, 3'b010, 5'd21, 7'b0000011};    //Load Instruction.
     RAM[5] = {12'h0, 5'd21, 3'd0, 5'd21, 7'b0010011};      //Load Verified.    
     RAM[6] = {7'h00, 5'd19, 5'd01, 3'b010, 5'h06, 7'b0100011};  //Store Instruction. !Issue!
     RAM[7] = {12'h06, 5'd01, 3'b010, 5'd22, 7'b0000011};    //Load Instruction.
     RAM[8] = {12'h00, 5'd22, 3'd0, 5'd22, 7'b0010011};      //Load Verified.
+    RAM[5] = 32'hFFFF_FFFF;
     */
     /*
     RAM[0] = {12'h40, 5'd0, 3'd0, 5'd1, 7'b0010011};
