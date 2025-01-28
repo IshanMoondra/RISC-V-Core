@@ -7,7 +7,6 @@
 ###                 0.05 ns Max Transition Time
 ###                 Capacitive Loading stays same
 
-
 ###Reading in the Verilog Files
 read_file -format sverilog {    ./Designs/rv32_if_id_queue.sv\
                                 ./Designs/rv32_id_ex_queue.sv\
@@ -16,9 +15,11 @@ read_file -format sverilog {    ./Designs/rv32_if_id_queue.sv\
                                 ./Designs/rv32_pc_v2.sv\
                                 ./Designs/branch_resolver.sv\
                                 ./Designs/rv32_cu.sv\
+                                ./Designs/rv32_cu_v2.sv\
                                 ./Designs/rv32_register_file.sv\
                                 ./Designs/hazard_detection.sv\
                                 ./Designs/forwarding_unit.sv\
+                                ./Designs/forwarding_unit_v2.sv\
                                 ./Designs/rv32_alu_add_sub.sv\
                                 ./Designs/rv32_alu_comp.sv\
                                 ./Designs/rv32_alu_logical.sv\
@@ -34,29 +35,6 @@ set current_design rv32_cpu_top
 
 ### Creating the clock
 
-### Basically, architecturally not able to hit 1 GHz, need a full 5 stage pipeline.
-### For General Purpose Cell:
-### Works at 909.1 MHz, 18702.28 sq microns, 8.85 mW for General Purpose Cell
-# create_clock -name "clk" -period 1.10 {clk}
-
-### Most Area Efficient: 300 MHz, 14516 sq microns, 2.86 mW
-# create_clock -name "clk" -period 3.33 {clk}
-
-### For High Performance Cell:
-### Works at 1.087 GHz, 26466 sq microns, 13.89 mW for High Performance Cell
-# create_clock -name "clk" -period 0.92 {clk}
-
-### Area Efficient: 312.5 MHz, 20467 sq microns, 3.93 mW
-# create_clock -name "clk" -period 3.20 {clk}
-
-### Take Two with new parameters
-
-### Synopsys 32nm Standard Cell
-### Max Speed: , Area, Power
-# create_clock -name "clk" -period 1.10 {clk}
-### Area Efficient: , Area, Power
-# create_clock -name "clk" -period 1.10 {clk}
-
 ### TSMC 40nm Standard Cell
 ### General Purpose
 ### Max Speed: 833 MHz, 21.0k sq microns, 7.13 mW
@@ -64,7 +42,7 @@ set current_design rv32_cpu_top
 ### Area Efficient: 333 MHz, 18.2k sq microns, 2.86 mW
 ### Area Efficient: 555 MHz, 19.2k sq microns, 4.78 mW
 ### Area Efficient: 667 MHz, 20.3k sq microns, 5.75 mW
- create_clock -name "clk" -period 2.25 {clk}
+ create_clock -name "clk" -period 1.50 {clk}
 
 ### High Performance
 ### Max Speed: 1000 MHz, 24167 sq microns, 9.93 mW
@@ -87,9 +65,9 @@ set_input_delay -clock clk 0.2 $prim_inputs
 
 ### Setting the Drive Strength of Inputs
 # General Purpose Cell
-# set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
+ set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
 # High Performance Cell
- set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwp12ttc $prim_inputs
+# set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwp12ttc $prim_inputs
 
 ### Setting the RST_N signal to be very strongly driven, the value is in M Ohm
 set_drive 0.0001 rst_n 
@@ -102,15 +80,15 @@ set_load 0.100 [all_outputs]
 
 ### Setting the Wireload Model Constraint
 # General Purpose Cell
-# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+ set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
 # High Performance Cell
- set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwp12ttc
+# set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwp12ttc
 
 ### Setting Max Transition Times for the design
 set_max_transition 0.05 [current_design]
 
 ### Max Area Constraint
-# set_max_area 21000
+ set_max_area 21000
 
 ###Compiling the Design
 compile -map_effort high

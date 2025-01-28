@@ -24,6 +24,9 @@ module rv32_ex_mem_queue
         output logic [1:0] data_ctrl_out,
         output logic [2:0] rf_out,
         output logic pc_hlt_out,
+        // Input Output Pairs for Register Select Vectors
+        input [4:0] sel_rd1_in,
+        output logic [4:0] sel_rd1_out,
         // Input Output Pair for Current Instruction
         input [31:0] code_in,
         output logic [31:0] code_out
@@ -38,6 +41,8 @@ reg [1:0] data_ctrl_queue;
 reg [2:0] rf_queue;
 reg [31:0] code_queue;
 
+reg [4:0] sel_rd1_queue;
+
 // Inputs to the Queues
 always_ff @( posedge clk, negedge rst_n )
     begin   : EX_MEM
@@ -51,6 +56,8 @@ always_ff @( posedge clk, negedge rst_n )
                 rf_queue        <= {2'd0, 1'd0};
                 code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
                 data_store_queue <= 0;
+
+                sel_rd1_queue   <= 0;
             end
         else
             begin
@@ -62,6 +69,8 @@ always_ff @( posedge clk, negedge rst_n )
                 rf_queue        <= rf_in;
                 code_queue      <= code_in;
                 data_store_queue <= data_store_in;
+
+                sel_rd1_queue   <= sel_rd1_in;
             end
     end     : EX_MEM
 
@@ -76,6 +85,8 @@ always_comb
         rf_out          = rf_queue;
         code_out        = code_queue;
         data_store_out  = data_store_queue;
+
+        sel_rd1_out     = sel_rd1_queue;
     end
 
 endmodule

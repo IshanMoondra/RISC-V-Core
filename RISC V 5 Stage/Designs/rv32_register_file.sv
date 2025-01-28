@@ -53,6 +53,8 @@ begin
         begin
             rf_s1 <= 0;
             rf_s2 <= 0;
+            // Setting $Zero to 0. Doesn't work??
+            // registers[0] <= 0;
             // Better way to reset the entire RF without wasting the count variable?
             for (count = 0; count < 32; count = count + 1)
                 registers[count] <= 0;
@@ -61,12 +63,18 @@ begin
         begin
             // Registered Outputs
             rf_s1 <= (sel_s1 == 0) ? (0) : (registers[sel_s1]);
-            rf_s2 <= (sel_s2 == 0) ? (0) : (registers[sel_s2]);
-            // Register File Input
-            // Conditionally Writing to Register File based on write_reg signal
-            if (write_reg)
-                registers[sel_d1] <= reg_d1; 
+            rf_s2 <= (sel_s2 == 0) ? (0) : (registers[sel_s2]);            
+            // Moving the write condition to negedge clock.  
         end            
+end
+
+always @( negedge clk )
+begin : RF_Write
+    // Register File Input
+    // Conditionally Writing to Register File based on write_reg signal
+    // Also checking if Destination is not $0. 
+    if (write_reg && (sel_d1 != 0))
+        registers[sel_d1] <= reg_d1;    
 end
 
 // Register File Outputs with RF Bypass

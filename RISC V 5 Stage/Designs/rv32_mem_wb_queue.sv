@@ -24,7 +24,10 @@ module rv32_mem_wb_queue
         output logic pc_hlt_out,
         // Input Output Pair for Current Instruction
         input [31:0] code_in,
-        output logic [31:0] code_out
+        output logic [31:0] code_out,
+        // Input Output Pairs for Register Select Vectors
+        input [4:0] sel_rd1_in,
+        output logic [4:0] sel_rd1_out
     );
 
 reg [31:0] alu_res_queue;
@@ -34,6 +37,7 @@ reg pc_hlt_queue;
 reg [31:0] data_res_queue;
 reg [2:0] rf_queue;
 reg [31:0] code_queue;
+reg [4:0] sel_rd1_queue;
 
 // Inputs to the Queues
 always_ff @( posedge clk, negedge rst_n )
@@ -47,6 +51,8 @@ always_ff @( posedge clk, negedge rst_n )
                 data_res_queue  <= 0;
                 rf_queue        <= {2'd0, 1'd0};
                 code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+
+                sel_rd1_queue   <= 0;
             end
         else
             begin
@@ -57,6 +63,8 @@ always_ff @( posedge clk, negedge rst_n )
                 data_res_queue  <= data_res_in;
                 rf_queue        <= rf_in;
                 code_queue      <= code_in;
+
+                sel_rd1_queue   <= sel_rd1_in;
             end
     end     : EX_MEM
 
@@ -70,6 +78,8 @@ always_comb
         data_res_out    = data_res_queue;
         rf_out          = rf_queue;
         code_out        = code_queue;
+
+        sel_rd1_out     = sel_rd1_queue;
     end
 
 endmodule

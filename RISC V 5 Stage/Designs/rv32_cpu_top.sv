@@ -41,12 +41,13 @@ wire [1:0] decode_data_ctrl;
 
 wire [4:0] decode_sel_rs1;
 wire [4:0] decode_sel_rs2;
+wire [4:0] decode_sel_rd1;
 
 wire [31:0] decode_rs1;
 wire [31:0] decode_rs2;
 
-assign decode_sel_rs1 = decode_code_bus[19:15];
-assign decode_sel_rs2 = decode_code_bus[24:20];
+// assign decode_sel_rs1 = decode_code_bus[19:15];
+// assign decode_sel_rs2 = decode_code_bus[24:20];
 
 // Creating Wires for Decode/Execute Stage
 
@@ -66,9 +67,9 @@ wire execute_pc_hlt;
 wire [4:0] execute_sel_rs1;
 wire [4:0] execute_sel_rs2;
 wire [4:0] execute_sel_rd1;
-assign execute_sel_rs1 = execute_code_bus[19:15];
-assign execute_sel_rs2 = execute_code_bus[24:20];
-assign execute_sel_rd1 = execute_code_bus[11:7];
+// assign execute_sel_rs1 = execute_code_bus[19:15];
+// assign execute_sel_rs2 = execute_code_bus[24:20];
+// assign execute_sel_rd1 = execute_code_bus[11:7];
 
 // Wires related to Forwarding Muxes
 wire RS1_EX2EX;
@@ -91,6 +92,9 @@ wire [31:0] memory_code_bus;
 wire [31:0] memory_pc_ret;
 wire [31:0] memory_alu_res;
 wire [31:0] memory_bshift_res;
+
+wire [4:0] memory_sel_rd1;
+
 wire [2:0] memory_rf_ctrl;
 wire [1:0] memory_data_ctrl;
 wire memory_pc_hlt;
@@ -98,16 +102,17 @@ wire memory_pc_hlt;
 // Creating Wires for Memory/WriteBack Stage
 
 wire [31:0] wb_code_bus;
-wire [4:0] wb_sel_reg_d1;
+// wire [4:0] wb_sel_reg_d1;
 wire [31:0] wb_pc_ret;
 wire [31:0] wb_alu_res;
 wire [31:0] wb_bshift_res;
 wire [31:0] wb_data_res;
+wire [4:0] wb_sel_rd1;
 
 wire [2:0] wb_rf_ctrl;
 wire wb_pc_hlt;
 
-assign wb_sel_reg_d1 = wb_code_bus[11:7];
+// assign wb_sel_reg_d1 = wb_code_bus[11:7];
 
 // wire [31:0] wb_result;
 
@@ -149,6 +154,7 @@ rv32_if_id_queue iIF_ID
         .pc_out(decode_pc)
     );
 
+/*
 // Control Unit
 rv32_cu iControl
     (
@@ -159,6 +165,22 @@ rv32_cu iControl
         .pc_ctrl(decode_pc_ctrl),
         .data_ctrl(decode_data_ctrl)
     );
+*/
+
+// Control Unit V2
+rv32_cu_v2 iControl
+    (
+        .code_bus(decode_code_bus),
+        .sel_rs1(decode_sel_rs1),
+        .sel_rs2(decode_sel_rs2),
+        .sel_rd1(decode_sel_rd1),
+        .rf_ctrl(decode_rf_ctrl),
+        .alu_ctrl(decode_alu_ctrl),
+        .bshift_ctrl(decode_bshift_ctrl),
+        .pc_ctrl(decode_pc_ctrl),
+        .data_ctrl(decode_data_ctrl)
+    );
+
 
 // Register File Unit
 rv32_register_file iRF
@@ -169,7 +191,8 @@ rv32_register_file iRF
         .write_reg(wb_rf_ctrl[0]),
         .sel_s1(decode_sel_rs1),
         .sel_s2(decode_sel_rs2),
-        .sel_d1(wb_sel_reg_d1),
+        // Need to pipeline the sel_rd1 vector. // Done
+        .sel_d1(wb_sel_rd1),
         .reg_d1(wb_result),
         .reg_s1(decode_rs1),
         .reg_s2(decode_rs2)
@@ -183,7 +206,7 @@ branch_resolver iResolver
         .rf_reg_s2(decode_rs2),
         .alu_output(execute_comp_res),
         //.alu_output(memory_alu_res),
-        .id_ex_reg_d1(execute_code_bus[11:7]),
+        .id_ex_reg_d1(execute_sel_rd1),
         .branch(pc_branch)
     );
 
@@ -191,9 +214,10 @@ branch_resolver iResolver
 hazard_detection iHD
     (
         .execute_mem_read(&execute_data_ctrl),
-        .decode_sel_rs2(decode_code_bus[24:20]),
-        .decode_sel_rs1(decode_code_bus[19:15]),
-        .execute_sel_rd1(execute_code_bus[11:7]),
+        .decode_sel_rs2(decode_sel_rs2),
+        .decode_sel_rs1(decode_sel_rs1),
+        // Need to pipeline the decode_sel_rd1 vector. // Done
+        .execute_sel_rd1(execute_sel_rd1),
         .stall(stall)
     );
 // Decode/Execute Stage
@@ -218,6 +242,14 @@ rv32_id_ex_queue iID_EX
         .alu_out(execute_alu_ctrl),
         .rf_in(decode_rf_ctrl),
         .rf_out(execute_rf_ctrl),
+        
+        .sel_rs1_in(decode_sel_rs1),
+        .sel_rs2_in(decode_sel_rs2),
+        .sel_rd1_in(decode_sel_rd1),
+        .sel_rs1_out(execute_sel_rs1),
+        .sel_rs2_out(execute_sel_rs2),
+        .sel_rd1_out(execute_sel_rd1),
+
         .bshift_in(decode_bshift_ctrl),
         .bshift_out(execute_bshift_ctrl),
         .pc_hlt_in(decode_pc_ctrl[4]),
@@ -226,16 +258,38 @@ rv32_id_ex_queue iID_EX
         .data_ctrl_out(execute_data_ctrl)
     );
 
+/*
 // Data Forwarding Unit
 forwarding_unit iForward
     (
-        .ID2EX_RS2(decode_code_bus[24:20]),
-        .ID2EX_RS1(decode_code_bus[19:15]),
-        .EX2Mem_RS1(execute_code_bus[19:15]),
-        .EX2Mem_RD1(execute_code_bus[11:7]),
+        .ID2EX_RS2(decode_sel_rs2),
+        .ID2EX_RS1(decode_sel_rs1),
+        .EX2Mem_RS1(execute_sel_rs1),
+        .EX2Mem_RD1(execute_sel_rd1),
         .EX2Mem_RegWrite(execute_rf_ctrl[0]),
         .Mem2WB_RegWrite(memory_rf_ctrl[0]),
-        .Mem2WB_RD1(memory_code_bus[11:7]),
+        .Mem2WB_RD1(memory_sel_rd1),
+        // Forwarding Select Signals for MUX
+        .RS2_EX2EX(RS2_EX2EX),
+        .RS1_EX2EX(RS1_EX2EX),
+        .RS2_Mem2EX(RS2_Mem2EX),
+        .RS1_Mem2EX(RS1_Mem2EX),
+        .RS1_Mem2Mem(RS1_Mem2Mem)
+    );
+*/
+
+// Data Forwarding Unit V2
+forwarding_unit_v2 iForward
+    (
+        .clk(clk),
+        .rst_n(rst_n),
+        .decode_sel_rs1(decode_sel_rs1),
+        .decode_sel_rs2(decode_sel_rs2),
+        .execute_sel_rs1(execute_sel_rs1),
+        .memory_sel_rd1(memory_sel_rd1),
+        .execute_reg_write(execute_rf_ctrl[0]),
+        .memory_reg_write(memory_rf_ctrl[0]),
+        .execute_sel_rd1(execute_sel_rd1),
         // Forwarding Select Signals for MUX
         .RS2_EX2EX(RS2_EX2EX),
         .RS1_EX2EX(RS1_EX2EX),
@@ -344,6 +398,9 @@ rv32_ex_mem_queue iEX_MEM
         .rf_out(memory_rf_ctrl),
         .pc_hlt_out(memory_pc_hlt),
 
+        .sel_rd1_in(execute_sel_rd1),
+        .sel_rd1_out(memory_sel_rd1),
+
         .code_in(execute_code_bus),
         .code_out(memory_code_bus)
     );
@@ -372,7 +429,10 @@ rv32_mem_wb_queue iMEM_WB
         .rf_out(wb_rf_ctrl),
         .pc_hlt_out(wb_pc_hlt),
         .code_in(memory_code_bus),
-        .code_out(wb_code_bus)
+        .code_out(wb_code_bus),
+
+        .sel_rd1_in(memory_sel_rd1),
+        .sel_rd1_out(wb_sel_rd1)
     );
 
 // Write Back Mux

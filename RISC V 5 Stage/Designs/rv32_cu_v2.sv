@@ -23,14 +23,14 @@
 // We need to create a top level module that initialises all the modules, and their queues since the pipelined nature
 // of the processor means that the Control Unit is not the entire master of the processor. 
 
-module rv32_cu
+module rv32_cu_v2
     (
         // Input from IF/ID Queue
         input [31:0] code_bus,
         // Register Select Outputs to Register File
-        output logic [4:0] sel_rs1;
-        output logic [4:0] sel_rs2;
-        output logic [4:0] sel_rd1;
+        output logic [4:0] sel_rs1,
+        output logic [4:0] sel_rs2,
+        output logic [4:0] sel_rd1,
         // Control Outputs to ID/EX Queue
         output logic [2:0] rf_ctrl,
         output logic [4:0] alu_ctrl,
@@ -89,7 +89,7 @@ begin
     sel_rd1 = assign_rd1;
 
     normal_op = 1;
-    pc_enable = &(code_bus);    // Halt when Instruction is: 32'hFFFF_FFFF;
+    pc_enable = ~&(code_bus);    // Halt when Instruction is: 32'hFFFF_FFFF;
     pc_operation_sel = 0;
     
     alu_enable = 0;
@@ -105,7 +105,7 @@ begin
     
     // Instruction Decode Case Statement
     case (opcode)
-        7'bb0110011: // R Type Instructions
+        7'b0110011: // R Type Instructions
             begin
                 case (funct3) // Funct3 Field
                     0: // Addition/Subtraction Operation
@@ -293,7 +293,7 @@ begin
                 normal_op = 0;
                 write_reg = 0;
                 sel_rd1 = 0;
-                case (func3)
+                case (funct3)
                     0: pc_operation_sel = 2; // BEQ
                     1: pc_operation_sel = 3; // BNE
                     4: pc_operation_sel = 4; // BLT

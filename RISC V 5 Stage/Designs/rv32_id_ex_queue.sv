@@ -49,6 +49,13 @@ module rv32_id_ex_queue
         // Register File Control
         input [2:0] rf_in,
         output logic [2:0] rf_out,
+        // Register Select Vectors
+        input [4:0] sel_rs1_in,
+        input [4:0] sel_rs2_in,
+        input [4:0] sel_rd1_in,
+        output logic [4:0] sel_rs1_out,
+        output logic [4:0] sel_rs2_out,
+        output logic [4:0] sel_rd1_out,
         // Barrel Shifter Control
         input [3:0] bshift_in,
         output logic [3:0] bshift_out,
@@ -70,7 +77,10 @@ reg [4:0] alu_queue;        // {EN, [3:0]OpSel}
 reg [2:0] rf_queue;         // {[1:0]Source, Write_Reg}
 reg [3:0] bshift_queue;     // {EN, Logical, Direction, Immediate} 
 reg pc_hlt_queue;           // {EN}  
-reg [1:0] data_ctrl_queue;  // {EN, Read}   
+reg [1:0] data_ctrl_queue;  // {EN, Read}  
+reg [4:0] sel_rs1_queue;
+reg [4:0] sel_rs2_queue;
+reg [4:0] sel_rd1_queue;
 
 // The Pipeline Flop will be flushed on every reset, as controlled by the PC module.
 
@@ -88,6 +98,10 @@ begin
             bshift_queue    <= {1'd0, 1'd0, 1'd0, 1'd0};       
             pc_hlt_queue    <= 1'd1;       
             data_ctrl_queue <= {1'd0, 1'd1}; 
+
+            sel_rs1_queue <= 0;
+            sel_rs2_queue <= 0;
+            sel_rd1_queue <= 0;
         end
     else if (flush | stall)
         begin
@@ -99,7 +113,11 @@ begin
             rf_rs2_queue    <= 0;
             bshift_queue    <= {1'd0, 1'd0, 1'd0, 1'd0};       
             pc_hlt_queue    <= 1'd1;       
-            data_ctrl_queue <= {1'd0, 1'd1}; 
+            data_ctrl_queue <= {1'd0, 1'd1};
+            
+            sel_rs1_queue <= 0;
+            sel_rs2_queue <= 0;
+            sel_rd1_queue <= 0; 
         end
     else if (~busy)
         begin        
@@ -113,6 +131,10 @@ begin
             bshift_queue    <= bshift_in;
             pc_hlt_queue    <= pc_hlt_in;
             data_ctrl_queue <= data_ctrl_in;
+
+            sel_rs1_queue   <= sel_rs1_in;
+            sel_rs2_queue   <= sel_rs2_in;
+            sel_rd1_queue   <= sel_rd1_in;
         end
 end
 
@@ -128,7 +150,11 @@ always_comb
         rf_out          = rf_queue;
         bshift_out      = bshift_queue;
         pc_hlt_out      = pc_hlt_queue;
-        data_ctrl_out   = data_ctrl_queue;                       
+        data_ctrl_out   = data_ctrl_queue;
+
+        sel_rs1_out     = sel_rs1_queue;
+        sel_rs2_out     = sel_rs2_queue;
+        sel_rd1_out     = sel_rd1_queue;
     end
 
 endmodule    
