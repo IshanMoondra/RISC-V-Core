@@ -1,13 +1,144 @@
 ###################################################################
 
-# Created by write_sdc on Sat Jan 25 19:56:53 2025
+# Created by write_sdc on Tue Jan 28 15:50:28 2025
 
 ###################################################################
 set sdc_version 2.1
 
 set_units -time ns -resistance kOhm -capacitance pF -voltage V -current mA
 set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+set_max_area 21000
 set_max_transition 0.05 [current_design]
+set_driving_cell -min -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports     \
+rst_n]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[31]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[30]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[29]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[28]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[27]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[26]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[25]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[24]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[23]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[22]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[21]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[20]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[19]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[18]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[17]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[16]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[15]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[14]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[13]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[12]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[11]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[10]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[9]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[8]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[7]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[6]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[5]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[4]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[3]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[2]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[1]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{code_fetch[0]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[31]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[30]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[29]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[28]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[27]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[26]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[25]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[24]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[23]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[22]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[21]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[20]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[19]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[18]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[17]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[16]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[15]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[14]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[13]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[12]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[11]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[10]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[9]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[8]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[7]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[6]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[5]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[4]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[3]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[2]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[1]}]
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports          \
+{data_fetch[0]}]
 set_load -pin_load 0.1 [get_ports {pc_fetch[31]}]
 set_load -pin_load 0.1 [get_ports {pc_fetch[30]}]
 set_load -pin_load 0.1 [get_ports {pc_fetch[29]}]
@@ -141,7 +272,7 @@ set_load -pin_load 0.1 [get_ports {wb_result[3]}]
 set_load -pin_load 0.1 [get_ports {wb_result[2]}]
 set_load -pin_load 0.1 [get_ports {wb_result[1]}]
 set_load -pin_load 0.1 [get_ports {wb_result[0]}]
-create_clock [get_ports clk]  -period 2.25  -waveform {0 1.125}
+create_clock [get_ports clk]  -period 1.15  -waveform {0 0.575}
 set_clock_uncertainty 0.08  [get_clocks clk]
 set_input_delay -clock clk  0.2  [get_ports rst_n]
 set_input_delay -clock clk  0.2  [get_ports {code_fetch[31]}]

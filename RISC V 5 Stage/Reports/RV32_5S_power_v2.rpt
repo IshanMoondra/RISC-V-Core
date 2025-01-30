@@ -9,7 +9,7 @@ Report : power
         -analysis_effort low
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Sat Jan 25 19:56:52 2025
+Date   : Tue Jan 28 15:50:27 2025
 ****************************************
 
 
@@ -41,12 +41,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  =   4.0216 mW   (93%)
-  Net Switching Power  = 289.7238 uW    (7%)
+  Cell Internal Power  =   7.9619 mW   (95%)
+  Net Switching Power  = 449.3436 uW    (5%)
                          ---------
-Total Dynamic Power    =   4.3113 mW  (100%)
+Total Dynamic Power    =   8.4112 mW  (100%)
 
-Cell Leakage Power     =   2.3528 uW
+Cell Leakage Power     =   2.5619 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -55,10 +55,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      3.7733            0.0000            0.0000            3.7733  (  87.47%)  i
-register       8.5467e-02        1.6534e-02          594.9574            0.1026  (   2.38%)
+clock_network      7.5488            0.0000            0.0000            7.5488  (  89.72%)  i
+register           0.1580        3.3714e-02          617.6045            0.1924  (   2.29%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      0.1628            0.2732        1.7578e+03            0.4377  (  10.15%)
+combinational      0.2551            0.4156        1.9443e+03            0.6726  (   7.99%)
 --------------------------------------------------------------------------------------------------
-Total              4.0216 mW         0.2897 mW     2.3528e+03 nW         4.3137 mW
+Total              7.9619 mW         0.4493 mW     2.5619e+03 nW         8.4138 mW
 1

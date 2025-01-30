@@ -344,9 +344,9 @@ begin
                 sel_rs2 = 0;
                 sel_rd1 = 0;
                 
-                case(code_bus[20]) // In theory, jump to different addresses depending on this bit.
-                0: write_reg = 0; // Environment Break Instruction. Asks the Debugger to do something.
-                1: write_reg = 0; // Environment Call Instruction. Asks the OS to do something.
+                case(code_bus[20])  // In theory, jump to different addresses depending on this bit.
+                0: write_reg = 0;   // Environment Break Instruction. Asks the Debugger to do something.
+                1: write_reg = 0;   // Environment Call Instruction. Asks the OS to do something.
                 endcase
             end
         default: // To Catch any stray instructions.

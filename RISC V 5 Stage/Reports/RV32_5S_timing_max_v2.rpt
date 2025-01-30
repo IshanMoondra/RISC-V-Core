@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Sat Jan 25 19:56:52 2025
+Date   : Tue Jan 28 15:50:28 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Sat Jan 25 19:56:52 2025
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: iIF_ID/code_queue_reg[22]
+  Startpoint: iMEM_WB/sel_rd1_queue_reg[2]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: iPC/pc_reg[30]
+  Endpoint: iPC/pc_reg[31]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -30,67 +30,51 @@ Wire Load Model Mode: segmented
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  iIF_ID/code_queue_reg[22]/CP (DFCND4BWP)                0.00 #     0.00 r
-  iIF_ID/code_queue_reg[22]/Q (DFCND4BWP)                 0.15       0.15 r
-  U11366/Z (CKXOR2D1BWP)                                  0.10       0.25 f
-  U11460/Z (AN3D4BWP)                                     0.05       0.30 f
-  U12618/ZN (ND2D3BWP)                                    0.02       0.31 r
-  U12619/ZN (INVD2BWP)                                    0.01       0.33 f
-  U12615/ZN (CKND2D3BWP)                                  0.03       0.35 r
-  U12621/ZN (CKND2BWP)                                    0.02       0.38 f
-  U7171/Z (AN2D4BWP)                                      0.04       0.42 f
-  U11963/Z (CKBD8BWP)                                     0.05       0.46 f
-  U11516/Z (AO221D4BWP)                                   0.13       0.60 f
-  U5047/ZN (CKND4BWP)                                     0.04       0.64 r
-  U12320/Z (XOR2D2BWP)                                    0.09       0.72 f
-  U6559/Z (OA211D1BWP)                                    0.07       0.79 f
-  U10002/ZN (OAI211D2BWP)                                 0.03       0.82 r
-  U6726/Z (AN4XD1BWP)                                     0.09       0.91 r
-  U6725/ZN (IND2D2BWP)                                    0.04       0.95 r
-  U7022/ZN (AOI31D2BWP)                                   0.04       0.99 f
-  U7169/ZN (CKND2BWP)                                     0.03       1.02 r
-  U7020/ZN (CKND2D4BWP)                                   0.02       1.04 f
-  U12217/ZN (ND2D2BWP)                                    0.02       1.06 r
-  U7088/ZN (INVD2BWP)                                     0.01       1.07 f
-  U7134/ZN (ND2D2BWP)                                     0.02       1.09 r
-  U12349/ZN (ND2D3BWP)                                    0.02       1.11 f
-  U6732/ZN (CKND4BWP)                                     0.02       1.13 r
-  U7036/ZN (IND2D4BWP)                                    0.02       1.14 f
-  U12356/ZN (OAI32D4BWP)                                  0.11       1.25 r
-  U12355/ZN (OAI32D4BWP)                                  0.08       1.33 f
-  U5275/ZN (OAI211D2BWP)                                  0.03       1.36 r
-  U5374/ZN (ND4D2BWP)                                     0.06       1.43 f
-  U12343/ZN (CKND2D2BWP)                                  0.04       1.46 r
-  U12340/Z (AN2D4BWP)                                     0.05       1.51 r
-  U11517/ZN (OAI31D4BWP)                                  0.02       1.53 f
-  U6561/ZN (CKND1BWP)                                     0.03       1.56 r
-  U8690/ZN (CKND2BWP)                                     0.02       1.59 f
-  U8689/ZN (ND3D3BWP)                                     0.02       1.61 r
-  U6684/ZN (ND2D2BWP)                                     0.03       1.63 f
-  U7075/ZN (XNR2D2BWP)                                    0.07       1.71 f
-  U12337/ZN (CKND2D2BWP)                                  0.02       1.73 r
-  U5446/ZN (ND2D1BWP)                                     0.03       1.75 f
-  U7090/ZN (ND4D2BWP)                                     0.02       1.78 r
-  U6560/ZN (NR2XD1BWP)                                    0.02       1.80 f
-  U7056/ZN (XNR2D2BWP)                                    0.09       1.89 r
-  U6739/ZN (INVD2BWP)                                     0.02       1.91 f
-  U11513/Z (AO221D4BWP)                                   0.12       2.03 f
-  U6162/Z (OA222D1BWP)                                    0.09       2.11 f
-  U6160/ZN (ND2D1BWP)                                     0.03       2.14 r
-  iPC/pc_reg[30]/D (DFCNQD4BWP)                           0.00       2.14 r
-  data arrival time                                                  2.14
+  iMEM_WB/sel_rd1_queue_reg[2]/CP (DFCND4BWP)             0.00 #     0.00 r
+  iMEM_WB/sel_rd1_queue_reg[2]/Q (DFCND4BWP)              0.14       0.14 r
+  U10625/ZN (NR2XD2BWP)                                   0.03       0.17 f
+  U10605/ZN (DCCKND4BWP)                                  0.02       0.18 r
+  U13483/ZN (CKND2D4BWP)                                  0.02       0.20 f
+  U12203/ZN (IAO21D4BWP)                                  0.03       0.23 r
+  U5610/ZN (CKND2D4BWP)                                   0.03       0.25 f
+  U13259/ZN (DCCKND4BWP)                                  0.02       0.27 r
+  U9662/ZN (OAI211D4BWP)                                  0.03       0.31 f
+  U13449/ZN (IND2D2BWP)                                   0.06       0.36 f
+  U6471/ZN (INR2D4BWP)                                    0.03       0.40 r
+  U6007/Z (BUFFD8BWP)                                     0.05       0.45 r
+  U12589/Z (MUX2D1BWP)                                    0.07       0.51 f
+  U6243/ZN (ND2D2BWP)                                     0.03       0.54 r
+  U6018/ZN (IAO21D2BWP)                                   0.06       0.60 r
+  U6144/ZN (CKND2D2BWP)                                   0.02       0.62 f
+  U6199/ZN (INR2XD1BWP)                                   0.03       0.65 r
+  U12112/ZN (IND2D4BWP)                                   0.03       0.68 f
+  U13989/ZN (AOI211XD4BWP)                                0.05       0.74 r
+  U6138/ZN (CKND2D3BWP)                                   0.04       0.77 f
+  U13164/ZN (NR3D3BWP)                                    0.04       0.81 r
+  U13163/ZN (CKND2D3BWP)                                  0.03       0.84 f
+  U5399/ZN (CKND4BWP)                                     0.02       0.86 r
+  U13699/ZN (CKND2D8BWP)                                  0.02       0.88 f
+  U11637/ZN (CKND2D8BWP)                                  0.03       0.91 r
+  U11619/ZN (INVD6BWP)                                    0.02       0.94 f
+  U13542/ZN (NR3D8BWP)                                    0.05       0.98 r
+  U11665/ZN (CKND2D4BWP)                                  0.02       1.01 f
+  U12376/ZN (CKND4BWP)                                    0.02       1.02 r
+  U8942/ZN (IND2D4BWP)                                    0.02       1.04 f
+  U11746/ZN (ND2D2BWP)                                    0.02       1.05 r
+  iPC/pc_reg[31]/D (DFCNQD2BWP)                           0.00       1.05 r
+  data arrival time                                                  1.05
 
-  clock clk (rise edge)                                   2.25       2.25
-  clock network delay (ideal)                             0.00       2.25
-  clock uncertainty                                      -0.08       2.17
-  iPC/pc_reg[30]/CP (DFCNQD4BWP)                          0.00       2.17 r
-  library setup time                                     -0.03       2.14
-  data required time                                                 2.14
+  clock clk (rise edge)                                   1.15       1.15
+  clock network delay (ideal)                             0.00       1.15
+  clock uncertainty                                      -0.08       1.07
+  iPC/pc_reg[31]/CP (DFCNQD2BWP)                          0.00       1.07 r
+  library setup time                                     -0.02       1.05
+  data required time                                                 1.05
   --------------------------------------------------------------------------
-  data required time                                                 2.14
-  data arrival time                                                 -2.14
+  data required time                                                 1.05
+  data arrival time                                                 -1.05
   --------------------------------------------------------------------------
-  slack (MET)                                                        0.00
+  slack (VIOLATED)                                                  -0.01
 
 
 1

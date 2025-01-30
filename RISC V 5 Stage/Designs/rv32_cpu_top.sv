@@ -130,7 +130,8 @@ rv32_pc_v2 iPC
         //.enable(1'b1),
         .branch(pc_branch),
         .code_bus(decode_code_bus),
-        .reg_s1(decode_rs1),
+        // .reg_s1(decode_rs1),
+        .reg_s1(operandA),
         .normal_op(decode_pc_ctrl[0]),
         .pc_opsel(decode_pc_ctrl[3:1]),
         .busy(stall),
@@ -202,8 +203,8 @@ rv32_register_file iRF
 branch_resolver iResolver
     (
         .code_bus(decode_code_bus),
-        .rf_reg_s1(decode_rs1),
-        .rf_reg_s2(decode_rs2),
+        .rf_reg_s1(operandA),
+        .rf_reg_s2(operandB),
         .alu_output(execute_comp_res),
         //.alu_output(memory_alu_res),
         .id_ex_reg_d1(execute_sel_rd1),

@@ -44,27 +44,107 @@ begin
         // RAM[i] = 32'hFFFF_FFFF;
         RAM[i] = 0;       
     end
+    
     // /*
-    // Note: This program adds 2 numbers properly, with the required forwarding.
-    // However, the results seem to be stored back in the wrong spot. 
-    // Program Start
-    // RAM[0] = {12'd0, 5'd0, 3'd0, 5'd31, 7'b0010011};    // Load 0 into x31
-    // RAM[1] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};     // NOP
+    // Note: This program subtracts 2 numbers properly, with the required forwarding.
+    // Program Start // Some funny behaviour with forwarding paths?
     RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};             // Load 7 into x1
     RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
-    // RAM[4] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};     // NOPs
-    // RAM[5] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    // RAM[6] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
-    // RAM[0] = {12'h0, 5'd0, 3'b010, 5'd1, 7'b0000011};    //Load Instruction. 
-    // RAM[3] = {12'h0, 5'd0, 3'b010, 5'd2, 7'b0000011};    //Load Instruction. 
-    // RAM[2] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};    // x3 = x2 + x1
-    // RAM[3] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};    // x3 = x2 + x1
+    RAM[2] = {7'b0100000, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};  // x3 = x2 - x1
+    RAM[3] = {7'b0100000, 5'd2, 5'd1, 3'd0, 5'd4, 7'b0110011};  // x4 = x1 - x2
+    RAM[4] = {7'd0, 5'd0, 5'd1, 3'd0, 5'd0, 7'b0110011};        // x0 = x1 + 0
+    RAM[5] = {7'd0, 5'd0, 5'd2, 3'd0, 5'd0, 7'b0110011};        // x0 = x2 + 0
+    RAM[6] = {7'd0, 5'd0, 5'd3, 3'd0, 5'd0, 7'b0110011};        // x0 = x3 + 0
+    RAM[7] = {7'd0, 5'd0, 5'd4, 3'd0, 5'd0, 7'b0110011};        // x0 = x4 + 0
+    RAM[8] = 32'hFFFF_FFFF;                                     // HLT
+    // */
+    
+    // /*
+    // Note: This program performs a bunch of ALU operations properly, with the required forwarding.
+    // Program Start // Works well! // Tested all R Type Instructions and ADDi
+    RAM[0] = {-12'd1, 5'd0, 3'd0, 5'd1, 7'b0010011};            // Load 7 into x1
+    RAM[1] = {12'd4, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
+    RAM[2] = {7'b0000000, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};  // x3 = x2 + x1
+    RAM[3] = {7'b0100000, 5'd1, 5'd2, 3'd0, 5'd4, 7'b0110011};  // x4 = x2 - x1
+    RAM[4] = {7'd0, 5'd1, 5'd2, 3'b111, 5'd5, 7'b0110011};      // x5 = x1 & x2
+    RAM[5] = {7'd0, 5'd2, 5'd1, 3'b110, 5'd6, 7'b0110011};      // x6 = x1 | x2
+    RAM[6] = {7'd0, 5'd2, 5'd1, 3'b100, 5'd7, 7'b0110011};      // x7 = x1 ^ x2
+    RAM[7] = {7'd0, 5'd2, 5'd1, 3'b001, 5'd8, 7'b0110011};      // x8 = x1 << x2
+    RAM[8] = {7'd0, 5'd2, 5'd1, 3'b010, 5'd9, 7'b0110011};      // x9 = (x1 < x2)       // Signed
+    RAM[9] = {7'd0, 5'd2, 5'd1, 3'b011, 5'd10, 7'b0110011};     // x10 = (x1 < x2)      // Unsigned
+    RAM[10] = {7'b0000000, 5'd2, 5'd1, 3'd0, 5'd11, 7'b0110011}; // x11 = x1 >> x2      // Logical
+    RAM[11] = {7'b0100000, 5'd2, 5'd1, 3'd0, 5'd12, 7'b0110011}; // x12 = x1 >>> x2     // Arithmetic
+    // RAM[12] = {1'b0, 6'd0, 5'd0, 5'd0, 3'b010, 4'd6, 1'b0, 7'b1100011};     // BEQ R1, R2, 12 ?
+    RAM[13] = {7'd0, 5'd0, 5'd1, 3'd0, 5'd0, 7'b0110011};        // x0 = x1 + 0
+    RAM[14] = {7'd0, 5'd0, 5'd2, 3'd0, 5'd0, 7'b0110011};        // x0 = x2 + 0
+    RAM[15] = {7'd0, 5'd0, 5'd3, 3'd0, 5'd0, 7'b0110011};        // x0 = x3 + 0
+    RAM[16] = {7'd0, 5'd0, 5'd4, 3'd0, 5'd0, 7'b0110011};       // x0 = x4 + 0
+    RAM[17] = {7'd0, 5'd0, 5'd5, 3'd0, 5'd0, 7'b0110011};       // x0 = x5 + 0
+    RAM[18] = {7'd0, 5'd0, 5'd6, 3'd0, 5'd0, 7'b0110011};       // x0 = x6 + 0
+    RAM[19] = {7'd0, 5'd0, 5'd7, 3'd0, 5'd0, 7'b0110011};       // x0 = x7 + 0
+    RAM[20] = {7'd0, 5'd0, 5'd8, 3'd0, 5'd0, 7'b0110011};       // x0 = x8 + 0
+    RAM[21] = {7'd0, 5'd0, 5'd9, 3'd0, 5'd0, 7'b0110011};       // x0 = x9 + 0
+    RAM[22] = {7'd0, 5'd0, 5'd10, 3'd0, 5'd0, 7'b0110011};      // x0 = x10 + 0
+    RAM[23] = {7'd0, 5'd0, 5'd11, 3'd0, 5'd0, 7'b0110011};      // x0 = x11 + 0
+    RAM[24] = {7'd0, 5'd0, 5'd12, 3'd0, 5'd0, 7'b0110011};      // x0 = x12 + 0
+    RAM[25] = 32'hFFFF_FFFF;                                    // HLT
+    // */
+
+    // /*
+    // Note: This program tests branching properly, with the required forwarding.
+    // BEQ and BNE work! // Need to add full forwarding paths to prevent padding. 
+    // Some issue with flushing. Currently looks like a Delay Slot // Solved
+    // Program Start
+    RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};             // Load 7 into x1
+    RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
+    RAM[2] = {1'b0, 6'd0, 5'd2, 5'd1, 3'd0, 4'd6, 1'b0, 7'b1100011};     // BNE R1, R2, 4
+    RAM[3] = 32'hFFFF_FFFF;                                     // HLT
+    RAM[16] = 32'hFFFF_FFFF;
+    // */
+
+    // /*
+    // Note: This program tests branching properly, with the required forwarding.
+    // JAL and JALR work! // Need to add full forwarding paths to prevent padding. 
+    // Some issue with flushing. Currently looks like a Delay Slot ?
+    // Program Start
+    RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};             // Load 7 into x1
+    RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
+    // RAM[2] = {1'b0, 10'd5, 1'b0, 8'd0, 5'd5, 7'b1101111};       //JAL works!
+    RAM[2] = {12'd0, 5'd0, 3'd0, 5'd6, 7'b1100111};             // JALR x5, x2, 2 works!
+    RAM[3] = 32'hFFFF_FFFF;                                     // HLT
+    RAM[15] = {7'd0, 5'd0, 5'd5, 3'd0, 5'd0, 7'b0110011};       // x0 = x4 + 0
+    RAM[16] = 32'hFFFF_FFFF;
+    // */
+
+    // /*
+    // Note: This program tests branching properly, with the required forwarding.
+    // BLT and BGTU work! // Need to add full forwarding paths to prevent padding.
+    // BLT  = SLT   --> BNE (with x0) works!
+    // BGTU = SLTU  --> BEQ (with x0) kinda works? Needs the forwarding paths fixed though. 
+    // Program Start
+    RAM[0] = {-12'd1, 5'd0, 3'd0, 5'd1, 7'b0010011};            // Load 7 into x1
+    RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
+    // RAM[2] = {7'd0, 5'd2, 5'd1, 3'b010, 5'd9, 7'b0110011};      // x9 = (x1 < x2)   // Signed
+    RAM[2] = {7'd0, 5'd1, 5'd2, 3'b011, 5'd10, 7'b0110011};     // x10 = (x1 < x2)      // Unsigned
+    RAM[3] = {1'b0, 6'd0, 5'd10, 5'd0, 3'd1, 4'd5, 1'b0, 7'b1100011};     // BNE x0, x9, 10
+    RAM[4] = 32'hFFFF_FFFF;                                     // HLT
+    RAM[15] = {7'd0, 5'd0, 5'd9, 3'd0, 5'd0, 7'b0110011};       // x0 = x9 + 0
+    RAM[16] = 32'hFFFF_FFFF;
+    // */
+
+    /*
+    // Note: This program adds 2 numbers properly, with the required forwarding.
+    // However, the results seem to be stored back in the wrong spot. // Solved
+    // Program Start
+    RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};             // Load 7 into x1
+    RAM[1] = {12'd8, 5'd0, 3'd0, 5'd2, 7'b0010011};             // Load 8 into x2
     RAM[2] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd3, 7'b0110011};        // x3 = x2 + x1
     RAM[3] = {7'd0, 5'd0, 5'd1, 3'd0, 5'd1, 7'b0110011};        // x1 = x1 + 0
     RAM[4] = {7'd0, 5'd0, 5'd2, 3'd0, 5'd2, 7'b0110011};        // x2 = x2 + 0
     RAM[5] = {7'd0, 5'd0, 5'd3, 3'd0, 5'd3, 7'b0110011};        // x3 = x3 + 0
-    RAM[6] = 32'hFFFF_FFFF;    // HLT
-    // */
+    RAM[6] = 32'hFFFF_FFFF;                                     // HLT
+    */
+
     /*
     RAM[1] = {12'd1, 5'd0, 3'd0, 5'd1, 7'b0010011};
     RAM[2] = {12'd4, 5'd1, 3'd0, 5'd1, 7'b0010011};
@@ -82,6 +162,7 @@ begin
     RAM[14] = {12'd0, 5'd6, 3'd0, 5'd6, 7'b0010011};
     RAM[15] = {7'b0100000, 5'd5, 5'd6, 3'd0, 5'd6, 7'b0110011};
     RAM[16] = {12'd1, 5'd6, 3'd0, 5'd6, 7'b0010011};
+    RAM[17] = 32'hFFFF_FFFF;
     */
     /*
     RAM[0] = {12'd32, 5'd2, 3'd0, 5'd2, 7'b0010011};
@@ -99,7 +180,7 @@ begin
     RAM[3] = {7'd0, 5'd2, 5'd1, 3'd0, 5'd1, 7'b0110011};
     RAM[4] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};
     */ 
-     /*
+    /*
     // Verification Testing Code    
     RAM[0] = {12'd0, 5'd0, 3'd0, 5'd31, 7'b0010011};
     RAM[1] = {12'd2, 5'd0, 3'd0, 5'd1, 7'b0010011};
@@ -187,7 +268,7 @@ begin
     RAM[83] = {12'h1f, 5'd0, 3'b010, 5'd16, 7'b0000011};    //Load Instruction. 
     RAM[84] = {12'h0, 5'd16, 3'd0, 5'd16, 7'b0010011};    
     RAM[85] = {12'h1, 5'd15, 3'd0, 5'd15, 7'b0010011};     //Somehow works!?
-    RAM[86] = 32'hFFFF_FFFF;
+    RAM[255] = 32'hFFFF_FFFF;
     */
     //RAM[18] = {12'd0, 5'd3, 3'd0, 5'd3, 7'b0010011};
     /*
@@ -378,6 +459,19 @@ begin
     // RAM[18] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
     // RAM[7] = 32'hFFFF_FFFF;
     
+    // A simple loop style program
+    RAM[0] = {12'd100, 5'd0, 3'd0, 5'd31, 7'b0010011}; // x31  = x0 + 100;
+    RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
+    RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
+    RAM[3] = 0;
+    RAM[4] = 0;
+    RAM[6] = 0;
+    RAM[7] = 0;
+    RAM[5] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   //Addition
+    RAM[8] = {7'd0, 5'd1, 5'd31, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x1, x31
+    RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, 2
+    RAM[10] = 32'hFFFF_FFFF;
+
  end
 
 always@(posedge clk)

@@ -83,7 +83,7 @@ always_ff @( posedge clk, negedge rst_n )
                     end
                 else
                     begin
-                        flush <= 1;
+                        flush <= branch;
                         casex ({~(branch), pc_opsel})
                             JAL:    pc <= uj_pc;
                             JALR:   pc <= uj_pc;

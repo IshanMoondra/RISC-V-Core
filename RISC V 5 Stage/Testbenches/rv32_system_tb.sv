@@ -39,9 +39,10 @@ begin
     @(posedge clk);
     fork
         begin: Timeout            
-            while (count < 200)
+            while (count < 265)
                 begin
                     @(posedge clk);
+                    $display("Cycle Count, PC, WB Result: %d  %d  %d", count, iSoC.pc_fetch, wb_result);
                     count = count + 1;                    
                 end
             $display("More than 200 cycles of simulation, timeout!");
