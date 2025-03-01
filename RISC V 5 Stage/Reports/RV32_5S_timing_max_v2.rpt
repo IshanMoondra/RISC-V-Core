@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Tue Jan 28 15:50:28 2025
+Date   : Tue Feb  4 23:56:01 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Tue Jan 28 15:50:28 2025
 Operating Conditions: NCCOM   Library: tcbn40lpbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: iMEM_WB/sel_rd1_queue_reg[2]
+  Startpoint: iMEM_WB/rf_queue_reg[1]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: iPC/pc_reg[31]
+  Endpoint: iEX_MEM/alu_res_queue_reg[24]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -30,51 +30,47 @@ Wire Load Model Mode: segmented
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  iMEM_WB/sel_rd1_queue_reg[2]/CP (DFCND4BWP)             0.00 #     0.00 r
-  iMEM_WB/sel_rd1_queue_reg[2]/Q (DFCND4BWP)              0.14       0.14 r
-  U10625/ZN (NR2XD2BWP)                                   0.03       0.17 f
-  U10605/ZN (DCCKND4BWP)                                  0.02       0.18 r
-  U13483/ZN (CKND2D4BWP)                                  0.02       0.20 f
-  U12203/ZN (IAO21D4BWP)                                  0.03       0.23 r
-  U5610/ZN (CKND2D4BWP)                                   0.03       0.25 f
-  U13259/ZN (DCCKND4BWP)                                  0.02       0.27 r
-  U9662/ZN (OAI211D4BWP)                                  0.03       0.31 f
-  U13449/ZN (IND2D2BWP)                                   0.06       0.36 f
-  U6471/ZN (INR2D4BWP)                                    0.03       0.40 r
-  U6007/Z (BUFFD8BWP)                                     0.05       0.45 r
-  U12589/Z (MUX2D1BWP)                                    0.07       0.51 f
-  U6243/ZN (ND2D2BWP)                                     0.03       0.54 r
-  U6018/ZN (IAO21D2BWP)                                   0.06       0.60 r
-  U6144/ZN (CKND2D2BWP)                                   0.02       0.62 f
-  U6199/ZN (INR2XD1BWP)                                   0.03       0.65 r
-  U12112/ZN (IND2D4BWP)                                   0.03       0.68 f
-  U13989/ZN (AOI211XD4BWP)                                0.05       0.74 r
-  U6138/ZN (CKND2D3BWP)                                   0.04       0.77 f
-  U13164/ZN (NR3D3BWP)                                    0.04       0.81 r
-  U13163/ZN (CKND2D3BWP)                                  0.03       0.84 f
-  U5399/ZN (CKND4BWP)                                     0.02       0.86 r
-  U13699/ZN (CKND2D8BWP)                                  0.02       0.88 f
-  U11637/ZN (CKND2D8BWP)                                  0.03       0.91 r
-  U11619/ZN (INVD6BWP)                                    0.02       0.94 f
-  U13542/ZN (NR3D8BWP)                                    0.05       0.98 r
-  U11665/ZN (CKND2D4BWP)                                  0.02       1.01 f
-  U12376/ZN (CKND4BWP)                                    0.02       1.02 r
-  U8942/ZN (IND2D4BWP)                                    0.02       1.04 f
-  U11746/ZN (ND2D2BWP)                                    0.02       1.05 r
-  iPC/pc_reg[31]/D (DFCNQD2BWP)                           0.00       1.05 r
-  data arrival time                                                  1.05
+  iMEM_WB/rf_queue_reg[1]/CP (DFCND4BWP)                  0.00 #     0.00 r
+  iMEM_WB/rf_queue_reg[1]/Q (DFCND4BWP)                   0.11       0.11 f
+  U7938/ZN (INVD8BWP)                                     0.03       0.14 r
+  U5450/ZN (NR2XD4BWP)                                    0.03       0.17 f
+  U5152/Z (CKBD16BWP)                                     0.05       0.22 f
+  U7461/ZN (CKND16BWP)                                    0.02       0.24 r
+  U5527/ZN (CKND6BWP)                                     0.02       0.26 f
+  U8378/ZN (AOI22D4BWP)                                   0.05       0.30 r
+  U8955/ZN (ND2D4BWP)                                     0.04       0.34 f
+  U6302/ZN (INVD4BWP)                                     0.02       0.36 r
+  U8251/ZN (OAI21D4BWP)                                   0.02       0.39 f
+  U9768/ZN (DCCKND4BWP)                                   0.02       0.41 r
+  U8482/ZN (CKND4BWP)                                     0.02       0.42 f
+  U6507/ZN (CKND6BWP)                                     0.02       0.44 r
+  U8675/Z (OA221D4BWP)                                    0.08       0.52 r
+  U6305/ZN (CKND6BWP)                                     0.02       0.55 f
+  U8864/ZN (CKND2D8BWP)                                   0.02       0.57 r
+  U8768/ZN (ND3D4BWP)                                     0.03       0.59 f
+  U13222/ZN (INR2XD2BWP)                                  0.03       0.62 r
+  U14785/ZN (IND3D4BWP)                                   0.03       0.65 f
+  U5856/Z (OA32D4BWP)                                     0.10       0.75 f
+  U8245/Z (OA32D4BWP)                                     0.09       0.84 f
+  U6503/ZN (ND2D4BWP)                                     0.03       0.87 r
+  U5281/ZN (CKND2D8BWP)                                   0.02       0.89 f
+  U14056/ZN (AOI32XD4BWP)                                 0.04       0.92 r
+  U5159/ZN (OAI211D2BWP)                                  0.05       0.98 f
+  U5156/ZN (IND2D2BWP)                                    0.05       1.02 f
+  iEX_MEM/alu_res_queue_reg[24]/D (DFCND1BWP)             0.00       1.02 f
+  data arrival time                                                  1.02
 
-  clock clk (rise edge)                                   1.15       1.15
-  clock network delay (ideal)                             0.00       1.15
-  clock uncertainty                                      -0.08       1.07
-  iPC/pc_reg[31]/CP (DFCNQD2BWP)                          0.00       1.07 r
-  library setup time                                     -0.02       1.05
-  data required time                                                 1.05
+  clock clk (rise edge)                                   1.11       1.11
+  clock network delay (ideal)                             0.00       1.11
+  clock uncertainty                                      -0.08       1.03
+  iEX_MEM/alu_res_queue_reg[24]/CP (DFCND1BWP)            0.00       1.03 r
+  library setup time                                     -0.01       1.02
+  data required time                                                 1.02
   --------------------------------------------------------------------------
-  data required time                                                 1.05
-  data arrival time                                                 -1.05
+  data required time                                                 1.02
+  data arrival time                                                 -1.02
   --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -0.01
+  slack (MET)                                                        0.00
 
 
 1

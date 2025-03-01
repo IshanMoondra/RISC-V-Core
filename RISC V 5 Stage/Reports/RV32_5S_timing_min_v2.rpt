@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Tue Jan 28 15:50:28 2025
+Date   : Tue Feb  4 23:56:01 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.

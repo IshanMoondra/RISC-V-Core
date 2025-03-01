@@ -1,13 +1,12 @@
 ###################################################################
 
-# Created by write_sdc on Tue Jan 28 15:50:28 2025
+# Created by write_sdc on Tue Feb  4 23:56:01 2025
 
 ###################################################################
 set sdc_version 2.1
 
 set_units -time ns -resistance kOhm -capacitance pF -voltage V -current mA
 set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
-set_max_area 21000
 set_max_transition 0.05 [current_design]
 set_driving_cell -min -lib_cell ND2D2BWP -library tcbn40lpbwptc [get_ports     \
 rst_n]
@@ -272,7 +271,7 @@ set_load -pin_load 0.1 [get_ports {wb_result[3]}]
 set_load -pin_load 0.1 [get_ports {wb_result[2]}]
 set_load -pin_load 0.1 [get_ports {wb_result[1]}]
 set_load -pin_load 0.1 [get_ports {wb_result[0]}]
-create_clock [get_ports clk]  -period 1.15  -waveform {0 0.575}
+create_clock [get_ports clk]  -period 1.11  -waveform {0 0.555}
 set_clock_uncertainty 0.08  [get_clocks clk]
 set_input_delay -clock clk  0.2  [get_ports rst_n]
 set_input_delay -clock clk  0.2  [get_ports {code_fetch[31]}]

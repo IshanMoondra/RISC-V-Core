@@ -3,7 +3,7 @@
 Report : area
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Tue Jan 28 15:50:28 2025
+Date   : Tue Feb  4 23:56:01 2025
 ****************************************
 
 Library(s) Used:
@@ -11,20 +11,20 @@ Library(s) Used:
     tcbn40lpbwptc (File: /cae/apps/data/tsmclibs-2013/digital/Front_End/timing_power_noise/NLDM/tcbn40lpbwp_120b/tcbn40lpbwptc.db)
 
 Number of ports:                          199
-Number of nets:                         11285
-Number of cells:                        11150
-Number of combinational cells:           9512
-Number of sequential cells:              1638
+Number of nets:                         12281
+Number of cells:                        12042
+Number of combinational cells:          10437
+Number of sequential cells:              1605
 Number of macros/black boxes:               0
-Number of buf/inv:                       3846
-Number of references:                     291
+Number of buf/inv:                       4763
+Number of references:                     327
 
-Combinational area:              15277.298627
-Buf/Inv area:                     5203.447271
-Noncombinational area:            7597.901022
+Combinational area:              18667.177468
+Buf/Inv area:                     7071.346893
+Noncombinational area:            7681.690951
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                 22875.199648
+Total cell area:                 26348.868420
 Total area:                 undefined
 1
