@@ -346,6 +346,7 @@ always_comb
 // ALU
 rv32_alu_v2 iALU
     (
+        // .enable(1'b1),
         .reg_s1(operandA),
         .reg_s2(operandB),
         .code_bus(execute_code_bus),

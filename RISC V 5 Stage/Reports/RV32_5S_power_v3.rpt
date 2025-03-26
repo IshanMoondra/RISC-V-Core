@@ -1,0 +1,64 @@
+Information: Propagating switching activity (high effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort high
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Mon Mar 24 16:21:54 2025
+****************************************
+
+
+Library(s) Used:
+
+    asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/MS3/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_SEQ_RVT_TT_nldm_220123 (File: /filespace/i/imoondra/MS3/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.db)
+    asap7sc7p5t_INVBUF_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/MS3/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_OA_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/MS3/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_AO_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/MS3/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.db)
+
+
+Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_RVT_TT_nldm_211120
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+
+
+Global Operating Voltage = 0.7  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ps
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   4.0394 mW   (96%)
+  Net Switching Power  = 155.0106 uW    (4%)
+                         ---------
+Total Dynamic Power    =   4.1944 mW  (100%)
+
+Cell Leakage Power     = 993.4799 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      3.9499            0.0000            0.0000            3.9499  (  94.15%)  i
+register       4.3808e-02        1.0619e-02        3.7291e+05        5.4802e-02  (   1.31%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  4.5676e-02            0.1444        6.2056e+05            0.1907  (   4.55%)
+--------------------------------------------------------------------------------------------------
+Total              4.0394 mW         0.1550 mW     9.9348e+05 pW         4.1954 mW
+1
