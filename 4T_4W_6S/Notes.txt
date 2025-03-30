@@ -1,0 +1,98 @@
+Date: 27th March 2025
+Author: Ishan Moondra
+Title: Notes for RISC V 32I Quad Thread, 4-Wide 6-Stage Upgrade
+
+Approach:
+Insipired by the Sun Niagara, I can have an additional Thread Select Stage to support 4 threads.
+I also want to go ahead and add 4 wide issue support to the processor. This choice is supported
+by the fact that Multiple Threads require their own private Register Files as is. Added to this, 
+the fact that my ALU is a 5 component split design, meaning that utilization is only one in five. 
+The ALU is power gated anyway, but that is just a small bonus. 
+The flow of the 4 wide issue is that each issue stream serves one thread, meaning that I can 
+preserve in-order semantics while going 4 wide. 
+I want to keep the backend of the processor still as an in-order machine, that way it is not too 
+much of an headache to add functionality.
+
+Pipeline Flow:
+Fetch --> Decode --> Thread_Select --> Execute --> Memory --> Write_Back
+
+Thread_Select is kept after Decode to solve functional unit sharing easily.
+
+Brief Overview of Each Stage:
+Fetch:
+    I-Mem is still using the 256 word placeholder memory module.
+    Instead of feeding a single pipeline flop, this will now serve four 4-instruction deep
+    buffers (FIFOs), that are buffering instructions for each of the threads.
+    The single PC adder/combinational block performs round robin arbiteration to fetch
+    instruction streams from each of the given threads and places them into their 
+    respective buffers. 
+    A stall signal can stall the fetching if these buffers are full. In order to prevent 
+    spillage, an almost_full signal on the FIFOs will provide early warning.
+    The Round Robin Fetch Scheduler can skip certain threads if their respective FIFOs are 
+    almost_full, and in the worst case, simply stalls everything. 
+    A Simple Branch Predictor can be used as I can no longer guarantee a 1 cycle branch
+    resolution. 
+
+Decode:
+    Duplicating the Decoder Logic Block four times, provides me with the 4 wide dispatch 
+    capability. The Register File & PC register will be duplicated four times, & each 
+    will have a set thread ID (0, 1, 2, 3) to signify uniqueness among the threads.
+    The resulting thread/issue lane specific control signals & operands are sent to the 
+    pipeline flop before the Thread_Select stage.
+    
+    // Will add about Stalls for bypass later.
+
+Thread_Select:
+    The new addition to the tried & tested (?) 5 stage configuration. 
+    This will look at the operations to be performned, and then direct 
+    the individual thread specific (control & operands) packet to 
+    the "Reservation Station" FIFOs each serving a sub-unit of the ALU.
+    Thread Scheduler will give implicit priority in the following order:
+    T0, T1, T2, T3. As I do not deal with cache misses right now, under 
+    the worst case of all threads requesting the same ALU sub-unit,
+    T0 is slotted first, followed by T1, T2, & T3. If T0+ also is the 
+    same ALU sub-unit, it is slotted behind T3's request. 
+    So the Thread Scheduler takes all the 4 dispatched instructions 
+    from the earlier pipeline flop, and issue them to the 
+    appropriate Reservation Station FIFO.
+    Thus, we start with 4 packets, into this module, 
+    and out comes the said four packets slotting into any of the 
+    six possible Reservation Stations.
+    All of the Reservation Stations are 4 packets deep. 
+    The Six Reservation Stations are:
+    1. Add/sub
+    2. Logical
+    3. Shifter
+    4. Comparator
+    5. Memory Address Adder
+    6. Dedicated Branch Comparator
+    Thus, the Thread_Select stage effectively issues the instructions.
+
+Execute:
+    Here lies the ALU in its split glory & the branch Comparator unit. 
+    One more sub-unit will be made, for the memory address generation,
+    so that we can reduce some pressure from the Add/Sub Unit.
+    Everything will be power-gated to save what power I can. 
+    Bypass Paths:
+    I am not crazy enough to support 25 bypass paths, so I will be supporting:
+    1. Five Internal Bypass Paths, to the same Sub-Unit, Ex to Ex. 
+    2. Five Memory to Ex Bypass paths for inter sub-unit bypass, 
+       at a cost of one clock cycle. 
+    3. One to Five Dedicated Lane from Memory to Ex, for load to use stalls.
+    4. One to One dedicated lane from Memory to Memory (Memory Address Adder).
+       This one might be redundant with point 3. 
+    5. For Single Thread Mode, original 5S design's full bypass will be available.
+
+Memory:
+    Only one read/write port to the Data Memory allows write serialization and 
+    easy future upgrade to Atomics. Just like the 5S setup, one 256 word 
+    placeholder memory is utilized. 
+
+Write_Back:
+    Set of four muxes (like the 5S design) to write back the data to the 
+    appropriate thread's RF.
+    Can have thread specific HLTs or just one HLT global.
+    Need some way to actually load up the other three PC registers from 
+    T0's instruction stream. Might need to add some new instructions for that. 
+    Will also need an instruction that switches between MT/ST mode. 
+    Need "Clear" signal to flush the other three RFs when switching modes. 
