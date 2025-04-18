@@ -44,11 +44,12 @@ rv32_cpu_top iCPU
         .wb_result(wb_result)
     );
 
-rv32_ram_32bit iCode
+rv32_ram_32bit 
     #(
-        code_mem = 1,
-        code = ../Binaries/alu_test.hex
+    .code_mem(1),
+    .code("../Binaries/alu_test.hex")
     )
+    iCode
     (
         .clk(clk),
         .enable(1'b1),
@@ -58,10 +59,11 @@ rv32_ram_32bit iCode
         .data_write(32'h0)
     );
 
-rv32_ram_32bit iData
+rv32_ram_32bit 
     #(
-        code_mem = 0
+        .code_mem(0)
     )
+    iData
     (
         .clk(clk),
         .enable(data_enable),
