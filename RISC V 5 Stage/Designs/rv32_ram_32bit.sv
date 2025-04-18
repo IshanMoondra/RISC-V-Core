@@ -20,6 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module rv32_ram_32bit
+    #(
+        parameter string code = "../Binaries/alu_test.hex",
+        parameter code_mem = 0
+    )
     (
         input clk,
         input enable,
@@ -45,7 +49,7 @@ begin
         RAM[i] = 0;       
     end
     
-    // /*
+    /*
     // Note: This program subtracts 2 numbers properly, with the required forwarding.
     // Program Start // Some funny behaviour with forwarding paths?
     RAM[0] = {12'd7, 5'd0, 3'd0, 5'd1, 7'b0010011};             // Load 7 into x1
@@ -57,9 +61,9 @@ begin
     RAM[6] = {7'd0, 5'd0, 5'd3, 3'd0, 5'd0, 7'b0110011};        // x0 = x3 + 0
     RAM[7] = {7'd0, 5'd0, 5'd4, 3'd0, 5'd0, 7'b0110011};        // x0 = x4 + 0
     RAM[8] = 32'hFFFF_FFFF;                                     // HLT
-    // */
+    */
     
-    // /*
+    /*
     // Note: This program performs a bunch of ALU operations properly, with the required forwarding.
     // Program Start // Works well! // Tested all R Type Instructions and ADDi
     RAM[0] = {-12'd1, 5'd0, 3'd0, 5'd1, 7'b0010011};            // Load 7 into x1
@@ -88,9 +92,9 @@ begin
     RAM[23] = {7'd0, 5'd0, 5'd11, 3'd0, 5'd0, 7'b0110011};      // x0 = x11 + 0
     RAM[24] = {7'd0, 5'd0, 5'd12, 3'd0, 5'd0, 7'b0110011};      // x0 = x12 + 0
     RAM[25] = 32'hFFFF_FFFF;                                    // HLT
-    // */
+    */
 
-    // /*
+    /*
     // Note: This program tests branching properly, with the required forwarding.
     // BEQ and BNE work! // Need to add full forwarding paths to prevent padding. 
     // Some issue with flushing. Currently looks like a Delay Slot // Solved
@@ -100,9 +104,9 @@ begin
     RAM[2] = {1'b0, 6'd0, 5'd2, 5'd1, 3'd0, 4'd6, 1'b0, 7'b1100011};     // BNE R1, R2, 4
     RAM[3] = 32'hFFFF_FFFF;                                     // HLT
     RAM[16] = 32'hFFFF_FFFF;
-    // */
+    */
 
-    // /*
+    /*
     // Note: This program tests branching properly, with the required forwarding.
     // JAL and JALR work! // Need to add full forwarding paths to prevent padding. 
     // Some issue with flushing. Currently looks like a Delay Slot ?
@@ -114,9 +118,9 @@ begin
     RAM[3] = 32'hFFFF_FFFF;                                     // HLT
     RAM[15] = {7'd0, 5'd0, 5'd5, 3'd0, 5'd0, 7'b0110011};       // x0 = x4 + 0
     RAM[16] = 32'hFFFF_FFFF;
-    // */
+    */
 
-    // /*
+    /*
     // Note: This program tests branching properly, with the required forwarding.
     // BLT and BGTU work! // Need to add full forwarding paths to prevent padding.
     // BLT  = SLT   --> BNE (with x0) works!
@@ -130,7 +134,7 @@ begin
     RAM[4] = 32'hFFFF_FFFF;                                     // HLT
     RAM[15] = {7'd0, 5'd0, 5'd9, 3'd0, 5'd0, 7'b0110011};       // x0 = x9 + 0
     RAM[16] = 32'hFFFF_FFFF;
-    // */
+    */
 
     /*
     // Note: This program adds 2 numbers properly, with the required forwarding.
@@ -459,6 +463,7 @@ begin
     // RAM[18] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
     // RAM[7] = 32'hFFFF_FFFF;
     
+    /*
     // A simple loop style program
     RAM[0] = {12'd100, 5'd0, 3'd0, 5'd31, 7'b0010011}; // x31  = x0 + 100;
     RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
@@ -471,6 +476,19 @@ begin
     RAM[8] = {7'd0, 5'd1, 5'd31, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x1, x31
     RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, 2
     RAM[10] = 32'hFFFF_FFFF;
+    */
+
+    // The following code will initialize the code memory with the .hex file 
+    // to streamline a lot of things.
+    // Using a parameterized approach to pass the file pointer.
+    if (code_mem)
+    begin
+        $display("Initialzing the Code Memory.");
+        $readmemh(code, RAM);
+        $display("Code Memory Initialized!"); 
+    end
+    else 
+        $display("Module used as Data Memory.");
 
  end
 

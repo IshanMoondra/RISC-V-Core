@@ -221,6 +221,7 @@ hazard_detection iHD
         .execute_sel_rd1(execute_sel_rd1),
         .stall(stall)
     );
+
 // Decode/Execute Stage
 rv32_id_ex_queue iID_EX
     (
@@ -341,7 +342,6 @@ always_comb
         //     operandB = execute_rs2;
  
     end
-
 
 // ALU
 rv32_alu_v2 iALU

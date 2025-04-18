@@ -86,11 +86,11 @@ wire flush;
 wire [31:0] code_decode;
 wire [31:0] pc_decode;    
 
-wire [18:0] rb_decode;          //{[4:0]S1, [4:0]S2, [4:0]D1, Load, Store, [1:0]Source}
-wire [4:0] alu_decode;          //{EN, [3:0]OpSel}
-wire [3:0] bshift_decode;       //{EN, Logical, Direction, Immediate}
-wire [4:0] pc_ctrl_decode;      //{EN, [2:0]OpSel, Normal_Op}
-wire [1:0] data_ctrl_decode;    //{EN, Read}
+wire [18:0] rb_decode;          // {[4:0]S1, [4:0]S2, [4:0]D1, Load, Store, [1:0]Source}
+wire [4:0] alu_decode;          // {EN, [3:0]OpSel}
+wire [3:0] bshift_decode;       // {EN, Logical, Direction, Immediate}
+wire [4:0] pc_ctrl_decode;      // {EN, [2:0]OpSel, Normal_Op}
+wire [1:0] data_ctrl_decode;    // {EN, Read}
 
 wire [31:0] code_ex;
 wire [31:0] pc_ex;
