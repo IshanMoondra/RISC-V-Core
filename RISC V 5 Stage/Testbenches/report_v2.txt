@@ -1,0 +1,193 @@
+Coverage Report Summary Data by file
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/branch_resolver.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        10         8         2    80.00%
+    Conditions                       4         4         0   100.00%
+    Expressions                     13         5         8    38.46%
+    Statements                      11        11         0   100.00%
+    Toggles                        444       249       195    56.08%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/forwarding_unit_v2.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+    Expressions                     15        13         2    86.66%
+    Statements                      16        16         0   100.00%
+    Toggles                         78        64        14    82.05%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/hazard_detection.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                      3         2         1    66.66%
+    Statements                       1         1         0   100.00%
+    Toggles                         34        27         7    79.41%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_alu_add_sub.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         3         3         0   100.00%
+    Conditions                       5         2         3    40.00%
+    Statements                       4         4         0   100.00%
+    Toggles                        200       194         6    97.00%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_alu_comp.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         8         1         7    12.50%
+    Conditions                      12         0        12     0.00%
+    Statements                       8         2         6    25.00%
+    Toggles                        200        76       124    38.00%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_alu_logical.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         1         3    25.00%
+    Conditions                       6         0         6     0.00%
+    Statements                       5         2         3    40.00%
+    Toggles                        200        68       132    34.00%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_alu_v2.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        11         4         7    36.36%
+    Conditions                      17         2        15    11.76%
+    Statements                      26        14        12    53.84%
+    Toggles                        842       397       445    47.14%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_barrel_shifter.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         7         2         5    28.57%
+    Statements                       6         3         3    50.00%
+    Toggles                        328       192       136    58.53%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_cpu_top.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        11         8         3    72.72%
+    Statements                       9         8         1    88.88%
+    Toggles                       2178       931      1247    42.74%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_cu_v2.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        43         9        34    20.93%
+    Statements                     140        47        93    33.57%
+    Toggles                        236       181        55    76.69%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_ex_mem_queue.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+    Statements                      29        29         0   100.00%
+    Toggles                       1030       462       568    44.85%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_id_ex_queue.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         3         1    75.00%
+    Conditions                       2         2         0   100.00%
+    Statements                      50        50         0   100.00%
+    Toggles                       1150       414       736    36.00%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_if_id_queue.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         4         0   100.00%
+    Statements                       8         8         0   100.00%
+    Toggles                        392       211       181    53.82%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_mem_wb_queue.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         2         2         0   100.00%
+    Statements                      26        26         0   100.00%
+    Toggles                       1018       442       576    43.41%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_pc_v2.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        16         5        11    31.25%
+    Conditions                       3         2         1    66.66%
+    Statements                      22        12        10    54.54%
+    Toggles                        598       400       198    66.88%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_ram_32bit.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         4         3         1    75.00%
+    Statements                      12        11         1    91.66%
+    Toggles                        262       138       124    52.67%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_register_file.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        12        12         0   100.00%
+    Conditions                       8         8         0   100.00%
+    Statements                      40        40         0   100.00%
+    Toggles                        368       122       246    33.15%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/rv32_system_top.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                        398       221       177    55.52%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Designs/write_back.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         5         2         3    40.00%
+    Statements                       5         3         2    60.00%
+    Toggles                        324       145       179    44.75%
+
+=================================================================================
+=== File: /filespace/i/imoondra/Ishan Verilog Designs/RISC V Designs/RISC-V-Core/RISC V 5 Stage/Testbenches/rv32_system_tb.sv
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       1         0         1     0.00%
+    Statements                      21        19         2    90.47%
+    Toggles                        138        78        60    56.52%
+
+
+Total Coverage By File (code coverage only, filtered view): 52.95%
+

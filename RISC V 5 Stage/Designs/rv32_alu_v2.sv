@@ -21,13 +21,16 @@
 
 
 module rv32_alu_v2(
+    // ALU Inputs
     input [31:0] reg_s1,
     input [31:0] reg_s2,
     output reg [31:0] reg_d1,
     input [31:0] pc,
     input enable,
-    input [3:0] alu_opsel,
-    input [31:0] code_bus
+    input [4:0] alu_opsel,
+    input [31:0] code_bus,
+    // Barrel Shifter Inputs
+    input [3:0] bshift_ctrl
     );
 
 // How best to approach this power optimization method?
@@ -43,7 +46,7 @@ module rv32_alu_v2(
 logic [31:0] add_A, add_B;
 logic [31:0] comp_B;
 logic [31:0] logical_B;
-logic [31:0] add_result, comp_result, logical_result, LUi_result;
+logic [31:0] add_result, comp_result, logical_result, LUi_result, bshift_result;
 
 assign LUi_result = (alu_opsel == 14) ? ({code_bus[31:12], 12'b0}) : (0);
 
@@ -71,6 +74,19 @@ rv32_alu_logical iLogical
         .result(logical_result)
     );
 
+// Barrel Shifter
+rv32_barrel_shifter iBarrel
+    (
+        .enable(bshift_ctrl[3]),
+        .logical(bshift_ctrl[2]),
+        .direction(bshift_ctrl[1]),
+        .immediate(bshift_ctrl[0]),
+        .code_bus(code_bus),
+        .rs2(reg_s2),
+        .rs1(reg_s1),
+        .rd1(bshift_result)
+    );
+
 // Case Statement Mux to provide correct inputs
 always_comb
 begin
@@ -81,47 +97,61 @@ begin
     logical_B   = 0;
     reg_d1      = 0;
     // Nested If Else cases
-    if (alu_opsel == 0 || alu_opsel == 1)
+    if (enable)
         begin
+        if (alu_opsel == 0 || alu_opsel == 1)
+            begin
+                add_A = reg_s1;
+                add_B = reg_s2;
+                reg_d1 = add_result;
+            end
+        else if (alu_opsel == 2 || alu_opsel == 3 || alu_opsel == 4)
+            begin
+                logical_B = reg_s2;
+                reg_d1 = logical_result;
+            end
+        else if (alu_opsel == 5 || alu_opsel == 6)
+            begin
+                comp_B = reg_s2;
+                reg_d1 = comp_result;
+            end
+        else if (alu_opsel == 7 || alu_opsel == 8)
+            begin
+                add_A = reg_s1;
+                add_B = {{20{code_bus[31]}}, code_bus[31:20]};
+                reg_d1 = add_result;
+            end
+        else if (alu_opsel == 9 || alu_opsel == 10 || alu_opsel == 11)
+            begin
+                logical_B = {{20{code_bus[31]}}, code_bus[31:20]};
+                reg_d1 = logical_result;
+            end
+        else if (alu_opsel == 12 || alu_opsel == 13)
+            begin
+                comp_B = {{20{code_bus[31]}}, code_bus[31:20]};
+                reg_d1 = comp_result;
+            end
+        else if (alu_opsel == 14)
+            begin
+                reg_d1 = LUi_result;
+            end
+        else if (alu_opsel == 15)
+            begin
+                add_A = pc;
+                add_B = {code_bus[31:12], 12'b0};
+                reg_d1 = add_result;
+            end
+        // Generating Address for Store
+        else if (alu_opsel == 16)
+            begin
             add_A = reg_s1;
-            add_B = reg_s2;
+            add_B = {{20{code_bus[31]}}, code_bus[31:25], code_bus[11:7]};
             reg_d1 = add_result;
+            end
         end
-    else if (alu_opsel == 2 || alu_opsel == 3 || alu_opsel == 4)
+    else if (bshift_ctrl[3])
         begin
-            logical_B = reg_s2;
-            reg_d1 = logical_result;
-        end
-    else if (alu_opsel == 5 || alu_opsel == 6)
-        begin
-            comp_B = reg_s2;
-            reg_d1 = comp_result;
-        end
-    else if (alu_opsel == 7 || alu_opsel == 8)
-        begin
-            add_A = reg_s1;
-            add_B = {{20{code_bus[31]}}, code_bus[31:20]};
-            reg_d1 = add_result;
-        end
-    else if (alu_opsel == 9 || alu_opsel == 10 || alu_opsel == 11)
-        begin
-            logical_B = {{20{code_bus[31]}}, code_bus[31:20]};
-            reg_d1 = logical_result;
-        end
-    else if (alu_opsel == 12 || alu_opsel == 13)
-        begin
-            comp_B = {{20{code_bus[31]}}, code_bus[31:20]};
-            reg_d1 = comp_result;
-        end
-    else if (alu_opsel == 14)
-        begin
-            reg_d1 = LUi_result;
-        end
-    else if (alu_opsel == 15)
-        begin
-            add_A = pc;
-            add_B = {code_bus[31:12], 12'b0};
-            reg_d1 = add_result;
+            reg_d1 = bshift_result;
         end
     else
         reg_d1 = 0;

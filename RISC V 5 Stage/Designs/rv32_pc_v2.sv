@@ -31,6 +31,7 @@ module rv32_pc_v2
         input normal_op,
         input [2:0] pc_opsel,
         input busy,
+        input stall,
         output reg [31:0] return_d1,
         output reg [31:0] pc,
         output reg flush,
@@ -52,9 +53,9 @@ localparam JALR = 4'h1;
 localparam BEQ  = 4'h2;
 localparam BNE  = 4'h3;
 localparam BLT  = 4'h4;
-localparam BGT  = 4'h5;
+localparam BGT  = 4'h5; // DNE
 localparam BLTU = 4'h6;
-localparam BGTU = 4'h7;
+localparam BGTU = 4'h7; // DNE
 
 // Current Offsets are not Byte Aligned
 assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));

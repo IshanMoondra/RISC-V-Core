@@ -12,6 +12,7 @@ reg clk;
 reg rst_n;
 wire flush;
 wire stall;
+wire busy;
 wire halt;
 wire [31:0] wb_result;
 int count;
@@ -23,6 +24,7 @@ rv32_system_top iSoC
         .rst_n(rst_n),
         .flush(flush),
         .stall(stall),
+        .busy(busy),
         .halt(halt),
         .wb_result(wb_result)
     );
@@ -32,20 +34,20 @@ begin
 
     clk     = 0;
     rst_n   = 0;
-    count = 0;
+    count   = 0;
     repeat(1) @(negedge clk);
     rst_n   = 1;
     
     @(posedge clk);
     fork
         begin: Timeout            
-            while (count < 265)
+            while (count < 350)
                 begin
                     @(posedge clk);
                     $display("Cycle Count, PC, WB Result: %d  %d  %d", count, iSoC.pc_fetch, wb_result);
                     count = count + 1;                    
                 end
-            $display("More than 200 cycles of simulation, timeout!");
+            $display("More than %d cycles of simulation, timeout!", count);
             $stop();
         end: Timeout
         begin: Testing
@@ -54,7 +56,7 @@ begin
             @(posedge clk);
             $display("Processor Halted!");
             $display("Cycle Count: %d", count);
-            // @(posedge clk);
+            @(posedge clk);
             $stop("Test done!");
         end: Testing
     join

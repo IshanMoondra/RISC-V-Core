@@ -33,7 +33,7 @@ module rv32_cu_v2
         output logic [4:0] sel_rd1,
         // Control Outputs to ID/EX Queue
         output logic [2:0] rf_ctrl,
-        output logic [4:0] alu_ctrl,
+        output logic [5:0] alu_ctrl,
         output logic [3:0] bshift_ctrl,
         output logic [4:0] pc_ctrl,
         output logic [1:0] data_ctrl
@@ -65,7 +65,7 @@ reg normal_op;
 
 // Control Signals for ALU.
 reg alu_enable;
-reg [3:0] alu_operation_sel;
+reg [4:0] alu_operation_sel;
 
 // Control Signals for Barrel Shifter.
 reg shifter_enable;
@@ -121,7 +121,7 @@ begin
                         begin
                             shifter_enable = 1;
 
-                            source_sel_dest = 1;
+                            source_sel_dest = 0;
                         end
                     2: // SLT
                         begin
@@ -150,7 +150,7 @@ begin
                             shifter_direction = 1;
                             shifter_logical = (~code_bus[30]);
 
-                            source_sel_dest = 1;
+                            source_sel_dest = 0;
                         end
                     6: // OR
                         begin
@@ -185,7 +185,7 @@ begin
                             shifter_immediate = 1;
                             
                             sel_rs2 = 0;
-                            source_sel_dest = 1;
+                            source_sel_dest = 0;
                         end
                     2: // SLTi
                         begin
@@ -219,7 +219,7 @@ begin
                             shifter_logical = (~code_bus[30]);
 
                             sel_rs2 = 0;
-                            source_sel_dest = 1;
+                            source_sel_dest = 0;
                         end
                     6: // ORi 
                         begin
@@ -239,14 +239,24 @@ begin
                         end 
                 endcase
             end
-        7'b0000011: // Load Instructions
+        7'b0000011: // Load Instructions: Treats all the styles as same.
             begin
+                // Address Generation via ALU
+                alu_enable = 1;
+                alu_operation_sel = 7;
+
+                data_enable = 1;
+                data_read = 1;
+
+                source_sel_dest = 3;
+                sel_rs2 = 0;
+                /*
                 casex (funct3)
                     2: // Load Word
                         begin
                             // Address Generation via ALU
                             alu_enable = 1;
-                            alu_operation_sel = 0;
+                            alu_operation_sel = 7;
 
                             data_enable = 1;
                             data_read = 1;
@@ -262,15 +272,27 @@ begin
                             sel_rd1 = 0;
                         end
                 endcase
+                */
             end
         7'b0100011: // Store Instructions
             begin
+                // Address Generation via ALU
+                alu_enable = 1;
+                alu_operation_sel = 16;  // ALU needs Modification to work // Done
+
+                data_enable = 1;
+                data_read = 0;
+
+                write_reg = 0;
+                source_sel_dest = 0;
+                sel_rd1 = 0;
+                /*
                 casex (funct3)
                     2: // Store Word
                         begin
                             // Address Generation via ALU
                             alu_enable = 1;
-                            alu_operation_sel = 0;  // ALU needs Modification to work
+                            alu_operation_sel = 16;  // ALU needs Modification to work
 
                             data_enable = 1;
                             data_read = 0;
@@ -287,6 +309,7 @@ begin
                             sel_rd1 = 0;
                         end
                 endcase
+                */
             end
         7'b1100011: // Control Branching Instructions
             begin

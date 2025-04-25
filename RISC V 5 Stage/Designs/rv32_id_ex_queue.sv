@@ -44,8 +44,8 @@ module rv32_id_ex_queue
         input [31:0] pc_ret_in,
         output logic [31:0] pc_ret_out,
         // ALU Control
-        input [4:0] alu_in,
-        output logic [4:0] alu_out,
+        input [5:0] alu_in,
+        output logic [5:0] alu_out,
         // Register File Control
         input [2:0] rf_in,
         output logic [2:0] rf_out,
@@ -73,7 +73,7 @@ reg [31:0] pc_queue;        // Holds the PC for the current instruction
 reg [31:0] pc_ret_queue;    // Holds the Return Address for JAL instructions
 reg [31:0] rf_rs1_queue;    // Holds the RF RS1 Data
 reg [31:0] rf_rs2_queue;    // Holds the RF RS2 Data
-reg [4:0] alu_queue;        // {EN, [3:0]OpSel}    
+reg [5:0] alu_queue;        // {EN, [4:0]OpSel}    
 reg [2:0] rf_queue;         // {[1:0]Source, Write_Reg}
 reg [3:0] bshift_queue;     // {EN, Logical, Direction, Immediate} 
 reg pc_hlt_queue;           // {EN}  
@@ -91,7 +91,7 @@ begin
         begin
             // Reinitialise the Queues with NOP Conditions.
             code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
-            alu_queue       <= {1'd0, 4'd7};
+            alu_queue       <= {1'd0, 5'd7};
             rf_queue        <= {2'd0, 1'd0};
             rf_rs1_queue    <= 0;
             rf_rs2_queue    <= 0;
@@ -107,7 +107,7 @@ begin
         begin
             // Bubble NOP Condition on Stalls & Flushes.
             code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
-            alu_queue       <= {1'd0, 4'd7};
+            alu_queue       <= {1'd0, 5'd7};
             rf_queue        <= {2'd0, 1'd0};
             rf_rs1_queue    <= 0;
             rf_rs2_queue    <= 0;

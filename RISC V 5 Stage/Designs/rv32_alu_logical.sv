@@ -7,7 +7,7 @@ module rv32_alu_logical
     (
         //Operand B needs to be chosen from IMM or RT Data
         input [31:0] opA, opB,
-        input [3:0] alu_opsel,
+        input [4:0] alu_opsel,
         output logic [31:0] result
     );
 

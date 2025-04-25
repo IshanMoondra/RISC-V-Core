@@ -21,6 +21,7 @@
 
 module rv32_ram_32bit
     #(
+        parameter size = 256,
         parameter string code = "../Binaries/alu_test.hex",
         parameter code_mem = 0
     )
@@ -33,7 +34,7 @@ module rv32_ram_32bit
         output reg [31:0] data_read
     );
     
-reg [31:0] RAM [255:0];    
+reg [31:0] RAM [0:size-1];    
 integer i;
 
 //Module Incomplete.
@@ -42,7 +43,7 @@ integer i;
 initial
 begin
     data_read = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; //NOP Instruction.
-    for ( i = 0; i < 256; i = i + 1)
+    for ( i = 0; i < size; i = i + 1)
     begin
         // RAM[i] = {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011}; 
         // RAM[i] = 32'hFFFF_FFFF;
@@ -463,42 +464,55 @@ begin
     // RAM[18] = {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
     // RAM[7] = 32'hFFFF_FFFF;
     
-    /*
-    // A simple loop style program
-    RAM[0] = {12'd100, 5'd0, 3'd0, 5'd31, 7'b0010011}; // x31  = x0 + 100;
-    RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
-    RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
-    RAM[3] = 0;
-    RAM[4] = 0;
-    RAM[6] = 0;
-    RAM[7] = 0;
-    RAM[5] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   //Addition
-    RAM[8] = {7'd0, 5'd1, 5'd31, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x1, x31
-    RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, 2
-    RAM[10] = 32'hFFFF_FFFF;
-    */
+    
+    // // A simple loop style program
+    // RAM[0] = {12'd100, 5'd0, 3'd0, 5'd31, 7'b0010011}; // x31  = x0 + 100;
+    // RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
+    // RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
+    // RAM[3] = 0;
+    // RAM[4] = 0;
+    // RAM[6] = 0;
+    // RAM[7] = 0;
+    // RAM[5] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   //Addition
+    // RAM[8] = {7'd0, 5'd1, 5'd31, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x1, x31
+    // RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, 2
+    // RAM[10] = 32'hFFFF_FFFF;
+    
 
     // The following code will initialize the code memory with the .hex file 
     // to streamline a lot of things.
     // Using a parameterized approach to pass the file pointer.
-    if (code_mem)
-    begin
-        $display("Initialzing the Code Memory.");
-        $readmemh(code, RAM);
-        $display("Code Memory Initialized!"); 
-    end
-    else 
-        $display("Module used as Data Memory.");
+    // if (code_mem)
+    // begin
+    //     $display("Initialzing the Code Memory.");
+    //     $readmemh(code, RAM);
+    //     $display("Code Memory Initialized!"); 
+    // end
+    // else 
+    //     $display("Module used as Data Memory.");
 
+    // A simple loop style program
+    RAM[0] = {12'd15, 5'd0, 3'd0, 5'd6, 7'b0010011}; // x6  = x0 + 15;
+    RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
+    RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
+    RAM[3] = 0;
+    RAM[4] = 0;
+    RAM[5] = 0;
+    RAM[6] = 0;
+    RAM[7] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   // x1 = x1 + x2;
+    RAM[8] = {7'd0, 5'd6, 5'd1, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x6, x1
+    RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, -3
+    RAM[10] = 32'hFFFF_FFFF;
+    
  end
 
 always@(posedge clk)
 begin
     if (enable)
         if (read)
-            data_read <= RAM[address[7:0]];
+            data_read <= RAM[address[$clog2(size)-1:0]];
         else
-            RAM[address[7:0]] <= data_write;
+            RAM[address[$clog2(size)-1:0]] <= data_write;
     else
         data_read <= 0;
 end
