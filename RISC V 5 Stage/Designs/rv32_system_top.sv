@@ -8,13 +8,24 @@ As of 16th Jan 2025, the data and instruction memories are direct data/code port
 
 module rv32_system_top
     (
+        // Universal Signals
         input wire clk,
         input wire rst_n,
+        // Processor + Pipeline Status Signals
         output wire flush,
         output wire stall,
         output wire busy,
+        // Processor HALT
         output wire halt,
+        // Processor Bus Output
         output wire [31:0] wb_result
+        // Flash Controller Signals
+        output logic mem_valid,
+        output logic mem_instr,
+        output logic [31:0] mem_addr,
+        output logic [31:0] mem_wdata,
+        output logic [3:0] mem_wstrb,
+        input wire [31:0] mem_rdata
     );
 
 wire [31:0] pc_fetch;
@@ -23,6 +34,7 @@ wire [31:0] instruction;
 
 wire [31:0] data_addr;
 wire [31:0] data_fetch;
+wire [31:0] data_fetch_flash;
 wire [31:0] data_store;
 wire data_enable;
 wire data_read;
@@ -50,27 +62,36 @@ rv32_cpu_top iCPU
     );
 
 // Stall to be driven by FSM controlling Fetch
+// New System Top will have to simulate with a combined Code/Data Style memory system.
 
 Fetch_FSM iFetch
     (
         .clk(clk),
         .rst_n(rst_n),
+        .flush(flush),
         // Fetch Address from CPU
         .fetch_address(pc_fetch),
-        // Code Fetch byte wise from Flash
-        .code_mem_out(code_fetch),
         // Core Instruction Buffer
         .instruction(instruction),
         // Core stall point
         .stall(stall),
         // Data Address for Flash, not simulated.
         .data_address(data_addr),
-        // Input port, tied to 0, no need for testing.
-        .data_mem_out(32'h0),
-        // Load Data output port left unconnected
-        .load_data(),
+        // Load Data output port left unconnected: To be connected to Core for Loading Stuff from Flash
+        .load_data(data_fetch_flash),
         // Write Buffer for Data to be written to Flash
-        .write_data(data_store)
+        .write_data(data_store),
+        .mem_valid(mem_valid),
+        .mem_instr(mem_instr),
+        .mem_addr(mem_addr),
+        .mem_wdata(mem_wdata),
+        .mem_rdata(mem_rdata),
+        .mem_wstrb(mem_wstrb),
+        .mem_rdy(mem_rdy),
+        // Signals to figure out if it is read or write
+        // Need to add the address masking logic to facilitate SRAM/Flash Co-op.
+        .data_enable(data_enable),
+        .data_read(data_read)
     );
 
 rv32_ram_32bit 

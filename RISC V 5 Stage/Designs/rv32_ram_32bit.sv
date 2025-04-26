@@ -482,27 +482,27 @@ begin
     // The following code will initialize the code memory with the .hex file 
     // to streamline a lot of things.
     // Using a parameterized approach to pass the file pointer.
-    // if (code_mem)
-    // begin
-    //     $display("Initialzing the Code Memory.");
-    //     $readmemh(code, RAM);
-    //     $display("Code Memory Initialized!"); 
-    // end
-    // else 
-    //     $display("Module used as Data Memory.");
+    if (code_mem)
+    begin
+        $display("Initialzing the Code Memory.");
+        $readmemh(code, RAM);
+        $display("Code Memory Initialized!"); 
+    end
+    else 
+        $display("Module used as Data Memory.");
 
-    // A simple loop style program
-    RAM[0] = {12'd15, 5'd0, 3'd0, 5'd6, 7'b0010011}; // x6  = x0 + 15;
-    RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
-    RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
-    RAM[3] = 0;
-    RAM[4] = 0;
-    RAM[5] = 0;
-    RAM[6] = 0;
-    RAM[7] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   // x1 = x1 + x2;
-    RAM[8] = {7'd0, 5'd6, 5'd1, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x6, x1
-    RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, -3
-    RAM[10] = 32'hFFFF_FFFF;
+    // // A simple loop style program
+    // RAM[0] = {12'd15, 5'd0, 3'd0, 5'd6, 7'b0010011}; // x6  = x0 + 15;
+    // RAM[1] = {12'd0, 5'd0, 3'd0, 5'd1, 7'b0010011};    // x1   = x0 + 0;
+    // RAM[2] = {12'd2, 5'd0, 3'd0, 5'd2, 7'b0010011};    // x2   = x0 + 2;
+    // RAM[3] = 0;
+    // RAM[4] = 0;
+    // RAM[5] = 0;
+    // RAM[6] = 0;
+    // RAM[7] = {7'd0, 5'd1, 5'd2, 3'd0, 5'd1, 7'b0110011};   // x1 = x1 + x2;
+    // RAM[8] = {7'd0, 5'd6, 5'd1, 3'b010, 5'd3, 7'b0110011}; // SLT x3, x6, x1
+    // RAM[9] = {1'b1, -6'd1, 5'd3, 5'd0, 3'd1, -4'd3, 1'b1, 7'b1100011};     // BNE x3, x0, -3
+    // RAM[10] = 32'hFFFF_FFFF;
     
  end
 
