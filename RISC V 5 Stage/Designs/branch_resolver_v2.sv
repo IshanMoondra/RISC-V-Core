@@ -27,7 +27,7 @@ logic branchA;
 logic branchB;
 logic branchC;
 logic branchD;
-logic comp_res;
+logic [31:0] comp_res;
 logic comp_res_ff;
 logic [4:0] comp_sel;
 
@@ -71,7 +71,7 @@ rv32_alu_comp iBrComp
     );
 
 always_ff @(posedge clk)
-    comp_res_ff <= comp_res;
+    comp_res_ff <= comp_res[0];
 
 always_comb
     begin
