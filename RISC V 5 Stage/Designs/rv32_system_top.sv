@@ -18,7 +18,7 @@ module rv32_system_top
         // Processor HALT
         output wire halt,
         // Processor Bus Output
-        output wire [31:0] wb_result
+        output wire [31:0] wb_result,
         // Flash Controller Signals
         output logic mem_valid,
         output logic mem_instr,
