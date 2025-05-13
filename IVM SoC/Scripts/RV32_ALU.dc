@@ -1,0 +1,101 @@
+###Reading in the Verilog Files
+read_file -format sverilog {    ./Designs/rv32_alu_add_sub.sv\
+                                ./Designs/rv32_alu_comp.sv\
+                                ./Designs/rv32_alu_logical.sv\
+                                ./Designs/rv32_alu_v2.sv }
+
+###Set the top of the heirarchy.
+set current_design rv32_alu_v2
+
+create_clock -name "clk" -period 1.10 {clk}
+
+set_dont_touch_network [find port clk]
+
+###Creating the Primary Inputs
+#set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+set prim_inputs [all_inputs]
+
+
+###Setting Input Delays
+### Unchanged
+set_input_delay -clock clk 0.4 $prim_inputs
+
+###Setting the Drive Strength of Inputs
+# General Purpose Cell
+#set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
+# High Performance Cell
+set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwp12ttc $prim_inputs
+
+###Setting the RST_N signal to be very strongly driven, the value is in M Ohm
+set_drive 0.0001 rst_n 
+
+###Setting the Output Delays
+set_output_delay -clock clk 0.4 [all_outputs]
+
+###Set Capacitive Load 0.10 pF on all Output Pins (in pF)
+set_load 0.100 [all_outputs]
+
+###Setting the Wireload Model Constraint
+# General Purpose Cell
+#set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwptc
+# High Performance Cell
+set_wire_load_model -name TSMC32K_Lowk_Conservative -library tcbn40lpbwp12ttc
+
+###Setting Max Transition Times for the design
+### Unchanged
+set_max_transition 0.15 [current_design]
+
+### Max Area Constraint
+#set_max_area 50000
+
+###Compiling the Design
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+###Setting up some clock skew and fixes for clock skew
+### Unchanged
+set_clock_uncertainty 0.15 clk
+set_fix_hold clk
+
+###Flatten the Heirarchy
+ungroup -all -flatten
+
+###2nd Compile
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+##Writing the Area, Min & Max Timing Reports to files
+report_power > ./Reports/RV32_ALU_power_TSMC.rpt
+report_area > ./Reports/RV32_ALU_area_TSMC.rpt
+report_timing -delay max > ./Reports/RV32_ALU_timing_max_TSMC.rpt
+report_timing -delay min > ./Reports/RV32_ALU_timing_min_TSMC.rpt
+
+###Flatten the Heirarchy
+#ungroup -all -flatten
+
+###Write out the netlist
+write -format verilog rv32_alu_v2 -output ./Netlists/RV32_ALU_TSMC.vg
+
+###Write out the Synopsys Design Constraints format script (.sdc file)
+write_sdc ./SDCs/RV32_ALU_TSMC.sdc
