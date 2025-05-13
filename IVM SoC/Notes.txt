@@ -1,0 +1,119 @@
+Title: Notes for the IVM SoC V0 & V1
+Date: 13th May 2025
+Author: Ishan Moondra
+
+High Level View of the SoC Architecture: Adapated from Picosoc. // Add Git Link
+In this SoC, I have:
+    A 5 stage in order RISC V 32I compliant Core, as the main processor for the SoC. 
+    An UART is available for communication with outside world. 
+    A SPI IO Controller for talking to the SPI Flash Chip that holds the program data. 
+    A special CIM Co-Processor that manages INT8/16 conversion to FP8/16 data. 
+    Ability to interface with external IO via IO buses. 
+    Internal 4KB SRAM, arranged as Banks (0 through 3) solely for the CPU's usage. 
+    All I/O is memory mapped. 
+
+Details:
+    CPU:
+        This CPU is forked from the regular 5 Stage Variant, but has some changes that allow better integration with 
+        the SoC. Since the net SoC for V0 & V1 are both severely bottlenecked by Instruction Fetch bandwidth, I have removed 
+        the forwarding & bypass logic & buses. The net CPU side system is pretty simple, everytime a new instruction is ready
+        via the SPI controller, the new instruction is passed, else I hold the PC value in place via a "busy" port, but continue 
+        execution of bubbles which are NOPs or '0s.
+        Thus, I ensure that as long as instructions trickle in every 3 clock cycles, the CPU is safe from any hazards.
+        In practice/simulation, it takes a much longer time for the SPI Flash to provide a full instruction word,
+        hence the net CPI is higher. 
+        As the fetch bandwidth is limited, I have resorted to a 2 cycle branch resolution, however, now I offer a full resolver,
+        which can take any style of branching. Register File Bypass is enabled, allowing for 3 CPI operations (untested in simulation).
+        ALU is a split design, with power gating (functionally) to allow selective use of the ALU sub unit.
+        Barrel Shifter is also now included into the ALU itself, as another sub-unit. 
+        Branch Resolver also gets a V2, I have made this module completely combinational to support fast operations.
+
+        All memory is byte addressable now in the system, making the SoC easily compatible with general compilers.
+        Branches are also now fixed to use PC+4 values, instead of the older PC value. 
+        Thankfully, all writes to peripherals are single cycle, & thus need not be stalled.
+
+Limitations: 
+    SPI Flash
+        For starters, it can only hold program instructions. No text or Data sections are allowed, since every word that is loaded
+        from the SPI Flash is treated as an instruction always. This was a necessary element I needed to have ensure quick roll out.  
+
+    Issues & Niggles:
+    SRAM Bank Selection:
+        This required me to use a FF to store the SRAM selected one hot encoding to ensure that "Reads" would occur from 
+        the correct bank as required. The same logic is applied to all types of the MMIO. 
+    
+    UART Stupidity:
+        The simpleuart.v file provided by the PicoRV32 GitHub Repository is far too simple, and does not even provide a signal that 
+        issues a done signal/strobe when transmitting. This requires us to have static wait loops in the current program to ensure 
+        we don't overwrite the buffers. 
+
+    Some Misc Timing Stuff:
+        For working with the CPU, there were some minor timing issues, that were solved by having the RF's decode output 
+        be available to the execute phase, since I didn't take into account the one cycle delay of memory elements. 
+        This structure somewhat forces me to be stuck to utilize 2 cycle branch resolution in the current scenario. 
+        I could directly use the fetched, un-decoded instruction as the RF lookup, but that would require re-timing 
+        to ensure that unwanted writes do not take place. 
+
+SOC V1: Has full branching &  full memory (4KB) & full IO verified on RV32I Assembly Code. 
+SOC V0: Has full memory (1KB) & IO writes verified on RV32I Assembly Code. 
+TLDR:
+    CPU:
+        5 Stage In Order RV32I Core, max allowed CPI ~3, lower with compiler help
+        No Bypassing/Forwarding logic, only RF Bypass
+        2 Cycle Branch resolution, all Branches supported
+        Split ALU design
+            Functional power gating. 
+        Busy Port holds current PC when SPI Controller not ready with new Instruction
+        Byte Addressable Memory Space
+        Only Performs SW & LW instructions
+            Other Loads & Stores are wired to perform LW & SW 
+        Does not have Timers or Interrupts
+            Undefined Opcodes are treated as NOPs
+    
+    SRAM:
+        4KB total, allowing 1024 words available for the CPU 
+        Stack Pointer works with full 4KB
+        Cross Bank reads/writes function correctly
+        Has a decoder to decide which bank is selected
+        Memory Mapped to Stack Space
+    
+    UART:
+        Forked from Picosoc
+        Super basic, with configurable divider rate
+        Reads -1 when no data is received
+        Single Cycle write to start transmitting
+        Stupid since it doesn't have a "Done" Signal
+        Memory Mapped to special Control Range
+    
+    SPI Controller:
+        Forked from Picosoc
+        Treated as Blackbox
+        Configurable, but un-tested
+        Handles only Instruction Fetch from Flash for V0 & V1.
+        Memory Mapped to special Control Range
+    
+    CIM Co-Processor:
+        Exists on Top Module
+        Treated as Blackbox
+        Not my design, provided by Miao Sun
+        Memory Mapped to IO Range
+
+    Process Technology availed:
+        GlobalFoundries 22nm Process: GF22FDX PLUS
+
+    PPA Numbers:
+        250 MHz, ~6.7k sq microns, ~10 mW of Power
+        To find: Max Speed achievable for the Core (Library Limits)
+        89.87% Code Coverage on Full System Simulations for the SoC
+
+    Additional Tools:
+        Created simple Python Scripts to process the .hex generated via the 
+        toolchain to fit properly into the required firmware.hex, LE format. 
+        A bunch of assembly programs to test & verify a lot of functionalities. 
+
+    Testbenches:
+        Single combined Testbench to simulate the Full System
+        Can be made to use the soft (internal) halt port to signal end of program execution
+        Thus no need to wait to for time-out period.
+
+EoF
