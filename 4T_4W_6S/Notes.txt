@@ -96,3 +96,56 @@ Write_Back:
     T0's instruction stream. Might need to add some new instructions for that. 
     Will also need an instruction that switches between MT/ST mode. 
     Need "Clear" signal to flush the other three RFs when switching modes. 
+
+Date: 14th May 2025
+Changes to the plan to adapt to SoC V2
+Ideas:
+    Precise Interrupt & Execption Handling
+    Runtime configurable mode selection between:
+        High Performance ST Mode via OoO
+        High Throughput MT Mode via Quad Thread SMT
+    ST Mode:
+        OoO execution via 7 Entry ROB made from the 7 RS entries for the split ALU
+        T0 + T1 RFs become PRF, while T2's RF serves as Map Tables & T3 helps with event counters
+        16 Instruction Fetch Buffer allows 4 cycles of breathing room on I-cache re-fills
+    MT Mode: 
+        Quad Threads execute via SMT on the back-end of the execute phases
+        7 single entry RS structures for each ALU sub unit
+    Expanded ISA support: RV32I --> RV32IMFAC
+        Integer, Multiply/Divide, Single Precision Floating Point, Atomic & Compressed Instructions
+
+Nitty Gritty:
+    Interrupts:
+        ISR Table:
+            16 entry ISR jump address holding table
+            Implicit Priority by using case statement. 
+            LSB Bit holds top priority, use bitwise masks to traverse the case.
+            Add a software mask support. // Maybe keep a masked copy of ISR table. 
+        In-Order:
+            On interrupt, save PC of Fetch Stage Instruction.
+            Issue a branch to ISR location via the vector table. Disable Interrupts on J/JAL 
+            Ensures safe jump while saving state properly.
+            Add a ISR Flag that is enabled when Interrupt is jumped, disabling future interrupts
+            Read the ISR table only when I-cache hits.  // Slow 
+        Out of Order:
+            Not sure yet.  
+    I-Cache:
+        Need 4 way cache, so that each thread gets its own direct mapped slice. 
+    Cache Controller: 
+        Need to have critical word first. 
+        Need to support Data SRAM to & fro movement.
+        Optional makeshift DMA engine // Later 
+    FIFO Buffers: 
+        Need to have a nice FIFO buffer design that is parameterizable. 
+        Also need to make it such that it can be re-configured into a 
+        larger buffer depending on operating mode. 
+            Let's have non-reconfigurable ones 
+    Reservation Stations:
+        Single entry buffers that hold the following:
+            Operation, destination register, source registers. 
+            RF lookup takes place on "Issue" Stage, allowing execute to
+            have the RF output available on the input of the Unit.  
+
+// Futher Stuff to be added.
+
+EoF

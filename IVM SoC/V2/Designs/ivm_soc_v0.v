@@ -1,0 +1,335 @@
+/*
+ *  PicoSoC - A simple example SoC using PicoRV32
+ *
+ *  Copyright (C) 2017  Claire Xenia Wolf <claire@yosyshq.com>
+ *
+ *  Permission to use, copy, modify, and/or distribute this software for any
+ *  purpose with or without fee is hereby granted, provided that the above
+ *  copyright notice and this permission notice appear in all copies.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ *  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ *  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ *  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ *  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ *  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ *  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ *
+ */
+
+// `ifndef PICOSOC_MEM
+// `define PICOSOC_MEM picosoc_mem
+// `endif
+
+module ivm_soc_v0 (
+	input clk,
+	input resetn,
+	output wire halt,
+
+	output        iomem_valid,
+	input         iomem_ready,
+	output [ 3:0] iomem_wstrb,
+	output [31:0] iomem_addr,
+	output [31:0] iomem_wdata,
+	input  [31:0] iomem_rdata,
+
+	output ser_tx,
+	input  ser_rx,
+
+	output flash_csb,
+	output flash_clk,
+
+	output flash_io0_oe,
+	output flash_io1_oe,
+	output flash_io2_oe,
+	output flash_io3_oe,
+
+	output flash_io0_do,
+	output flash_io1_do,
+	output flash_io2_do,
+	output flash_io3_do,
+
+	input  flash_io0_di,
+	input  flash_io1_di,
+	input  flash_io2_di,
+	input  flash_io3_di
+);
+
+	parameter integer MEM_WORDS = 1024;
+	parameter [31:0] STACKADDR = (4*MEM_WORDS);       // end of memory
+	parameter [31:0] PROGADDR_RESET = 32'h 0010_0000; // 1 MB into flash
+	
+	wire mem_valid;
+	wire mem_instr;
+	wire mem_ready;
+	wire [31:0] mem_addr;
+	wire [31:0] mem_wdata;
+	wire [3:0] mem_wstrb;
+	wire [31:0] mem_rdata;
+
+	// SPI Flash Memory Stuff: ONLY HAS INSTRUCTIONS 
+	wire spimem_ready;
+	wire [31:0] spimem_rdata;
+
+	// SRAM Stuff
+	reg ram_ready;
+	// reg [31:0] ram_rdata;
+	wire [31:0] ram_rdata;
+
+	// IO Bus stuff
+	assign iomem_valid = mem_valid && (mem_addr[31:24] > 8'h 01);
+	assign iomem_wstrb = mem_wstrb;
+	assign iomem_addr = mem_addr;
+	assign iomem_wdata = mem_wdata;
+
+	reg iomem_ready_ff; 
+	reg iomem_valid_ff;
+
+	always @(posedge clk, negedge resetn)
+	begin
+		if (~resetn)
+			{iomem_ready_ff, iomem_valid_ff} <= 2'b00;
+		else
+			begin
+				iomem_ready_ff <= iomem_ready;
+				iomem_valid_ff <= iomem_valid;
+			end	
+	end
+
+	// Control Registers for SPI & UART
+	wire spimemio_cfgreg_sel = mem_valid && (mem_addr == 32'h 0200_0000);
+	wire [31:0] spimemio_cfgreg_do;
+
+	wire        simpleuart_reg_div_sel = mem_valid && (mem_addr == 32'h 0200_0004);
+	wire [31:0] simpleuart_reg_div_do;
+
+	wire        simpleuart_reg_dat_sel = mem_valid && (mem_addr == 32'h 0200_0008);
+	wire [31:0] simpleuart_reg_dat_do;
+	wire        simpleuart_reg_dat_wait;
+
+	// Logic to decide Driver Memory Bus 
+	assign mem_ready = (iomem_valid && iomem_ready) || spimem_ready || ram_ready || spimemio_cfgreg_sel ||
+			simpleuart_reg_div_sel || (simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait);
+
+	// assign mem_rdata = (iomem_valid && iomem_ready) ? iomem_rdata : spimem_ready ? spimem_rdata : ram_ready ? ram_rdata :
+	// 		spimemio_cfgreg_sel ? spimemio_cfgreg_do : simpleuart_reg_div_sel ? simpleuart_reg_div_do :
+	// 		simpleuart_reg_dat_sel ? simpleuart_reg_dat_do : 32'h 0000_0000;
+
+	// Flip Flops to allow correct peripheral to speak on the Mem read Bus
+	reg spimemio_cfgreg_sel_ff;
+	reg simpleuart_reg_div_sel_ff;
+	reg simpleuart_reg_dat_sel_ff;
+
+	always @(posedge clk, negedge resetn)
+	begin
+		if (~resetn)
+			{spimemio_cfgreg_sel_ff, simpleuart_reg_dat_sel_ff, simpleuart_reg_div_sel_ff}	<= 0;
+		else
+			begin
+				spimemio_cfgreg_sel_ff 		<= spimemio_cfgreg_sel;
+				simpleuart_reg_dat_sel_ff 	<= simpleuart_reg_dat_sel;
+				simpleuart_reg_div_sel_ff 	<= simpleuart_reg_div_sel;
+			end
+	end
+
+	// Basically current processor strobes the memory during the address phase, & I need to flop the select signal to ensure 
+	// that the correct peripheral's data is on the bus. 
+	assign mem_rdata = (iomem_valid_ff && iomem_ready_ff) ? iomem_rdata : ram_ready ? ram_rdata :
+		spimemio_cfgreg_sel_ff ? spimemio_cfgreg_do : simpleuart_reg_div_sel_ff ? simpleuart_reg_div_do :
+		simpleuart_reg_dat_sel_ff ? simpleuart_reg_dat_do : 32'h 0000_0000;
+
+	// Wires for IVM RISC V 32 Core
+	// Code Fetch Stage
+	wire [31:0] pc_fetch;
+	wire [31:0] instruction;
+	// Data Memory Interface
+	wire [31:0] data_addr;
+	wire [31:0] data_store;
+	wire [31:0] data_fetch;
+	wire data_enable;
+	wire data_read;
+	// CPU Control/Status Signals
+	wire flush;
+	wire branch;
+	wire stall;
+	wire busy;
+
+	// CPU Results
+	wire [31:0] wb_result;
+
+	// SPI only returns Instructions!!!
+	assign instruction = (spimem_ready) ? (spimem_rdata) : (0);
+	
+	// Stall only when talking to slow IO // To be implemented
+	assign busy = ~spimem_ready | stall;
+	// assign stall = 0;
+
+	// Stall is made by decoding what type of IO is being accessed.
+	// 1. UART IO, 2. SPI Control IO, 3. External I/O
+	wire UART_data, UART_config; 
+	wire SPI_config;
+	wire External_IO;
+
+	assign UART_data 	= (simpleuart_reg_dat_sel);
+	assign UART_config	= simpleuart_reg_div_sel;
+	assign SPI_config 	= spimemio_cfgreg_sel;
+	assign External_IO	= iomem_valid;
+	
+	assign stall = 	(UART_data)		? (~(simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait)) :
+					(UART_config) 	? (simpleuart_reg_div_sel) :	// Config registers seem to be single cycle writes
+					(SPI_config)	? (spimemio_cfgreg_sel) :		// Config registers seem to be single cycle writes
+					(External_IO)	? (~(iomem_valid && iomem_ready)) : (1'b0);
+
+	// Memory Address is Valid to peripheral whenever Data_Enable
+	assign mem_valid = data_enable;
+	
+	// Write Strobe for Memory is alwasy 4'hF since we write whole words
+	assign mem_wstrb = 4'hF & ~{4{data_read}};
+
+	// SRAM Bank Select Logic
+	// SRAM Wires: To be coalesced into ram_rdata
+	wire [31:0] SRAM0_out, SRAM1_out, SRAM2_out, SRAM3_out;
+
+	wire [3:0] SRAM_select;
+	reg [3:0] SRAM_select_ff;
+	// Solves the SRAM Bank Select Logic!
+	always @(posedge clk, negedge resetn)
+	begin
+		if (~resetn)
+			SRAM_select_ff <= 4'b0001;
+		else
+			SRAM_select_ff <= SRAM_select;	
+	end
+
+	assign SRAM_select[0] = (mem_addr >= 4*0 	&& mem_addr < 4*256);
+	assign SRAM_select[1] = (mem_addr >= 4*256 	&& mem_addr < 4*512);
+	assign SRAM_select[2] = (mem_addr >= 4*512 	&& mem_addr < 4*768);
+	assign SRAM_select[3] = (mem_addr >= 4*768 	&& mem_addr < 4*1024);
+
+	assign ram_rdata = 	(SRAM_select_ff[0]) ? (SRAM0_out) :
+						(SRAM_select_ff[1]) ? (SRAM1_out) :
+						(SRAM_select_ff[2]) ? (SRAM2_out) :
+						(SRAM_select_ff[3]) ? (SRAM3_out) : (0);
+
+	// IVM RISC V Core: 5 Stage In Order
+	rv32_cpu_top iCPU
+		(
+			// Universal Signals
+			.clk(clk),
+			.rst_n(resetn),
+			// Ports for Code Memory
+			.pc_fetch(pc_fetch[23:0]),
+			.code_fetch(instruction),
+			// Ports for Data Memory
+			.data_enable(data_enable),
+			.data_read(data_read),
+			.data_addr(mem_addr),
+			.data_store(mem_wdata),
+			.data_fetch(mem_rdata),
+			// CPU Control/Status Signals
+			.flush(flush),
+			.branch(branch),
+			.stall(stall),
+			.busy(busy),
+			.halt(halt),
+			// CPU Output
+			.wb_result(wb_result)
+		);
+
+	spimemio spimemio (
+		.clk    (clk),
+		.resetn (resetn),
+		// Valid Bit set via PC_Fetch
+		.valid(~flush | ~branch),
+		.ready  (spimem_ready),
+		// SPI Memory provides Instruction ONLY!!!!
+		.addr   (pc_fetch),
+		.rdata  (spimem_rdata),
+
+		.flash_csb    (flash_csb   ),
+		.flash_clk    (flash_clk   ),
+
+		.flash_io0_oe (flash_io0_oe),
+		.flash_io1_oe (flash_io1_oe),
+		.flash_io2_oe (flash_io2_oe),
+		.flash_io3_oe (flash_io3_oe),
+
+		.flash_io0_do (flash_io0_do),
+		.flash_io1_do (flash_io1_do),
+		.flash_io2_do (flash_io2_do),
+		.flash_io3_do (flash_io3_do),
+
+		.flash_io0_di (flash_io0_di),
+		.flash_io1_di (flash_io1_di),
+		.flash_io2_di (flash_io2_di),
+		.flash_io3_di (flash_io3_di),
+
+		.cfgreg_we(spimemio_cfgreg_sel ? mem_wstrb : 4'b 0000),
+		.cfgreg_di(mem_wdata),
+		.cfgreg_do(spimemio_cfgreg_do)
+	);
+
+	simpleuart #(1) simpleuart (
+		.clk         (clk         ),
+		.resetn      (resetn      ),
+
+		.ser_tx      (ser_tx      ),
+		.ser_rx      (ser_rx      ),
+
+		.reg_div_we  (simpleuart_reg_div_sel ? mem_wstrb : 4'b 0000),
+		.reg_div_di  (mem_wdata),
+		.reg_div_do  (simpleuart_reg_div_do),
+
+		.reg_dat_we  (simpleuart_reg_dat_sel ? mem_wstrb[0] : 1'b 0),
+		.reg_dat_re  (simpleuart_reg_dat_sel && !mem_wstrb),
+		.reg_dat_di  (mem_wdata),
+		.reg_dat_do  (simpleuart_reg_dat_do),
+		.reg_dat_wait(simpleuart_reg_dat_wait)
+	);
+
+	always @(posedge clk)
+		ram_ready <= mem_valid && !mem_ready && mem_addr < 4*MEM_WORDS;
+
+	// SRAM0 
+	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM0
+		(
+			.CLK(clk),
+			.Q(SRAM0_out),
+			.D(mem_wdata),
+			.ME(data_enable & SRAM_select[0]),
+			.WE(~data_read),
+			.ADR(mem_addr[9:2])
+		);
+	// SRAM1 
+	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM1
+		(
+			.CLK(clk),
+			.Q(SRAM1_out),
+			.D(mem_wdata),
+			.ME(data_enable & SRAM_select[1]),
+			.WE(~data_read),
+			.ADR(mem_addr[9:2])
+		);	
+	// SRAM2 
+	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM2
+		(
+			.CLK(clk),
+			.Q(SRAM2_out),
+			.D(mem_wdata),
+			.ME(data_enable & SRAM_select[2]),
+			.WE(~data_read),
+			.ADR(mem_addr[9:2])
+		);
+	// SRAM3 
+	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM3
+		(
+			.CLK(clk),
+			.Q(SRAM3_out),
+			.D(mem_wdata),
+			.ME(data_enable & SRAM_select[3]),
+			.WE(~data_read),
+			.ADR(mem_addr[9:2])
+		);
+
+endmodule
+

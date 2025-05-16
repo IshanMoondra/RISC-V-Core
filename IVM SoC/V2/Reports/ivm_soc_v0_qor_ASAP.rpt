@@ -1,0 +1,89 @@
+Information: Building the design 'simpleuart' instantiated from design 'ivm_soc_v0' with
+	the parameters "1". (HDL-193)
+Warning: Cannot find the design 'simpleuart' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'simpleuart' in 'ivm_soc_v0'. (LINK-5)
+Information: Updating design information... (UID-85)
+Warning: Design 'ivm_soc_v0' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : qor
+Design : ivm_soc_v0
+Version: V-2023.12-SP5
+Date   : Tue May 13 14:31:02 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              69.00
+  Critical Path Length:       3236.61
+  Critical Path Slack:         746.86
+  Critical Path Clk Period:   4000.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:        -32.03
+  Total Hold Violation:       -254.32
+  No. of Hold Violations:       29.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+  Leaf Cell Count:              98735
+  Buf/Inv Cell Count:            3297
+  Buf Cell Count:                 623
+  Inv Cell Count:                2674
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:     64244
+  Sequential Cell Count:        34491
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     5463.169806
+  Noncombinational Area: 10179.726470
+  Buf/Inv Area:            157.915982
+  Total Buffer Area:            40.49
+  Total Inverter Area:         117.43
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:             15642.896277
+  Design Area:           15642.896277
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         98871
+  Nets With Violations:             1
+  Max Trans Violations:             1
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: tux-123
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.44
+  Logic Optimization:                 88.02
+  Mapping Optimization:              927.31
+  -----------------------------------------
+  Overall Compile Time:             1462.31
+  Overall Compile Wall Clock Time:  1465.25
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 32.03  TNS: 254.32  Number of Violating Paths: 29
+
+  --------------------------------------------------------------------
+
+
+1

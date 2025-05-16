@@ -1,0 +1,146 @@
+Warning: Design 'ivm_soc_v0' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : ivm_soc_v0
+Version: V-2023.12-SP5
+Date   : Tue May 13 14:31:08 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_RVT_TT_nldm_211120
+Wire Load Model Mode: segmented
+
+  Startpoint: iCPU/iIF_ID/code_queue_reg[5]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iCPU/iPC/pc_reg[3]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iCPU/iIF_ID/code_queue_reg[5]/CLK (DFFASRHQNx1_ASAP7_75t_R)
+                                                          0.00 #     0.00 r
+  iCPU/iIF_ID/code_queue_reg[5]/QN (DFFASRHQNx1_ASAP7_75t_R)
+                                                         76.22      76.22 f
+  U62993/Y (INVxp33_ASAP7_75t_R)                         62.91     139.13 r
+  U115366/Y (NAND4xp25_ASAP7_75t_R)                      58.24     197.38 f
+  U64324/Y (AOI21xp5_ASAP7_75t_R)                        37.41     234.78 r
+  U64311/Y (NAND2xp5_ASAP7_75t_R)                        35.81     270.59 f
+  U71896/Y (NOR2xp33_ASAP7_75t_R)                        40.25     310.84 r
+  U64299/Y (OAI21xp33_ASAP7_75t_R)                       18.55     329.39 f
+  U78118/Y (NOR2xp33_ASAP7_75t_R)                        16.54     345.93 r
+  U78116/Y (NAND3xp33_ASAP7_75t_R)                       13.74     359.67 f
+  U81716/Y (NOR2xp33_ASAP7_75t_R)                        16.56     376.23 r
+  U62929/Y (AND3x1_ASAP7_75t_R)                          75.21     451.44 r
+  U62927/Y (INVx1_ASAP7_75t_R)                           85.21     536.65 f
+  iCPU/iRF/U164/Y (AOI22xp33_ASAP7_75t_R)                34.08     570.73 r
+  U63002/Y (HB1xp67_ASAP7_75t_R)                        147.53     718.27 r
+  U62926/Y (INVx1_ASAP7_75t_R)                           60.12     778.39 f
+  U63001/Y (INVx1_ASAP7_75t_R)                          167.71     946.10 r
+  U121036/Y (AOI322xp5_ASAP7_75t_R)                      52.50     998.60 f
+  U121037/Y (XNOR2xp5_ASAP7_75t_R)                       43.76    1042.36 f
+  iCPU/DP_OP_131J3_123_4666/U79/CON (FAx1_ASAP7_75t_R)
+                                                         37.05    1079.41 r
+  iCPU/DP_OP_131J3_123_4666/U78/CON (FAx1_ASAP7_75t_R)
+                                                         40.31    1119.72 f
+  iCPU/DP_OP_131J3_123_4666/U74/CON (FAx1_ASAP7_75t_R)
+                                                         40.71    1160.43 r
+  iCPU/DP_OP_131J3_123_4666/U73/CON (FAx1_ASAP7_75t_R)
+                                                         32.78    1193.21 f
+  iCPU/DP_OP_131J3_123_4666/U69/CON (FAx1_ASAP7_75t_R)
+                                                         38.17    1231.38 r
+  iCPU/DP_OP_131J3_123_4666/U68/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1266.75 f
+  iCPU/DP_OP_131J3_123_4666/U64/CON (FAx1_ASAP7_75t_R)
+                                                         38.17    1304.92 r
+  iCPU/DP_OP_131J3_123_4666/U63/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1340.29 f
+  iCPU/DP_OP_131J3_123_4666/U59/CON (FAx1_ASAP7_75t_R)
+                                                         38.17    1378.46 r
+  iCPU/DP_OP_131J3_123_4666/U58/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1413.83 f
+  iCPU/DP_OP_131J3_123_4666/U54/CON (FAx1_ASAP7_75t_R)
+                                                         38.17    1452.00 r
+  iCPU/DP_OP_131J3_123_4666/U53/CON (FAx1_ASAP7_75t_R)
+                                                         35.49    1487.49 f
+  iCPU/DP_OP_131J3_123_4666/U49/CON (FAx1_ASAP7_75t_R)
+                                                         38.17    1525.66 r
+  iCPU/DP_OP_131J3_123_4666/U48/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1561.03 f
+  iCPU/DP_OP_131J3_123_4666/U44/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1598.20 r
+  iCPU/DP_OP_131J3_123_4666/U43/CON (FAx1_ASAP7_75t_R)
+                                                         35.49    1633.69 f
+  iCPU/DP_OP_131J3_123_4666/U39/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1670.86 r
+  iCPU/DP_OP_131J3_123_4666/U38/CON (FAx1_ASAP7_75t_R)
+                                                         34.49    1705.35 f
+  iCPU/DP_OP_131J3_123_4666/U34/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1742.52 r
+  iCPU/DP_OP_131J3_123_4666/U33/CON (FAx1_ASAP7_75t_R)
+                                                         34.61    1777.13 f
+  iCPU/DP_OP_131J3_123_4666/U29/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1814.30 r
+  iCPU/DP_OP_131J3_123_4666/U28/CON (FAx1_ASAP7_75t_R)
+                                                         34.61    1848.90 f
+  iCPU/DP_OP_131J3_123_4666/U24/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1886.07 r
+  iCPU/DP_OP_131J3_123_4666/U23/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1921.45 f
+  iCPU/DP_OP_131J3_123_4666/U19/CON (FAx1_ASAP7_75t_R)
+                                                         37.17    1958.62 r
+  iCPU/DP_OP_131J3_123_4666/U18/CON (FAx1_ASAP7_75t_R)
+                                                         35.37    1993.99 f
+  iCPU/DP_OP_131J3_123_4666/U14/CON (FAx1_ASAP7_75t_R)
+                                                         38.25    2032.24 r
+  iCPU/DP_OP_131J3_123_4666/U13/CON (FAx1_ASAP7_75t_R)
+                                                         35.49    2067.73 f
+  iCPU/DP_OP_131J3_123_4666/U9/CON (FAx1_ASAP7_75t_R)    38.17    2105.90 r
+  iCPU/DP_OP_131J3_123_4666/U8/CON (FAx1_ASAP7_75t_R)    35.37    2141.27 f
+  iCPU/DP_OP_131J3_123_4666/U4/CON (FAx1_ASAP7_75t_R)    40.89    2182.16 r
+  U116314/SN (FAx1_ASAP7_75t_R)                          51.03    2233.19 r
+  U81652/Y (AOI21xp33_ASAP7_75t_R)                       20.99    2254.18 f
+  U116317/Y (O2A1O1Ixp33_ASAP7_75t_R)                    22.19    2276.37 r
+  U81650/Y (OAI21xp33_ASAP7_75t_R)                       16.15    2292.52 f
+  U116318/Y (AOI211xp5_ASAP7_75t_R)                      21.80    2314.32 r
+  U116323/Y (OAI211xp5_ASAP7_75t_R)                      28.70    2343.02 f
+  U116371/Y (OAI31xp33_ASAP7_75t_R)                      31.66    2374.68 r
+  U116372/Y (NAND4xp25_ASAP7_75t_R)                      32.89    2407.57 f
+  U81712/Y (OR3x1_ASAP7_75t_R)                           42.19    2449.76 f
+  U114980/Y (NOR3xp33_ASAP7_75t_R)                       41.51    2491.27 r
+  U126200/Y (INVxp33_ASAP7_75t_R)                        23.15    2514.43 f
+  U81504/Y (AOI22xp33_ASAP7_75t_R)                       39.55    2553.98 r
+  U81506/Y (INVxp33_ASAP7_75t_R)                         34.99    2588.97 f
+  U115252/Y (NOR2xp33_ASAP7_75t_R)                       39.72    2628.69 r
+  U115020/Y (NAND3xp33_ASAP7_75t_R)                      41.54    2670.23 f
+  U62990/Y (INVxp33_ASAP7_75t_R)                        145.55    2815.78 r
+  U114984/Y (NOR2xp33_ASAP7_75t_R)                       76.46    2892.24 f
+  U81705/Y (NAND2xp33_ASAP7_75t_R)                      143.82    3036.06 r
+  U81708/Y (INVxp33_ASAP7_75t_R)                        134.26    3170.32 f
+  U114859/Y (AOI22xp33_ASAP7_75t_R)                      44.33    3214.65 r
+  U126797/Y (OAI211xp5_ASAP7_75t_R)                      21.96    3236.61 f
+  iCPU/iPC/pc_reg[3]/D (DFFASRHQNx1_ASAP7_75t_R)          0.00    3236.61 f
+  data arrival time                                               3236.61
+
+  clock clk (rise edge)                                4000.00    4000.00
+  clock network delay (ideal)                             0.00    4000.00
+  clock uncertainty                                     -10.00    3990.00
+  iCPU/iPC/pc_reg[3]/CLK (DFFASRHQNx1_ASAP7_75t_R)        0.00    3990.00 r
+  library setup time                                     -6.53    3983.47
+  data required time                                              3983.47
+  --------------------------------------------------------------------------
+  data required time                                              3983.47
+  data arrival time                                              -3236.61
+  --------------------------------------------------------------------------
+  slack (MET)                                                      746.86
+
+
+1
