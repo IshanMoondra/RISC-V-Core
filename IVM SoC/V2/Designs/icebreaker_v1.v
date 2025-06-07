@@ -17,17 +17,12 @@
  *
  */
 `timescale 1 ns / 1 ps
-// `ifdef PICOSOC_V
-// `error "icebreaker.v must be read before picosoc.v!"
-// `endif
-// `define FPGA 1'b1 // vivado especially needs this, otherwise it will infer the asic design and use the primitive cell from designware.
-// `define PICOSOC_MEM ice40up5k_spram 
-// `define PICOSOC_MEM picosoc_mem
 
-module icebreaker_v0 (
+module icebreaker_v1 (
 	input clk,
 	input resetn, //sunmiao
 	output wire halt, //IshanMoondra 
+	output wire misaligned_fetch,
 
 	output ser_tx,
 	input ser_rx,
@@ -60,59 +55,58 @@ module icebreaker_v0 (
 	wire [31:0] iomem_wdata;
 	reg  [31:0] iomem_rdata;
 
-	// reg [31:0] gpio;
-	wire cim_mem_valid;
-	assign cim_mem_valid = iomem_valid && (iomem_addr[31:24] == 8'h 03) && (iomem_addr[11:2] == 10'h070);
-	wire cim_done;
-	reg [31:0] cim_mem_wdata;
-	wire [31:0] cim_mem_rdata;
-	always @(posedge clk) begin
-		if (!resetn) begin
-			// gpio <= 0;
-			iomem_ready <= 0; 
-			iomem_rdata <= 0;
-		end else begin // write data for cim core, there are should be the wire inst3aed of regs!!!
-			if (iomem_valid && !iomem_ready && iomem_addr[31:24] == 8'h 03) begin
-				// iomem_ready <= 1;
-				// iomem_rdata <= gpio;
-				if (iomem_wstrb[0]) cim_mem_wdata[ 7: 0] <= iomem_wdata[ 7: 0];
-				if (iomem_wstrb[1]) cim_mem_wdata[15: 8] <= iomem_wdata[15: 8];
-				if (iomem_wstrb[2]) cim_mem_wdata[23:16] <= iomem_wdata[23:16];
-				if (iomem_wstrb[3]) cim_mem_wdata[31:24] <= iomem_wdata[31:24];
-			end else begin // the cim co-processor send data out
-			if (cim_done && iomem_addr[31:24] == 8'h 03) begin
-				// iomem_ready <= 1;
-				// iomem_rdata <= gpio;
-				if (iomem_wstrb[0]) iomem_rdata[ 7: 0] <= cim_mem_rdata[ 7: 0];
-				if (iomem_wstrb[1]) iomem_rdata[15: 8] <= cim_mem_rdata[15: 8];
-				if (iomem_wstrb[2]) iomem_rdata[23:16] <= cim_mem_rdata[23:16];
-				if (iomem_wstrb[3]) iomem_rdata[31:24] <= cim_mem_rdata[31:24];
-			end
-		end
-		end
-	end
+	// wire cim_mem_valid;
+	// assign cim_mem_valid = iomem_valid && (iomem_addr[31:24] == 8'h 03) && (iomem_addr[11:2] == 10'h070);
+	// wire cim_done;
+	// reg [31:0] cim_mem_wdata;
+	// wire [31:0] cim_mem_rdata;
+	// always @(posedge clk) begin
+	// 	if (!resetn) begin
+	// 		// gpio <= 0;
+	// 		iomem_ready <= 0; 
+	// 		iomem_rdata <= 0;
+	// 	end else begin // write data for cim core, there are should be the wire inst3aed of regs!!!
+	// 		if (iomem_valid && !iomem_ready && iomem_addr[31:24] == 8'h 03) begin
+	// 			// iomem_ready <= 1;
+	// 			// iomem_rdata <= gpio;
+	// 			if (iomem_wstrb[0]) cim_mem_wdata[ 7: 0] <= iomem_wdata[ 7: 0];
+	// 			if (iomem_wstrb[1]) cim_mem_wdata[15: 8] <= iomem_wdata[15: 8];
+	// 			if (iomem_wstrb[2]) cim_mem_wdata[23:16] <= iomem_wdata[23:16];
+	// 			if (iomem_wstrb[3]) cim_mem_wdata[31:24] <= iomem_wdata[31:24];
+	// 		end else begin // the cim co-processor send data out
+	// 		if (cim_done && iomem_addr[31:24] == 8'h 03) begin
+	// 			// iomem_ready <= 1;
+	// 			// iomem_rdata <= gpio;
+	// 			if (iomem_wstrb[0]) iomem_rdata[ 7: 0] <= cim_mem_rdata[ 7: 0];
+	// 			if (iomem_wstrb[1]) iomem_rdata[15: 8] <= cim_mem_rdata[15: 8];
+	// 			if (iomem_wstrb[2]) iomem_rdata[23:16] <= cim_mem_rdata[23:16];
+	// 			if (iomem_wstrb[3]) iomem_rdata[31:24] <= cim_mem_rdata[31:24];
+	// 		end
+	// 	end
+	// 	end
+	// end
 
-	// Add the CIM Wrapper Here
-	// We can interface it via RF to share data to & from CPU.
+	// // Add the CIM Wrapper Here
+	// // We can interface it via RF to share data to & from CPU.
 
-	CIM_TOP_WRAPPER cim_top_wrap_inst (
-		.clk(clk),
-		.resetn(resetn),
-		.mem_valid(cim_mem_valid), 	// input
-		.mem_addr(iomem_addr),  	// input
-		.mem_wdata(cim_mem_wdata),  // input
-		.mem_wstrb(iomem_wstrb),
-		.mem_rdata(cim_mem_rdata),  // output
-		.cim_done(cim_done)
-	);
+	// CIM_TOP_WRAPPER cim_top_wrap_inst (
+	// 	.clk(clk),
+	// 	.resetn(resetn),
+	// 	.mem_valid(cim_mem_valid), 	// input
+	// 	.mem_addr(iomem_addr),  	// input
+	// 	.mem_wdata(cim_mem_wdata),  // input
+	// 	.mem_wstrb(iomem_wstrb),
+	// 	.mem_rdata(cim_mem_rdata),  // output
+	// 	.cim_done(cim_done)
+	// );
 
 
-	ivm_soc_v0 #(
-		.MEM_WORDS(MEM_WORDS)
-	) iSoC (
+	ivm_soc_v1 iSoC 
+	(
 		.clk          (clk         ),
 		.resetn       (resetn      ),
 		.halt(halt),
+		.misaligned_fetch(misaligned_fetch),
 
 		.ser_tx       (ser_tx      ),
 		.ser_rx       (ser_rx      ),
@@ -142,4 +136,5 @@ module icebreaker_v0 (
 		.iomem_wdata  (iomem_wdata ),
 		.iomem_rdata  (iomem_rdata )
 	);
+
 endmodule

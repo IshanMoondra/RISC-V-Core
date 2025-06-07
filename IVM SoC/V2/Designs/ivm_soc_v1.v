@@ -21,10 +21,11 @@
 // `define PICOSOC_MEM picosoc_mem
 // `endif
 
-module ivm_soc_v0 (
+module ivm_soc_v1 (
 	input clk,
 	input resetn,
 	output wire halt,
+	output wire misaligned_fetch,
 
 	output        iomem_valid,
 	input         iomem_ready,
@@ -55,10 +56,6 @@ module ivm_soc_v0 (
 	input  flash_io3_di
 );
 
-	parameter integer MEM_WORDS = 1024;
-	parameter [31:0] STACKADDR = (4*MEM_WORDS);       // end of memory
-	parameter [31:0] PROGADDR_RESET = 32'h 0010_0000; // 1 MB into flash
-	
 	wire mem_valid;
 	wire mem_instr;
 	wire mem_ready;
@@ -67,13 +64,12 @@ module ivm_soc_v0 (
 	wire [3:0] mem_wstrb;
 	wire [31:0] mem_rdata;
 
-	// SPI Flash Memory Stuff: ONLY HAS INSTRUCTIONS 
+	// SPI Flash Memory Stuff
 	wire spimem_ready;
 	wire [31:0] spimem_rdata;
 
 	// SRAM Stuff
 	reg ram_ready;
-	// reg [31:0] ram_rdata;
 	wire [31:0] ram_rdata;
 
 	// IO Bus stuff
@@ -157,12 +153,14 @@ module ivm_soc_v0 (
 	// CPU Results
 	wire [31:0] wb_result;
 
+	// Wires for the Faux Cache
+	// wire misaligned_fetch;
+
 	// SPI only returns Instructions!!!
-	assign instruction = (spimem_ready) ? (spimem_rdata) : (0);
+	// assign instruction = (spimem_ready) ? (spimem_rdata) : (0);
 	
 	// Stall only when talking to slow IO // To be implemented
-	assign busy = ~spimem_ready | stall;
-	// assign stall = 0;
+	assign busy = stall;
 
 	// Stall is made by decoding what type of IO is being accessed.
 	// 1. UART IO, 2. SPI Control IO, 3. External I/O
@@ -218,7 +216,7 @@ module ivm_soc_v0 (
 			.clk(clk),
 			.rst_n(resetn),
 			// Ports for Code Memory
-			.pc_fetch(pc_fetch[23:0]),
+			.pc_fetch(pc_fetch),
 			.code_fetch(instruction),
 			// Ports for Data Memory
 			.data_enable(data_enable),
@@ -236,14 +234,27 @@ module ivm_soc_v0 (
 			.wb_result(wb_result)
 		);
 
+	// IVM Test Cache for CPU
+	test_cache iCode
+		(
+			.clk(clk),
+			.rst_n(resetn),
+			.fetch_address(pc_fetch),
+			.code_fetch(instruction),
+			.refill_data(0),
+			.refill_address(0),
+			.misaligned(misaligned_fetch)
+		); 
+
+
 	spimemio spimemio (
 		.clk    (clk),
 		.resetn (resetn),
 		// Valid Bit set via PC_Fetch
 		.valid(~flush | ~branch),
 		.ready  (spimem_ready),
-		// SPI Memory provides Instruction ONLY!!!!
-		.addr   (pc_fetch),
+		// SPI Memory
+		.addr   (pc_fetch[23:0]),
 		.rdata  (spimem_rdata),
 
 		.flash_csb    (flash_csb   ),
@@ -288,7 +299,7 @@ module ivm_soc_v0 (
 	);
 
 	always @(posedge clk)
-		ram_ready <= mem_valid && !mem_ready && mem_addr < 4*MEM_WORDS;
+		ram_ready <= mem_valid && !mem_ready && mem_addr < 4*1024;
 
 	// SRAM0 
 	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM0

@@ -86,14 +86,24 @@ assign global_interrupt_enable = curr_mask[0];
 logic set_serving_interrupt;
 logic set_serving_nmi;
 
-assign set_serving_interrupt = (decode_pc == isr_table[0][31:0]  | decode_pc == isr_table[1][31:0]
-                                decode_pc == isr_table[2][31:0]  | decode_pc == isr_table[3][31:0]
-                                decode_pc == isr_table[4][31:0]  | decode_pc == isr_table[5][31:0]
-                                decode_pc == isr_table[6][31:0]  | decode_pc == isr_table[7][31:0]
-                                decode_pc == isr_table[8][31:0]  | decode_pc == isr_table[9][31:0]
-                                decode_pc == isr_table[10][31:0] | decode_pc == isr_table[11][31:0]
-                                decode_pc == isr_table[12][31:0] | decode_pc == isr_table[13][31:0]
-                                decode_pc == isr_table[14][31:0] | decode_pc == isr_table[15][31:0]);
+// assign set_serving_interrupt = ((decode_pc == isr_table[0][31:0])  || (decode_pc == isr_table[1][31:0])  ||
+//                                 (decode_pc == isr_table[2][31:0])  || (decode_pc == isr_table[3][31:0])  ||
+//                                 (decode_pc == isr_table[4][31:0])  || (decode_pc == isr_table[5][31:0])  ||
+//                                 (decode_pc == isr_table[6][31:0])  || (decode_pc == isr_table[7][31:0])  ||
+//                                 (decode_pc == isr_table[8][31:0])  || (decode_pc == isr_table[9][31:0])  ||
+//                                 (decode_pc == isr_table[10][31:0]) || (decode_pc == isr_table[11][31:0]) ||
+//                                 (decode_pc == isr_table[12][31:0]) || (decode_pc == isr_table[13][31:0]) ||
+//                                 (decode_pc == isr_table[14][31:0]) || (decode_pc == isr_table[15][31:0]));
+
+always_comb 
+    begin
+        set_serving_interrupt = 0;
+        for (int i = 0; i < 16; i++) 
+            begin
+                if (decode_pc == isr_table[i])
+                    set_serving_interrupt = 1;
+            end
+    end
 
 assign set_serving_nmi = (decode_pc == isr_table[0][31:0]);
 
@@ -109,7 +119,7 @@ always_ff @( posedge clk, negedge rst_n )
             {serving_nmi, serving_interrupt} <= 0;
     end : Serving_Interrupt
 
-assign masked_interrupts = interrupt_in_ff1 & {(~serving_interrupt & global_interrupt_enable & (curr_mask[15:1])), 1b'1};
+assign masked_interrupts = (interrupt_in_ff1 & {((~serving_interrupt & global_interrupt_enable) & (curr_mask[15:1])), 1'b1});
 
 // ISR Table update logic
 always_ff @( posedge clk, negedge rst_n )

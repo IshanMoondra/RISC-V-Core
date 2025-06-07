@@ -107,7 +107,7 @@ always_ff @( posedge clk, negedge rst_n )
                 // pc <= pc;
                 flush <= branch;
                 // Need S/R style FF to capture the new PC.
-                pc <= branch ? branch_pc : pc;
+                pc <= branch ? (branch_pc & (rst_n)) : pc;
             end
 
     end     : PC_FF
