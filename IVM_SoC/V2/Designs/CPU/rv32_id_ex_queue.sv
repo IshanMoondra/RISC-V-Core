@@ -96,7 +96,8 @@ begin
             rf_rs1_queue    <= 0;
             rf_rs2_queue    <= 0;
             bshift_queue    <= {1'd0, 1'd0, 1'd0, 1'd0};       
-            pc_hlt_queue    <= 1'd1;       
+            pc_hlt_queue    <= 1'd1;
+            pc_queue        <= 32'h0;
             data_ctrl_queue <= {1'd0, 1'd1}; 
 
             sel_rs1_queue <= 0;

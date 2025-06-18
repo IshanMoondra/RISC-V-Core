@@ -107,7 +107,7 @@ module soc_tb_v1;
 	begin
 
 		// Dumping the Waveforms
-		$dumpfile("soc_v1.vcd");
+		$dumpfile("soc_v1.vpd");
 		$dumpvars(0, soc_tb_v1);
 
 		// Set up the basic Universal Signals
@@ -139,8 +139,8 @@ module soc_tb_v1;
 				$display("Cycle Count: %d", count);
 				@(posedge clk);
 				$display("Test done!");
-				// $stop();
-				$finish();
+				$stop();
+				// $finish();
 			end: Testing
 		join
 	end

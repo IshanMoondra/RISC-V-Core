@@ -63,9 +63,10 @@ localparam BGTU = 4'h7; // DNE
 assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));
 assign sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[11:8], 1'b0};
 
-assign normal_pc    = execute_pc + 4; 
-assign uj_pc        = execute_pc + uj_offset;
-assign sb_pc        = execute_pc + sb_offset;
+// assign normal_pc    = (~rst_n) ? (0): (execute_pc + 4);
+assign normal_pc    = (~rst_n) ? (0): (pc + 4); 
+assign uj_pc        = (~rst_n) ? (0): (execute_pc + uj_offset);
+assign sb_pc        = (~rst_n) ? (0): (execute_pc + sb_offset);
 
 assign return_d1    = normal_pc;
 
@@ -102,6 +103,8 @@ always_ff @( posedge clk, negedge rst_n )
                         pc <= branch ? branch_pc : pc;
                     end
             end
+        else if (stall)
+            pc <= pc; 
         else
             begin
                 // pc <= pc;
@@ -127,6 +130,7 @@ always_comb
             BLTU:   branch_pc <= sb_pc;
             BGTU:   branch_pc <= sb_pc;
             default: branch_pc <= normal_pc;
+            // default: branch_pc <= 0;
         endcase
     end
 

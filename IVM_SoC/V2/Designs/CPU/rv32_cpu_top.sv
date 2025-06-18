@@ -47,6 +47,11 @@ wire [4:0] decode_sel_rd1;
 wire [31:0] decode_rs1;
 wire [31:0] decode_rs2;
 
+wire load_to_use_stall;
+wire internal_stall;
+
+assign internal_stall = load_to_use_stall | stall;
+
 // Creating Wires for Decode/Execute Stage
 
 wire [31:0] execute_code_bus;
@@ -68,6 +73,13 @@ wire [4:0] execute_sel_rd1;
 
 // Wires related to Forwarding Muxes // Unused
 wire [31:0] execute_alu_res;
+logic [31:0] OperandA;
+logic [31:0] OperandB;
+wire RS1_EX2EX; 
+wire RS2_EX2EX;
+wire RS2_Mem2EX;
+wire RS1_Mem2EX;
+wire RS1_Mem2Mem;
 
 // Creating Wires for Execute/Memory Stages
 
@@ -98,25 +110,6 @@ wire wb_pc_hlt;
 // Fetch Stage
 // Instruction Memory Unit
 
-// // Program Counter Module
-// rv32_pc_v2 iPC
-//     (
-//         .clk(clk),
-//         .rst_n(rst_n),
-//         .enable(wb_pc_hlt),
-//         .branch(pc_branch),
-//         .code_bus(decode_code_bus),
-//         .reg_s1(decode_rs1),
-//         .normal_op(decode_pc_ctrl[0]),
-//         .pc_opsel(decode_pc_ctrl[3:1]),
-//         .busy(busy),       // For Multi Cycle Ops
-//         .stall(stall),      // From Fetch FSM
-//         .return_d1(decode_pc_ret),
-//         .pc(pc_fetch),
-//         .flush(flush),
-//         .halt(halt)
-//     );
-
 // Delay FF to resolve branches in Execute Phase than in Decode
 logic [3:0] execute_pc_ctrl;
 always_ff @(posedge clk)
@@ -131,11 +124,11 @@ rv32_pc_v2 iPC
         .branch(pc_branch),
         .execute_pc(execute_pc),
         .code_bus(execute_code_bus),
-        .reg_s1(decode_rs1),
+        .reg_s1(OperandA),
         .normal_op(execute_pc_ctrl[0]),
         .pc_opsel(execute_pc_ctrl[3:1]),
-        .busy(busy),        // For Multi Cycle Ops
-        .stall(stall),      // From Fetch FSM
+        .busy(busy | internal_stall),        // For Multi Cycle Ops
+        .stall(internal_stall),      // From Fetch FSM
         .return_d1(execute_pc_ret),
         .pc(pc_fetch),
         .flush(flush),
@@ -153,7 +146,7 @@ rv32_if_id_queue iIF_ID
         .clk(clk),
         .rst_n(rst_n),
         .flush(flush),
-        .stall(stall),
+        .stall(internal_stall),
         .code_in(code_fetch),
         .pc_in(pc_fetch),
         .code_out(decode_code_bus),
@@ -174,13 +167,21 @@ rv32_cu_v2 iControl
         .data_ctrl(decode_data_ctrl)
     );
 
+// Hazard Detection Unit
+hazard_detection iHazard
+    (
+        .execute_mem_read(&execute_data_ctrl),
+        .decode_sel_rs1(decode_sel_rs1),
+        .decode_sel_rs2(decode_sel_rs2),
+        .execute_sel_rd1(execute_sel_rd1),
+        .stall(load_to_use_stall)
+    );
 
 // Register File Unit
 rv32_register_file iRF
     (
         .clk(clk),
         .rst_n(rst_n),
-        // .pc_halt(decode_pc_ctrl[4]),
         .write_reg(wb_rf_ctrl[0]),
         .sel_s1(decode_sel_rs1),
         .sel_s2(decode_sel_rs2),
@@ -197,9 +198,8 @@ branch_resolver_v2 iResolver
         .clk(clk),
         .rst_n(rst_n),
         .code_bus(execute_code_bus),
-        // .code_bus(decode_code_bus),
-        .rf_reg_s1(decode_rs1),
-        .rf_reg_s2(decode_rs2),
+        .rf_reg_s1(OperandA),
+        .rf_reg_s2(OperandB),
         .branch(pc_branch)
     );
 
@@ -209,7 +209,7 @@ rv32_id_ex_queue iID_EX
         .clk(clk),
         .rst_n(rst_n),
         .flush(flush),
-        .stall(stall),      // ID/EX never stalls in this tape-out.
+        .stall(internal_stall),      // ID/EX never stalls in this tape-out.
         .busy(1'b0),        // Will be used later when multicycle ALU comes into play.
         .code_in(decode_code_bus),
         .pc_in(decode_pc),
@@ -219,8 +219,6 @@ rv32_id_ex_queue iID_EX
         .rf_rs2_in(decode_rs2),
         .rf_rs1_out(execute_rs1),
         .rf_rs2_out(execute_rs2),
-        // .pc_ret_in(decode_pc_ret),
-        // .pc_ret_out(execute_pc_ret),
         .alu_in(decode_alu_ctrl),
         .alu_out(execute_alu_ctrl),
         .rf_in(decode_rf_ctrl),
@@ -241,22 +239,56 @@ rv32_id_ex_queue iID_EX
         .data_ctrl_out(execute_data_ctrl)
     );
 
+// Forwarding Unit & Muxes
+forwarding_unit_v2 iForward
+    (
+        .clk(clk),
+        .rst_n(rst_n),
+        .decode_sel_rs1(decode_sel_rs1),
+        .decode_sel_rs2(decode_sel_rs2),
+        .execute_sel_rs1(execute_sel_rs1),
+        .execute_reg_write(execute_rf_ctrl[0]),
+        .memory_reg_write(memory_rf_ctrl[0]),
+        .execute_sel_rd1(execute_sel_rd1),
+        .memory_sel_rd1(memory_sel_rd1),
+        .RS2_EX2EX(RS2_EX2EX),
+        .RS1_EX2EX(RS1_EX2EX),
+        .RS2_Mem2EX(RS2_Mem2EX),
+        .RS1_Mem2EX(RS1_Mem2EX),
+        .RS1_Mem2Mem(RS1_Mem2Mem)
+    );
+
+always_comb 
+    begin : Forwarding_Mux
+        // Forwarding Muxes
+        // RS1 Port
+        if (RS1_EX2EX)
+            OperandA <= memory_alu_res;
+        else if (RS1_Mem2EX)
+            OperandA <= wb_alu_res;
+        else if (RS1_Mem2Mem)
+            OperandA <= wb_data_res;
+        else
+            OperandA <= decode_rs1;
+        // RS2 Port
+        if (RS2_EX2EX)
+            OperandB <= memory_alu_res;
+        else if (RS2_Mem2EX)
+            OperandB <= wb_alu_res;
+        else
+            OperandB <= decode_rs2;
+
+    end: Forwarding_Mux 
+
 // ALU
 rv32_alu_v2 iALU
     (
-        // .enable(1'b1),
-        // .reg_s1(execute_rs1),
-        // .reg_s2(execute_rs2),
-        .reg_s1(decode_rs1),
-        .reg_s2(decode_rs2),
+        .reg_s1(OperandA),
+        .reg_s2(OperandB),
         .code_bus(execute_code_bus),
         .pc(execute_pc),
-        // .enable(decode_alu_ctrl[5]),
-        // .alu_opsel(decode_alu_ctrl[4:0]),
         .enable(execute_alu_ctrl[5]),
         .alu_opsel(execute_alu_ctrl[4:0]),
-        // .enable(memory_alu_ctrl[5]),
-        // .alu_opsel(memory_alu_ctrl[4:0]),
         .reg_d1(execute_alu_res),
         .bshift_ctrl(execute_bshift_ctrl)
     );
@@ -295,7 +327,7 @@ rv32_ex_mem_queue iEX_MEM
 assign data_addr = (execute_data_ctrl[1]) ? (execute_alu_res) : (0);
 assign data_enable = execute_data_ctrl[1];
 assign data_read = execute_data_ctrl[0];
-assign data_store = decode_rs2;
+assign data_store = (execute_data_ctrl[1]) ? (OperandB) : (0);;
 
 // Write Back Stage
 rv32_mem_wb_queue iMEM_WB

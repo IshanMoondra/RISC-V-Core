@@ -29,7 +29,7 @@ reg [7:0] memory [0:cache_size-1];
 initial
     begin
         // Loading the C++ code.
-        $readmemh("./Testbenches/firmware.hex", memory);
+        $readmemh("./firmware.hex", memory);
         $display("Code Memory Loaded successfully!");
     end
 

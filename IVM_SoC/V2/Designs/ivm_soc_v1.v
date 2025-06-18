@@ -17,10 +17,6 @@
  *
  */
 
-// `ifndef PICOSOC_MEM
-// `define PICOSOC_MEM picosoc_mem
-// `endif
-
 module ivm_soc_v1 (
 	input clk,
 	input resetn,
@@ -57,7 +53,7 @@ module ivm_soc_v1 (
 );
 
 	wire mem_valid;
-	wire mem_instr;
+	// wire mem_instr;
 	wire mem_ready;
 	wire [31:0] mem_addr;
 	wire [31:0] mem_wdata;
