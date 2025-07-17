@@ -50,7 +50,8 @@ always_ff @( posedge clk, negedge rst_n )
                 pc_hlt_queue    <= 1;
                 data_res_queue  <= 0;
                 rf_queue        <= {2'd0, 1'd0};
-                code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+                // code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011};
+                code_queue      <= 0;
 
                 sel_rd1_queue   <= 0;
             end

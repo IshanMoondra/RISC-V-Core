@@ -115,7 +115,7 @@ module soc_tb_v1;
 		rst_n   = 0;
 		count   = 0;
 		// Hold SoC in RESET for 10 cycles
-		repeat(10) @(negedge clk);
+		repeat(2) @(negedge clk);
 		rst_n   = 1;
 
 		// SoC starts Program Execution
@@ -138,6 +138,7 @@ module soc_tb_v1;
 				$display("Processor Halted!");
 				$display("Cycle Count: %d", count);
 				@(posedge clk);
+				$display("Cycle Count: %d", count);
 				$display("Test done!");
 				$stop();
 				// $finish();
@@ -152,9 +153,29 @@ module soc_tb_v1;
 	// Misaligned Memory Events
 	always @(posedge clk)
 		begin
+			// Detect Load to Use Stalls
+			if (uut.iSoC.iCPU.load_to_use_stall)
+				begin
+					$display("Load to Use Stall!");
+					// $stop();
+				end
+			// Debug display for some buses. 
+			$display("Fetch: %h", uut.iSoC.iCPU.code_fetch);
+			$display("Decode: %h", uut.iSoC.iCPU.decode_code_bus);
+			$display("Execute: %h", uut.iSoC.iCPU.execute_code_bus);
+			$display("Memory: %h", uut.iSoC.iCPU.memory_code_bus);
+			$display("Write Back: %h", uut.iSoC.iCPU.wb_code_bus);
+			$display("Operand A: %d", uut.iSoC.iCPU.OperandA);
+			$display("Operand B: %d", uut.iSoC.iCPU.OperandB);
+			$display("RF: %d %d", uut.iSoC.iCPU.decode_rs1, uut.iSoC.iCPU.decode_rs2);
+			$display("Memory ALU: %d", uut.iSoC.iCPU.memory_alu_res);
+			$display("Write Back ALU: %d", uut.iSoC.iCPU.wb_alu_res);
+			$display("Write Back Data: %d", uut.iSoC.iCPU.wb_data_res);			
+			
 			// Checks for misaligned code memory fetches
 			if (misaligned_fetch)
 				$display("Misalinged Memory access on: %d, at cycle %d", uut.iSoC.pc_fetch, count);
+			
 		end
 
 endmodule

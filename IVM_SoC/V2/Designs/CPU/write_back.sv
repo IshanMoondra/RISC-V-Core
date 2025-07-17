@@ -23,7 +23,7 @@ begin
         ALU: write_result = alu_result;
         PC: write_result = pc_result;
         D_Mem: write_result = data_result;
-        default: write_result = alu_result;
+        default: write_result = 0;
     endcase
 end
 

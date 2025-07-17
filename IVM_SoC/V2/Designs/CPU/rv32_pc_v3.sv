@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module rv32_pc_v2
+module rv32_pc_v3
     (
         input clk,
         input rst_n,
@@ -34,7 +34,7 @@ module rv32_pc_v2
         input busy,
         input stall,
         output reg [31:0] return_d1,
-        output reg [31:0] pc_out,
+        output reg [31:0] pc,
         output reg flush,
         output reg halt
     );
@@ -49,9 +49,6 @@ logic [31:0] normal_pc;
 logic [31:0] uj_pc;
 logic [31:0] branch_pc;
 
-logic [31:0] pc_ff;
-logic [31:0] pc;
-
 // Bunch of localparams for each Branch Type, Lazy I know
 localparam JAL  = 4'h0;
 localparam JALR = 4'h1;
@@ -62,16 +59,49 @@ localparam BGT  = 4'h5; // DNE
 localparam BLTU = 4'h6;
 localparam BGTU = 4'h7; // DNE
 
-// Current Offsets are not Byte Aligned
-assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));
-assign sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[11:8], 1'b0};
+// // Current Offsets are not Byte Aligned
+// assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));
+// assign sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[11:8], 1'b0};
 
-// assign normal_pc    = (~rst_n) ? (0): (execute_pc + 4);
-assign normal_pc    = (~rst_n) ? (0): (pc + 4); 
-assign uj_pc        = (~rst_n) ? (0): (execute_pc + uj_offset);
-assign sb_pc        = (~rst_n) ? (0): (execute_pc + sb_offset);
+// // assign normal_pc    = (~rst_n) ? (0): (execute_pc + 4);
+// assign normal_pc    = (~rst_n) ? (0): (pc + 4); 
+// assign uj_pc        = (~rst_n) ? (0): (execute_pc + uj_offset);
+// assign sb_pc        = (~rst_n) ? (0): (execute_pc + sb_offset);
 
 assign return_d1    = normal_pc;
+
+always_ff @( posedge clk, negedge rst_n ) 
+    begin : Jump_Address
+        if (~rst_n)
+            begin
+                sb_pc <= 0;
+                normal_pc <= 0;
+                uj_pc <= 0;
+                branch_pc <= 0;
+                uj_offset <= 0;
+                sb_offset <= 0;
+            end
+        else
+            begin
+                uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));
+                sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[11:8], 1'b0};
+                normal_pc <= pc + 4;
+                uj_pc <= execute_pc + uj_offset;
+                sb_pc <= execute_pc + sb_offset;
+                casex ({~(branch), pc_opsel})
+                    JAL:    branch_pc <= uj_pc;
+                    JALR:   branch_pc <= uj_pc;
+                    BEQ:    branch_pc <= sb_pc;
+                    BNE:    branch_pc <= sb_pc;
+                    BLT:    branch_pc <= sb_pc;
+                    BGT:    branch_pc <= sb_pc;
+                    BLTU:   branch_pc <= sb_pc;
+                    BGTU:   branch_pc <= sb_pc;
+                    default: branch_pc <= normal_pc;
+                    // default: branch_pc <= 0;
+                endcase
+            end
+    end : Jump_Address
 
 always_ff @( posedge clk, negedge rst_n )
     begin   : PC_FF
@@ -121,30 +151,23 @@ always_ff @( posedge clk, negedge rst_n )
 // Flush the IF/ID Stage when Branch is detected
 // assign flush = branch; 
 
-always_comb
-    begin
-        casex ({~(branch), pc_opsel})
-            JAL:    branch_pc <= uj_pc;
-            JALR:   branch_pc <= uj_pc;
-            BEQ:    branch_pc <= sb_pc;
-            BNE:    branch_pc <= sb_pc;
-            BLT:    branch_pc <= sb_pc;
-            BGT:    branch_pc <= sb_pc;
-            BLTU:   branch_pc <= sb_pc;
-            BGTU:   branch_pc <= sb_pc;
-            default: branch_pc <= normal_pc;
-            // default: branch_pc <= 0;
-        endcase
-    end
-
-always_ff @(negedge clk, negedge rst_n)
-    if (~rst_n)
-        pc_ff <= 0;
-    else if (~busy)
-        pc_ff <= pc;
+// always_comb
+//     begin
+//         casex ({~(branch), pc_opsel})
+//             JAL:    branch_pc <= uj_pc;
+//             JALR:   branch_pc <= uj_pc;
+//             BEQ:    branch_pc <= sb_pc;
+//             BNE:    branch_pc <= sb_pc;
+//             BLT:    branch_pc <= sb_pc;
+//             BGT:    branch_pc <= sb_pc;
+//             BLTU:   branch_pc <= sb_pc;
+//             BGTU:   branch_pc <= sb_pc;
+//             default: branch_pc <= normal_pc;
+//             // default: branch_pc <= 0;
+//         endcase
+//     end
 
 // Assert Halt Signal when PC is disabled; Different from a Stall or Busy State
 assign halt = ~(enable);
-assign pc_out = (busy) ? (pc_ff) : (pc);
 
 endmodule

@@ -40,9 +40,14 @@ module rv32_register_file
 
 // Thirty Two 32bit Registers for RV32 ISA requirement    
 reg [31:0] registers [0:31];
-logic [5:0] count;
 logic [31:0] rf_s1; 
 logic [31:0] rf_s2;
+
+logic rs1_bypass;
+logic rs2_bypass;
+
+assign rs1_bypass = write_reg && (sel_s1 == sel_d1);
+assign rs2_bypass = write_reg && (sel_s2 == sel_d1);
 
 // Changing to synchronous negative edge triggered reset
 // to facilitate BRAM implementation in Artix 7 FPGAs
@@ -61,7 +66,7 @@ begin
             // Stack Pointer
             // registers[2] <= 0;
             registers[2] <= 4096; // Works!
-            // registers[2] <= 1080; // 2, 3, 4KB bounds Not working! // Timing Issue with SRAM select // Solved!!
+            // registers[2] <= 1024; // Works!            
             registers[3] <= 0;
             registers[4] <= 0;
             registers[5] <= 0;
@@ -120,7 +125,7 @@ end
 */
 // Register File Outputs with RF Bypass
 // Note if Synopsys removes $Zero Register or not.
-assign reg_s1 = (write_reg && (sel_s1 == sel_d1)) ? reg_d1 : rf_s1;
-assign reg_s2 = (write_reg && (sel_s2 == sel_d1)) ? reg_d1 : rf_s2;
+assign reg_s1 = (rs1_bypass) ? reg_d1 : rf_s1;
+assign reg_s2 = (rs2_bypass) ? reg_d1 : rf_s2;
 
 endmodule

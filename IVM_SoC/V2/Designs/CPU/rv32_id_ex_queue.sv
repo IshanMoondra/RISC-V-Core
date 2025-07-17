@@ -90,7 +90,8 @@ begin
     if (~rst_n)
         begin
             // Reinitialise the Queues with NOP Conditions.
-            code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
+            // code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
+            code_queue      <= 0;
             alu_queue       <= {1'd0, 5'd7};
             rf_queue        <= {2'd0, 1'd0};
             rf_rs1_queue    <= 0;
@@ -107,7 +108,8 @@ begin
     else if (flush | stall)
         begin
             // Bubble NOP Condition on Stalls & Flushes.
-            code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
+            // code_queue      <= {12'd0, 5'd0, 3'd0, 5'd0, 7'b0010011}; //Replaced with ADDi x0, x0, 0.
+            code_queue      <= 0;
             alu_queue       <= {1'd0, 5'd7};
             rf_queue        <= {2'd0, 1'd0};
             rf_rs1_queue    <= 0;
@@ -120,6 +122,21 @@ begin
             sel_rs2_queue <= 0;
             sel_rd1_queue <= 0; 
         end
+    // else if (stall)
+    //     begin
+    //         code_queue      <= code_queue;
+    //         alu_queue       <= alu_queue;
+    //         rf_queue        <= rf_queue;
+    //         rf_rs1_queue    <= rf_rs1_queue;
+    //         rf_rs2_queue    <= rf_rs2_queue;
+    //         bshift_queue    <= bshift_queue;
+    //         pc_hlt_queue    <= pc_hlt_queue;
+    //         data_ctrl_queue <= data_ctrl_queue;
+
+    //         sel_rs1_queue <= sel_rs1_queue;            
+    //         sel_rs2_queue <= sel_rs2_queue;
+    //         sel_rd1_queue <= sel_rd1_queue;
+    //     end
     else if (~busy)
         begin        
             code_queue      <= code_in;

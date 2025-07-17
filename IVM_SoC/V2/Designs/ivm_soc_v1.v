@@ -126,9 +126,15 @@ module ivm_soc_v1 (
 
 	// Basically current processor strobes the memory during the address phase, & I need to flop the select signal to ensure 
 	// that the correct peripheral's data is on the bus. 
-	assign mem_rdata = (iomem_valid_ff && iomem_ready_ff) ? iomem_rdata : ram_ready ? ram_rdata :
-		spimemio_cfgreg_sel_ff ? spimemio_cfgreg_do : simpleuart_reg_div_sel_ff ? simpleuart_reg_div_do :
-		simpleuart_reg_dat_sel_ff ? simpleuart_reg_dat_do : 32'h 0000_0000;
+	// assign mem_rdata = (iomem_valid_ff && iomem_ready_ff) ? iomem_rdata : ram_ready ? ram_rdata :
+	// 	spimemio_cfgreg_sel_ff ? spimemio_cfgreg_do : simpleuart_reg_div_sel_ff ? simpleuart_reg_div_do :
+	// 	simpleuart_reg_dat_sel_ff ? simpleuart_reg_dat_do : 32'h 0000_0000;
+
+	assign mem_rdata = (iomem_valid_ff && iomem_ready_ff) ? iomem_rdata :
+						spimemio_cfgreg_sel_ff ? spimemio_cfgreg_do :
+						simpleuart_reg_div_sel_ff ? simpleuart_reg_div_do :
+						simpleuart_reg_dat_sel_ff ? simpleuart_reg_dat_do : 
+						ram_rdata;
 
 	// Wires for IVM RISC V 32 Core
 	// Code Fetch Stage

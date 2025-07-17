@@ -47,11 +47,6 @@ wire [4:0] decode_sel_rd1;
 wire [31:0] decode_rs1;
 wire [31:0] decode_rs2;
 
-wire load_to_use_stall;
-wire internal_stall;
-
-assign internal_stall = load_to_use_stall | stall;
-
 // Creating Wires for Decode/Execute Stage
 
 wire [31:0] execute_code_bus;
@@ -105,6 +100,30 @@ wire [4:0] wb_sel_rd1;
 wire [2:0] wb_rf_ctrl;
 wire wb_pc_hlt;
 
+wire load_to_use_stall;
+logic load_to_use_stall_ff;
+wire internal_stall;
+
+always_ff @(posedge clk, negedge rst_n)
+    begin
+        if (~rst_n)
+            load_to_use_stall_ff <= 0;
+        else
+            load_to_use_stall_ff <= load_to_use_stall; 
+    end
+
+// assign internal_stall =     load_to_use_stall
+//                         // |   RS1_EX2EX
+//                         // |   RS1_Mem2EX
+//                         // |   RS1_Mem2Mem
+//                         // |   RS2_EX2EX
+//                         // |   RS2_Mem2EX
+//                         |   stall;
+
+assign internal_stall = load_to_use_stall 
+                        | load_to_use_stall_ff
+                        | stall;
+
 // Instantiating the Modules
 
 // Fetch Stage
@@ -128,9 +147,10 @@ rv32_pc_v2 iPC
         .normal_op(execute_pc_ctrl[0]),
         .pc_opsel(execute_pc_ctrl[3:1]),
         .busy(busy | internal_stall),        // For Multi Cycle Ops
-        .stall(internal_stall),      // From Fetch FSM
+        .stall(1'b0),      // From Fetch FSM
         .return_d1(execute_pc_ret),
-        .pc(pc_fetch),
+        // .pc(pc_fetch),
+        .pc_out(pc_fetch),
         .flush(flush),
         .halt(halt)
     );
@@ -209,7 +229,7 @@ rv32_id_ex_queue iID_EX
         .clk(clk),
         .rst_n(rst_n),
         .flush(flush),
-        .stall(internal_stall),      // ID/EX never stalls in this tape-out.
+        .stall(internal_stall),
         .busy(1'b0),        // Will be used later when multicycle ALU comes into play.
         .code_in(decode_code_bus),
         .pc_in(decode_pc),
@@ -274,7 +294,7 @@ always_comb
         if (RS2_EX2EX)
             OperandB <= memory_alu_res;
         else if (RS2_Mem2EX)
-            OperandB <= wb_alu_res;
+            OperandB <= wb_data_res;
         else
             OperandB <= decode_rs2;
 
