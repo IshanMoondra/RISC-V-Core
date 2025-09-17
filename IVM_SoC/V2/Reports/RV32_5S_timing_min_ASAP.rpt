@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Tue May 13 16:14:01 2025
+Date   : Tue Jul 29 00:02:57 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Tue May 13 16:14:01 2025
 Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_RVT_TT_nldm_211120
 Wire Load Model Mode: segmented
 
-  Startpoint: data_fetch[0]
+  Startpoint: code_fetch[12]
               (input port clocked by clk)
-  Endpoint: iMEM_WB/data_res_queue_reg[0]
+  Endpoint: iIF_ID/code_queue_reg[12]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -26,23 +26,26 @@ Wire Load Model Mode: segmented
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
   input external delay                                    0.10       0.10 f
-  data_fetch[0] (in)                                      0.00       0.10 f
-  iMEM_WB/data_res_queue_reg[0]/D (DFFASRHQNx1_ASAP7_75t_R)
-                                                          0.00       0.10 f
-  data arrival time                                                  0.10
+  code_fetch[12] (in)                                     0.00       0.10 f
+  U7129/Y (HB1xp67_ASAP7_75t_R)                          17.21      17.31 f
+  U14682/Y (INVx1_ASAP7_75t_R)                            7.71      25.02 r
+  U14683/Y (OAI22xp5_ASAP7_75t_R)                         7.66      32.68 f
+  iIF_ID/code_queue_reg[12]/D (DFFASRHQNx1_ASAP7_75t_R)
+                                                          0.00      32.68 f
+  data arrival time                                                 32.68
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
   clock uncertainty                                      10.00      10.00
-  iMEM_WB/data_res_queue_reg[0]/CLK (DFFASRHQNx1_ASAP7_75t_R)
+  iIF_ID/code_queue_reg[12]/CLK (DFFASRHQNx1_ASAP7_75t_R)
                                                           0.00      10.00 r
-  library hold time                                      22.13      32.13
-  data required time                                                32.13
+  library hold time                                      19.54      29.54
+  data required time                                                29.54
   --------------------------------------------------------------------------
-  data required time                                                32.13
-  data arrival time                                                 -0.10
+  data required time                                                29.54
+  data arrival time                                                -32.68
   --------------------------------------------------------------------------
-  slack (VIOLATED)                                                 -32.03
+  slack (MET)                                                        3.14
 
 
 1

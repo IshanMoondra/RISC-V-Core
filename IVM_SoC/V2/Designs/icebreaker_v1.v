@@ -55,36 +55,36 @@ module icebreaker_v1 (
 	wire [31:0] iomem_wdata;
 	reg  [31:0] iomem_rdata;
 
-	// wire cim_mem_valid;
-	// assign cim_mem_valid = iomem_valid && (iomem_addr[31:24] == 8'h 03) && (iomem_addr[11:2] == 10'h070);
-	// wire cim_done;
-	// reg [31:0] cim_mem_wdata;
-	// wire [31:0] cim_mem_rdata;
-	// always @(posedge clk) begin
-	// 	if (!resetn) begin
-	// 		// gpio <= 0;
-	// 		iomem_ready <= 0; 
-	// 		iomem_rdata <= 0;
-	// 	end else begin // write data for cim core, there are should be the wire inst3aed of regs!!!
-	// 		if (iomem_valid && !iomem_ready && iomem_addr[31:24] == 8'h 03) begin
-	// 			// iomem_ready <= 1;
-	// 			// iomem_rdata <= gpio;
-	// 			if (iomem_wstrb[0]) cim_mem_wdata[ 7: 0] <= iomem_wdata[ 7: 0];
-	// 			if (iomem_wstrb[1]) cim_mem_wdata[15: 8] <= iomem_wdata[15: 8];
-	// 			if (iomem_wstrb[2]) cim_mem_wdata[23:16] <= iomem_wdata[23:16];
-	// 			if (iomem_wstrb[3]) cim_mem_wdata[31:24] <= iomem_wdata[31:24];
-	// 		end else begin // the cim co-processor send data out
-	// 		if (cim_done && iomem_addr[31:24] == 8'h 03) begin
-	// 			// iomem_ready <= 1;
-	// 			// iomem_rdata <= gpio;
-	// 			if (iomem_wstrb[0]) iomem_rdata[ 7: 0] <= cim_mem_rdata[ 7: 0];
-	// 			if (iomem_wstrb[1]) iomem_rdata[15: 8] <= cim_mem_rdata[15: 8];
-	// 			if (iomem_wstrb[2]) iomem_rdata[23:16] <= cim_mem_rdata[23:16];
-	// 			if (iomem_wstrb[3]) iomem_rdata[31:24] <= cim_mem_rdata[31:24];
-	// 		end
-	// 	end
-	// 	end
-	// end
+	wire cim_mem_valid;
+	assign cim_mem_valid = iomem_valid && (iomem_addr[31:24] == 8'h 03) && (iomem_addr[11:2] == 10'h070);
+	wire cim_done;
+	reg [31:0] cim_mem_wdata;
+	wire [31:0] cim_mem_rdata;
+	always @(posedge clk) begin
+		if (!resetn) begin
+			// gpio <= 0;
+			iomem_ready <= 0; 
+			iomem_rdata <= 0;
+		end else begin // write data for cim core, there are should be the wire inst3aed of regs!!!
+			if (iomem_valid && !iomem_ready && iomem_addr[31:24] == 8'h 03) begin
+				// iomem_ready <= 1;
+				// iomem_rdata <= gpio;
+				if (iomem_wstrb[0]) cim_mem_wdata[ 7: 0] <= iomem_wdata[ 7: 0];
+				if (iomem_wstrb[1]) cim_mem_wdata[15: 8] <= iomem_wdata[15: 8];
+				if (iomem_wstrb[2]) cim_mem_wdata[23:16] <= iomem_wdata[23:16];
+				if (iomem_wstrb[3]) cim_mem_wdata[31:24] <= iomem_wdata[31:24];
+			end else begin // the cim co-processor send data out
+			if (cim_done && iomem_addr[31:24] == 8'h 03) begin
+				// iomem_ready <= 1;
+				// iomem_rdata <= gpio;
+				if (iomem_wstrb[0]) iomem_rdata[ 7: 0] <= cim_mem_rdata[ 7: 0];
+				if (iomem_wstrb[1]) iomem_rdata[15: 8] <= cim_mem_rdata[15: 8];
+				if (iomem_wstrb[2]) iomem_rdata[23:16] <= cim_mem_rdata[23:16];
+				if (iomem_wstrb[3]) iomem_rdata[31:24] <= cim_mem_rdata[31:24];
+			end
+		end
+		end
+	end
 
 	// // Add the CIM Wrapper Here
 	// // We can interface it via RF to share data to & from CPU.

@@ -29,7 +29,7 @@ reg [7:0] memory [0:cache_size-1];
 initial
     begin
         // Loading the C++ code.
-        $readmemh("./firmware.hex", memory);
+        $readmemh("/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/ModelSim/firmware.hex", memory);
         $display("Code Memory Loaded successfully!");
     end
 
@@ -49,3 +49,12 @@ always_ff @( posedge clk, negedge rst_n )
     end : Code_Out
 
 endmodule
+/*
+Base Bound Register
+Instruction PC = 45 
+Is (Base < PC < Bound) ? (SRAM[PC[10:2]]) : (0)
+
+I-Cache: Tag Array - Physical Offset
+
+SRAM cell 256 instructions
+*/

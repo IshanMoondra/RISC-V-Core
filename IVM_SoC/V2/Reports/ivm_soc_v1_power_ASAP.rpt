@@ -1,0 +1,65 @@
+Information: Propagating switching activity (high effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort high
+Design : ivm_soc_v1
+Version: V-2023.12-SP5
+Date   : Mon Jul 28 20:55:02 2025
+****************************************
+
+
+Library(s) Used:
+
+    asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_INVBUF_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_SEQ_RVT_TT_nldm_220123 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.db)
+    asap7sc7p5t_AO_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_OA_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.db)
+
+
+Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_RVT_TT_nldm_211120
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+
+
+Global Operating Voltage = 0.7  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ps
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =  41.4570 mW   (14%)
+  Net Switching Power  = 257.9012 mW   (86%)
+                         ---------
+Total Dynamic Power    = 299.3581 mW  (100%)
+
+Cell Leakage Power     =  18.4134 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network     41.4097          257.7457        5.6246e+06          299.1643  (  99.96%)  i
+register       1.3420e-02        5.4271e-03        7.4982e+06        2.6370e-02  (   0.01%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.9680e-02        8.1969e-02        5.2905e+06            0.1069  (   0.04%)
+--------------------------------------------------------------------------------------------------
+Total             41.4428 mW       257.8331 mW     1.8413e+07 pW       299.2976 mW
+1

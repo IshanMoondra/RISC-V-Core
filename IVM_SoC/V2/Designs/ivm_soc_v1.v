@@ -99,9 +99,21 @@ module ivm_soc_v1 (
 	wire [31:0] simpleuart_reg_dat_do;
 	wire        simpleuart_reg_dat_wait;
 
+	// UART Status Signals
+	wire transmit_done;
+	wire receive_done;
+
 	// Logic to decide Driver Memory Bus 
-	assign mem_ready = (iomem_valid && iomem_ready) || spimem_ready || ram_ready || spimemio_cfgreg_sel ||
-			simpleuart_reg_div_sel || (simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait);
+	assign mem_ready = 		(iomem_valid && iomem_ready) 
+						|| 	spimem_ready 
+						|| 	ram_ready 
+						|| 	spimemio_cfgreg_sel 
+						||	simpleuart_reg_div_sel 
+						|| (simpleuart_reg_dat_sel);
+
+	// // Logic to decide Driver Memory Bus 
+	// assign mem_ready = (iomem_valid && iomem_ready) || spimem_ready || ram_ready || spimemio_cfgreg_sel ||
+	// 		simpleuart_reg_div_sel || (simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait);
 
 	// assign mem_rdata = (iomem_valid && iomem_ready) ? iomem_rdata : spimem_ready ? spimem_rdata : ram_ready ? ram_rdata :
 	// 		spimemio_cfgreg_sel ? spimemio_cfgreg_do : simpleuart_reg_div_sel ? simpleuart_reg_div_do :
@@ -161,7 +173,8 @@ module ivm_soc_v1 (
 	// SPI only returns Instructions!!!
 	// assign instruction = (spimem_ready) ? (spimem_rdata) : (0);
 	
-	// Stall only when talking to slow IO // To be implemented
+	// Stall only when talking to slow IO // To be implemented	
+	assign stall = 0;
 	assign busy = stall;
 
 	// Stall is made by decoding what type of IO is being accessed.
@@ -175,16 +188,23 @@ module ivm_soc_v1 (
 	assign SPI_config 	= spimemio_cfgreg_sel;
 	assign External_IO	= iomem_valid;
 	
-	assign stall = 	(UART_data)		? (~(simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait)) :
-					(UART_config) 	? (simpleuart_reg_div_sel) :	// Config registers seem to be single cycle writes
-					(SPI_config)	? (spimemio_cfgreg_sel) :		// Config registers seem to be single cycle writes
-					(External_IO)	? (~(iomem_valid && iomem_ready)) : (1'b0);
+	// assign stall = 	(UART_data)		? (~(simpleuart_reg_dat_sel && !simpleuart_reg_dat_wait)) :
+	// 				(UART_config) 	? (simpleuart_reg_div_sel) :	// Config registers seem to be single cycle writes
+	// 				(SPI_config)	? (spimemio_cfgreg_sel) :		// Config registers seem to be single cycle writes
+	// 				(External_IO)	? (~(iomem_valid && iomem_ready)) : 
+	// 				(1'b0);
+
+	// assign stall = 	(UART_data)		? (~(simpleuart_reg_dat_sel)) :
+	// 				(UART_config) 	? (simpleuart_reg_div_sel) :	// Config registers seem to be single cycle writes
+	// 				(SPI_config)	? (spimemio_cfgreg_sel) :		// Config registers seem to be single cycle writes
+	// 				(External_IO)	? (~(iomem_valid && iomem_ready)) : 
+	// 				(1'b0);
 
 	// Memory Address is Valid to peripheral whenever Data_Enable
 	assign mem_valid = data_enable;
 	
 	// Write Strobe for Memory is alwasy 4'hF since we write whole words
-	assign mem_wstrb = 4'hF & ~{4{data_read}};
+	// assign mem_wstrb = 4'hF & ~{4{data_read}};
 
 	// SRAM Bank Select Logic
 	// SRAM Wires: To be coalesced into ram_rdata
@@ -223,6 +243,7 @@ module ivm_soc_v1 (
 			// Ports for Data Memory
 			.data_enable(data_enable),
 			.data_read(data_read),
+			.data_strobe(mem_wstrb),
 			.data_addr(mem_addr),
 			.data_store(mem_wdata),
 			.data_fetch(mem_rdata),
@@ -282,67 +303,121 @@ module ivm_soc_v1 (
 		.cfgreg_do(spimemio_cfgreg_do)
 	);
 
-	simpleuart #(1) simpleuart (
-		.clk         (clk         ),
-		.resetn      (resetn      ),
-
-		.ser_tx      (ser_tx      ),
-		.ser_rx      (ser_rx      ),
-
-		.reg_div_we  (simpleuart_reg_div_sel ? mem_wstrb : 4'b 0000),
-		.reg_div_di  (mem_wdata),
-		.reg_div_do  (simpleuart_reg_div_do),
-
-		.reg_dat_we  (simpleuart_reg_dat_sel ? mem_wstrb[0] : 1'b 0),
-		.reg_dat_re  (simpleuart_reg_dat_sel && !mem_wstrb),
-		.reg_dat_di  (mem_wdata),
-		.reg_dat_do  (simpleuart_reg_dat_do),
-		.reg_dat_wait(simpleuart_reg_dat_wait)
-	);
+	UART iUART
+		(
+			// Universal Signals
+			.clk(clk),
+			.rst_n(resetn),
+			// Serial Data Signals
+			.RX(ser_rx),
+			.TX(ser_tx),
+			// New Byte Rdy & Clear New Byte Rdy Signals
+			.rx_rdy(receive_done),
+			.clr_rx_rdy(simpleuart_reg_dat_sel & mem_valid & data_read),
+			// Send new Byte & Transmit Done Signals
+			.trmt(simpleuart_reg_dat_sel & mem_valid & ~data_read),
+			.tx_done(transmit_done),
+			// Baud Rate Config
+			.baud_we(simpleuart_reg_div_sel & ~data_read),
+			.set_baud(mem_wdata),
+			.get_baud(simpleuart_reg_div_do),
+			// Data Buffers
+			.data_we(simpleuart_reg_dat_sel & ~data_read),
+			.data_rx(simpleuart_reg_dat_do),
+			.data_tx(mem_wdata)
+		);
 
 	always @(posedge clk)
 		ram_ready <= mem_valid && !mem_ready && mem_addr < 4*1024;
 
 	// SRAM0 
-	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM0
+	d_cache SRAM0
 		(
-			.CLK(clk),
-			.Q(SRAM0_out),
-			.D(mem_wdata),
-			.ME(data_enable & SRAM_select[0]),
-			.WE(~data_read),
-			.ADR(mem_addr[9:2])
+			.clk(clk),
+			.rst_n(resetn),
+			.data_enable(data_enable & SRAM_select[0]),
+			.data_read(data_read),
+			.mem_wstrb(mem_wstrb),
+			.ram_address(mem_addr),
+			.ram_fetch(SRAM0_out),
+			.ram_store(mem_wdata)
 		);
 	// SRAM1 
-	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM1
+	d_cache SRAM1
 		(
-			.CLK(clk),
-			.Q(SRAM1_out),
-			.D(mem_wdata),
-			.ME(data_enable & SRAM_select[1]),
-			.WE(~data_read),
-			.ADR(mem_addr[9:2])
+			.clk(clk),
+			.rst_n(resetn),
+			.data_enable(data_enable & SRAM_select[1]),
+			.data_read(data_read),
+			.mem_wstrb(mem_wstrb),
+			.ram_address(mem_addr),
+			.ram_fetch(SRAM1_out),
+			.ram_store(mem_wdata)
 		);	
 	// SRAM2 
-	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM2
+	d_cache SRAM2
 		(
-			.CLK(clk),
-			.Q(SRAM2_out),
-			.D(mem_wdata),
-			.ME(data_enable & SRAM_select[2]),
-			.WE(~data_read),
-			.ADR(mem_addr[9:2])
+			.clk(clk),
+			.rst_n(resetn),
+			.data_enable(data_enable & SRAM_select[2]),
+			.data_read(data_read),
+			.mem_wstrb(mem_wstrb),
+			.ram_address(mem_addr),
+			.ram_fetch(SRAM2_out),
+			.ram_store(mem_wdata)
 		);
 	// SRAM3 
-	saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM3
+	d_cache SRAM3
 		(
-			.CLK(clk),
-			.Q(SRAM3_out),
-			.D(mem_wdata),
-			.ME(data_enable & SRAM_select[3]),
-			.WE(~data_read),
-			.ADR(mem_addr[9:2])
+			.clk(clk),
+			.rst_n(resetn),
+			.data_enable(data_enable & SRAM_select[3]),
+			.data_read(data_read),
+			.mem_wstrb(mem_wstrb),
+			.ram_address(mem_addr),
+			.ram_fetch(SRAM3_out),
+			.ram_store(mem_wdata)
 		);
 
-endmodule
+	// // SRAM0 
+	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM0
+	// 	(
+	// 		.CLK(clk),
+	// 		.Q(SRAM0_out),
+	// 		.D(mem_wdata),
+	// 		.ME(data_enable & SRAM_select[0]),
+	// 		.WE(~data_read),
+	// 		.ADR(mem_addr[9:2])
+	// 	);
+	// // SRAM1 
+	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM1
+	// 	(
+	// 		.CLK(clk),
+	// 		.Q(SRAM1_out),
+	// 		.D(mem_wdata),
+	// 		.ME(data_enable & SRAM_select[1]),
+	// 		.WE(~data_read),
+	// 		.ADR(mem_addr[9:2])
+	// 	);	
+	// // SRAM2 
+	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM2
+	// 	(
+	// 		.CLK(clk),
+	// 		.Q(SRAM2_out),
+	// 		.D(mem_wdata),
+	// 		.ME(data_enable & SRAM_select[2]),
+	// 		.WE(~data_read),
+	// 		.ADR(mem_addr[9:2])
+	// 	);
+	// // SRAM3 
+	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM3
+	// 	(
+	// 		.CLK(clk),
+	// 		.Q(SRAM3_out),
+	// 		.D(mem_wdata),
+	// 		.ME(data_enable & SRAM_select[3]),
+	// 		.WE(~data_read),
+	// 		.ADR(mem_addr[9:2])
+	// 	);
 
+endmodule

@@ -58,15 +58,10 @@ begin
         begin
             rf_s1 <= 0;
             rf_s2 <= 0;
-            // Setting $Zero to 0. Doesn't work??
-            // registers[0] <= 0;
             // Better way to reset the entire RF without wasting the count variable?
             registers[0] <= 0;
-            registers[1] <= 0;
-            // Stack Pointer
-            // registers[2] <= 0;
-            registers[2] <= 4096; // Works!
-            // registers[2] <= 1024; // Works!            
+            registers[1] <= 0;           
+            registers[2] <= 0;
             registers[3] <= 0;
             registers[4] <= 0;
             registers[5] <= 0;
@@ -123,9 +118,28 @@ begin : RF_Write
         registers[sel_d1] <= reg_d1;
 end
 */
-// Register File Outputs with RF Bypass
-// Note if Synopsys removes $Zero Register or not.
-assign reg_s1 = (rs1_bypass) ? reg_d1 : rf_s1;
-assign reg_s2 = (rs2_bypass) ? reg_d1 : rf_s2;
+
+logic rs1_bypass_ff;
+logic rs2_bypass_ff;
+logic [31:0] reg_d1_ff;
+
+always_ff @( posedge clk, negedge rst_n )
+    begin : RF_Bypass_Delay
+        if (~rst_n)
+            begin
+                rs1_bypass_ff   <= 0;
+                rs2_bypass_ff   <= 0;
+                reg_d1_ff       <= 0;
+            end
+        else
+            begin
+                rs1_bypass_ff <= rs1_bypass;
+                rs2_bypass_ff <= rs2_bypass;
+                reg_d1_ff   <= reg_d1;
+            end
+    end
+
+assign reg_s1 = (rs1_bypass_ff) ? reg_d1_ff : rf_s1;
+assign reg_s2 = (rs2_bypass_ff) ? reg_d1_ff : rf_s2;
 
 endmodule

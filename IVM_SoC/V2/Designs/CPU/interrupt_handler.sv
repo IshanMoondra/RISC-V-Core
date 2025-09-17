@@ -42,7 +42,7 @@ module interrupt_handler
 logic global_interrupt_enable;
 
 // ISR Table: [32] Bit is Interrupt Pending, [31:0] holds ISR Address
-reg [32:0] isr_table [0:15];
+reg [31:0] isr_table [0:15];
 
 // Masked Interrupt Vector
 logic [15:0] masked_interrupts;
@@ -145,35 +145,35 @@ always_ff @( posedge clk, negedge rst_n )
                 isr_table[4'h1]   <= {1'b0, 32'h0000_F100};
                 isr_table[4'h0]   <= {1'b0, 32'h0000_F000};
             end
-        else
-            isr_table[32] <= masked_interrupts;
+        // else
+        //     isr_table[32] <= masked_interrupts;
     end     : Pending_Interrupt
 
 // Interrupt Detect Block: Priority Case Statement
 always_comb 
     begin : Interrupt_Detect
-        casex (isr_table[32])
-            isr_table[32] & 16'h0001: {take_interrupt, isr_address} <= isr_table[0];
-            isr_table[32] & 16'h0002: {take_interrupt, isr_address} <= isr_table[1];
-            isr_table[32] & 16'h0004: {take_interrupt, isr_address} <= isr_table[2];
-            isr_table[32] & 16'h0008: {take_interrupt, isr_address} <= isr_table[3];
-            isr_table[32] & 16'h0010: {take_interrupt, isr_address} <= isr_table[4];
-            isr_table[32] & 16'h0020: {take_interrupt, isr_address} <= isr_table[5];
-            isr_table[32] & 16'h0040: {take_interrupt, isr_address} <= isr_table[6];
-            isr_table[32] & 16'h0080: {take_interrupt, isr_address} <= isr_table[7];
-            isr_table[32] & 16'h0100: {take_interrupt, isr_address} <= isr_table[8];
-            isr_table[32] & 16'h0200: {take_interrupt, isr_address} <= isr_table[9]; 
-            isr_table[32] & 16'h0400: {take_interrupt, isr_address} <= isr_table[10];
-            isr_table[32] & 16'h0800: {take_interrupt, isr_address} <= isr_table[11];
-            isr_table[32] & 16'h1000: {take_interrupt, isr_address} <= isr_table[12];
-            isr_table[32] & 16'h2000: {take_interrupt, isr_address} <= isr_table[13];
-            isr_table[32] & 16'h4000: {take_interrupt, isr_address} <= isr_table[14];
-            isr_table[32] & 16'h8000: {take_interrupt, isr_address} <= isr_table[15];
+        casex (masked_interrupts)
+            masked_interrupts & 16'h0001: {take_interrupt, isr_address} <= {1'b1, isr_table[0]};
+            masked_interrupts & 16'h0002: {take_interrupt, isr_address} <= {1'b1, isr_table[1]};
+            masked_interrupts & 16'h0004: {take_interrupt, isr_address} <= {1'b1, isr_table[2]};
+            masked_interrupts & 16'h0008: {take_interrupt, isr_address} <= {1'b1, isr_table[3]};
+            masked_interrupts & 16'h0010: {take_interrupt, isr_address} <= {1'b1, isr_table[4]};
+            masked_interrupts & 16'h0020: {take_interrupt, isr_address} <= {1'b1, isr_table[5]};
+            masked_interrupts & 16'h0040: {take_interrupt, isr_address} <= {1'b1, isr_table[6]};
+            masked_interrupts & 16'h0080: {take_interrupt, isr_address} <= {1'b1, isr_table[7]};
+            masked_interrupts & 16'h0100: {take_interrupt, isr_address} <= {1'b1, isr_table[8]};
+            masked_interrupts & 16'h0200: {take_interrupt, isr_address} <= {1'b1, isr_table[9]}; 
+            masked_interrupts & 16'h0400: {take_interrupt, isr_address} <= {1'b1, isr_table[10]};
+            masked_interrupts & 16'h0800: {take_interrupt, isr_address} <= {1'b1, isr_table[11]};
+            masked_interrupts & 16'h1000: {take_interrupt, isr_address} <= {1'b1, isr_table[12]};
+            masked_interrupts & 16'h2000: {take_interrupt, isr_address} <= {1'b1, isr_table[13]};
+            masked_interrupts & 16'h4000: {take_interrupt, isr_address} <= {1'b1, isr_table[14]};
+            masked_interrupts & 16'h8000: {take_interrupt, isr_address} <= {1'b1, isr_table[15]};
             default: {take_interrupt, isr_address} <= 0;
         endcase
     end : Interrupt_Detect
 
 // Special NMI Pending Signal
-assign take_nmi = isr_table[0][32];
+assign take_nmi = masked_interrupts[0];
 
 endmodule

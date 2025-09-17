@@ -5,21 +5,21 @@ Warning: Design 'rv32_cpu_top' contains 2 high-fanout nets. A fanout number of 1
 Report : qor
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Tue May 13 16:14:00 2025
+Date   : Tue Jul 29 00:02:54 2025
 ****************************************
 
 
   Timing Path Group 'clk'
   -----------------------------------
-  Levels of Logic:              19.00
-  Critical Path Length:        524.98
-  Critical Path Slack:           0.06
-  Critical Path Clk Period:    550.00
-  Total Negative Slack:          0.00
-  No. of Violating Paths:        0.00
-  Worst Hold Violation:        -32.03
-  Total Hold Violation:      -1390.19
-  No. of Hold Violations:       64.00
+  Levels of Logic:              26.00
+  Critical Path Length:        547.01
+  Critical Path Slack:         -72.08
+  Critical Path Clk Period:    500.00
+  Total Negative Slack:     -13959.27
+  No. of Violating Paths:      311.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
   -----------------------------------
 
 
@@ -27,57 +27,57 @@ Date   : Tue May 13 16:14:00 2025
   -----------------------------------
   Hierarchical Cell Count:          0
   Hierarchical Port Count:          0
-  Leaf Cell Count:               8641
-  Buf/Inv Cell Count:            1120
-  Buf Cell Count:                  91
-  Inv Cell Count:                1029
+  Leaf Cell Count:              10854
+  Buf/Inv Cell Count:            2896
+  Buf Cell Count:                 512
+  Inv Cell Count:                2384
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:      7221
-  Sequential Cell Count:         1420
+  Combinational Cell Count:      9402
+  Sequential Cell Count:         1452
   Macro Count:                      0
   -----------------------------------
 
 
   Area
   -----------------------------------
-  Combinational Area:      523.261620
-  Noncombinational Area:   535.217216
-  Buf/Inv Area:             52.794181
-  Total Buffer Area:             6.59
-  Total Inverter Area:          46.20
+  Combinational Area:      703.980721
+  Noncombinational Area:   550.074236
+  Buf/Inv Area:            146.922662
+  Total Buffer Area:            36.44
+  Total Inverter Area:         110.49
   Macro/Black Box Area:      0.000000
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:              1058.478837
-  Design Area:            1058.478837
+  Cell Area:              1254.054958
+  Design Area:            1254.054958
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:          8709
+  Total Number of Nets:         10922
   Nets With Violations:             0
   Max Trans Violations:             0
   Max Cap Violations:               0
   -----------------------------------
 
 
-  Hostname: tux-123
+  Hostname: tux-121
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    0.03
-  Logic Optimization:                  9.86
-  Mapping Optimization:               28.12
+  Resource Sharing:                    0.00
+  Logic Optimization:                  0.14
+  Mapping Optimization:               14.21
   -----------------------------------------
-  Overall Compile Time:              132.87
-  Overall Compile Wall Clock Time:   133.95
+  Overall Compile Time:               15.71
+  Overall Compile Wall Clock Time:    16.52
 
   --------------------------------------------------------------------
 
-  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+  Design  WNS: 72.08  TNS: 13959.27  Number of Violating Paths: 311
 
 
-  Design (Hold)  WNS: 32.03  TNS: 1390.19  Number of Violating Paths: 64
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
 
   --------------------------------------------------------------------
 

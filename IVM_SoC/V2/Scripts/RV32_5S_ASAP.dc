@@ -10,6 +10,9 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/rv32_ex_mem_queue.sv\
                                 ./Designs/CPU/rv32_mem_wb_queue.sv\
                                 ./Designs/CPU/rv32_pc_v2.sv\
+                                ./Designs/CPU/forwarding_unit_v2.sv\
+                                ./Designs/CPU/hazard_detection.sv\
+                                ./Designs/CPU/interrupt_handler.sv\
                                 ./Designs/CPU/branch_resolver_v2.sv\
                                 ./Designs/CPU/rv32_cu_v2.sv\
                                 ./Designs/CPU/rv32_register_file.sv\
@@ -19,7 +22,8 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/rv32_alu_v2.sv\
                                 ./Designs/CPU/rv32_barrel_shifter.sv\
                                 ./Designs/CPU/write_back.sv\
-                                ./Designs/CPU/rv32_cpu_top.sv }
+                                ./Designs/CPU/rv32_cpu_top.sv\
+                                ./Designs/IO/test_cache.sv }
 
 ###Set the top of the heirarchy.
 set current_design rv32_cpu_top
@@ -44,7 +48,7 @@ set current_design rv32_cpu_top
 ### Area Efficient: 1500 MHz, 1083.24 sq microns, 3.01 mW
 ### Area Efficient: 1666 MHz, 1094.09 sq microns, 3.34 mW
 ### Area Efficient: 2000 MHz, 1127.27 sq microns, 4.02 mW
- create_clock -name "clk" -period 550 {clk}
+ create_clock -name "clk" -period 500 {clk}
 
 set_dont_touch_network [find port clk]
  set_clock_transition 32 clk 
@@ -76,13 +80,13 @@ set_output_delay -clock clk 0.100 [all_outputs]
 set_load 0.100 [all_outputs]
 
 ### Compiling the Design
-# compile -map_effort high
-# compile -map_effort high -incremental_mapping
+compile -map_effort high
+compile -map_effort high -incremental_mapping
 
-# compile -map_effort high -incremental_mapping
-# compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
 
- compile_ultra
+# compile_ultra
 # compile_ultra -incremental
 #
 # compile_ultra -incremental
@@ -96,11 +100,11 @@ set_fix_hold clk
  ungroup -all -flatten
 
 ### 2nd Compile
-# compile -map_effort high
-# compile -map_effort high -incremental_mapping
-#
-# compile -map_effort high -incremental_mapping
-# compile -map_effort high -incremental_mapping
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
 #
 # compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
@@ -129,7 +133,7 @@ set_fix_hold clk
 # compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
 
- compile_ultra
+# compile_ultra
 # compile_ultra -incremental
 #
 # compile_ultra -incremental

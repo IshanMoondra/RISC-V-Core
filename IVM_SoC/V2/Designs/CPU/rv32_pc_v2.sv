@@ -41,16 +41,25 @@ module rv32_pc_v2
 
 // Will need to update for byte addressable memory later
 
+logic [31:0] i_offset;
 logic [31:0] uj_offset;
 logic [31:0] sb_offset;
 
+logic [31:0] i_pc;
 logic [31:0] sb_pc;
 logic [31:0] normal_pc;
 logic [31:0] uj_pc;
 logic [31:0] branch_pc;
 
-logic [31:0] pc_ff;
+// logic [31:0] pc_ff;
 logic [31:0] pc;
+logic [31:0] execute_pc_ff;
+
+always_ff @(posedge clk, negedge rst_n)
+    if (~rst_n)
+        execute_pc_ff <= 0;
+    else
+        execute_pc_ff <= execute_pc;
 
 // Bunch of localparams for each Branch Type, Lazy I know
 localparam JAL  = 4'h0;
@@ -63,15 +72,14 @@ localparam BLTU = 4'h6;
 localparam BGTU = 4'h7; // DNE
 
 // Current Offsets are not Byte Aligned
-assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0} + ((pc_opsel == JALR) ? (reg_s1) : (0));
+assign i_offset  = {{20{code_bus[31]}}, code_bus[31:20]};
+assign uj_offset = {{12{code_bus[31]}}, code_bus[19:12], code_bus[20], code_bus[30:21], 1'b0};
 assign sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[11:8], 1'b0};
 
-// assign normal_pc    = (~rst_n) ? (0): (execute_pc + 4);
-assign normal_pc    = (~rst_n) ? (0): (pc + 4); 
-assign uj_pc        = (~rst_n) ? (0): (execute_pc + uj_offset);
-assign sb_pc        = (~rst_n) ? (0): (execute_pc + sb_offset);
-
-assign return_d1    = normal_pc;
+assign normal_pc    = (~rst_n) ? (0): (pc + 4);
+assign uj_pc        = (~rst_n) ? (0): (execute_pc_ff + uj_offset);
+assign sb_pc        = (~rst_n) ? (0): (execute_pc_ff + sb_offset);
+assign i_pc         = (~rst_n) ? (0): (reg_s1 + i_offset);
 
 always_ff @( posedge clk, negedge rst_n )
     begin   : PC_FF
@@ -92,18 +100,7 @@ always_ff @( posedge clk, negedge rst_n )
                 else
                     begin
                         flush <= branch;
-                        // casex ({~(branch), pc_opsel})
-                        //     JAL:    branch_pc <= uj_pc;
-                        //     JALR:   branch_pc <= uj_pc;
-                        //     BEQ:    branch_pc <= sb_pc;
-                        //     BNE:    branch_pc <= sb_pc;
-                        //     BLT:    branch_pc <= sb_pc;
-                        //     BGT:    branch_pc <= sb_pc;
-                        //     BLTU:   branch_pc <= sb_pc;
-                        //     BGTU:   branch_pc <= sb_pc;
-                        //     default: branch_pc <= normal_pc;
-                        // endcase
-                        pc <= branch ? branch_pc : pc;
+                        pc <= branch ? branch_pc : normal_pc;
                     end
             end
         // else if (busy)
@@ -125,7 +122,7 @@ always_comb
     begin
         casex ({~(branch), pc_opsel})
             JAL:    branch_pc <= uj_pc;
-            JALR:   branch_pc <= uj_pc;
+            JALR:   branch_pc <= i_pc;
             BEQ:    branch_pc <= sb_pc;
             BNE:    branch_pc <= sb_pc;
             BLT:    branch_pc <= sb_pc;
@@ -137,14 +134,34 @@ always_comb
         endcase
     end
 
-always_ff @(negedge clk, negedge rst_n)
-    if (~rst_n)
-        pc_ff <= 0;
-    else if (~busy)
-        pc_ff <= pc;
+
+logic [31:0] normal_pc_ff1;
+logic [31:0] normal_pc_ff2;
+logic [31:0] normal_pc_ff3;
+logic [31:0] normal_pc_ff4;
+
+always_ff @( posedge clk, negedge rst_n ) 
+    begin : Delay_Flops
+        if (~rst_n)
+            begin
+                normal_pc_ff1 <= 0;
+                normal_pc_ff2 <= 0;
+                normal_pc_ff3 <= 0;
+                normal_pc_ff4 <= 0;
+            end
+        else
+            begin
+                normal_pc_ff1 <= normal_pc;
+                normal_pc_ff2 <= normal_pc_ff1;
+                normal_pc_ff3 <= normal_pc_ff2;
+                normal_pc_ff4 <= normal_pc_ff3;
+            end
+    end : Delay_Flops
+
+assign return_d1    = normal_pc_ff3;
 
 // Assert Halt Signal when PC is disabled; Different from a Stall or Busy State
 assign halt = ~(enable);
-assign pc_out = (busy) ? (pc_ff) : (pc);
+assign pc_out = pc;
 
 endmodule

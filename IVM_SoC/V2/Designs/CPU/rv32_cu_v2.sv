@@ -286,6 +286,7 @@ begin
                 write_reg = 0;
                 source_sel_dest = 0;
                 sel_rd1 = 0;
+                // Other Types of Stores & Loads solved in cpu_top.sv
                 /*
                 casex (funct3)
                     2: // Store Word

@@ -1,0 +1,37 @@
+Warning: Design 'ivm_soc_v1' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : ivm_soc_v1
+Version: V-2023.12-SP5
+Date   : Mon Jul 28 20:55:03 2025
+****************************************
+
+Library(s) Used:
+
+    asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_SIMPLE_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_INVBUF_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_INVBUF_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_SEQ_RVT_TT_nldm_220123 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_SEQ_RVT_TT_nldm_220123.db)
+    asap7sc7p5t_AO_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_AO_RVT_TT_nldm_211120.db)
+    asap7sc7p5t_OA_RVT_TT_nldm_211120 (File: /filespace/i/imoondra/ASAP_7nm_ASIC/asap7sc7p5t_28/LIB/NLDM/asap7sc7p5t_OA_RVT_TT_nldm_211120.db)
+
+Number of ports:                          122
+Number of nets:                        139049
+Number of cells:                       139153
+Number of combinational cells:         104287
+Number of sequential cells:             34866
+Number of macros/black boxes:               0
+Number of buf/inv:                      27481
+Number of references:                     141
+
+Combinational area:               8981.192561
+Buf/Inv area:                     2144.732603
+Noncombinational area:           10322.304290
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 19303.496851
+Total area:                 undefined
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1

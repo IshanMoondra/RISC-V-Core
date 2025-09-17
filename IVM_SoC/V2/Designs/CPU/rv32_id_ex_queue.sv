@@ -138,7 +138,7 @@ begin
     //         sel_rd1_queue <= sel_rd1_queue;
     //     end
     else if (~busy)
-        begin        
+        begin
             code_queue      <= code_in;
             pc_queue        <= pc_in;
             pc_ret_queue    <= pc_ret_in;
@@ -159,20 +159,40 @@ end
 // Output from the Queues.
 always_comb
     begin
-        code_out        = code_queue;
-        pc_out          = pc_queue;
-        pc_ret_out      = pc_ret_queue;
-        alu_out         = alu_queue;
-        rf_rs1_out      = rf_rs1_queue;
-        rf_rs2_out      = rf_rs2_queue;
-        rf_out          = rf_queue;
-        bshift_out      = bshift_queue;
-        pc_hlt_out      = pc_hlt_queue;
-        data_ctrl_out   = data_ctrl_queue;
+        if (~stall | 1'b1)
+            begin
+                code_out        = code_queue;
+                pc_out          = pc_queue;
+                pc_ret_out      = pc_ret_queue;
+                alu_out         = alu_queue;
+                rf_rs1_out      = rf_rs1_queue;
+                rf_rs2_out      = rf_rs2_queue;
+                rf_out          = rf_queue;
+                bshift_out      = bshift_queue;
+                pc_hlt_out      = pc_hlt_queue;
+                data_ctrl_out   = data_ctrl_queue;
 
-        sel_rs1_out     = sel_rs1_queue;
-        sel_rs2_out     = sel_rs2_queue;
-        sel_rd1_out     = sel_rd1_queue;
+                sel_rs1_out     = sel_rs1_queue;
+                sel_rs2_out     = sel_rs2_queue;
+                sel_rd1_out     = sel_rd1_queue; 
+            end
+        else
+            begin
+                code_out        = 32'h0;
+                pc_out          = 32'h0;
+                pc_ret_out      = pc_ret_queue;
+                alu_out         = {1'd0, 5'd7};
+                rf_rs1_out      = 32'h0;
+                rf_rs2_out      = 32'h0;
+                rf_out          = {2'd0, 1'd0};
+                bshift_out      = {1'd0, 1'd0, 1'd0, 1'd0};
+                pc_hlt_out      = 1'b1;
+                data_ctrl_out   = {1'd0, 1'd1};
+
+                sel_rs1_out     = 0;
+                sel_rs2_out     = 0;
+                sel_rd1_out     = 0;
+            end
     end
 
 endmodule    

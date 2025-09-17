@@ -1,0 +1,85 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'rv32_cpu_top' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : qor
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Mon Sep  1 01:47:53 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              29.00
+  Critical Path Length:          0.85
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      1.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.06
+  Total Hold Violation:        -20.15
+  No. of Hold Violations:     1383.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+  Leaf Cell Count:              10298
+  Buf/Inv Cell Count:            2477
+  Buf Cell Count:                 311
+  Inv Cell Count:                2166
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:      8611
+  Sequential Cell Count:         1687
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     2233.742368
+  Noncombinational Area:  2011.683661
+  Buf/Inv Area:            367.070386
+  Total Buffer Area:            74.04
+  Total Inverter Area:         293.03
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:              4245.426029
+  Design Area:            4245.426029
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         10367
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: compute-hal
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.01
+  Logic Optimization:                  0.20
+  Mapping Optimization:               29.00
+  -----------------------------------------
+  Overall Compile Time:               77.41
+  Overall Compile Wall Clock Time:    81.07
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.06  TNS: 20.15  Number of Violating Paths: 1383
+
+  --------------------------------------------------------------------
+
+
+1

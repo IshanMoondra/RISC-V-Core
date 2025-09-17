@@ -6,62 +6,85 @@ Report : timing
         -max_paths 1
 Design : rv32_cpu_top
 Version: V-2023.12-SP5
-Date   : Wed May  7 20:46:49 2025
+Date   : Sun Aug 24 14:38:26 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
 
-Operating Conditions: PVT_0P7V_25C   Library: asap7sc7p5t_AO_RVT_TT_nldm_211120
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
 Wire Load Model Mode: segmented
 
-  Startpoint: iIF_ID/code_queue_reg[0]
-              (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: data_addr[23]
-            (output port clocked by clk)
+  Startpoint: data_fetch[29]
+              (input port clocked by clk)
+  Endpoint: iRF/rf_s1_reg[10]
+            (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
 
-  Point                                                   Incr       Path
-  --------------------------------------------------------------------------
-  clock clk (rise edge)                                   0.00       0.00
-  clock network delay (ideal)                             0.00       0.00
-  iIF_ID/code_queue_reg[0]/CLK (DFFASRHQNx1_ASAP7_75t_R)
-                                                          0.00 #     0.00 r
-  iIF_ID/code_queue_reg[0]/QN (DFFASRHQNx1_ASAP7_75t_R)
-                                                         65.28      65.28 f
-  U7058/Y (AND2x4_ASAP7_75t_R)                           27.22      92.50 f
-  U9112/Y (NAND2x2_ASAP7_75t_R)                          16.08     108.58 r
-  U13871/Y (NOR3x1_ASAP7_75t_R)                          18.13     126.71 f
-  U7088/Y (OAI21xp5_ASAP7_75t_R)                         15.52     142.23 r
-  U7347/Y (O2A1O1Ixp5_ASAP7_75t_R)                       14.16     156.39 f
-  U7037/Y (AND2x4_ASAP7_75t_R)                           28.73     185.11 f
-  U9440/Y (BUFx12f_ASAP7_75t_R)                          22.62     207.73 f
-  U7373/Y (OR2x2_ASAP7_75t_R)                            25.19     232.93 f
-  U9727/Y (AO31x2_ASAP7_75t_R)                           23.15     256.08 f
-  U10649/Y (NAND2xp5_ASAP7_75t_R)                        17.07     273.15 r
-  U7130/Y (BUFx3_ASAP7_75t_R)                            32.76     305.91 r
-  U6735/Y (NOR2xp33_ASAP7_75t_R)                         24.76     330.66 f
-  U10482/Y (NOR4xp25_ASAP7_75t_R)                        42.37     373.03 r
-  U7526/Y (INVxp67_ASAP7_75t_R)                          24.24     397.27 f
-  U8034/Y (NAND2xp33_ASAP7_75t_R)                        20.53     417.80 r
-  U9223/Y (OAI211xp5_ASAP7_75t_R)                        15.43     433.23 f
-  U10027/Y (NOR2xp33_ASAP7_75t_R)                        16.59     449.82 r
-  U9224/Y (NAND3xp33_ASAP7_75t_R)                        19.42     469.25 f
-  U7352/Y (INVxp67_ASAP7_75t_R)                          11.86     481.10 r
-  U10911/Y (NOR2xp33_ASAP7_75t_R)                         8.79     489.89 f
-  data_addr[23] (out)                                     0.00     489.89 f
-  data arrival time                                                489.89
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
 
-  clock clk (rise edge)                                 500.00     500.00
-  clock network delay (ideal)                             0.00     500.00
-  clock uncertainty                                     -10.00     490.00
-  output external delay                                  -0.10     489.90
-  data required time                                               489.90
-  --------------------------------------------------------------------------
-  data required time                                               489.90
-  data arrival time                                               -489.89
-  --------------------------------------------------------------------------
-  slack (MET)                                                        0.01
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.20       0.20 f
+  data_fetch[29] (in)                      0.01       0.21 f
+  U8052/ZN (ND2D2BWP)                      0.03       0.23 r
+  U7335/ZN (CKND2D8BWP)                    0.03       0.26 f
+  U7331/ZN (CKND6BWP)                      0.02       0.28 r
+  U18663/ZN (CKND2D8BWP)                   0.02       0.30 f
+  U7595/ZN (ND2D2BWP)                      0.02       0.32 r
+  U6957/Z (AN4D2BWP)                       0.10       0.42 r
+  U18736/ZN (INVD1BWP)                     0.02       0.44 f
+  U14417/ZN (NR2XD1BWP)                    0.03       0.47 r
+  U13845/ZN (IND2D2BWP)                    0.03       0.51 r
+  U7675/ZN (NR2XD1BWP)                     0.02       0.53 f
+  U18550/ZN (CKND2D2BWP)                   0.02       0.55 r
+  U12031/ZN (INR4D2BWP)                    0.03       0.58 f
+  U16731/ZN (CKND2D3BWP)                   0.03       0.61 r
+  U16744/ZN (CKND4BWP)                     0.02       0.63 f
+  U18706/ZN (CKND2D3BWP)                   0.02       0.65 r
+  U6702/Z (AN2D4BWP)                       0.05       0.70 r
+  U18732/ZN (NR2XD4BWP)                    0.02       0.71 f
+  U6655/ZN (CKND2D8BWP)                    0.03       0.74 r
+  U11020/ZN (ND2D1BWP)                     0.04       0.78 f
+  U7424/ZN (CKND4BWP)                      0.03       0.82 r
+  U18126/ZN (CKND2D4BWP)                   0.03       0.84 f
+  U10852/ZN (CKND6BWP)                     0.02       0.86 r
+  U7434/ZN (ND3D4BWP)                      0.03       0.89 f
+  U6330/ZN (CKND4BWP)                      0.02       0.92 r
+  U8546/ZN (ND2D8BWP)                      0.02       0.94 f
+  U7366/ZN (CKND4BWP)                      0.02       0.96 r
+  U7074/ZN (CKND2D8BWP)                    0.02       0.98 f
+  U7369/ZN (CKND2D8BWP)                    0.02       1.00 r
+  U11003/ZN (CKND2D8BWP)                   0.02       1.02 f
+  U9511/Z (BUFFD4BWP)                      0.04       1.06 f
+  U10446/ZN (INR3D4BWP)                    0.04       1.10 r
+  U6948/ZN (IND2D2BWP)                     0.04       1.14 f
+  U18263/ZN (CKND6BWP)                     0.03       1.17 r
+  U18109/ZN (CKND6BWP)                     0.03       1.20 f
+  U18739/ZN (CKND6BWP)                     0.03       1.23 r
+  U6356/ZN (CKND2D2BWP)                    0.02       1.26 f
+  U6385/Z (AN2D4BWP)                       0.04       1.30 f
+  U18287/ZN (OAI211D2BWP)                  0.02       1.32 r
+  U12209/Z (OA33D1BWP)                     0.07       1.39 r
+  iRF/rf_s1_reg[10]/D (DFCND1BWP)          0.00       1.39 r
+  data arrival time                                   1.39
+
+  clock clk (rise edge)                    1.50       1.50
+  clock network delay (ideal)              0.00       1.50
+  clock uncertainty                       -0.08       1.42
+  iRF/rf_s1_reg[10]/CP (DFCND1BWP)         0.00       1.42 r
+  library setup time                      -0.03       1.39
+  data required time                                  1.39
+  -----------------------------------------------------------
+  data required time                                  1.39
+  data arrival time                                  -1.39
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
 
 
 1

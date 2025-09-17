@@ -47,7 +47,7 @@ assign opcode       = code_bus[6:0];
 assign funct3       = code_bus[14:12];
 
 // Is a Branch Instruction if opcodes match
-assign is_branch = (opcode == BrOp);
+assign is_branch = (opcode == BrOp) || (opcode == JAL) || (opcode == JALR);
 assign branchD = ((opcode == JAL) | (opcode == JALR));
 
 // Select comparator result based on Funct3 Field.

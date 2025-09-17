@@ -10,6 +10,9 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/rv32_ex_mem_queue.sv\
                                 ./Designs/CPU/rv32_mem_wb_queue.sv\
                                 ./Designs/CPU/rv32_pc_v2.sv\
+                                ./Designs/CPU/forwarding_unit_v2.sv\
+                                ./Designs/CPU/hazard_detection.sv\
+                                ./Designs/CPU/interrupt_handler.sv\
                                 ./Designs/CPU/branch_resolver_v2.sv\
                                 ./Designs/CPU/rv32_cu_v2.sv\
                                 ./Designs/CPU/rv32_register_file.sv\
@@ -20,13 +23,14 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/rv32_barrel_shifter.sv\
                                 ./Designs/CPU/write_back.sv\
                                 ./Designs/CPU/rv32_cpu_top.sv\
+                                ./Designs/IO/test_cache.sv\
                                 ./Designs/IO/simpleuart.v\
                                 ./Designs/IO/spimemio.v\
                                 ./Designs/IO/saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core.v\
-                                ./Designs/ivm_soc_v0.v }
+                                ./Designs/ivm_soc_v1.v }
 
 ###Set the top of the heirarchy.
-set current_design ivm_soc_v0
+set current_design ivm_soc_v1
 
 ##Constraining the Design
 
@@ -48,7 +52,7 @@ set current_design ivm_soc_v0
 ### Area Efficient: 1500 MHz, 1083.24 sq microns, 3.01 mW
 ### Area Efficient: 1666 MHz, 1094.09 sq microns, 3.34 mW
 ### Area Efficient: 2000 MHz, 1127.27 sq microns, 4.02 mW
- create_clock -name "clk" -period 4000 {clk}
+ create_clock -name "clk" -period 1000 {clk}
 
 set_dont_touch_network [find port clk]
  set_clock_transition 32 clk 
@@ -80,13 +84,13 @@ set_output_delay -clock clk 0.100 [all_outputs]
 set_load 0.100 [all_outputs]
 
 ### Compiling the Design
-# compile -map_effort high
-# compile -map_effort high -incremental_mapping
+compile -map_effort high
+compile -map_effort high -incremental_mapping
 
-# compile -map_effort high -incremental_mapping
-# compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
 
- compile_ultra
+# compile_ultra
 # compile_ultra -incremental
 #
 # compile_ultra -incremental
@@ -133,7 +137,7 @@ set_fix_hold clk
 # compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
 
- compile_ultra
+# compile_ultra
 # compile_ultra -incremental
 #
 # compile_ultra -incremental
@@ -152,17 +156,17 @@ set_fix_hold clk
 # compile_ultra -incremental
 
 ### Writing the Area, Min & Max Timing Reports to files
-report_qor > ./Reports/ivm_soc_v0_qor_ASAP.rpt
-report_power -analysis_effort high > ./Reports/ivm_soc_v0_power_ASAP.rpt
-report_area > ./Reports/ivm_soc_v0_area_ASAP.rpt
-report_timing -delay max > ./Reports/ivm_soc_v0_timing_max_ASAP.rpt
-report_timing -delay min > ./Reports/ivm_soc_v0_timing_min_ASAP.rpt
+report_qor > ./Reports/ivm_soc_v1_qor_ASAP.rpt
+report_power -analysis_effort high > ./Reports/ivm_soc_v1_power_ASAP.rpt
+report_area > ./Reports/ivm_soc_v1_area_ASAP.rpt
+report_timing -delay max > ./Reports/ivm_soc_v1_timing_max_ASAP.rpt
+report_timing -delay min > ./Reports/ivm_soc_v1_timing_min_ASAP.rpt
 
 ### Write out the netlist
-write -format verilog ivm_soc_v0 -output ./Netlists/ivm_soc_v0_ASAP.vg
+write -format verilog ivm_soc_v1 -output ./Netlists/ivm_soc_v1_ASAP.vg
 
 ### Write out the Synopsys Design Constraints format script (.sdc file)
-write_sdc ./SDCs/ivm_soc_v0_ASAP.sdc
+write_sdc ./SDCs/ivm_soc_v1_ASAP.sdc
 
 # Exit
-exit
+# exit

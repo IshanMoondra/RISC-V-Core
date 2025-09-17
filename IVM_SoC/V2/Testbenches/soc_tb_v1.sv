@@ -27,6 +27,17 @@ module soc_tb_v1;
 	wire misaligned_fetch;
 	integer count;
 
+	// TB_UART Signals
+	logic tb_baud_we;
+	logic tb_data_we;
+	logic [31:0] tb_set_baud;
+	wire tb_rx_rdy;
+	logic tb_clr_rx_rdy;
+	logic tb_trmt;
+	wire tb_trmt_done;
+	logic [31:0] tb_tx_buffer;
+	wire [31:0] tb_rx_buffer;
+
 	// What am I even testing here?
 	// A SoC where I want a 'perfect' cache, ie, no cache :P
 	// So SoC must have:
@@ -37,6 +48,7 @@ module soc_tb_v1;
 	
 	// The wires for the Setup 
 	wire ser_rx;
+	// assign ser_rx = 1;
 	wire ser_tx;
 
 	wire flash_csb;
@@ -103,17 +115,44 @@ module soc_tb_v1;
 		.io3(flash_io3)
 	);
 
+	UART iTB_UART (
+		.clk(clk),
+		.rst_n(rst_n),
+		.baud_we(tb_baud_we),
+		.data_we(tb_data_we),
+		.set_baud(tb_set_baud),
+		.get_baud(),
+		.data_tx(tb_tx_buffer),
+		.data_rx(tb_rx_buffer),
+		// Note the reversed polarity
+		.RX(ser_tx),
+		.TX(ser_rx),
+		.rx_rdy(tb_rx_rdy),
+		.clr_rx_rdy(tb_clr_rx_rdy),
+		.trmt(tb_trmt),
+		.tx_done(tb_trmt_done)
+	);
+
 	initial
 	begin
 
-		// Dumping the Waveforms
-		$dumpfile("soc_v1.vpd");
-		$dumpvars(0, soc_tb_v1);
+		// // Dumping the Waveforms // ModelSim dies around 47 ms
+		// $dumpfile("soc_v1.fsdb");
+		// $dumpvars(0, soc_tb_v1);
 
 		// Set up the basic Universal Signals
 		clk     = 0;
 		rst_n   = 0;
 		count   = 0;
+
+		// TB_UART Setup
+		tb_baud_we = 0;
+		tb_data_we = 0;
+		tb_set_baud = 1000;
+		tb_clr_rx_rdy = 0;
+		tb_trmt = 0;
+		tb_tx_buffer = 32'd65;
+
 		// Hold SoC in RESET for 10 cycles
 		repeat(2) @(negedge clk);
 		rst_n   = 1;
@@ -123,7 +162,7 @@ module soc_tb_v1;
 		// Fork Join for easy tracking
 		fork
 			begin: Timeout            
-				while (count < 3500)
+				while (count < 200000000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    
@@ -154,28 +193,46 @@ module soc_tb_v1;
 	always @(posedge clk)
 		begin
 			// Detect Load to Use Stalls
-			if (uut.iSoC.iCPU.load_to_use_stall)
-				begin
-					$display("Load to Use Stall!");
-					// $stop();
-				end
-			// Debug display for some buses. 
-			$display("Fetch: %h", uut.iSoC.iCPU.code_fetch);
-			$display("Decode: %h", uut.iSoC.iCPU.decode_code_bus);
-			$display("Execute: %h", uut.iSoC.iCPU.execute_code_bus);
-			$display("Memory: %h", uut.iSoC.iCPU.memory_code_bus);
-			$display("Write Back: %h", uut.iSoC.iCPU.wb_code_bus);
-			$display("Operand A: %d", uut.iSoC.iCPU.OperandA);
-			$display("Operand B: %d", uut.iSoC.iCPU.OperandB);
-			$display("RF: %d %d", uut.iSoC.iCPU.decode_rs1, uut.iSoC.iCPU.decode_rs2);
-			$display("Memory ALU: %d", uut.iSoC.iCPU.memory_alu_res);
-			$display("Write Back ALU: %d", uut.iSoC.iCPU.wb_alu_res);
-			$display("Write Back Data: %d", uut.iSoC.iCPU.wb_data_res);			
+			// if (uut.iSoC.iCPU.load_to_use_stall)
+			// 	begin
+			// 		$display("Load to Use Stall! %d", count);
+			// 		// $stop();
+			// 	end
+			// Debug display for some buses.
+			// $display("Fetch: %h", uut.iSoC.iCPU.code_fetch);
+			// $display("Decode: %h", uut.iSoC.iCPU.decode_code_bus);
+			// $display("Execute: %h", uut.iSoC.iCPU.execute_code_bus);
+			// $display("Memory: %h", uut.iSoC.iCPU.memory_code_bus);
+			// $display("Write Back: %h", uut.iSoC.iCPU.wb_code_bus);
+			// $display("Operand A: %d", uut.iSoC.iCPU.OperandA);
+			// $display("Operand B: %d", uut.iSoC.iCPU.OperandB);
+			// $display("RF: %d %d", uut.iSoC.iCPU.decode_rs1, uut.iSoC.iCPU.decode_rs2);
+			// $display("Memory ALU: %d", uut.iSoC.iCPU.memory_alu_res);
+			// $display("Write Back ALU: %d", uut.iSoC.iCPU.wb_alu_res);
+			// $display("Write Back Data: %d", uut.iSoC.iCPU.wb_data_res);
 			
 			// Checks for misaligned code memory fetches
 			if (misaligned_fetch)
 				$display("Misalinged Memory access on: %d, at cycle %d", uut.iSoC.pc_fetch, count);
 			
+		end
+
+	always @(posedge clk)
+		begin
+			if (count === 0999)
+				tb_data_we = 1;
+			if (count === 1000)
+			begin
+				// tb_baud_we = 1;
+				// tb_set_baud = 50;
+				// tb_tx_buffer = 32'd65;
+				tb_trmt = 1;
+			end
+			if (count === 1001)
+			begin
+				tb_baud_we = 0;
+				tb_trmt = 0;
+			end
 		end
 
 endmodule

@@ -1,0 +1,86 @@
+Warning: Design 'ivm_soc_v1' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating design information... (UID-85)
+Warning: Design 'ivm_soc_v1' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : qor
+Design : ivm_soc_v1
+Version: V-2023.12-SP5
+Date   : Mon Jul 28 20:54:50 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              47.00
+  Critical Path Length:        984.47
+  Critical Path Slack:          -9.99
+  Critical Path Clk Period:   1000.00
+  Total Negative Slack:    -132283.30
+  No. of Violating Paths:    27902.00
+  Worst Hold Violation:        -32.03
+  Total Hold Violation:       -433.70
+  No. of Hold Violations:       50.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:          0
+  Hierarchical Port Count:          0
+  Leaf Cell Count:             139153
+  Buf/Inv Cell Count:           27481
+  Buf Cell Count:                4635
+  Inv Cell Count:               22846
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:    104288
+  Sequential Cell Count:        34865
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     8981.192561
+  Noncombinational Area: 10322.304290
+  Buf/Inv Area:           2144.732603
+  Total Buffer Area:           822.84
+  Total Inverter Area:        1321.90
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:             19303.496851
+  Design Area:           19303.496851
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:        139049
+  Nets With Violations:            20
+  Max Trans Violations:            20
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: tux-121
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    7.10
+  Logic Optimization:                  4.51
+  Mapping Optimization:               12.74
+  -----------------------------------------
+  Overall Compile Time:               47.59
+  Overall Compile Wall Clock Time:    48.53
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 9.99  TNS: 132283.30  Number of Violating Paths: 27902
+
+
+  Design (Hold)  WNS: 32.03  TNS: 433.70  Number of Violating Paths: 50
+
+  --------------------------------------------------------------------
+
+
+1
