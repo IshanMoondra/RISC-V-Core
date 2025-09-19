@@ -61,6 +61,13 @@ module ivm_soc_v1 (
 	wire [31:0] mem_rdata;
 
 	// SPI Flash Memory Stuff
+	wire spi_valid;
+	wire core_clk_en;
+	wire gated_clk;
+	wire i_cache_miss;
+	wire d_cache_miss;
+	wire core_bubble;
+	wire [31:0] spi_addr;
 	wire spimem_ready;
 	wire [31:0] spimem_rdata;
 
@@ -147,6 +154,8 @@ module ivm_soc_v1 (
 						simpleuart_reg_div_sel_ff ? simpleuart_reg_div_do :
 						simpleuart_reg_dat_sel_ff ? simpleuart_reg_dat_do : 
 						ram_rdata;
+
+	assign gated_clk = clk & core_clk_en;
 
 	// Wires for IVM RISC V 32 Core
 	// Code Fetch Stage
@@ -235,7 +244,7 @@ module ivm_soc_v1 (
 	rv32_cpu_top iCPU
 		(
 			// Universal Signals
-			.clk(clk),
+			.clk(gated_clk),
 			.rst_n(resetn),
 			// Ports for Code Memory
 			.pc_fetch(pc_fetch),
@@ -257,27 +266,27 @@ module ivm_soc_v1 (
 			.wb_result(wb_result)
 		);
 
-	// IVM Test Cache for CPU
-	test_cache iCode
-		(
-			.clk(clk),
-			.rst_n(resetn),
-			.fetch_address(pc_fetch),
-			.code_fetch(instruction),
-			.refill_data(0),
-			.refill_address(0),
-			.misaligned(misaligned_fetch)
-		); 
+	// // IVM Test Cache for CPU
+	// test_cache iCode
+	// 	(
+	// 		.clk(clk),
+	// 		.rst_n(resetn),
+	// 		.fetch_address(pc_fetch),
+	// 		.code_fetch(instruction),
+	// 		.refill_data(0),
+	// 		.refill_address(0),
+	// 		.misaligned(misaligned_fetch)
+	// 	); 
 
 
 	spimemio spimemio (
 		.clk    (clk),
 		.resetn (resetn),
 		// Valid Bit set via PC_Fetch
-		.valid(~flush | ~branch),
+		.valid(spi_valid),
 		.ready  (spimem_ready),
 		// SPI Memory
-		.addr   (pc_fetch[23:0]),
+		.addr   (spi_addr[23:0]),
 		.rdata  (spimem_rdata),
 
 		.flash_csb    (flash_csb   ),
@@ -327,97 +336,91 @@ module ivm_soc_v1 (
 			.data_tx(mem_wdata)
 		);
 
+	// Dunno why this exists here, need to look more into this. 
 	always @(posedge clk)
 		ram_ready <= mem_valid && !mem_ready && mem_addr < 4*1024;
 
-	// SRAM0 
-	d_cache SRAM0
+	// Instantiating my Cache Controller V1
+	cache_controller_v1 iCC_V1
 		(
+			// Universal Signals
 			.clk(clk),
 			.rst_n(resetn),
-			.data_enable(data_enable & SRAM_select[0]),
-			.data_read(data_read),
+			// I-Cache Bus
+			.pc_fetch(pc_fetch),
+			.code_fetch(instruction),
+			// MMIO Interfacing
+			.data_address(mem_addr),
+			.data_store(mem_wdata),
+			.data_fetch(ram_rdata),
 			.mem_wstrb(mem_wstrb),
-			.ram_address(mem_addr),
-			.ram_fetch(SRAM0_out),
-			.ram_store(mem_wdata)
-		);
-	// SRAM1 
-	d_cache SRAM1
-		(
-			.clk(clk),
-			.rst_n(resetn),
-			.data_enable(data_enable & SRAM_select[1]),
 			.data_read(data_read),
-			.mem_wstrb(mem_wstrb),
-			.ram_address(mem_addr),
-			.ram_fetch(SRAM1_out),
-			.ram_store(mem_wdata)
-		);	
-	// SRAM2 
-	d_cache SRAM2
-		(
-			.clk(clk),
-			.rst_n(resetn),
-			.data_enable(data_enable & SRAM_select[2]),
-			.data_read(data_read),
-			.mem_wstrb(mem_wstrb),
-			.ram_address(mem_addr),
-			.ram_fetch(SRAM2_out),
-			.ram_store(mem_wdata)
-		);
-	// SRAM3 
-	d_cache SRAM3
-		(
-			.clk(clk),
-			.rst_n(resetn),
-			.data_enable(data_enable & SRAM_select[3]),
-			.data_read(data_read),
-			.mem_wstrb(mem_wstrb),
-			.ram_address(mem_addr),
-			.ram_fetch(SRAM3_out),
-			.ram_store(mem_wdata)
+			.data_enable(data_enable),
+			// SPI IO
+			.spi_fetch(spimem_rdata),
+			.spi_store(),						// Unconnected since RO File System
+			.spi_address(spi_addr),					// Create the wire!
+			.write_strobe(),						// Unconnected since RO File System
+			.spi_ready(spimem_ready),
+			.spi_addr_valid(spi_valid),				// Done
+			// Clock Gate Signals
+			.set_clk_enable(core_clk_en),			// Done
+			.i_cache_miss(i_cache_miss),			// Create the wire && counter!
+			.d_cache_miss(d_cache_miss),			// Create the wire && counter!
+			// Core Stall Signals: For Branch Resolution by bubbling for 5 cycles
+			.core_bubble(core_bubble)				// Unconnected for now, but can add later.
 		);
 
+	// always @(posedge clk)
+	// 	ram_ready <= mem_valid && !mem_ready && mem_addr < 4*1024;
+
 	// // SRAM0 
-	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM0
+	// d_cache SRAM0
 	// 	(
-	// 		.CLK(clk),
-	// 		.Q(SRAM0_out),
-	// 		.D(mem_wdata),
-	// 		.ME(data_enable & SRAM_select[0]),
-	// 		.WE(~data_read),
-	// 		.ADR(mem_addr[9:2])
+	// 		.clk(clk),
+	// 		.rst_n(resetn),
+	// 		.data_enable(data_enable & SRAM_select[0]),
+	// 		.data_read(data_read),
+	// 		.mem_wstrb(mem_wstrb),
+	// 		.ram_address(mem_addr),
+	// 		.ram_fetch(SRAM0_out),
+	// 		.ram_store(mem_wdata)
 	// 	);
 	// // SRAM1 
-	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM1
+	// d_cache SRAM1
 	// 	(
-	// 		.CLK(clk),
-	// 		.Q(SRAM1_out),
-	// 		.D(mem_wdata),
-	// 		.ME(data_enable & SRAM_select[1]),
-	// 		.WE(~data_read),
-	// 		.ADR(mem_addr[9:2])
+	// 		.clk(clk),
+	// 		.rst_n(resetn),
+	// 		.data_enable(data_enable & SRAM_select[1]),
+	// 		.data_read(data_read),
+	// 		.mem_wstrb(mem_wstrb),
+	// 		.ram_address(mem_addr),
+	// 		.ram_fetch(SRAM1_out),
+	// 		.ram_store(mem_wdata)
 	// 	);	
 	// // SRAM2 
-	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM2
+	// d_cache SRAM2
 	// 	(
-	// 		.CLK(clk),
-	// 		.Q(SRAM2_out),
-	// 		.D(mem_wdata),
-	// 		.ME(data_enable & SRAM_select[2]),
-	// 		.WE(~data_read),
-	// 		.ADR(mem_addr[9:2])
+	// 		.clk(clk),
+	// 		.rst_n(resetn),
+	// 		.data_enable(data_enable & SRAM_select[2]),
+	// 		.data_read(data_read),
+	// 		.mem_wstrb(mem_wstrb),
+	// 		.ram_address(mem_addr),
+	// 		.ram_fetch(SRAM2_out),
+	// 		.ram_store(mem_wdata)
 	// 	);
 	// // SRAM3 
-	// saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core SRAM3
+	// d_cache SRAM3
 	// 	(
-	// 		.CLK(clk),
-	// 		.Q(SRAM3_out),
-	// 		.D(mem_wdata),
-	// 		.ME(data_enable & SRAM_select[3]),
-	// 		.WE(~data_read),
-	// 		.ADR(mem_addr[9:2])
+	// 		.clk(clk),
+	// 		.rst_n(resetn),
+	// 		.data_enable(data_enable & SRAM_select[3]),
+	// 		.data_read(data_read),
+	// 		.mem_wstrb(mem_wstrb),
+	// 		.ram_address(mem_addr),
+	// 		.ram_fetch(SRAM3_out),
+	// 		.ram_store(mem_wdata)
 	// 	);
 
 endmodule

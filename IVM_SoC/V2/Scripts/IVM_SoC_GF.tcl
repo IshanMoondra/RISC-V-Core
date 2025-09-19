@@ -79,7 +79,8 @@ set_max_transition 1.8 -data_path [all_clocks]
 # set false path -through Iget pins i dig top/i dig core/i mtp ctrl top/i AEONFTP AH 64R16CHOPOWOXOY M7P0/READYset ideal network [get ports "clk"]
 set_ideal_network [get_ports "resetn"]
 
-# set_dont_touch [get_designs *saduvssd8ULTRALOW1p6* -quiet]
+set_dont_touch [get_designs d_cache -quiet]
+set_dont_touch [get_designs test_cache -quiet]
 # saduvssd8ULTRALOW1
 ########################################################################################
 
