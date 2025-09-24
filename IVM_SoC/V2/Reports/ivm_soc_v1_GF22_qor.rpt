@@ -1,2 +1,5 @@
-Error: Current design is not defined. (UID-4)
-0
+Module: DW01_cmp2_width32, Ports: 68, Input: 66, Output: 2, Inout: 0
+Module: DW01_cmp2_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: To replay this failing entity --> elaborate DW01_decode -library DW01 -architecture str -parameters {width=30}
+Module: DW01_decode_width30, Ports: 30, Input: 30, Output: 0, Inout: 0
+Module: DW01_decode_width30, Registers: 0, Async set/reset: 0, Sync set/reset: 0

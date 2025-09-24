@@ -16,15 +16,16 @@
 ./Designs/CPU/forwarding_unit_v2.sv
 ./Designs/CPU/hazard_detection.sv
 
-./Designs/IO/test_cache.sv
+./Designs/IO/i_cache_v1.sv
+./Designs/IO/d_cache_v1.sv
+./Designs/IO/cache_controller_v1.sv
 ./Designs/IO/spiflash.v
 ./Designs/IO/spimemio.v
-./Designs/IO/d_cache.sv
 ./Designs/IO/UART_rx.sv
 ./Designs/IO/UART_tx.sv
 ./Designs/IO/UART.sv
-./Designs/IO/simpleuart.v
-./Designs/IO/saduvssd8ULTRALOW1p256x32m4b1w0c0p0d0l0rm3sdrw01_core.v
+./Designs/IO/UART_v1.sv
+./Designs/IO/mmio_decoder_v1.sv
 
 # ./../RISC-V-Core/IVM_SoC/V2/Designs/CIM/accumulator.sv
 # ./../RISC-V-Core/IVM_SoC/V2/Designs/CIM/Adder_tree.sv

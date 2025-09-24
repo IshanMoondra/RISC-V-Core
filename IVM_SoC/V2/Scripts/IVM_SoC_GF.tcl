@@ -28,8 +28,9 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/write_back.sv\
                                 ./Designs/CPU/rv32_load_store_unit.sv\
                                 ./Designs/CPU/rv32_cpu_top.sv\
-                                ./Designs/IO/test_cache.sv\
-                                ./Designs/IO/d_cache.sv\
+                                ./Designs/IO/i_cache_v1.sv\
+                                ./Designs/IO/d_cache_v1.sv\
+                                ./Designs/IO/cache_controller_v1.sv\
                                 ./Designs/IO/UART_rx.sv\
                                 ./Designs/IO/UART_tx.sv\
                                 ./Designs/IO/UART.sv\
@@ -79,8 +80,8 @@ set_max_transition 1.8 -data_path [all_clocks]
 # set false path -through Iget pins i dig top/i dig core/i mtp ctrl top/i AEONFTP AH 64R16CHOPOWOXOY M7P0/READYset ideal network [get ports "clk"]
 set_ideal_network [get_ports "resetn"]
 
-set_dont_touch [get_designs d_cache -quiet]
-set_dont_touch [get_designs test_cache -quiet]
+set_dont_touch [get_designs d_cache_v1 -quiet]
+set_dont_touch [get_designs i_cache_v1 -quiet]
 # saduvssd8ULTRALOW1
 ########################################################################################
 
@@ -92,10 +93,12 @@ compile -map_effort high -incremental_mapping
 
 # compile -hierarchy -incremental -no_autofix -no_autofix_violations -no_autofix_warnings -no_autofix_errors
 set_fix_hold clk
+compile -map_effort high
+compile -map_effort high -incremental_mapping
 # set compile_top_all_paths true
 
 ###Flatten the Heirarchy
-ungroup -all -flatten
+# ungroup -all -flatten
 
 # compile -map_effort high
 # compile -map_effort high -incremental_mapping
@@ -104,17 +107,17 @@ ungroup -all -flatten
 # comments: this seems useful than the -ultra method, may be it is due to the macro, when there are macros, it will ignore the no-autogroup;
 # compile -map_effort high -incremental_mapping
 # compile_ultra -no_autoungroup  -incremental -only_design_rule
-compile_ultra -no_autoungroup -timing_high_effort_script 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+# compile_ultra -no_autoungroup -timing_high_effort_script 
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script

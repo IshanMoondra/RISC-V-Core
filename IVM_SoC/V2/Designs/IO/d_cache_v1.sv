@@ -14,6 +14,7 @@ module d_cache_v1
         input wire clk,
         input wire rst_n,
         // Byte Mask/Enables
+        input wire override,
         input wire data_enable,
         input wire data_read,
         input wire [3:0] mem_wstrb,
@@ -76,7 +77,7 @@ always_ff @(posedge clk, negedge rst_n)
                         byte1[index],
                         byte0[index]
                     };
-    else if (~data_read && data_enable)
+    else if ((~data_read && data_enable) | override)
         casex (mem_wstrb)
             4'b0001: byte0[index] <= ram_store[7:0]; // Store Byte
             4'b0010: byte1[index] <= ram_store[7:0]; // Store Byte
@@ -90,12 +91,3 @@ always_ff @(posedge clk, negedge rst_n)
         endcase
 
 endmodule
-/*
-Base Bound Register
-Instruction PC = 45 
-Is (Base < PC < Bound) ? (SRAM[PC[10:2]]) : (0)
-
-I-Cache: Tag Array - Physical Offset
-
-SRAM cell 256 instructions
-*/

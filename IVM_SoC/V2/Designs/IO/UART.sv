@@ -57,7 +57,6 @@ UART_tx iTX
         .TX(TX),
         .BAUD_PERIOD(baud_rate),
         .trmt(trmt_ff),
-        // .tx_data(tx_data),
         .tx_data(transmit_buffer[7:0]),
         .tx_done(tx_done)
     );

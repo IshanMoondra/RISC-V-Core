@@ -42,8 +42,8 @@ always_ff @(posedge clk, negedge rst_n)
 begin
     if (~rst_n)
         begin
-            base_addr <= 1024;
-            bound_addr <= 2048;
+            base_addr <= 0;
+            bound_addr <= 1024;
         end
     else if (base_addr_we)
         base_addr <= set_base_addr;
