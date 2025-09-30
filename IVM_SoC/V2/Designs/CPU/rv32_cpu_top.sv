@@ -52,6 +52,7 @@ wire [31:0] decode_rs2;
 
 wire [31:0] execute_code_bus;
 wire [31:0] execute_pc;
+logic [31:0] execute_pc_ff;
 wire [31:0] execute_rs1;
 wire [31:0] execute_rs2;
 wire [31:0] execute_pc_ret;
@@ -318,13 +319,19 @@ always_comb
             OperandB = decode_rs2;
     end: Forwarding_Mux_RS2
 
+always_ff @(posedge clk, negedge rst_n)
+    if (~rst_n)
+        execute_pc_ff <= 0;
+    else
+        execute_pc_ff <= execute_pc;
+
 // ALU
 rv32_alu_v2 iALU
     (
         .reg_s1(OperandA),
         .reg_s2(OperandB),
         .code_bus(execute_code_bus),
-        .pc(execute_pc),
+        .pc(execute_pc_ff),
         .enable(execute_alu_ctrl[5]),
         .alu_opsel(execute_alu_ctrl[4:0]),
         .reg_d1(execute_alu_res),

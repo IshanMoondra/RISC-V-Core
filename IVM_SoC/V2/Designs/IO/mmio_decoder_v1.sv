@@ -93,10 +93,17 @@ always_ff @(posedge clk, negedge rst_n)
         cache_access_ff <= cache_access;
 
 generate
-  for (i = 1; i < 32; i = i + 1)
+  for (i = 1; i < 8; i = i + 1)
     begin   : mmio_slot
         assign mmio_vector[i] = ((data_address >= shadow_MMIO_base + (i * 1024)) && (data_address < shadow_MMIO_base + ((i + 1) * 1024))) && is_MMIO && data_enable;
     end     :mmio_slot
+endgenerate
+
+generate
+  for (i = 8; i < 32; i = i + 1)
+    begin   : mmio_slot_empty
+        assign mmio_vector[i] = 0;
+    end     :mmio_slot_empty
 endgenerate
 
 endmodule

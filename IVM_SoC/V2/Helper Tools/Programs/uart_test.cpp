@@ -8,7 +8,9 @@ extern "C"
     extern int _stack_end;
     extern int _global_pointer;
     extern int UART_RATE;
-    extern int UART_DATA;
+    extern int UART_SEND;
+    extern int UART_RECV;
+    extern int UART_STAT;
 }
 
 extern "C" void _start() __attribute__((naked, section(".start")));
@@ -16,6 +18,7 @@ void _start()
 {
     asm volatile 
     (
+        "nop\n"
         "la sp, _stack_end\n"       // Set stack pointer
         "la gp, _global_pointer\n"  // Set global pointer (safe default)
     );
@@ -27,13 +30,15 @@ void _start()
 }
 
 void uart_init(int baud);
-void uart_sendchar(int c);
-int uart_getchar();
+void uart_sendchar(char c);
+int uart_status();
+char uart_getchar();
 
 int main()
 {
     uart_init(1000);
-    int a, b, c, chr;
+    int a, b, c, status;
+    char chr;
     a = 25;
     b = 4;
     c = a << b;
@@ -47,10 +52,14 @@ int main()
     // uart_sendchar(static_cast<int>('C'));
     // uart_sendchar(static_cast<int>('_'));
     // uart_sendchar(static_cast<int>('V'));
-    uart_sendchar(static_cast<int>('?'));
+    uart_sendchar('P');
+    status = uart_status();
     asm volatile ("nop"); // Why does it need a NOP padded?
     chr = uart_getchar(); // BOZO Needs fix
-
+    asm volatile ("nop"); // Why does it need a NOP padded?
+    // uart_sendchar(chr);
+    // status = uart_status();
+    
     return 0;
 }
 
@@ -61,12 +70,17 @@ void uart_init(int baud)
     *(volatile int*)&UART_RATE = baud;
 }
 
-void uart_sendchar(int c)
+int uart_status()
+{
+    return *(volatile int*)&UART_STAT;
+}
+
+void uart_sendchar(char c)
 {
     // Read the Baud Rate first.
     int get_baud = *(volatile int*)&UART_RATE;
     // Send the Character
-    *(volatile int*)&UART_DATA = c;
+    *(volatile char*)&UART_SEND = c;
     // Wait Loop
     for (int j = 0; j < 1; j++)
     {
@@ -74,9 +88,9 @@ void uart_sendchar(int c)
     }
 }
 
-int uart_getchar()
+char uart_getchar()
 {    
     // asm volatile ("nop");
-    int c = *(volatile int*)&UART_DATA;
+    char c = *(volatile char*)&UART_RECV;
     return c;
 }

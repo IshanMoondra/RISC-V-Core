@@ -9,444 +9,470 @@ does what it is told.
 module cache_controller_v1
     (
         // Universal Signals
-        input wire clk, 
-        input wire rst_n,
+        input   wire clk, 
+        input   wire rst_n,
         // I-cache Bus
-        input wire [31:0] pc_fetch,         // PC_Fetch for I-Cache
-        output logic [31:0] code_fetch,     // To CPU from I-Cache
+        input   wire    [31:0] pc_fetch,        // PC_Fetch for I-Cache
+        output  logic   [31:0] code_fetch,      // To CPU from I-Cache
         // MMIO Interfacing
-        input wire [31:0] data_address,     // From the CPU for the MMIO usage & D-Cache hit
-        input wire [31:0] data_store,       // For the Page Locks, Base-Bound Data
-        output logic [31:0] data_fetch,     // For giving data on BB Pair values etc. 
-        input wire [3:0] mem_wstrb,         // Write Strobe for D-Cache access.
-        input wire data_read,               // Global Data Read from Core
-        input wire mmio_enable,             // MMIO Data Enable from MMIO Decoder
-        input wire cache_enable,            // Cache Data Enable from MMIO Decoder
+        input   wire    [31:0] data_address,    // From the CPU for the MMIO usage & D-Cache hit
+        input   wire    [31:0] data_store,      // For the Page Locks, Base-Bound Data
+        output  logic   [31:0] data_fetch,      // For giving data on BB Pair values etc. 
+        input   wire    [3:0] mem_wstrb,        // Write Strobe for D-Cache access.
+        input   wire    data_read,              // Global Data Read from Core
+        input   wire    mmio_enable,            // MMIO Data Enable from MMIO Decoder
+        input   wire    cache_enable,           // Cache Data Enable from MMIO Decoder
+        input   wire    cache_enable_ff,           // Cache Data Enable FF from MMIO Decoder
         // SPI IO
-        input wire [31:0] spi_fetch,        // For Loading the Caches
-        output logic [31:0] spi_store,      // For Write Backs to SPI
-        output logic [31:0] spi_address,    // To SPI Master
-        output logic [3:0] write_strobe,    // To SPI Master for Dirty Write Back
-        input wire spi_ready,               // From SPI Master on Word Ready
-        output logic spi_addr_valid,        // To SPI Master to indicate valid Addr
+        input   wire    [31:0] spi_fetch,       // For Loading the Caches
+        output  logic   [31:0] spi_address,     // To SPI Master
+        input   wire    spi_ready,              // From SPI Master on Word Ready
+        output  logic   spi_addr_valid,         // To SPI Master to indicate valid Addr        
+        output  logic   [31:0] spi_store,       // For Write Backs to SPI               // Unsupoorted for V1
+        output  logic   [3:0] write_strobe,     // To SPI Master for Dirty Write Back   // Unsupoorted for V1 
         // Clock Gate Signals
-        output logic set_clk_enable,
-        output logic i_cache_miss,
-        output logic d_cache_miss,
+        output  logic   set_clk_enable,
+        output  logic   i_cache_miss,
+        output  logic   d_cache_miss,
         // Core Stall Signals: For the Branch resolution by bubbling for 5 cycles
-        output logic core_bubble        // Can do it later as well. 
+        output  logic   core_bubble             // Can do it later as well. 
     );
 
-// Typedef for the FSM itself.
-typedef enum reg [3:0] { POR, IDLE, I_MISS, D_MISS, BUBBLE, WRBK, WAY_SEL, LCK_BB, FETCH, UPD_BB0, UPD_BB1 } FSM_ENUM;
-FSM_ENUM iSTATE, iNEXT_STATE;
-logic fsm_clk_en;
-logic clr_bubble_counter;
-logic clr_fetch_counter;
-logic [2:0] bubble_counter;
-logic [10:0] fetch_counter;
-// Fixed BB Buffers to fix what page bounds are being loaded.
-logic [31:0] set_base_addr;
-logic update_base_addr;
-logic clr_base_addr;
-logic [31:0] base_buffer;
-logic [31:0] bound_buffer;
-// FSM SM's FF buffers
-// These are for I-cache Refills, since direct port is present // Might need re-work.
-logic fsm_update_addr;
-logic fsm_clr_buffer;
-logic [31:0] fsm_fetch_addr;
-logic [31:0] addr_buffer;
-logic [31:0] addr_buffer_ff;
-logic [31:0] data_buffer;
-logic [31:0] i_cache_base_fetch;
-logic [31:0] i_cache_bound_fetch;
-// These are the muxed wires that will select between who drives the D-cache slices. 
-logic [31:0] fsm_d_addr;
-logic [31:0] fsm_d_store;
-logic [31:0] d_cache_fetch [3:0];
-logic [31:0] d_cache_base_fetch [3:0];
-logic [31:0] d_cache_bound_fetch [3:0];
-// Based on the Memory Layout
-logic d_cache_enable;
-logic d_cache_read;
+parameter num_i_ways = 1;
+parameter num_d_ways = 4;
+genvar i_idx, d_idx;
 
-// For use in Generate For Loops
-parameter num_i_slice = 1;
-parameter num_d_slice = 4;
-genvar i_slice_idx;
-genvar d_slice_idx;
+// Fresh Start: First the BB Pairs
+    logic [31:0] i_base_0, i_bound_0;
+    logic [31:0] d_base_0, d_bound_0;
+    logic [31:0] d_base_1, d_bound_1;
+    logic [31:0] d_base_2, d_bound_2;
+    logic [31:0] d_base_3, d_bound_3;
 
-// Cache Way Select: Each Bit decides whether it is locked or not.
-logic [31:0] i_cache_way;
-logic [31:0] d_cache_way;
-logic [31:0] i_lock_mode;
-logic [31:0] d_lock_mode;
+    logic set_dis_i_cache;
+    logic get_dis_i_cache;
+    logic dis_i_cache;
 
-logic set_i_ways;
-logic set_d_ways;
-
-logic get_i_ways;
-logic get_d_ways;
-
-logic set_i_base;
-logic set_i_bound;
-logic get_i_base;
-logic get_i_bound;
-
-logic set_d_base;
-logic set_d_bound;
-logic get_d_base;
-logic get_d_bound;
-
-logic set_i_lock_mode;
-logic get_i_lock_mode;
-
-logic set_d_lock_mode;
-logic get_d_lock_mode;
-
-logic update_ways;
-
-assign set_i_ways   = mmio_enable && (data_address[7:2] == 0);
-assign set_d_ways   = mmio_enable && (data_address[7:2] == 4);
-assign get_i_ways   = mmio_enable && (data_address[7:2] == 8);
-assign get_d_ways   = mmio_enable && (data_address[7:2] == 12);
-
-assign set_i_base   = mmio_enable && (data_address[7:2] == 16);
-assign set_i_bound  = mmio_enable && (data_address[7:2] == 20);
-assign get_i_base   = mmio_enable && (data_address[7:2] == 24);
-assign get_i_bound  = mmio_enable && (data_address[7:2] == 28);
-
-assign set_d_base   = mmio_enable && (data_address[7:2] == 32);
-assign set_d_bound  = mmio_enable && (data_address[7:2] == 36);
-assign get_d_base   = mmio_enable && (data_address[7:2] == 40);
-assign get_d_bound  = mmio_enable && (data_address[7:2] == 44);
-
-assign set_i_lock_mode = mmio_enable && (data_address[7:2] == 48);
-assign get_i_lock_mode = mmio_enable && (data_address[7:2] == 52);
-
-assign set_d_lock_mode = mmio_enable && (data_address[7:2] == 56);
-assign get_d_lock_mode = mmio_enable && (data_address[7:2] == 60);
-
-// MMIO Registers
-always_ff @(posedge clk, negedge rst_n)
-    if (~rst_n)
-        begin
-            i_cache_way <= 0;
-            d_cache_way <= 0;
-            i_lock_mode <= 0;
-            d_lock_mode <= 0;
-        end
-    else if (set_i_ways)
-        i_cache_way <= data_store;
-    else if (set_d_ways)
-        d_cache_way <= data_store;
-    else if (set_i_lock_mode)
-        i_lock_mode <= data_store;
-    else if (set_d_lock_mode)
-        d_lock_mode <= data_store;
-
-// Can use this as a bit wise for upto 32 ways, simply set that particular bit and that slice gets the values you want.
-logic [31:0] set_i_refill;
-logic [31:0] i_refill;
-logic [31:0] i_misaligned;
-logic [31:0] i_base_we;
-logic [31:0] i_bound_we;
-logic [31:0] i_clk_en;
-logic [31:0] i_miss;
-
-// Same for D-Cache
-logic [31:0] set_d_refill;
-logic [31:0] d_refill;
-logic [31:0] d_base_we;
-logic [31:0] d_bound_we;
-logic [31:0] d_clk_en;
-logic [31:0] d_miss;
-
-assign d_cache_enable   = cache_enable;
-assign d_cache_read     = data_read;
-
-// Can make generate for loop for this too in the later revision.
-// Instantiating the I-Cache Slices
-i_cache_v1 iSlice0
-    (
-        // Universal Signals
-        .clk(clk),
-        .rst_n(rst_n),
-        // Instructions to CPU
-        .fetch_address({2'b00, pc_fetch[31:2]}),
-        .code_fetch(code_fetch),
-        // Data from Cache Controller
-        .refill_enable(i_refill[0]),
-        .refill_data(data_buffer),
-        .refill_address({2'b00, addr_buffer_ff[31:2]}),
-        // Misaligned Access Warning
-        .misaligned(i_misaligned[0]),
-        // BB Register Pair MMIO
-        .set_base_addr(base_buffer),
-        .set_bound_addr(bound_buffer),
-        // This is a problematic piece, need to think this... BOZO
-        .get_base_addr(i_cache_base_fetch),
-        .get_bound_addr(i_cache_bound_fetch),
-        // BB Register Pair Write Enables
-        .base_addr_we(i_base_we[0]),
-        .bound_addr_we(i_bound_we[0]),
-        // I_Cache Slice Clk Enable
-        .set_clk_enable(i_clk_en[0]),
-        .i_cache_miss(i_miss[0])
-    );
-
-// Instantiating the D-Cache Slices
-generate
-    for (d_slice_idx = 0; d_slice_idx < num_d_slice; d_slice_idx = d_slice_idx + 1)
-        begin   : d_slice_gen
-            // Instantiating the D-Cache Slice
-            d_cache_v1 d_slice_inst
-                (
-                    // Universal Signals
-                    .clk(clk),
-                    .rst_n(rst_n),
-                    // Byte Mask + Enables: Need to add ports to cache controller for this
-                    .override(d_refill[d_slice_idx]),
-                    .data_enable(d_cache_enable),
-                    // .data_enable(data_enable),
-                    .data_read(d_cache_read),
-                    .mem_wstrb(mem_wstrb),
-                    // Data to/from Core
-                    .ram_address(fsm_d_addr),
-                    .ram_store(fsm_d_store),
-                    // BOZO need to sort this out too.
-                    .ram_fetch(d_cache_fetch[d_slice_idx]),
-                    // BB Register Pair MMIO
-                    .set_base_addr(base_buffer),
-                    .set_bound_addr(bound_buffer),
-                    // BOZO need to sort this out
-                    .get_base_addr(d_cache_base_fetch[d_slice_idx]),
-                    .get_bound_addr(d_cache_bound_fetch[d_slice_idx]),
-                    // BB Register Pair Write Enables
-                    .base_addr_we(d_base_we[d_slice_idx]),
-                    .bound_addr_we(d_bound_we[d_slice_idx]),
-                    // D-Cache Slice Clock Enables
-                    .set_clk_enable(d_clk_en[d_slice_idx]),
-                    .d_cache_miss(d_miss[d_slice_idx])
-                );
-        end     : d_slice_gen
-endgenerate
-
-always_ff @(posedge clk, negedge rst_n)
-    begin : State_Machine_FF
+    always_ff @(posedge clk, negedge rst_n)
         if (~rst_n)
-            iSTATE <= POR;
+            dis_i_cache = 0;
+        else if (set_dis_i_cache)
+            dis_i_cache = data_store[0];
+
+// Dynamic Memory Space Base & Bound MMIO Registers
+    logic [31:0] dynamic_base, dynamic_bound;
+    logic set_dynamic_base, set_dynamic_bound;
+    logic get_dynamic_base, get_dynamic_bound;
+
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                dynamic_base    <= 32'h0017F000; // Replace with the Linker Values
+                dynamic_bound   <= 32'h00180000;
+            end
+        else if (set_dynamic_base)
+            dynamic_base    <= data_store;
+        else if (set_dynamic_bound)
+            dynamic_bound   <= data_store;
+
+// Cache Way Locks
+    logic [num_i_ways-1:0] i_lock;
+    logic [num_d_ways-1:0] d_lock;
+    logic set_i_lock, set_d_lock;   // MMIO Set Lock
+    logic get_i_lock, get_d_lock;   // MMIO Get Lock
+
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                i_lock <= 0;
+                d_lock <= 0;
+            end
+        else if (set_i_lock)
+            i_lock <= data_store[num_i_ways-1:0];
+        else if (set_d_lock)
+            d_lock <= data_store[num_d_ways-1:0];
+
+// Cache Hit vectors // Combinational Hit/Miss Addr BB Checkers
+    logic [num_i_ways-1:0] i_cache_hit, i_cache_hit_ff;
+    logic [num_d_ways-1:0] d_cache_hit, d_cache_hit_ff;
+    logic i_clk_en;
+    logic d_clk_en;
+    logic fsm_clk_en;
+
+// To update the Base and Bound for Cache Slices
+    logic [num_i_ways-1:0] set_i_base, set_i_bound;
+    logic [4-1:0] set_d_base, set_d_bound;
+
+// Buffers to hold new Base and Bound addresses
+    logic [31:0] new_base;
+    logic [21:0] new_page;
+    logic [31:0] base_buffer, bound_buffer;
+    logic set_base_buffer;
+
+    // FF for Base Buffer:
+        always_ff @(posedge clk, negedge rst_n)
+            if (~rst_n)
+                base_buffer = 0;
+            else if (set_base_buffer)
+                base_buffer = new_base;
+
+    // Bound Buffer Logic
+        assign bound_buffer = base_buffer + 1024;
+
+// To select cache ways (ME) 
+    logic [num_i_ways-1:0] i_way_sel;
+    logic [num_d_ways-1:0] d_way_sel;
+
+// & actually write to them (WE)
+    logic [num_i_ways-1:0] i_way_we;
+    // D-Cache wrapper can use d_way_sel and internal logic to prevent bad writes.
+    logic [4-1:0] d_way_override;
+    logic use_d_way_override;
+
+// Inputs to Cache Ways
+    logic [31:0] i_cache_store, i_cache_addr;
+    logic [31:0] d_cache_store, d_cache_addr;
+
+// Output Wire Set from Caches
+    wire [31:0] i_way_out [num_i_ways-1:0];
+    wire [31:0] d_way_out [num_d_ways-1:0];
+
+// I-Cache Instantiation   
+    generate
+        for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
+            begin   : I_Slice_Gen
+                saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core i_slice_inst
+                    (
+                        .CLK    (clk                    ),
+                        // .ME     (i_way_sel[i_idx]       ),
+                        .ME     (1'b1                   ),
+                        .WE     (i_way_we[i_idx]        ),
+                        .Q      (i_way_out[i_idx]       ),
+                        .D      (i_cache_store          ),
+                        .ADR    (i_cache_addr[9:2]      )
+                    );         
+            end     : I_Slice_Gen
+    endgenerate
+
+// D-Cache Instantiation
+    generate
+        for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
+            begin   : D_Slice_Gen
+                d_cache_v1 d_slice_inst
+                    (
+                        // Universal Signals
+                        .clk            (clk                ),
+                        .rst_n          (rst_n              ),
+                        // Memory Enable/Read/Write Signals
+                        // .data_enable    (d_way_sel[d_idx]   ),
+                        .data_enable    (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx]),
+                        .data_read      (data_read | ((~d_way_override[d_idx]) & use_d_way_override)),
+                        .mem_wstrb      (mem_wstrb          ),
+                        // Input Output Buses
+                        .ram_store      (d_cache_store      ),
+                        .ram_fetch      (d_way_out[d_idx]   ),
+                        .ram_address    (d_cache_addr       )
+                    );         
+            end     : D_Slice_Gen
+    endgenerate
+
+// BB for I-cache
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                i_base_0    <= '1;
+                i_bound_0   <= '1;
+            end
+        else if (set_i_base[0])
+            begin
+                i_base_0    <= base_buffer;
+                i_bound_0   <= bound_buffer;
+            end            
+        // else if (set_i_bound[0])
+        //     i_bound_0   <= bound_buffer;
+
+// BB For D-Cache Way 0
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                d_base_0    <= 32'h0017F000;
+                d_bound_0   <= 32'h0017F400;
+            end
+        else if (set_d_base[0])
+            begin
+                d_base_0    <= base_buffer;
+                d_bound_0   <= bound_buffer;
+            end            
+        // else if (set_d_bound[0])
+        //     d_bound_0   <= bound_buffer;
+
+// BB For D-Cache Way 1
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                d_base_1    <= 32'h0017F400;
+                d_bound_1   <= 32'h0017F800;
+            end
+        else if (set_d_base[1])
+            begin
+                d_base_1    <= base_buffer;
+                d_bound_1   <= bound_buffer;
+            end
+        // else if (set_d_bound[1])
+        //     d_bound_1   <= bound_buffer;
+
+// BB For D-Cache Way 2
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                d_base_2    <= 32'h0017F800;
+                d_bound_2   <= 32'h0017FC00;
+            end
+        else if (set_d_base[2])
+            begin
+                d_base_2    <= base_buffer;
+                d_bound_2   <= bound_buffer;
+            end
+        // else if (set_d_bound[2])
+        //     d_bound_2   <= bound_buffer;
+
+// BB For D-Cache Way 3
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            begin
+                d_base_3    <= 32'h0017FC00;
+                d_bound_3   <= 32'h00180000;
+            end
+        else if (set_d_base[3])
+            begin
+                d_base_3    <= base_buffer;
+                d_bound_3   <= bound_buffer;
+            end
+        // else if (set_d_bound[3])
+        //     d_bound_3   <= bound_buffer;
+
+// Cache Hit Checkers
+    // I-Cache
+        assign i_cache_hit[0] = (pc_fetch >= i_base_0) && (pc_fetch < i_bound_0);
+    // D-Cache
+        assign d_cache_hit[0] = (data_address >= d_base_0) && (data_address < d_bound_0);
+        assign d_cache_hit[1] = (data_address >= d_base_1) && (data_address < d_bound_1);
+        assign d_cache_hit[2] = (data_address >= d_base_2) && (data_address < d_bound_2);
+        assign d_cache_hit[3] = (data_address >= d_base_3) && (data_address < d_bound_3);
+
+// Cache Hits Flopped, to select correct SRAM data: Both I & D
+    always_ff @(posedge clk, negedge rst_n)
+        if (~rst_n)
+            {d_cache_hit_ff, i_cache_hit_ff} <= 0;
         else
-            iSTATE <= iNEXT_STATE;
-    end   : State_Machine_FF
+            {d_cache_hit_ff, i_cache_hit_ff} <= {d_cache_hit, i_cache_hit};
 
-always_ff @(posedge clk, negedge rst_n)
-    begin   : SPI_Buffers
+// FSM Stuff
+    typedef enum reg [2:0] { IDLE, BUBBLE, WAY_SEL, LOCK_BB, FETCH, UPD_BB1, UPD_BB2 } iFSM;
+    iFSM iSTATE, iNEXT_STATE;
+
+    // State Machine FF
+        always_ff @(posedge clk, negedge rst_n)
+            if (~rst_n)
+                iSTATE = IDLE;
+            else if (dis_i_cache)
+                iSTATE = IDLE;
+            else
+                iSTATE = iNEXT_STATE;
+
+// SPI Helpers
+    logic [10:0] fetch_count;
+    logic clr_fetch_count;
+    logic update_spi_address;
+    logic [31:0] spi_address_ff;
+
+    // Fetch Counter: To count upto 1023.
+        always_ff @(posedge clk, negedge rst_n)
+            if (~rst_n)
+                fetch_count <= 0;
+            else if (clr_fetch_count)
+                fetch_count <= 0;
+            else if (spi_ready)
+                fetch_count <= fetch_count + 1;
+
+    // SPI Address Buffer (Auto Increment on SPI Ready)
+        always_ff @(posedge clk, negedge rst_n)
+            if (~rst_n)
+                spi_address <= 0;
+            else if (dis_i_cache)
+                spi_address = pc_fetch;
+            else if (update_spi_address)
+                spi_address <= base_buffer;
+            else if (spi_ready)
+                spi_address <= spi_address + 4;
+    
+    // SPI Address Buffer Flopped, to fill I-cache properly
+        always_ff @(posedge clk, negedge rst_n)
+            if (~rst_n)
+                spi_address_ff <= 0;
+            else
+                spi_address_ff <= spi_address;
+
+// Bubble Counter
+    logic [2:0] bubble_count;
+    logic clr_bubble_count;
+    
+    always_ff @(posedge clk, negedge rst_n)
         if (~rst_n)
-            begin
-                addr_buffer     <= 0;
-                data_buffer     <= 0;
-                fetch_counter   <= 0;
-            end
-        else if (spi_ready)
-            begin
-                fetch_counter <= fetch_counter + 1;
-                data_buffer <= spi_fetch;
-                addr_buffer <= addr_buffer + 4; 
-            end
-        else if (fsm_update_addr)
-            addr_buffer <= base_buffer;
-        else if (clr_fetch_counter)
-            fetch_counter <= 0;
-    end     : SPI_Buffers
-
-always_ff @(posedge clk, negedge rst_n)
-    if (~rst_n)
-        addr_buffer_ff <= 0;
-    else
-        addr_buffer_ff <= addr_buffer;
-
-always_ff @(posedge clk, negedge rst_n)
-    begin   : BB_Buffers
-        if (~rst_n)
-            base_buffer <= 0;
-        else if (update_base_addr)
-            base_buffer <= set_base_addr;
-    end     : BB_Buffers
-
-assign bound_buffer = base_buffer + 1024;
-
-always_ff @(posedge clk, negedge rst_n)
-    begin   : WAY_SELECT_LOCK
-        if (~rst_n)
-            begin
-                i_refill = 0;
-                d_refill = 0;
-            end 
-        else if (update_ways)
-            begin
-                i_refill = set_i_refill;
-                d_refill = set_d_refill;
-            end
-    end     : WAY_SELECT_LOCK
-
-always_comb 
-begin   : Controller_FSM
-    // Setting up defaults
-    iNEXT_STATE     = iSTATE;
-    fsm_clk_en      = 0;
-    fsm_fetch_addr  = 0;
-    // Future Variant
-    core_bubble     = 0;
-    clr_bubble_counter  = 1;
-    clr_fetch_counter = 1;    
-    // SPI Mem IO Interface Inputs
-    spi_addr_valid  = 0;
-    spi_address     = 32'h0;
-    // I-Cache Specifics
-    set_i_refill    = 0;
-    i_base_we       = 0;
-    i_bound_we      = 0;
-    // D-Cache Specifics
-    fsm_d_addr      = (&d_miss[3:0]) ? (addr_buffer) : (data_address);
-    fsm_d_store     = (&d_miss[3:0]) ? (data_buffer) : (data_store);
-    d_base_we       = 0;
-    d_bound_we      = 0;
-
-    update_ways     = 0;
-    casex (iSTATE)
-        POR : 
-            begin
-                iNEXT_STATE     = I_MISS;
-                set_i_refill    = 1;
-                update_ways     = 1;
-            end
-        IDLE : 
-            begin
-                fsm_clk_en = 1;
-                if (i_miss[0])
-                    iNEXT_STATE = I_MISS;
-                else if (&d_miss[3:0])
-                    iNEXT_STATE = D_MISS;
-            end
-        I_MISS : 
-            begin
-                clr_bubble_counter  = 1;
-                update_base_addr    = 1;
-                set_base_addr       = {pc_fetch[31:10], {10{1'b0}}};
-                iNEXT_STATE         = LCK_BB;
-            end
-        D_MISS :
-            begin
-                iNEXT_STATE = WAY_SEL;
-                update_base_addr    = 1;
-                set_base_addr       = {data_address[31:10], {10{1'b0}}};
-            end
-        BUBBLE :
-            begin
-                core_bubble = 1;
-                iNEXT_STATE = (bubble_counter == 4) ? (WAY_SEL) : (BUBBLE);
-            end
-        WAY_SEL :
-            begin
-                iNEXT_STATE = LCK_BB;
-                if (i_miss[0])
-                    set_i_refill = 1;
-                else
-                    set_d_refill = 1'b1 << base_buffer[11:10];
-            end
-        LCK_BB :
-            begin
-                clr_fetch_counter   = 1;
-                iNEXT_STATE         = FETCH;
-            end
-        FETCH : 
-            begin
-                spi_addr_valid  = 1;
-                spi_address     = addr_buffer;
-                iNEXT_STATE     = (fetch_counter == 1023) ? (UPD_BB0) :(FETCH);
-                clr_fetch_counter   = (fetch_counter == 1023) ? (1'b1) : (1'b0);
-            end
-        UPD_BB0 :
-            begin
-                iNEXT_STATE = UPD_BB1;
-                update_ways = 1;
-                if (i_miss[0])
-                    i_base_we[0] = 1;
-                else
-                    casex (d_miss[3:0])
-                        4'b0001: d_base_we[0] = 1;
-                        4'b0010: d_base_we[1] = 1;
-                        4'b0100: d_base_we[2] = 1;
-                        4'b1000: d_base_we[3] = 1; 
-                        default: d_base_we[0] = 1;
-                    endcase
-            end
-        UPD_BB1 :
-            begin
-                iNEXT_STATE = IDLE;
-                if (i_miss[0])
-                    i_bound_we[0] = 1;
-                else
-                    casex (d_miss[3:0])
-                        4'b0001: d_bound_we[0] = 1;
-                        4'b0010: d_bound_we[1] = 1;
-                        4'b0100: d_bound_we[2] = 1;
-                        4'b1000: d_bound_we[3] = 1; 
-                        default: d_bound_we[0] = 1;
-                    endcase
-            end
-        default: iNEXT_STATE = IDLE; 
-    endcase
-end     : Controller_FSM
-
-// Clock Enable:
-assign set_clk_enable   = (i_clk_en[0]) && (&d_clk_en[3:0]) && fsm_clk_en;
-// Final Output Mux
-// assign data_fetch       =   (mmio_enable)       ? 
-//                             (get_i_ways)        ? (i_cache_way) :
-//                             (get_d_ways)        ? (d_cache_way) :
-//                             (get_i_lock_mode)   ? (i_lock_mode) :
-//                             (get_d_lock_mode)   ? (d_lock_mode) :
-//                             (cache_enable)      ? (
-//                             (d_clk_en[0])       ? (d_cache_fetch[0]) :
-//                             (d_clk_en[1])       ? (d_cache_fetch[1]) :
-//                             (d_clk_en[2])       ? (d_cache_fetch[2]) :
-//                             (d_clk_en[3])       ? (d_cache_fetch[3]) :
-//                             (32'h0)) : (32'h0);
-
-// Final Output Mux
-always_comb
-    begin
-        if (mmio_enable)
-            begin
-                if (get_i_ways)
-                    data_fetch = i_cache_way;
-                else if (get_d_ways)
-                    data_fetch = d_cache_way;
-                else if (get_i_lock_mode)
-                    data_fetch = i_lock_mode;
-                else if (get_d_lock_mode)
-                    data_fetch = d_lock_mode;
-                else
-                    data_fetch = 0;
-            end
-        else if (cache_enable)
-            begin
-                if (d_clk_en[0])
-                    data_fetch = d_cache_fetch[0];
-                else if (d_clk_en[1])
-                    data_fetch = d_cache_fetch[1];
-                else if (d_clk_en[2])
-                    data_fetch = d_cache_fetch[2];
-                else if (d_clk_en[3])
-                    data_fetch = d_cache_fetch[3];
-                else
-                    data_fetch = 0;
-            end
+            bubble_count <= 0;
+        else if (clr_bubble_count)
+            bubble_count <= 0;
         else
-            data_fetch = 0;
-    end
+            bubble_count <= bubble_count + 1;
+
+// Actual FSM Comb Block
+    always_comb 
+    begin   : CC_FSM
+        // Setting up safe defaults        
+            clr_bubble_count    = 1;
+            core_bubble         = 0;
+            clr_fetch_count     = 1;
+            update_spi_address  = 0;
+            spi_addr_valid      = dis_i_cache;
+            
+            fsm_clk_en          = 0;
+            
+            set_i_base          = 0;
+            set_i_bound         = 0;
+            set_d_base          = 0;
+            set_d_bound         = 0;
+
+            new_base            = 0;
+            new_page            = (~|i_cache_hit) ? (pc_fetch[31:10]) : (data_address[31:10]);
+            set_base_buffer     = 0;
+
+            i_way_sel           = i_cache_hit;
+            d_way_sel           = d_cache_hit;
+            use_d_way_override  = 0;
+
+            i_way_we            = 0;
+
+            i_cache_store       = spi_fetch;
+            i_cache_addr        = pc_fetch;
+
+            d_cache_store       = data_store;
+            d_cache_addr        = data_address;
+
+            iNEXT_STATE         = iSTATE;
+        
+        // Casex Block for State Machine
+            casex (iSTATE)
+                IDLE    : 
+                    begin
+                        iNEXT_STATE = (~|i_cache_hit) ? (BUBBLE) : (~|d_cache_hit && cache_enable) ? (WAY_SEL) : (IDLE);
+                        fsm_clk_en  = 1'b1;
+                    end                    
+                BUBBLE  :
+                    begin
+                        clr_bubble_count    = 0;
+                        core_bubble         = 1;
+                        if (bubble_count == 4)
+                            iNEXT_STATE     = WAY_SEL;
+                    end
+                WAY_SEL :
+                    begin
+                        iNEXT_STATE     = LOCK_BB;
+                        set_base_buffer = 1;
+                        new_base        = {new_page, {10{1'b0}}};
+                        
+                        if (~i_cache_hit[0])
+                            i_way_sel   = 1; // Not used in initial run since only 1 slice.
+                        
+                        // BOZO to be re-worked in the future
+                        // if (~|d_cache_hit)
+                        //     use_d_way_override = 1;
+                    end
+                LOCK_BB :
+                    begin
+                        iNEXT_STATE         = FETCH;
+                        update_spi_address  = 1;
+                    end
+                FETCH   :
+                    begin
+                        iNEXT_STATE     = (fetch_count == 255) ? (UPD_BB1  ) : (FETCH);
+                        clr_fetch_count = (fetch_count == 255) ? (1'b1     ) : (1'b0 );
+                        spi_addr_valid  = 1'b1;
+                        if (~|i_cache_hit)
+                            begin
+                                i_way_we        = 1;
+                                i_cache_addr    = spi_address_ff;
+                                i_cache_store   = spi_fetch;
+                            end
+                        else
+                            begin
+                                d_cache_addr        = spi_address_ff;
+                                d_cache_store       = spi_fetch;
+                                use_d_way_override  = 1;
+                            end
+                    end
+                UPD_BB1 :
+                    begin
+                        iNEXT_STATE = UPD_BB2;
+                        if (~|i_cache_hit)
+                            set_i_base = 1;
+                        else
+                            set_d_base = d_way_override;
+                    end
+                UPD_BB2 :
+                    begin
+                        iNEXT_STATE = IDLE;
+                        // if (~|i_cache_hit)
+                        //     set_i_bound = 1;
+                        // else
+                        //     set_d_bound = d_way_override;
+                    end
+                default: iNEXT_STATE = IDLE;
+            endcase
+    end     : CC_FSM
+
+// Selects D_Cache Ways to overwrite when a Miss happenes.
+    // Way 0 is selected for anything that is not in the 3K pure dynamic space, aka the RO Streaming space.
+    assign d_way_override[0] = ((data_address <   dynamic_base)         & (data_address >= dynamic_bound)          );
+    assign d_way_override[1] = ((data_address >=  dynamic_base)         & (data_address < (dynamic_base + 1024))   );
+    assign d_way_override[2] = ((data_address >= (dynamic_base + 1024)) & (data_address < (dynamic_base + 2048))   );
+    assign d_way_override[3] = ((data_address >= (dynamic_base + 3072)) & (data_address < dynamic_bound)           );
+
+assign code_fetch   =   (dis_i_cache) ? (spi_fetch) : (i_cache_hit_ff[0]) ? (i_way_out[0]) : (0);
+
+assign data_fetch   =   (mmio_enable)   ? 
+                            (get_dynamic_base   ) ? (dynamic_base) :
+                            (get_dynamic_bound  ) ? (dynamic_bound) :
+                            (get_dis_i_cache    ) ? (dis_i_cache) :
+                            (0) :
+                        (cache_enable_ff)  ? 
+                            (d_cache_hit_ff[0]) ? (d_way_out[0]) :
+                            (d_cache_hit_ff[1]) ? (d_way_out[1]) :
+                            (d_cache_hit_ff[2]) ? (d_way_out[2]) :
+                            (d_cache_hit_ff[3]) ? (d_way_out[3]) :
+                            (0) :
+                            (0) ;
+
+assign i_clk_en         = (dis_i_cache) ? (spi_ready) : (|i_cache_hit);
+assign d_clk_en         = (cache_enable) ? (|d_cache_hit) : (1'b1);
+assign set_clk_enable   = i_clk_en && d_clk_en && fsm_clk_en;
+
+assign i_cache_miss     = ~i_clk_en;
+assign d_cache_miss     = ~d_clk_en;
+
+// Non Supported Features
+assign spi_store        = 0;
+assign write_strobe     = 0;
+
+// MMIO Stuff to be done
+assign set_i_lock           = 0;
+assign set_d_lock           = 0;
+assign get_i_lock           = 0;
+assign get_d_lock           = 0;
+assign set_dynamic_base     = mmio_enable && data_address[3:0] == 4'd0;
+assign set_dynamic_bound    = mmio_enable && data_address[3:0] == 4'd4;
+assign get_dynamic_base     = mmio_enable && data_address[3:0] == 4'd8;
+assign get_dynamic_bound    = mmio_enable && data_address[3:0] == 4'd12;
+assign set_dis_i_cache      = mmio_enable && data_address[3:0] == 4'd16;
+assign get_dis_i_cache      = mmio_enable && data_address[3:0] == 4'd20;
 
 endmodule

@@ -79,6 +79,8 @@ assign sb_offset = {{20{code_bus[31]}}, code_bus[7], code_bus[30:25], code_bus[1
 assign normal_pc    = (~rst_n) ? (0): (pc + 4);
 assign uj_pc        = (~rst_n) ? (0): (execute_pc_ff + uj_offset);
 assign sb_pc        = (~rst_n) ? (0): (execute_pc_ff + sb_offset);
+// assign uj_pc        = (~rst_n) ? (0): (execute_pc + uj_offset);
+// assign sb_pc        = (~rst_n) ? (0): (execute_pc + sb_offset);
 assign i_pc         = (~rst_n) ? (0): (reg_s1 + i_offset);
 
 always_ff @( posedge clk, negedge rst_n )

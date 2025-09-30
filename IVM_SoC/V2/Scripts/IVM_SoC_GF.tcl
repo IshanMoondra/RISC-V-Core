@@ -29,11 +29,15 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/CPU/rv32_load_store_unit.sv\
                                 ./Designs/CPU/rv32_cpu_top.sv\
                                 ./Designs/IO/i_cache_v1.sv\
+                                ./Designs/IO/saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core.v\
+                                ./Designs/IO/saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core.v\
                                 ./Designs/IO/d_cache_v1.sv\
                                 ./Designs/IO/cache_controller_v1.sv\
                                 ./Designs/IO/UART_rx.sv\
                                 ./Designs/IO/UART_tx.sv\
                                 ./Designs/IO/UART.sv\
+                                ./Designs/IO/UART_v1.sv\
+                                ./Designs/IO/mmio_decoder_v1.sv\
                                 ./Designs/IO/spimemio.v\
                                 ./Designs/ivm_soc_v1.v }
 
@@ -49,8 +53,8 @@ set CLK_BUF UDB116SVT36_BUF_2
 # Design rule constraint
 set_max_capacitance 0.2 $DESIGN_NAME
 set_max_fanout 15 $DESIGN_NAME
-# set_max_area 0.0
-set PERIOD_CLK 3
+set_max_area 0.0
+set PERIOD_CLK 3.0
 # set PERIOD_CLK 1.00
 # set PERIOD_CLK 1.00
 
@@ -80,8 +84,10 @@ set_max_transition 1.8 -data_path [all_clocks]
 # set false path -through Iget pins i dig top/i dig core/i mtp ctrl top/i AEONFTP AH 64R16CHOPOWOXOY M7P0/READYset ideal network [get ports "clk"]
 set_ideal_network [get_ports "resetn"]
 
-set_dont_touch [get_designs d_cache_v1 -quiet]
-set_dont_touch [get_designs i_cache_v1 -quiet]
+# set_dont_touch [get_designs d_cache_v1 -quiet]
+# set_dont_touch [get_designs i_cache_v1 -quiet]
+set_dont_touch [get_designs saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core  -quiet]
+set_dont_touch [get_designs saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core -quiet]
 # saduvssd8ULTRALOW1
 ########################################################################################
 
@@ -93,8 +99,8 @@ compile -map_effort high -incremental_mapping
 
 # compile -hierarchy -incremental -no_autofix -no_autofix_violations -no_autofix_warnings -no_autofix_errors
 set_fix_hold clk
-compile -map_effort high
-compile -map_effort high -incremental_mapping
+# compile -map_effort high
+# compile -map_effort high -incremental_mapping
 # set compile_top_all_paths true
 
 ###Flatten the Heirarchy
@@ -105,10 +111,10 @@ compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
 # comments: this seems useful than the -ultra method, may be it is due to the macro, when there are macros, it will ignore the no-autogroup;
-# compile -map_effort high -incremental_mapping
-# compile_ultra -no_autoungroup  -incremental -only_design_rule
-# compile_ultra -no_autoungroup -timing_high_effort_script 
-# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+compile -map_effort high -incremental_mapping
+compile_ultra -no_autoungroup  -incremental -only_design_rule
+compile_ultra -no_autoungroup -timing_high_effort_script 
+compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script
@@ -146,7 +152,7 @@ compile -map_effort high -incremental_mapping
 # go back to compile
 
 ##############################
-set strategy_flag compile_
+# set strategy_flag compile_
 
 ### Writing the Area, Min & Max Timing Reports to files
 report_qor > ./Reports/${DESIGN_NAME}_GF22_qor.rpt

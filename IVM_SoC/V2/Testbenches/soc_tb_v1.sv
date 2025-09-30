@@ -162,7 +162,7 @@ module soc_tb_v1;
 		// Fork Join for easy tracking
 		fork
 			begin: Timeout            
-				while (count < 400000)
+				while (count < 64'd20000000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    
@@ -213,8 +213,10 @@ module soc_tb_v1;
 			
 			// Checks for misaligned code memory fetches
 			if (misaligned_fetch)
-				$display("Misalinged Memory access on: %d, at cycle %d", uut.iSoC.pc_fetch, count);
-			
+				begin
+					$display("Misalinged Memory access on: %h, at cycle %d", uut.iSoC.pc_fetch, count);
+					$stop();			
+				end				
 		end
 
 	always @(posedge clk)

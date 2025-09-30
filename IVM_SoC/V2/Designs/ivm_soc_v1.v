@@ -70,12 +70,14 @@ module ivm_soc_v1 (
 	wire spimem_ready;
 	wire [31:0] spimem_rdata;
 	wire [31:0] ram_rdata;
+	reg [31:0] ram_rdata_ff;
 	wire cache_access;
 	wire cache_access_ff;
 
 	// Flip Flops to allow correct peripheral to speak on the Mem read Bus
 	wire 	[31:0] mmio_vector;
 	wire 	[31:0] mmio_data_fetch;
+	reg 	[31:0] mmio_data_fetch_ff;
 	reg 	[31:0] mmio_vector_ff;
 
 	// IO Bus stuff
@@ -86,6 +88,7 @@ module ivm_soc_v1 (
 
 	reg iomem_ready_ff; 
 	reg iomem_valid_ff;
+	reg [31:0] iomem_rdata_ff;
 
 	always @(posedge clk, negedge resetn)
 	begin
@@ -101,6 +104,7 @@ module ivm_soc_v1 (
 	// Control Registers for SPI
 	wire spimemio_cfgreg_sel;
 	wire [31:0] spi_config_data_fetch;
+	reg [31:0] spi_config_data_fetch_ff;
 	wire [31:0] spimemio_cfgreg_do;
 
 	assign spimemio_cfgreg_sel 		= mmio_vector_ff[3] && (mem_addr[3:0] == 4'h0);
@@ -108,20 +112,35 @@ module ivm_soc_v1 (
 
 	// UART Status Signals
 	wire [31:0] uart_rdata;
-	
-	always @(posedge clk, negedge resetn)
+	reg [31:0] uart_rdata_ff;
+
+	always @(posedge clk, negedge resetn) 
 	begin
 		if (~resetn)
-			mmio_vector_ff <= 0;
+			begin
+				mmio_vector_ff 				<= 0;
+				uart_rdata_ff 				<= 0;
+				ram_rdata_ff 				<= 0;
+				spi_config_data_fetch_ff	<= 0;
+				mmio_data_fetch_ff 			<= 0;
+				iomem_rdata_ff 				<= 0;
+			end			
 		else
-			mmio_vector_ff <= mmio_vector;
+			begin
+				mmio_vector_ff 				<= mmio_vector;
+				uart_rdata_ff 				<= uart_rdata;
+				ram_rdata_ff				<= ram_rdata;
+				spi_config_data_fetch_ff	<= spi_config_data_fetch;
+				mmio_data_fetch_ff			<= mmio_data_fetch;
+				iomem_rdata_ff				<= iomem_rdata;
+			end			
 	end
 
-	assign mem_rdata = (iomem_valid_ff && iomem_ready_ff)	? iomem_rdata :
-						mmio_vector_ff[3] 					? spi_config_data_fetch :
-						mmio_vector_ff[2]	 				? uart_rdata :
-						mmio_vector_ff[1]	 				? ram_rdata : 
-						mmio_vector_ff[0]	 				? mmio_data_fetch : 
+	assign mem_rdata = (iomem_valid_ff && iomem_ready_ff)	? iomem_rdata_ff :
+						mmio_vector_ff[3] 					? spi_config_data_fetch_ff :
+						mmio_vector_ff[2]	 				? uart_rdata_ff :
+						mmio_vector_ff[1]	 				? ram_rdata_ff : 
+						mmio_vector_ff[0]	 				? mmio_data_fetch_ff : 
 						cache_access_ff		 				? ram_rdata : 
 						0;
 
@@ -210,6 +229,7 @@ module ivm_soc_v1 (
 			.mem_wstrb(mem_wstrb),
 			.data_read(data_read),
 			.cache_enable(cache_access),
+			.cache_enable_ff(cache_access_ff),
 			.mmio_enable(mmio_vector[1]),
 			// SPI IO
 			.spi_fetch(spimem_rdata),
@@ -276,5 +296,7 @@ module ivm_soc_v1 (
 			.data_store		(mem_wdata),
 			.data_fetch		(uart_rdata)
 		);
+
+assign misaligned_fetch = (pc_fetch[1:0] != 2'h0);
 
 endmodule

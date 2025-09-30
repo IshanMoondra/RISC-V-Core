@@ -8,6 +8,7 @@ extern "C" void _start() __attribute__((naked, section(".start")));
 
 extern "C" void _start() {
     asm volatile (
+        "nop\n"
         "la sp, _stack_end\n"       // Set stack pointer
         "la gp, _global_pointer\n"  // Set global pointer (safe default)
     );
@@ -20,14 +21,14 @@ extern "C" void _start() {
 
 extern "C" int main() 
 {
-    long long a = 1;
-    long long b = 0;
-    long long c = 0;
+    int a = 1;
+    int b = 0;
+    int c = 0;
     char i = 0;
     int test;
 
     asm volatile ("loop_start:");
-    for (i = 1; i < 255; i++) 
+    for (i = 1; i < 10; i++) 
     {
         c = a + b;
         b = a;

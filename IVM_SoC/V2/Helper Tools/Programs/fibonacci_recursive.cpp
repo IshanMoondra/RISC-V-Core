@@ -8,6 +8,7 @@ extern "C" void _start() __attribute__((naked, section(".start")));
 
 extern "C" void _start() {
     asm volatile (
+        "nop\n"
         "la sp, _stack_end\n"       // Set stack pointer
         "la gp, _global_pointer\n"  // Set global pointer (safe default)
     );
@@ -21,7 +22,7 @@ extern "C" void _start() {
     asm(".word 0xFFFFFFFF");
 }
 
-int fibonacci(long long n)
+int fibonacci(int n)
 {
     if (n <= 1)
     {
@@ -33,7 +34,7 @@ int fibonacci(long long n)
 
 int main()
 {
-    long long fib_final = 0;
-    fib_final = fibonacci(20);
+    int fib_final = 0;
+    fib_final = fibonacci(46);
     return 0;
 }
