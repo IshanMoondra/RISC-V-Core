@@ -300,7 +300,7 @@ genvar i_idx, d_idx;
             if (~rst_n)
                 spi_address <= 0;
             else if (dis_i_cache)
-                spi_address = pc_fetch;
+                spi_address <= pc_fetch;
             else if (update_spi_address)
                 spi_address <= base_buffer;
             else if (spi_ready)
