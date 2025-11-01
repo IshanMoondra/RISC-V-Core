@@ -6,7 +6,7 @@ module UART_v1
         input wire clk,
         input wire rst_n,
         // MMIO Interface
-        input wire [31:0] data_address,
+        input wire [3:0] data_address,
         input wire [31:0] data_store,
         output logic [31:0] data_fetch,
         input data_read,
@@ -19,6 +19,8 @@ module UART_v1
 logic [7:0]     uart_status;
 logic [31:0]    get_baud;
 logic [31:0]    get_char;
+wire  [3:0]		data_address_internal;
+assign data_address_internal = data_enable ? data_address[3:0] : 0;
 
 wire uart_getchar_sel;
 wire uart_setchar_sel;
@@ -30,10 +32,10 @@ wire transmit_done;
 
 assign uart_status      = {4'h0, ser_tx, ser_rx, receive_done, transmit_done};
 
-assign uart_baud_sel    = data_address[3:0] == 4'd0;
-assign uart_getchar_sel = data_address[3:0] == 4'd4;
-assign uart_setchar_sel = data_address[3:0] == 4'd8;
-assign uart_status_sel  = data_address[3:0] == 4'd12;
+assign uart_baud_sel    = data_address_internal[3:0] == 4'd0;
+assign uart_getchar_sel = data_address_internal[3:0] == 4'd4;
+assign uart_setchar_sel = data_address_internal[3:0] == 4'd8;
+assign uart_status_sel  = data_address_internal[3:0] == 4'd12;
 
 assign data_fetch       =   (data_enable && data_read) ? 
 							    (uart_status_sel)   ? ({24'h0, uart_status})
