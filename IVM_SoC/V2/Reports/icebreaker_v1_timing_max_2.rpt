@@ -1,0 +1,126 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Fri Oct 31 04:56:18 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: iSoC/mmio_vector_ff_reg[2]
+              (rising edge-triggered flip-flop clocked by clkin)
+  Endpoint: iSoC/iCPU/iPC/pc_reg[23]
+            (rising edge-triggered flip-flop clocked by clkin)
+  Path Group: clkin
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  write_back         ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_alu_comp_1    ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  branch_resolver_v2 ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_cu_v2         ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  hazard_detection   ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_pc_v2         ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clkin (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iSoC/mmio_vector_ff_reg[2]/CK (UDB116SVT36_FDPRBQ_2)
+                                                          0.00 #     0.00 r
+  iSoC/mmio_vector_ff_reg[2]/Q (UDB116SVT36_FDPRBQ_2)     0.05       0.05 f
+  iSoC/U261/X (UDB116SVT36_BUF_3P75)                      0.02       0.07 f
+  iSoC/U275/X (UDB116SVT36_NR3_8)                         0.02       0.08 r
+  iSoC/U126/X (UDB116SVT36_ND2_12)                        0.02       0.11 f
+  iSoC/U60/X (UDB116SVT36_INV_3)                          0.01       0.12 r
+  iSoC/U274/X (UDB116SVT36_ND3_MM_3)                      0.01       0.13 f
+  iSoC/U118/X (UDB116SVT36_ND2_1P75)                      0.01       0.14 r
+  iSoC/U139/X (UDB116SVT36_NR2_2P75)                      0.01       0.15 f
+  iSoC/U120/X (UDB116SVT36_ND2_MM_5)                      0.01       0.16 r
+  iSoC/iCPU/data_fetch[23] (rv32_cpu_top)                 0.00       0.16 r
+  iSoC/iCPU/U159/X (UDB116SVT36_NR2_8)                    0.01       0.17 f
+  iSoC/iCPU/U237/X (UDB116SVT36_NR2_3P75)                 0.01       0.18 r
+  iSoC/iCPU/U136/X (UDB116SVT36_ND2_MM_5)                 0.01       0.19 f
+  iSoC/iCPU/U239/X (UDB116SVT36_OR2_16)                   0.02       0.22 f
+  iSoC/iCPU/U236/X (UDB116SVT36_ND2_2P75)                 0.01       0.23 r
+  iSoC/iCPU/iWrite/data_result[15] (write_back)           0.00       0.23 r
+  iSoC/iCPU/iWrite/U78/X (UDB116SVT36_AOI21B_4)           0.01       0.24 f
+  iSoC/iCPU/iWrite/U9/X (UDB116SVT36_INV_3)               0.01       0.25 r
+  iSoC/iCPU/iWrite/write_result[15] (write_back)          0.00       0.25 r
+  iSoC/iCPU/U217/X (UDB116SVT36_ND2_2P75)                 0.01       0.27 f
+  iSoC/iCPU/U268/X (UDB116SVT36_ND2_3P75)                 0.01       0.28 r
+  iSoC/iCPU/iResolver/rf_reg_s2[15] (branch_resolver_v2)
+                                                          0.00       0.28 r
+  iSoC/iCPU/iResolver/iBrComp/opB[15] (rv32_alu_comp_1)
+                                                          0.00       0.28 r
+  iSoC/iCPU/iResolver/iBrComp/U49/X (UDB116SVT36_INV_5)
+                                                          0.01       0.29 f
+  iSoC/iCPU/iResolver/iBrComp/U127/X (UDB116SVT36_NR2_3P75)
+                                                          0.01       0.30 r
+  iSoC/iCPU/iResolver/iBrComp/U71/X (UDB116SVT36_NR2_6)
+                                                          0.01       0.31 f
+  iSoC/iCPU/iResolver/iBrComp/U162/X (UDB116SVT36_NR2B_V1_2)
+                                                          0.02       0.33 f
+  iSoC/iCPU/iResolver/iBrComp/U166/X (UDB116SVT36_NR2_2)
+                                                          0.01       0.34 r
+  iSoC/iCPU/iResolver/iBrComp/U177/X (UDB116SVT36_OAI31_2)
+                                                          0.02       0.35 f
+  iSoC/iCPU/iResolver/iBrComp/U118/X (UDB116SVT36_NR2_2P75)
+                                                          0.01       0.37 r
+  iSoC/iCPU/iResolver/iBrComp/result[0] (rv32_alu_comp_1)
+                                                          0.00       0.37 r
+  iSoC/iCPU/iResolver/U65/X (UDB116SVT36_OAI21_2)         0.02       0.39 f
+  iSoC/iCPU/iResolver/U74/X (UDB116SVT36_NR2_3P75)        0.02       0.41 r
+  iSoC/iCPU/iResolver/branch (branch_resolver_v2)         0.00       0.41 r
+  iSoC/iCPU/U220/X (UDB116SVT36_OR2_20)                   0.03       0.44 r
+  iSoC/iCPU/iIF_ID/flush (rv32_if_id_queue)               0.00       0.44 r
+  iSoC/iCPU/iIF_ID/U84/X (UDB116SVT36_NR2_6)              0.01       0.45 f
+  iSoC/iCPU/iIF_ID/code_out[2] (rv32_if_id_queue)         0.00       0.45 f
+  iSoC/iCPU/iControl/code_bus[2] (rv32_cu_v2)             0.00       0.45 f
+  iSoC/iCPU/iControl/U74/X (UDB116SVT36_INV_5)            0.01       0.46 r
+  iSoC/iCPU/iControl/U24/X (UDB116SVT36_ND2_8)            0.02       0.48 f
+  iSoC/iCPU/iControl/U19/X (UDB116SVT36_INV_5)            0.02       0.49 r
+  iSoC/iCPU/iControl/U33/X (UDB116SVT36_ND2_8)            0.01       0.51 f
+  iSoC/iCPU/iControl/U13/X (UDB116SVT36_NR2_6)            0.01       0.52 r
+  iSoC/iCPU/iControl/sel_rs2[0] (rv32_cu_v2)              0.00       0.52 r
+  iSoC/iCPU/iHazard/decode_sel_rs2[0] (hazard_detection)
+                                                          0.00       0.52 r
+  iSoC/iCPU/iHazard/U10/X (UDB116SVT36_EO2_V2_3)          0.02       0.54 r
+  iSoC/iCPU/iHazard/U2/X (UDB116SVT36_NR2_2)              0.01       0.55 f
+  iSoC/iCPU/iHazard/U12/X (UDB116SVT36_ND3_4)             0.01       0.56 r
+  iSoC/iCPU/iHazard/U8/X (UDB116SVT36_ND2_MM_7)           0.02       0.58 f
+  iSoC/iCPU/iHazard/stall (hazard_detection)              0.00       0.58 f
+  iSoC/iCPU/U246/X (UDB116SVT36_OR2_20)                   0.03       0.61 f
+  iSoC/iCPU/iPC/busy (rv32_pc_v2)                         0.00       0.61 f
+  iSoC/iCPU/iPC/U245/X (UDB116SVT36_NR2_6)                0.02       0.62 r
+  iSoC/iCPU/iPC/U271/X (UDB116SVT36_AO2BB2_0P75)          0.03       0.65 r
+  iSoC/iCPU/iPC/U403/X (UDB116SVT36_INV_0P75)             0.01       0.66 f
+  iSoC/iCPU/iPC/U404/X (UDB116SVT36_ND4_1)                0.01       0.67 r
+  iSoC/iCPU/iPC/pc_reg[23]/D (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.00       0.67 r
+  data arrival time                                                  0.67
+
+  clock clkin (rise edge)                                 0.90       0.90
+  clock network delay (ideal)                             0.00       0.90
+  clock uncertainty                                      -0.20       0.70
+  iSoC/iCPU/iPC/pc_reg[23]/CK (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.00       0.70 r
+  library setup time                                     -0.03       0.67
+  data required time                                                 0.67
+  --------------------------------------------------------------------------
+  data required time                                                 0.67
+  data arrival time                                                 -0.67
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

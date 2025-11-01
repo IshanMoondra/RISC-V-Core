@@ -1,0 +1,98 @@
+ 
+****************************************
+Report : area
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Fri Oct 31 04:56:24 2025
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+Number of ports:                         9889
+Number of nets:                        143757
+Number of cells:                       132346
+Number of combinational cells:          47489
+Number of sequential cells:             84800
+Number of macros/black boxes:               0
+Number of buf/inv:                      14548
+Number of references:                       1
+
+Combinational area:               3531.956344
+Buf/Inv area:                      461.782064
+Noncombinational area:            3235.794578
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  6767.750922
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------------------
+icebreaker_v1                     6767.7509    100.0     0.0000     0.0000  0.0000  icebreaker_v1
+iSoC                              6767.7509    100.0   158.4166   154.5329  0.0000  ivm_soc_v1
+iSoC/iCC_V1                        312.7615      4.6   156.0362   156.7253  0.0000  cache_controller_v1
+iSoC/iCC_V1/i_slice_inst             0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core
+iSoC/iCC_V1/i_slice_inst/C9          0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_9_512
+iSoC/iCC_V1/i_slice_inst/C9/*cell*206056
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width9
+iSoC/iCPU                         4490.1605     66.3   226.1304   135.2398  0.0000  rv32_cpu_top
+iSoC/iCPU/iALU                     397.7640      5.9    96.4030     0.0000  0.0000  rv32_alu_v2
+iSoC/iCPU/iALU/iAdd_Sub             89.4499      1.3    89.4499     0.0000  0.0000  rv32_alu_add_sub
+iSoC/iCPU/iALU/iBarrel             146.3270      2.2   146.3270     0.0000  0.0000  rv32_barrel_shifter
+iSoC/iCPU/iALU/iComp                31.0694      0.5    31.0694     0.0000  0.0000  rv32_alu_comp_0
+iSoC/iCPU/iALU/iLogical             34.5146      0.5    34.5146     0.0000  0.0000  rv32_alu_logical
+iSoC/iCPU/iControl                  54.1210      0.8    54.1210     0.0000  0.0000  rv32_cu_v2
+iSoC/iCPU/iEX_MEM                   98.9086      1.5     0.0000    98.9086  0.0000  rv32_ex_mem_queue
+iSoC/iCPU/iForward                  18.2909      0.3    13.5302     4.7606  0.0000  forwarding_unit_v2
+iSoC/iCPU/iHazard                   14.8457      0.2    14.8457     0.0000  0.0000  hazard_detection
+iSoC/iCPU/iID_EX                   153.8438      2.3    48.6086   105.2352  0.0000  rv32_id_ex_queue
+iSoC/iCPU/iIF_ID                   287.2670      4.2   130.9176   156.3494  0.0000  rv32_if_id_queue
+iSoC/iCPU/iMEM_WB                   87.0070      1.3     0.0000    87.0070  0.0000  rv32_mem_wb_queue
+iSoC/iCPU/iPC                      459.6523      6.8   266.5332   193.1191  0.0000  rv32_pc_v2
+iSoC/iCPU/iRF                     2391.3447     35.3  1094.0702  1297.2744  0.0000  rv32_register_file
+iSoC/iCPU/iResolver                115.4455      1.7    41.9062     0.0000  0.0000  branch_resolver_v2
+iSoC/iCPU/iResolver/iBrComp         73.5394      1.1    73.5394     0.0000  0.0000  rv32_alu_comp_1
+iSoC/iCPU/iWrite                    50.2999      0.7    50.2999     0.0000  0.0000  write_back
+iSoC/iGPIO                         104.0450      1.5    46.9174    57.1277  0.0000  gpio_v1
+iSoC/iPerfMons                     927.5105     13.7   433.0303   494.4802  0.0000  perfmons
+iSoC/iUART                         216.6091      3.2    16.4743     0.0000  0.0000  UART_v1
+iSoC/iUART/iUART                   200.1348      3.0    18.5414    49.5482  0.0000  UART
+iSoC/iUART/iUART/iRX                70.0942      1.0    33.0113    37.0829  0.0000  UART_rx
+iSoC/iUART/iUART/iTX                61.9510      0.9    27.4990    34.4520  0.0000  UART_tx
+iSoC/spimemio                      330.5513      4.9   117.1368   132.1704  0.0000  spimemio
+iSoC/spimemio/xfer                  81.2441      1.2    39.4632    41.7809  0.0000  spimemio_xfer
+iSoC/sram_b0                        18.4162      0.3    18.4162     0.0000  0.0000  d_cache_v1_3
+iSoC/sram_b0/d_sram                  0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core
+iSoC/sram_b0/d_sram/C10              0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_9_512
+iSoC/sram_b0/d_sram/C10/*cell*206061
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width9
+iSoC/sram_b1                        18.4162      0.3    18.4162     0.0000  0.0000  d_cache_v1_2
+iSoC/sram_b1/d_sram                  0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core
+iSoC/sram_b1/d_sram/C10              0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_9_512
+iSoC/sram_b1/d_sram/C10/*cell*206066
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width9
+iSoC/sram_b2                        18.4788      0.3    18.4788     0.0000  0.0000  d_cache_v1_1
+iSoC/sram_b2/d_sram                  0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core
+iSoC/sram_b2/d_sram/C10              0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_9_512
+iSoC/sram_b2/d_sram/C10/*cell*206071
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width9
+iSoC/sram_b3                        17.8524      0.3    17.8524     0.0000  0.0000  d_cache_v1_0
+iSoC/sram_b3/d_sram                  0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core
+iSoC/sram_b3/d_sram/C10              0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_9_512
+iSoC/sram_b3/d_sram/C10/*cell*206076
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width9
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------------------------------
+Total                                                 3531.9563  3235.7946  0.0000
+
+1

@@ -1,0 +1,165 @@
+### Script for Design Vision CLI tool.
+### For RISC V 32I 5 Stage Pipelined CPU
+### Using the ASAP 7nm Library: ECE 755 Parameters: Units are ps
+### Target: GHz+ Clock Frequency
+### ECE 755 Parameters:
+
+###Reading in the Verilog Files
+read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
+                                ./Designs/CPU/rv32_id_ex_queue.sv\
+                                ./Designs/CPU/rv32_ex_mem_queue.sv\
+                                ./Designs/CPU/rv32_mem_wb_queue.sv\
+                                ./Designs/CPU/rv32_pc_v2.sv\
+                                ./Designs/CPU/forwarding_unit_v2.sv\
+                                ./Designs/CPU/hazard_detection.sv\
+                                ./Designs/CPU/interrupt_handler.sv\
+                                ./Designs/CPU/branch_resolver_v2.sv\
+                                ./Designs/CPU/rv32_cu_v2.sv\
+                                ./Designs/CPU/rv32_register_file.sv\
+                                ./Designs/CPU/rv32_alu_add_sub.sv\
+                                ./Designs/CPU/rv32_alu_comp.sv\
+                                ./Designs/CPU/rv32_alu_logical.sv\
+                                ./Designs/CPU/rv32_alu_v2.sv\
+                                ./Designs/CPU/rv32_barrel_shifter.sv\
+                                ./Designs/CPU/write_back.sv\
+                                ./Designs/CPU/rv32_cpu_top.sv\
+                                ./Designs/IO/test_cache.sv }
+
+###Set the top of the heirarchy.
+set current_design rv32_cpu_top
+
+##Constraining the Design
+
+### Creating the clock
+
+### ASAP 7nm Standard Cell
+
+### Max Speed: 480ps --> 2083 MHz, 1150.58 sq microns, 4.19 mW
+# create_clock -name "clk" -period 480 {clk}
+### Area Efficient: 500 MHz, 0999.60 sq microns, 0.99 mW
+### Area Efficient: 667 MHz, 1010.52 sq microns, 1.33 mW
+### Area Efficient: 800 MHz, 1030.03 sq microns, 1.60 mW
+### Area Efficient: 900 MHz, 1035.82 sq microns, 1.80 mW
+### Area Efficient: 1000 MHz, 1062.91 sq microns, 2.00 mW
+### Area Efficient: 1111 MHz, 1066.05 sq microns, 2.22 mW
+### Area Efficient: 1200 MHz, 1071.96 sq microns, 2.40 mW
+### Area Efficient: 1250 MHz, 1072.63 sq microns, 2.50 mW
+### Area Efficient: 1333 MHz, 1076.04 sq microns, 2.67 mW
+### Area Efficient: 1500 MHz, 1083.24 sq microns, 3.01 mW
+### Area Efficient: 1666 MHz, 1094.09 sq microns, 3.34 mW
+### Area Efficient: 2000 MHz, 1127.27 sq microns, 4.02 mW
+ create_clock -name "clk" -period 500 {clk}
+
+set_dont_touch_network [find port clk]
+ set_clock_transition 32 clk 
+
+### Creating the Primary Inputs
+set prim_inputs [remove_from_collection [all_inputs] [find port clk]]
+
+### Setting Input Delays in ns
+set_input_delay -clock clk 0.100 $prim_inputs
+
+### Setting the Output Delays in ns
+set_output_delay -clock clk 0.100 [all_outputs]
+
+### Setting the Wireload Model Constraint
+ set_wire_load_mode "segmented"
+### Setting the Drive Strength of Inputs
+
+### Drive Strength: Auto sets to the appropriate cell. 
+# General Purpose Cell
+# set_driving_cell -lib_cell ND2D2BWP -library tcbn40lpbwptc $prim_inputs
+# set_driving_cell -lib_cell XNOR2x1_ASAP7_75t_R -library asap7sc7p5t_AO_RVT_TT_nldm_211120 $prim_inputs
+# set_driving_cell -lib_cell AO21x1_ASAP7_75t_R -library asap7sc7p5t_AO_RVT_TT_nldm_211120 $prim_inputs
+# set_driving_cell -lib_cell AO21x1_ASAP7_75t_R -library asap7sc7p5t_28 $prim_inputs
+
+### Setting the RST_N signal to be very strongly driven, the value is in M Ohm ?
+ set_drive 000.1 rst_n 
+
+### Set Capacitive Load 100 fF on all Output Pins
+set_load 0.100 [all_outputs]
+
+### Compiling the Design
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+
+# compile_ultra
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+
+### Setting up some clock skew and fixes for clock skew
+set_clock_uncertainty 10 clk
+set_fix_hold clk
+
+### Flatten the Heirarchy
+ ungroup -all -flatten
+
+### 2nd Compile
+compile -map_effort high
+compile -map_effort high -incremental_mapping
+
+compile -map_effort high -incremental_mapping
+compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+#
+# compile -map_effort high -incremental_mapping
+# compile -map_effort high -incremental_mapping
+
+# compile_ultra
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+#
+# compile_ultra -incremental
+# compile_ultra -incremental
+
+### Writing the Area, Min & Max Timing Reports to files
+report_qor > ./Reports/RV32_5S_qor_ASAP.rpt
+report_power -analysis_effort high > ./Reports/RV32_5S_power_ASAP.rpt
+report_area > ./Reports/RV32_5S_area_ASAP.rpt
+report_timing -delay max > ./Reports/RV32_5S_timing_max_ASAP.rpt
+report_timing -delay min > ./Reports/RV32_5S_timing_min_ASAP.rpt
+
+### Write out the netlist
+write -format verilog rv32_cpu_top -output ./Netlists/RV32_5S_ASAP.vg
+
+### Write out the Synopsys Design Constraints format script (.sdc file)
+write_sdc ./SDCs/RV32_5S_ASAP.sdc

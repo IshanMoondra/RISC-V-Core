@@ -1,0 +1,88 @@
+Module: DW01_decode_width8, Ports: 264, Input: 8, Output: 256, Inout: 0
+Module: DW01_decode_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Updating design information... (UID-85)
+Warning: Design 'cache_controller_v1' contains 32 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : qor
+Design : cache_controller_v1
+Version: X-2025.06
+Date   : Thu Oct  9 01:01:08 2025
+****************************************
+
+
+  Timing Path Group 'clk'
+  -----------------------------------
+  Levels of Logic:              47.00
+  Critical Path Length:          2.03
+  Critical Path Slack:           0.72
+  Critical Path Clk Period:      3.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.25
+  Total Hold Violation:      -1106.96
+  No. of Hold Violations:     8353.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         58
+  Hierarchical Port Count:      10021
+  Leaf Cell Count:              96093
+  Buf/Inv Cell Count:           18753
+  Buf Cell Count:                1141
+  Inv Cell Count:               17612
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:     54824
+  Sequential Cell Count:        41269
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:      474.310079
+  Noncombinational Area:   185.351767
+  Buf/Inv Area:            204.582243
+  Total Buffer Area:           185.41
+  Total Inverter Area:          19.17
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:               659.661846
+  Design Area:             659.661846
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:        100757
+  Nets With Violations:           452
+  Max Trans Violations:            13
+  Max Cap Violations:              14
+  Max Fanout Violations:          445
+  -----------------------------------
+
+
+  Hostname: compute-hal
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    6.24
+  Logic Optimization:                  0.00
+  Mapping Optimization:                2.99
+  -----------------------------------------
+  Overall Compile Time:               89.36
+  Overall Compile Wall Clock Time:    95.77
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.25  TNS: 1106.96  Number of Violating Paths: 8353
+
+  --------------------------------------------------------------------
+
+
+1

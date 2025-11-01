@@ -43,14 +43,20 @@ void _start()
 }
 
 // UART Functions
-void uart_init(int baud) __attribute__((section(".spi_uart")));
-char uart_getc() __attribute__((section(".spi_uart")));
-char uart_status() __attribute__((section(".spi_uart")));
-void uart_putc(char c) __attribute__((section(".spi_uart")));
+// void uart_init(int baud) __attribute__((section(".spi_uart")));
+// char uart_getc() __attribute__((section(".spi_uart")));
+// char uart_status() __attribute__((section(".spi_uart")));
+// void uart_putc(char c) __attribute__((section(".spi_uart")));
+
+
+void uart_init(int baud);
+char uart_getc();
+char uart_status();
+void uart_putc(char c);
 
 // Compute Functions
-int fib_iter(int m) __attribute__((section(".spi_compute")));
-int fib_recursive(int n) __attribute__((section(".spi_compute")));
+int fib_iter(int m);
+int fib_recursive(int n);
 
 int main()
 {
@@ -63,8 +69,11 @@ int main()
     int fib_rs2     = 0;
 
     uart_init(1000);
+    asm volatile ("nop");
     uart_putc('>');
+    asm volatile ("nop");
     uart_putc('?');
+    asm volatile ("nop");
     uart_putc('\n');
     asm volatile ("nop");
     io_status = uart_status();

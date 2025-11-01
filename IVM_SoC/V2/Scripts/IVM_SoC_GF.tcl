@@ -39,11 +39,12 @@ read_file -format sverilog {    ./Designs/CPU/rv32_if_id_queue.sv\
                                 ./Designs/IO/UART_v1.sv\
                                 ./Designs/IO/mmio_decoder_v1.sv\
                                 ./Designs/IO/spimemio.v\
-                                ./Designs/ivm_soc_v1.v }
+                                ./Designs/ivm_soc_v1.v\
+                                ./Designs/icebreaker_v1.v }
 
 link
 list_designs
-set DESIGN_NAME ivm_soc_v1
+set DESIGN_NAME icebreaker_v1
 current_design $DESIGN_NAME
 
 #################################################################################
@@ -53,16 +54,16 @@ set CLK_BUF UDB116SVT36_BUF_2
 # Design rule constraint
 set_max_capacitance 0.2 $DESIGN_NAME
 set_max_fanout 15 $DESIGN_NAME
-set_max_area 0.0
-set PERIOD_CLK 3.0
-# set PERIOD_CLK 1.00
+# set_max_area 0.0
+# set PERIOD_CLK 4.0
+set PERIOD_CLK 2.00
 # set PERIOD_CLK 1.00
 
-# I0 drive & load
-set_driving_cell -lib_cell $BUF_CELL -pin Y [all_inputs]
-set_driving_cell -lib_cell $CLK_BUF -pin Y [get_ports "clk"]
+# # I0 drive & load
+# set_driving_cell -lib_cell $BUF_CELL -pin X [all_inputs]
+# set_driving_cell -lib_cell $CLK_BUF -pin X [get_ports "clk"]
+
 # Clock definition
-
 create_clock -period $PERIOD_CLK -name clk -waveform [list 0 [expr 0.5*$PERIOD_CLK]] [get_port clk]
 
 set_clock_uncertainty -setup 0.2 clk
@@ -88,11 +89,13 @@ set_ideal_network [get_ports "resetn"]
 # set_dont_touch [get_designs i_cache_v1 -quiet]
 set_dont_touch [get_designs saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core  -quiet]
 set_dont_touch [get_designs saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core -quiet]
+# set_dont_touch [get_designs saduvssd8ULTRALOW1p*  -quiet]
+# set_dont_touch [get_designs d_cache_v1 -quiet]
 # saduvssd8ULTRALOW1
 ########################################################################################
 
 check_design
-# set_app_var spg_congestion_placement_in_incremental_compile true
+set_app_var spg_congestion_placement_in_incremental_compile true
 
 compile -map_effort high
 compile -map_effort high -incremental_mapping
@@ -101,7 +104,7 @@ compile -map_effort high -incremental_mapping
 set_fix_hold clk
 # compile -map_effort high
 # compile -map_effort high -incremental_mapping
-# set compile_top_all_paths true
+set compile_top_all_paths true
 
 ###Flatten the Heirarchy
 # ungroup -all -flatten
@@ -111,10 +114,11 @@ set_fix_hold clk
 # compile -map_effort high -incremental_mapping
 # compile -map_effort high -incremental_mapping
 # comments: this seems useful than the -ultra method, may be it is due to the macro, when there are macros, it will ignore the no-autogroup;
-compile -map_effort high -incremental_mapping
-compile_ultra -no_autoungroup  -incremental -only_design_rule
-compile_ultra -no_autoungroup -timing_high_effort_script 
-compile_ultra -no_autoungroup -incremental -timing_high_effort_script
+# compile -map_effort high -incremental_mapping
+compile_ultra -no_autoungroup
+# compile_ultra -no_autoungroup  -incremental -only_design_rule
+# compile_ultra -no_autoungroup -timing_high_effort_script 
+# compile_ultra -no_autoungroup -incremental -timing_high_effort_script
 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script 
 # compile_ultra -no_autoungroup -incremental -timing_high_effort_script
@@ -166,4 +170,4 @@ change_names
 write_file -hierarchy -format verilog -output ./Netlists/${DESIGN_NAME}.v
 # write_sdc ./${DESIGN_NAME}.sdc
 
-#quit
+quit

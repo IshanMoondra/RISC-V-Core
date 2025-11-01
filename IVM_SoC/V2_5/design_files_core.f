@@ -1,0 +1,16 @@
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/branch_resolver_v2.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/interrupt_handler.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_alu_add_sub.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_alu_comp.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_alu_logical.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_barrel_shifter.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_alu_v2.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_cu_v2.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_if_id_queue.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_id_ex_queue.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_ex_mem_queue.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_mem_wb_queue.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/write_back.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_pc_v2.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_register_file.sv
+/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/Designs/CPU/rv32_cpu_top.sv

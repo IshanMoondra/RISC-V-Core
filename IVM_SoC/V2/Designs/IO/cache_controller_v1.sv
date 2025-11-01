@@ -15,7 +15,7 @@ module cache_controller_v1
         input   wire    [31:0] pc_fetch,        // PC_Fetch for I-Cache
         output  logic   [31:0] code_fetch,      // To CPU from I-Cache
         // MMIO Interfacing
-        input   wire    [31:0] data_address,    // From the CPU for the MMIO usage & D-Cache hit
+        input   wire    [4:0] data_address,    // From the CPU for the MMIO usage & D-Cache hit
         input   wire    [31:0] data_store,      // For the Page Locks, Base-Bound Data
         output  logic   [31:0] data_fetch,      // For giving data on BB Pair values etc. 
         input   wire    [3:0] mem_wstrb,        // Write Strobe for D-Cache access.
@@ -52,28 +52,28 @@ genvar i_idx, d_idx;
     logic set_dis_i_cache;
     logic get_dis_i_cache;
     logic dis_i_cache;
-
-    always_ff @(posedge clk, negedge rst_n)
-        if (~rst_n)
-            dis_i_cache = 0;
-        else if (set_dis_i_cache)
-            dis_i_cache = data_store[0];
+    assign dis_i_cache = 0;
+    // always_ff @(posedge clk, negedge rst_n)
+    //     if (~rst_n)
+    //         dis_i_cache = 0;
+    //     else if (set_dis_i_cache)
+    //         dis_i_cache = data_store[0];
 
 // Dynamic Memory Space Base & Bound MMIO Registers
     logic [31:0] dynamic_base, dynamic_bound;
     logic set_dynamic_base, set_dynamic_bound;
     logic get_dynamic_base, get_dynamic_bound;
 
-    always_ff @(posedge clk, negedge rst_n)
-        if (~rst_n)
-            begin
-                dynamic_base    <= 32'h0017F000; // Replace with the Linker Values
-                dynamic_bound   <= 32'h00180000;
-            end
-        else if (set_dynamic_base)
-            dynamic_base    <= data_store;
-        else if (set_dynamic_bound)
-            dynamic_bound   <= data_store;
+//     always_ff @(posedge clk, negedge rst_n)
+//         if (~rst_n)
+//             begin
+//                 dynamic_base    <= 32'h0017F000; // Replace with the Linker Values
+//                 dynamic_bound   <= 32'h00180000;
+//             end
+//         else if (set_dynamic_base)
+//             dynamic_base    <= data_store;
+//         else if (set_dynamic_bound)
+//             dynamic_bound   <= data_store;
 
 // Cache Way Locks
     logic [num_i_ways-1:0] i_lock;
@@ -117,7 +117,7 @@ genvar i_idx, d_idx;
                 base_buffer = new_base;
 
     // Bound Buffer Logic
-        assign bound_buffer = base_buffer + 1024;
+        assign bound_buffer = base_buffer + 2048;
 
 // To select cache ways (ME) 
     logic [num_i_ways-1:0] i_way_sel;
@@ -137,44 +137,148 @@ genvar i_idx, d_idx;
     wire [31:0] i_way_out [num_i_ways-1:0];
     wire [31:0] d_way_out [num_d_ways-1:0];
 
+// Unrolling Loops cause Synopsys hates it.
 // I-Cache Instantiation   
-    generate
-        for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
-            begin   : I_Slice_Gen
-                saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core i_slice_inst
-                    (
-                        .CLK    (clk                    ),
-                        // .ME     (i_way_sel[i_idx]       ),
-                        .ME     (1'b1                   ),
-                        .WE     (i_way_we[i_idx]        ),
-                        .Q      (i_way_out[i_idx]       ),
-                        .D      (i_cache_store          ),
-                        .ADR    (i_cache_addr[9:2]      )
-                    );         
-            end     : I_Slice_Gen
-    endgenerate
+    // generate
+    //     for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
+    //         begin   : I_Slice_Gen
+    //             saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core i_slice_inst
+    //                 (
+    //                     .CLK    (clk                    ),
+    //                     // .ME     (i_way_sel[i_idx]       ),
+    //                     .ME     (1'b1                   ),
+    //                     .WE     (i_way_we[i_idx]        ),
+    //                     .Q      (i_way_out[i_idx]       ),
+    //                     .D      (i_cache_store          ),
+    //                     .ADR    (i_cache_addr[9:2]      )
+    //                 );         
+    //         end     : I_Slice_Gen
+    // endgenerate
+
+    // saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core i_slice_inst
+    //     (
+    //         .CLK    (clk                    ),
+    //         .ME     (1'b1                   ),
+    //         .WE     (i_way_we[0]            ),
+    //         .Q      (i_way_out[0]           ),
+    //         .D      (i_cache_store          ),
+    //         .ADR    (i_cache_addr[9:2]      )
+    //     );
+
+    saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core i_slice_inst
+        (
+            .CLK    (clk                    ),
+            .ME     (1'b1                   ),
+            .WE     (i_way_we[0]            ),
+            .Q      (i_way_out[0]           ),
+            .D      (i_cache_store          ),
+            .ADR    (i_cache_addr[10:2]      )
+        ); 
+
+    // saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core i_slice_inst
+    //     (
+    //         .CLK    (clk                    ),
+    //         .ME     (1'b1                   ),
+    //         .WE     (i_way_we[0]            ),
+    //         .Q      (i_way_out[0]           ),
+    //         .D      (i_cache_store          ),
+    //         .ADR    (i_cache_addr[13:2]      )
+    //     );
+
+    // saduvssd8ULTRALOW1p1024x32m16b1w0c1p1d0l0rm3sdrw11_core i_slice_inst
+    //     (
+    //         .CLK    (clk                    ),
+    //         .ME     (1'b1                   ),
+    //         .WE     (i_way_we[0]            ),
+    //         .Q      (i_way_out[0]           ),
+    //         .D      (i_cache_store          ),
+    //         .ADR    (i_cache_addr[11:2]      )
+    // ); 
+
+    assign d_cache_store       = (cache_enable | cache_enable_ff) ? (data_store) : (32'h0);
+    assign d_cache_addr        = (cache_enable | cache_enable_ff) ? (data_address) : (32'h0);
 
 // D-Cache Instantiation
-    generate
-        for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
-            begin   : D_Slice_Gen
-                d_cache_v1 d_slice_inst
-                    (
-                        // Universal Signals
-                        .clk            (clk                ),
-                        .rst_n          (rst_n              ),
-                        // Memory Enable/Read/Write Signals
-                        // .data_enable    (d_way_sel[d_idx]   ),
-                        .data_enable    (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx]),
-                        .data_read      (data_read | ((~d_way_override[d_idx]) & use_d_way_override)),
-                        .mem_wstrb      (mem_wstrb          ),
-                        // Input Output Buses
-                        .ram_store      (d_cache_store      ),
-                        .ram_fetch      (d_way_out[d_idx]   ),
-                        .ram_address    (d_cache_addr       )
-                    );         
-            end     : D_Slice_Gen
-    endgenerate
+    // generate
+    //     for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
+    //         begin   : D_Slice_Gen
+    //             d_cache_v1 d_slice_inst
+    //                 (
+    //                     // Universal Signals
+    //                     .clk            (clk                ),
+    //                     .rst_n          (rst_n              ),
+    //                     // Memory Enable/Read/Write Signals
+    //                     // .data_enable    (d_way_sel[d_idx]   ),
+    //                     .data_enable    (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx]),
+    //                     .data_read      (data_read | ((~d_way_override[d_idx]) & use_d_way_override)),
+    //                     .mem_wstrb      (mem_wstrb          ),
+    //                     // Input Output Buses
+    //                     .ram_store      (d_cache_store      ),
+    //                     .ram_fetch      (d_way_out[d_idx]   ),
+    //                     .ram_address    (d_cache_addr       )
+    //                 );         
+    //         end     : D_Slice_Gen
+    // endgenerate
+
+    // d_cache_v1 d_slice_0
+    //     (
+    //         // Universal Signals
+    //         .clk            (clk                ),
+    //         .rst_n          (rst_n              ),
+    //         // Memory Enable/Read/Write Signals
+    //         .data_enable    (d_cache_hit[0] | d_cache_hit_ff[0]),
+    //         .data_read      (data_read),
+    //         .mem_wstrb      (mem_wstrb          ),
+    //         // Input Output Buses
+    //         .ram_store      (d_cache_store      ),
+    //         .ram_fetch      (d_way_out[0]       ),
+    //         .ram_address    (d_cache_addr[9:2]  )
+    //     );
+
+    //     d_cache_v1 d_slice_1
+    //     (
+    //         // Universal Signals
+    //         .clk            (clk                ),
+    //         .rst_n          (rst_n              ),
+    //         // Memory Enable/Read/Write Signals
+    //         .data_enable    (d_cache_hit[1] | d_cache_hit_ff[1]),
+    //         .data_read      (data_read),
+    //         .mem_wstrb      (mem_wstrb          ),
+    //         // Input Output Buses
+    //         .ram_store      (d_cache_store      ),
+    //         .ram_fetch      (d_way_out[1]       ),
+    //         .ram_address    (d_cache_addr[9:2]  )
+    //     );
+
+    //     d_cache_v1 d_slice_2
+    //     (
+    //         // Universal Signals
+    //         .clk            (clk                ),
+    //         .rst_n          (rst_n              ),
+    //         // Memory Enable/Read/Write Signals
+    //         .data_enable    (d_cache_hit[2] | d_cache_hit_ff[2]),
+    //         .data_read      (data_read),
+    //         .mem_wstrb      (mem_wstrb          ),
+    //         // Input Output Buses
+    //         .ram_store      (d_cache_store      ),
+    //         .ram_fetch      (d_way_out[2]       ),
+    //         .ram_address    (d_cache_addr[9:2]  )
+    //     );
+
+    // d_cache_v1 d_slice_3
+    // (
+    //     // Universal Signals
+    //     .clk            (clk                ),
+    //     .rst_n          (rst_n              ),
+    //     // Memory Enable/Read/Write Signals
+    //     .data_enable    (d_cache_hit[3] | d_cache_hit_ff[3]),
+    //     .data_read      (data_read),
+    //     .mem_wstrb      (mem_wstrb          ),
+    //     // Input Output Buses
+    //     .ram_store      (d_cache_store      ),
+    //     .ram_fetch      (d_way_out[3]       ),
+    //     .ram_address    (d_cache_addr[9:2]  )
+    // );
 
 // BB for I-cache
     always_ff @(posedge clk, negedge rst_n)
@@ -187,9 +291,7 @@ genvar i_idx, d_idx;
             begin
                 i_base_0    <= base_buffer;
                 i_bound_0   <= bound_buffer;
-            end            
-        // else if (set_i_bound[0])
-        //     i_bound_0   <= bound_buffer;
+            end
 
 // BB For D-Cache Way 0
     always_ff @(posedge clk, negedge rst_n)
@@ -202,9 +304,7 @@ genvar i_idx, d_idx;
             begin
                 d_base_0    <= base_buffer;
                 d_bound_0   <= bound_buffer;
-            end            
-        // else if (set_d_bound[0])
-        //     d_bound_0   <= bound_buffer;
+            end
 
 // BB For D-Cache Way 1
     always_ff @(posedge clk, negedge rst_n)
@@ -218,8 +318,6 @@ genvar i_idx, d_idx;
                 d_base_1    <= base_buffer;
                 d_bound_1   <= bound_buffer;
             end
-        // else if (set_d_bound[1])
-        //     d_bound_1   <= bound_buffer;
 
 // BB For D-Cache Way 2
     always_ff @(posedge clk, negedge rst_n)
@@ -233,8 +331,6 @@ genvar i_idx, d_idx;
                 d_base_2    <= base_buffer;
                 d_bound_2   <= bound_buffer;
             end
-        // else if (set_d_bound[2])
-        //     d_bound_2   <= bound_buffer;
 
 // BB For D-Cache Way 3
     always_ff @(posedge clk, negedge rst_n)
@@ -248,18 +344,16 @@ genvar i_idx, d_idx;
                 d_base_3    <= base_buffer;
                 d_bound_3   <= bound_buffer;
             end
-        // else if (set_d_bound[3])
-        //     d_bound_3   <= bound_buffer;
 
 // Cache Hit Checkers
     // I-Cache
         assign i_cache_hit[0] = (pc_fetch >= i_base_0) && (pc_fetch < i_bound_0);
-    // D-Cache
-        assign d_cache_hit[0] = (data_address >= d_base_0) && (data_address < d_bound_0);
-        assign d_cache_hit[1] = (data_address >= d_base_1) && (data_address < d_bound_1);
-        assign d_cache_hit[2] = (data_address >= d_base_2) && (data_address < d_bound_2);
-        assign d_cache_hit[3] = (data_address >= d_base_3) && (data_address < d_bound_3);
-
+    // // D-Cache
+    //     assign d_cache_hit[0] = (data_address >= d_base_0) && (data_address < d_bound_0);
+    //     assign d_cache_hit[1] = (data_address >= d_base_1) && (data_address < d_bound_1);
+    //     assign d_cache_hit[2] = (data_address >= d_base_2) && (data_address < d_bound_2);
+    //     assign d_cache_hit[3] = (data_address >= d_base_3) && (data_address < d_bound_3);
+        assign d_cache_hit = 4'hF;
 // Cache Hits Flopped, to select correct SRAM data: Both I & D
     always_ff @(posedge clk, negedge rst_n)
         if (~rst_n)
@@ -281,7 +375,7 @@ genvar i_idx, d_idx;
                 iSTATE = iNEXT_STATE;
 
 // SPI Helpers
-    logic [10:0] fetch_count;
+    logic [12:0] fetch_count;
     logic clr_fetch_count;
     logic update_spi_address;
     logic [31:0] spi_address_ff;
@@ -343,7 +437,8 @@ genvar i_idx, d_idx;
             set_d_bound         = 0;
 
             new_base            = 0;
-            new_page            = (~|i_cache_hit) ? (pc_fetch[31:10]) : (data_address[31:10]);
+            // new_page            = (~|i_cache_hit) ? (pc_fetch[31:10]) : (data_address[31:10]);
+            new_page            = (pc_fetch[31:11]);
             set_base_buffer     = 0;
 
             i_way_sel           = i_cache_hit;
@@ -355,8 +450,8 @@ genvar i_idx, d_idx;
             i_cache_store       = spi_fetch;
             i_cache_addr        = pc_fetch;
 
-            d_cache_store       = data_store;
-            d_cache_addr        = data_address;
+            // d_cache_store       = (cache_enable | cache_enable_ff) ? (data_store) : (32'h0);
+            // d_cache_addr        = (cache_enable | cache_enable_ff) ? (data_address) : (32'h0);
 
             iNEXT_STATE         = iSTATE;
         
@@ -364,7 +459,7 @@ genvar i_idx, d_idx;
             casex (iSTATE)
                 IDLE    : 
                     begin
-                        iNEXT_STATE = (~|i_cache_hit) ? (BUBBLE) : (~|d_cache_hit && cache_enable) ? (WAY_SEL) : (IDLE);
+                        iNEXT_STATE = (~|i_cache_hit) ? (BUBBLE) : (IDLE); // (~|d_cache_hit && cache_enable) ? (WAY_SEL) : (IDLE);
                         fsm_clk_en  = 1'b1;
                     end                    
                 BUBBLE  :
@@ -378,7 +473,7 @@ genvar i_idx, d_idx;
                     begin
                         iNEXT_STATE     = LOCK_BB;
                         set_base_buffer = 1;
-                        new_base        = {new_page, {10{1'b0}}};
+                        new_base        = {new_page, {11{1'b0}}};
                         
                         if (~i_cache_hit[0])
                             i_way_sel   = 1; // Not used in initial run since only 1 slice.
@@ -394,8 +489,8 @@ genvar i_idx, d_idx;
                     end
                 FETCH   :
                     begin
-                        iNEXT_STATE     = (fetch_count == 255) ? (UPD_BB1  ) : (FETCH);
-                        clr_fetch_count = (fetch_count == 255) ? (1'b1     ) : (1'b0 );
+                        iNEXT_STATE     = (fetch_count == 512) ? (UPD_BB1  ) : (FETCH);
+                        clr_fetch_count = (fetch_count == 512) ? (1'b1     ) : (1'b0 );
                         spi_addr_valid  = 1'b1;
                         if (~|i_cache_hit)
                             begin
@@ -403,26 +498,26 @@ genvar i_idx, d_idx;
                                 i_cache_addr    = spi_address_ff;
                                 i_cache_store   = spi_fetch;
                             end
-                        else
-                            begin
-                                d_cache_addr        = spi_address_ff;
-                                d_cache_store       = spi_fetch;
-                                use_d_way_override  = 1;
-                            end
+                        // else
+                        //     begin
+                        //         d_cache_addr        = spi_address_ff;
+                        //         d_cache_store       = spi_fetch;
+                        //         use_d_way_override  = 1;
+                        //     end
                     end
                 UPD_BB1 :
                     begin
                         iNEXT_STATE = UPD_BB2;
                         if (~|i_cache_hit)
                             set_i_base = 1;
-                        else
-                            set_d_base = d_way_override;
+                        // else
+                        //     set_d_base = d_way_override;
                     end
                 UPD_BB2 :
                     begin
                         iNEXT_STATE = IDLE;
-                        // if (~|i_cache_hit)
-                        //     set_i_bound = 1;
+                        if (~|i_cache_hit)
+                            set_i_bound = 1;
                         // else
                         //     set_d_bound = d_way_override;
                     end
@@ -432,32 +527,34 @@ genvar i_idx, d_idx;
 
 // Selects D_Cache Ways to overwrite when a Miss happenes.
     // Way 0 is selected for anything that is not in the 3K pure dynamic space, aka the RO Streaming space.
-    assign d_way_override[0] = ((data_address <   dynamic_base)         & (data_address >= dynamic_bound)          );
-    assign d_way_override[1] = ((data_address >=  dynamic_base)         & (data_address < (dynamic_base + 1024))   );
-    assign d_way_override[2] = ((data_address >= (dynamic_base + 1024)) & (data_address < (dynamic_base + 2048))   );
-    assign d_way_override[3] = ((data_address >= (dynamic_base + 3072)) & (data_address < dynamic_bound)           );
+    // assign d_way_override[0] = ((data_address <   dynamic_base)         & (data_address >= dynamic_bound)          );
+    // assign d_way_override[1] = ((data_address >=  dynamic_base)         & (data_address < (dynamic_base + 1024))   );
+    // assign d_way_override[2] = ((data_address >= (dynamic_base + 1024)) & (data_address < (dynamic_base + 2048))   );
+    // assign d_way_override[3] = ((data_address >= (dynamic_base + 3072)) & (data_address < dynamic_bound)           );
+    assign d_way_override = 4'h0;
 
 assign code_fetch   =   (dis_i_cache) ? (spi_fetch) : (i_cache_hit_ff[0]) ? (i_way_out[0]) : (0);
 
 assign data_fetch   =   (mmio_enable)   ? 
-                            (get_dynamic_base   ) ? (dynamic_base) :
-                            (get_dynamic_bound  ) ? (dynamic_bound) :
-                            (get_dis_i_cache    ) ? (dis_i_cache) :
+                            // (get_dynamic_base   ) ? (dynamic_base)  :
+                            // (get_dynamic_bound  ) ? (dynamic_bound) :
+                            (get_dis_i_cache    ) ? (dis_i_cache)   :
                             (0) :
-                        (cache_enable_ff)  ? 
-                            (d_cache_hit_ff[0]) ? (d_way_out[0]) :
-                            (d_cache_hit_ff[1]) ? (d_way_out[1]) :
-                            (d_cache_hit_ff[2]) ? (d_way_out[2]) :
-                            (d_cache_hit_ff[3]) ? (d_way_out[3]) :
-                            (0) :
+                        // (cache_enable_ff)  ? 
+                        //     (d_cache_hit_ff[0]) ? (d_way_out[0]) :
+                        //     (d_cache_hit_ff[1]) ? (d_way_out[1]) :
+                        //     (d_cache_hit_ff[2]) ? (d_way_out[2]) :
+                        //     (d_cache_hit_ff[3]) ? (d_way_out[3]) :
+                        //     (0) :
                             (0) ;
 
 assign i_clk_en         = (dis_i_cache) ? (spi_ready) : (|i_cache_hit);
-assign d_clk_en         = (cache_enable) ? (|d_cache_hit) : (1'b1);
-assign set_clk_enable   = i_clk_en && d_clk_en && fsm_clk_en;
+// assign d_clk_en         = (cache_enable) ? (|d_cache_hit) : (1'b1);
+assign set_clk_enable   = i_clk_en && fsm_clk_en;
 
 assign i_cache_miss     = ~i_clk_en;
-assign d_cache_miss     = ~d_clk_en;
+// assign d_cache_miss     = ~d_clk_en;
+assign d_cache_miss     = 0;
 
 // Non Supported Features
 assign spi_store        = 0;
@@ -468,11 +565,11 @@ assign set_i_lock           = 0;
 assign set_d_lock           = 0;
 assign get_i_lock           = 0;
 assign get_d_lock           = 0;
-assign set_dynamic_base     = mmio_enable && data_address[3:0] == 4'd0;
-assign set_dynamic_bound    = mmio_enable && data_address[3:0] == 4'd4;
-assign get_dynamic_base     = mmio_enable && data_address[3:0] == 4'd8;
-assign get_dynamic_bound    = mmio_enable && data_address[3:0] == 4'd12;
-assign set_dis_i_cache      = mmio_enable && data_address[3:0] == 4'd16;
-assign get_dis_i_cache      = mmio_enable && data_address[3:0] == 4'd20;
+assign set_dynamic_base     = mmio_enable && data_address[4:0] == 5'd0;
+assign set_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd4;
+assign get_dynamic_base     = mmio_enable && data_address[4:0] == 5'd8;
+assign get_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd12;
+assign set_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd16;
+assign get_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd20;
 
 endmodule

@@ -1,0 +1,90 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : rv32_cpu_top
+Version: V-2023.12-SP5
+Date   : Sun Aug 24 14:38:26 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: NCCOM   Library: tcbn40lpbwptc
+Wire Load Model Mode: segmented
+
+  Startpoint: data_fetch[29]
+              (input port clocked by clk)
+  Endpoint: iRF/rf_s1_reg[10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       TSMC32K_Lowk_Conservative
+                                           tcbn40lpbwptc
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.20       0.20 f
+  data_fetch[29] (in)                      0.01       0.21 f
+  U8052/ZN (ND2D2BWP)                      0.03       0.23 r
+  U7335/ZN (CKND2D8BWP)                    0.03       0.26 f
+  U7331/ZN (CKND6BWP)                      0.02       0.28 r
+  U18663/ZN (CKND2D8BWP)                   0.02       0.30 f
+  U7595/ZN (ND2D2BWP)                      0.02       0.32 r
+  U6957/Z (AN4D2BWP)                       0.10       0.42 r
+  U18736/ZN (INVD1BWP)                     0.02       0.44 f
+  U14417/ZN (NR2XD1BWP)                    0.03       0.47 r
+  U13845/ZN (IND2D2BWP)                    0.03       0.51 r
+  U7675/ZN (NR2XD1BWP)                     0.02       0.53 f
+  U18550/ZN (CKND2D2BWP)                   0.02       0.55 r
+  U12031/ZN (INR4D2BWP)                    0.03       0.58 f
+  U16731/ZN (CKND2D3BWP)                   0.03       0.61 r
+  U16744/ZN (CKND4BWP)                     0.02       0.63 f
+  U18706/ZN (CKND2D3BWP)                   0.02       0.65 r
+  U6702/Z (AN2D4BWP)                       0.05       0.70 r
+  U18732/ZN (NR2XD4BWP)                    0.02       0.71 f
+  U6655/ZN (CKND2D8BWP)                    0.03       0.74 r
+  U11020/ZN (ND2D1BWP)                     0.04       0.78 f
+  U7424/ZN (CKND4BWP)                      0.03       0.82 r
+  U18126/ZN (CKND2D4BWP)                   0.03       0.84 f
+  U10852/ZN (CKND6BWP)                     0.02       0.86 r
+  U7434/ZN (ND3D4BWP)                      0.03       0.89 f
+  U6330/ZN (CKND4BWP)                      0.02       0.92 r
+  U8546/ZN (ND2D8BWP)                      0.02       0.94 f
+  U7366/ZN (CKND4BWP)                      0.02       0.96 r
+  U7074/ZN (CKND2D8BWP)                    0.02       0.98 f
+  U7369/ZN (CKND2D8BWP)                    0.02       1.00 r
+  U11003/ZN (CKND2D8BWP)                   0.02       1.02 f
+  U9511/Z (BUFFD4BWP)                      0.04       1.06 f
+  U10446/ZN (INR3D4BWP)                    0.04       1.10 r
+  U6948/ZN (IND2D2BWP)                     0.04       1.14 f
+  U18263/ZN (CKND6BWP)                     0.03       1.17 r
+  U18109/ZN (CKND6BWP)                     0.03       1.20 f
+  U18739/ZN (CKND6BWP)                     0.03       1.23 r
+  U6356/ZN (CKND2D2BWP)                    0.02       1.26 f
+  U6385/Z (AN2D4BWP)                       0.04       1.30 f
+  U18287/ZN (OAI211D2BWP)                  0.02       1.32 r
+  U12209/Z (OA33D1BWP)                     0.07       1.39 r
+  iRF/rf_s1_reg[10]/D (DFCND1BWP)          0.00       1.39 r
+  data arrival time                                   1.39
+
+  clock clk (rise edge)                    1.50       1.50
+  clock network delay (ideal)              0.00       1.50
+  clock uncertainty                       -0.08       1.42
+  iRF/rf_s1_reg[10]/CP (DFCND1BWP)         0.00       1.42 r
+  library setup time                      -0.03       1.39
+  data required time                                  1.39
+  -----------------------------------------------------------
+  data required time                                  1.39
+  data arrival time                                  -1.39
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

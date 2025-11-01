@@ -1,72 +1,72 @@
 Module: DW01_decode_width8, Ports: 264, Input: 8, Output: 256, Inout: 0
 Module: DW01_decode_width8, Registers: 0, Async set/reset: 0, Sync set/reset: 0
 Information: Updating design information... (UID-85)
-Warning: Design 'ivm_soc_v1' contains 28 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'ivm_soc_v1' contains 31 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 Information: Timing loop detected. (OPT-150)
-	iCPU/iPC/pc_reg[30]/CK iCPU/iPC/pc_reg[30]/Q iCC_V1/U311/A iCC_V1/U311/X iCC_V1/U310/A2 iCC_V1/U310/X iCC_V1/U1162/A1 iCC_V1/U1162/X iCC_V1/U1152/A1 iCC_V1/U1152/X iCC_V1/U840/B2 iCC_V1/U840/X U114/A1 U114/X 
+	iCPU/iPC/pc_reg[31]/CK iCPU/iPC/pc_reg[31]/Q iCC_V1/U484/A2 iCC_V1/U484/X U3085/A U3085/X U3077/A U3077/X U1335/A1 U1335/X iCC_V1/U369/A2 iCC_V1/U369/X U194/A1 U194/X 
 Information: Timing loop detected. (OPT-150)
-	iCPU/iPC/pc_reg[27]/CK iCPU/iPC/pc_reg[27]/Q iCC_V1/U306/A iCC_V1/U306/X iCC_V1/U126/A2 iCC_V1/U126/X iCC_V1/U242/A1 iCC_V1/U242/X iCC_V1/U194/A1 iCC_V1/U194/X iCC_V1/U192/A1 iCC_V1/U192/X iCC_V1/U310/A3 iCC_V1/U310/X iCC_V1/U1162/A1 iCC_V1/U1162/X iCC_V1/U1152/A1 iCC_V1/U1152/X iCC_V1/U840/B2 iCC_V1/U840/X U114/A1 U114/X 
-Warning: Disabling timing arc between pins 'A1' and 'X' on cell 'U114'
+	iCPU/iPC/pc_reg[30]/CK iCPU/iPC/pc_reg[30]/Q U12343/A U12343/X iCC_V1/U483/A1 iCC_V1/U483/X iCC_V1/U484/A3 iCC_V1/U484/X U3085/A U3085/X U3077/A U3077/X U1335/A1 U1335/X iCC_V1/U369/A2 iCC_V1/U369/X U194/A1 U194/X 
+Warning: Disabling timing arc between pins 'A1' and 'X' on cell 'U194'
          to break a timing loop. (OPT-314)
  
 ****************************************
 Report : qor
 Design : ivm_soc_v1
 Version: X-2025.06
-Date   : Sun Sep 28 23:05:54 2025
+Date   : Mon Oct 13 23:23:30 2025
 ****************************************
 
 
   Timing Path Group 'clk'
   -----------------------------------
-  Levels of Logic:              45.00
-  Critical Path Length:      13252.50
-  Critical Path Slack:      -13250.70
+  Levels of Logic:              15.00
+  Critical Path Length:       8448.80
+  Critical Path Slack:       -8447.04
   Critical Path Clk Period:      2.00
-  Total Negative Slack: -435895136.00
-  No. of Violating Paths:    32896.00
-  Worst Hold Violation:         -0.25
-  Total Hold Violation:      -7698.94
-  No. of Hold Violations:    84589.00
+  Total Negative Slack: -213134848.00
+  No. of Violating Paths:    33007.00
+  Worst Hold Violation:         -0.11
+  Total Hold Violation:       -938.79
+  No. of Hold Violations:     8381.00
   -----------------------------------
 
 
   Cell Count
   -----------------------------------
-  Hierarchical Cell Count:         81
-  Hierarchical Port Count:      13610
-  Leaf Cell Count:             109744
-  Buf/Inv Cell Count:           20212
-  Buf Cell Count:                 893
-  Inv Cell Count:               19319
+  Hierarchical Cell Count:         20
+  Hierarchical Port Count:      44175
+  Leaf Cell Count:              87889
+  Buf/Inv Cell Count:           20596
+  Buf Cell Count:               13841
+  Inv Cell Count:                6755
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:     66267
-  Sequential Cell Count:        43477
+  Combinational Cell Count:     44543
+  Sequential Cell Count:        43346
   Macro Count:                      0
   -----------------------------------
 
 
   Area
   -----------------------------------
-  Combinational Area:     3596.287615
-  Noncombinational Area:  2819.238563
-  Buf/Inv Area:            397.388148
-  Total Buffer Area:           146.14
-  Total Inverter Area:         251.25
+  Combinational Area:    22939.769796
+  Noncombinational Area:  2644.911438
+  Buf/Inv Area:           2997.010843
+  Total Buffer Area:          2740.44
+  Total Inverter Area:         256.57
   Macro/Black Box Area:      0.000000
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:              6415.526179
-  Design Area:            6415.526179
+  Cell Area:             25584.681234
+  Design Area:           25584.681234
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:        114894
-  Nets With Violations:           471
-  Max Trans Violations:             8
-  Max Cap Violations:               8
-  Max Fanout Violations:          471
+  Total Number of Nets:         89210
+  Nets With Violations:          1560
+  Max Trans Violations:            21
+  Max Cap Violations:              23
+  Max Fanout Violations:         1547
   -----------------------------------
 
 
@@ -74,19 +74,19 @@ Date   : Sun Sep 28 23:05:54 2025
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    6.98
-  Logic Optimization:                  4.41
-  Mapping Optimization:             1818.46
+  Resource Sharing:                   15.64
+  Logic Optimization:                  6.07
+  Mapping Optimization:              915.42
   -----------------------------------------
-  Overall Compile Time:             1939.91
-  Overall Compile Wall Clock Time:  1947.77
+  Overall Compile Time:              951.61
+  Overall Compile Wall Clock Time:   953.99
 
   --------------------------------------------------------------------
 
-  Design  WNS: 13250.70  TNS: 435895136.00  Number of Violating Paths: 32896
+  Design  WNS: 8447.04  TNS: 213134848.00  Number of Violating Paths: 33007
 
 
-  Design (Hold)  WNS: 0.25  TNS: 7698.94  Number of Violating Paths: 84589
+  Design (Hold)  WNS: 0.11  TNS: 938.79  Number of Violating Paths: 8381
 
   --------------------------------------------------------------------
 

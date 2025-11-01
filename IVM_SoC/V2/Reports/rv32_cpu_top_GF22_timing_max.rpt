@@ -1,0 +1,129 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : rv32_cpu_top
+Version: X-2025.06
+Date   : Mon Oct 13 19:12:27 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: read_strb_ff_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iPC/pc_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       ZeroWLM               gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  read_strb_ff_reg[1]/CK (UDB116SVT36_FDPRBQ_V2_3)        0.00 #     0.00 r
+  read_strb_ff_reg[1]/Q (UDB116SVT36_FDPRBQ_V2_3)         0.11       0.11 r
+  U942/X (UDB116SVT36_INV_4)                              0.02       0.13 f
+  U481/X (UDB116SVT36_NR2_2)                              0.02       0.16 r
+  U701/X (UDB116SVT36_AOI22_MM_2)                         0.05       0.20 f
+  U458/X (UDB116SVT36_INV_2)                              0.03       0.23 r
+  U457/X (UDB116SVT36_ND2_MM_3)                           0.02       0.25 f
+  U944/X (UDB116SVT36_NR2_2P75)                           0.03       0.28 r
+  U887/X (UDB116SVT36_AO2222_0P75)                        0.09       0.37 r
+  U650/X (UDB116SVT36_NR2B_1)                             0.03       0.40 r
+  U8457/X (UDB116SVT36_AO222_2)                           0.07       0.47 r
+  U10587/X (UDB116SVT36_AOI22_3P75)                       0.03       0.50 f
+  U464/X (UDB116SVT36_OAI21_MM_8)                         0.03       0.53 r
+  iResolver/iBrComp/U44/X (UDB116SVT36_MAJI3B_0P75)       0.06       0.59 r
+  U10588/X (UDB116SVT36_MAJI3B_1)                         0.03       0.62 f
+  iResolver/iBrComp/U89/X (UDB116SVT36_MAJI3B_1)          0.03       0.64 r
+  iResolver/iBrComp/U97/X (UDB116SVT36_MAJI3B_0P75)       0.03       0.68 f
+  iResolver/iBrComp/U91/X (UDB116SVT36_MAJI3B_1)          0.03       0.71 r
+  iResolver/iBrComp/U59/X (UDB116SVT36_MAJI3B_1)          0.03       0.74 f
+  iResolver/iBrComp/U58/X (UDB116SVT36_MAJI3B_1)          0.03       0.77 r
+  iResolver/iBrComp/U98/X (UDB116SVT36_MAJI3B_0P75)       0.04       0.81 f
+  iResolver/iBrComp/U78/X (UDB116SVT36_AO21_1P5)          0.05       0.86 f
+  iResolver/iBrComp/U77/X (UDB116SVT36_OAI221_2)          0.01       0.88 r
+  iResolver/iBrComp/U49/X (UDB116SVT36_AOI21B_1)          0.05       0.92 r
+  iResolver/iBrComp/U70/X (UDB116SVT36_MAJI3B_1)          0.04       0.96 f
+  iResolver/iBrComp/U72/X (UDB116SVT36_MAJI3B_1)          0.03       0.99 r
+  iResolver/iBrComp/U71/X (UDB116SVT36_MAJI3B_1)          0.03       1.03 f
+  iResolver/iBrComp/U92/X (UDB116SVT36_MAJI3B_1)          0.03       1.06 r
+  iResolver/iBrComp/U99/X (UDB116SVT36_MAJI3B_0P75)       0.04       1.10 f
+  iResolver/iBrComp/U76/X (UDB116SVT36_MAJI3B_1)          0.03       1.13 r
+  iResolver/iBrComp/U75/X (UDB116SVT36_MAJI3B_1)          0.03       1.16 f
+  iResolver/iBrComp/U90/X (UDB116SVT36_MAJI3B_1)          0.03       1.19 r
+  iResolver/iBrComp/U40/X (UDB116SVT36_MAJI3B_1)          0.03       1.23 f
+  iResolver/iBrComp/U39/X (UDB116SVT36_MAJI3B_1)          0.03       1.26 r
+  iResolver/iBrComp/U61/X (UDB116SVT36_MAJI3B_1)          0.03       1.29 f
+  iResolver/iBrComp/U60/X (UDB116SVT36_MAJI3B_1)          0.03       1.32 r
+  iResolver/iBrComp/U100/X (UDB116SVT36_MAJI3B_0P75)      0.04       1.36 f
+  iResolver/iBrComp/U93/X (UDB116SVT36_MAJI3B_1)          0.03       1.40 r
+  iResolver/iBrComp/U36/X (UDB116SVT36_MAJI3B_1)          0.03       1.43 f
+  iResolver/iBrComp/U35/X (UDB116SVT36_MAJI3B_1)          0.03       1.46 r
+  iResolver/iBrComp/U69/X (UDB116SVT36_MAJI3B_1)          0.03       1.50 f
+  iResolver/iBrComp/U74/X (UDB116SVT36_MAJI3B_1)          0.03       1.52 r
+  iResolver/iBrComp/U73/X (UDB116SVT36_MAJI3B_1)          0.03       1.56 f
+  iResolver/iBrComp/U95/X (UDB116SVT36_MAJI3B_1)          0.03       1.58 r
+  iResolver/iBrComp/U94/X (UDB116SVT36_MAJI3B_1)          0.03       1.62 f
+  iResolver/iBrComp/U48/X (UDB116SVT36_AOI33_1)           0.04       1.66 r
+  U10572/X (UDB116SVT36_NR2_1)                            0.02       1.68 f
+  iResolver/U15/X (UDB116SVT36_EN2_F_1)                   0.03       1.71 f
+  iResolver/U17/X (UDB116SVT36_OAI32_1)                   0.03       1.74 r
+  iResolver/U6/X (UDB116SVT36_ND2B_1)                     0.03       1.77 r
+  iResolver/U18/X (UDB116SVT36_AN2_1)                     0.03       1.81 r
+  U497/X (UDB116SVT36_BUF_2)                              0.03       1.83 r
+  U467/X (UDB116SVT36_OR2_1)                              0.04       1.87 r
+  iIF_ID/U27/X (UDB116SVT36_OR2_1)                        0.04       1.91 r
+  iIF_ID/U26/X (UDB116SVT36_BUF_MN_8)                     0.03       1.94 r
+  iIF_ID/U14/X (UDB116SVT36_BUF_10)                       0.03       1.96 r
+  U1956/X (UDB116SVT36_OAI22_3)                           0.04       2.00 f
+  iControl/U124/X (UDB116SVT36_NR2_MM_2)                  0.03       2.03 r
+  iControl/U125/X (UDB116SVT36_ND2_2P75)                  0.03       2.05 f
+  U10573/X (UDB116SVT36_OAI22_MM_1)                       0.02       2.08 r
+  iControl/U99/X (UDB116SVT36_OAI21_0P75)                 0.03       2.11 f
+  iControl/U61/X (UDB116SVT36_INV_1)                      0.02       2.13 r
+  iControl/U62/X (UDB116SVT36_INV_2)                      0.02       2.15 f
+  iControl/U101/X (UDB116SVT36_NR2B_0P75)                 0.02       2.17 r
+  iControl/U35/X (UDB116SVT36_NR2B_3)                     0.05       2.22 r
+  iHazard/U11/X (UDB116SVT36_EO2_V2_1)                    0.05       2.27 r
+  iHazard/U9/X (UDB116SVT36_NR3_0P75)                     0.03       2.29 f
+  iHazard/U2/X (UDB116SVT36_AOI33_2)                      0.04       2.33 r
+  U10527/X (UDB116SVT36_NR2B_1)                           0.02       2.35 f
+  U10571/X (UDB116SVT36_OR3_3)                            0.06       2.42 f
+  U483/X (UDB116SVT36_OR2_1)                              0.04       2.46 f
+  iPC/U118/X (UDB116SVT36_NR2_2)                          0.02       2.47 r
+  iPC/U103/X (UDB116SVT36_INV_1)                          0.02       2.49 f
+  iPC/U17/X (UDB116SVT36_BUF_1)                           0.03       2.53 f
+  iPC/U9/X (UDB116SVT36_INV_1)                            0.05       2.58 r
+  iPC/U32/X (UDB116SVT36_AO22_1)                          0.06       2.63 r
+  U9468/X (UDB116SVT36_BUF_1)                             0.03       2.66 r
+  U9472/X (UDB116SVT36_BUF_1)                             0.02       2.68 r
+  U9471/X (UDB116SVT36_BUF_1)                             0.02       2.71 r
+  U9470/X (UDB116SVT36_BUF_1)                             0.02       2.73 r
+  U9469/X (UDB116SVT36_BUF_1)                             0.02       2.75 r
+  iPC/pc_reg[6]/D (UDB116SVT36_FDPRBQ_V2_1)               0.00       2.75 r
+  data arrival time                                                  2.75
+
+  clock clk (rise edge)                                   3.00       3.00
+  clock network delay (ideal)                             0.00       3.00
+  clock uncertainty                                      -0.20       2.80
+  iPC/pc_reg[6]/CK (UDB116SVT36_FDPRBQ_V2_1)              0.00       2.80 r
+  library setup time                                     -0.05       2.75
+  data required time                                                 2.75
+  --------------------------------------------------------------------------
+  data required time                                                 2.75
+  data arrival time                                                 -2.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

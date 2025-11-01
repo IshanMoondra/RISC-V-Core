@@ -26,7 +26,8 @@ logic [31:0] MMIO_bound;
 logic MMIO_RANGE_VALID;
 logic MMIO_UPDATE_VALID;
 logic is_MMIO;
-
+wire [31:0] data_address_internal;
+assign data_address_internal = (data_enable) ? (data_address) : (32'h0);
 genvar i;
 
 // Shadow MMIO Base and Bound Pair
@@ -40,11 +41,11 @@ logic update_MMIO_bound;
 logic read_MMIO_base;
 logic read_MMIO_bound;
 // These allow programmer to update MMIO fence at boot up or program switch based on hardware.
-assign update_MMIO_base     = (data_address == (MMIO_base    ));
-assign update_MMIO_bound    = (data_address == (MMIO_base + 4));
-assign read_MMIO_base       = (data_address == (MMIO_base + 8));
-assign read_MMIO_bound      = (data_address == (MMIO_base + 12));
-assign mmio_vector[0]       = ((data_address >= MMIO_base) && (data_address < (shadow_MMIO_base + 16)));
+assign update_MMIO_base     = (data_address_internal == (MMIO_base    ));
+assign update_MMIO_bound    = (data_address_internal == (MMIO_base + 4));
+assign read_MMIO_base       = (data_address_internal == (MMIO_base + 8));
+assign read_MMIO_bound      = (data_address_internal == (MMIO_base + 12));
+assign mmio_vector[0]       = ((data_address_internal >= MMIO_base) && (data_address_internal < (shadow_MMIO_base + 16)));
 
 // Programmer can read current MMIO Base and Bound Values
 assign data_fetch           = (read_MMIO_base) ? (MMIO_base) : (read_MMIO_bound) ? (MMIO_bound) : (0); 
@@ -78,8 +79,8 @@ always_ff @(posedge clk, negedge rst_n)
         end
 
 // This goes to Cache Controller to make it's life easier. 
-assign SHADOW_RANGE_VALID   = ((data_address >= shadow_MMIO_base)   && (data_address < shadow_MMIO_bound));
-assign MMIO_RANGE_VALID     = ((data_address >= MMIO_base)          && (data_address < MMIO_bound)       );
+assign SHADOW_RANGE_VALID   = ((data_address_internal >= shadow_MMIO_base)   && (data_address_internal < shadow_MMIO_bound));
+assign MMIO_RANGE_VALID     = ((data_address_internal >= MMIO_base)          && (data_address_internal < MMIO_bound)       );
 // Cache is enabled for non MMIO regions. Update Valid and Shadow pair ensures bad firmware does not brick SOC.
 // Can optimize the logic equation further. Future work.
 assign is_MMIO              = (MMIO_UPDATE_VALID) ? (MMIO_RANGE_VALID) : (SHADOW_RANGE_VALID);
@@ -95,7 +96,7 @@ always_ff @(posedge clk, negedge rst_n)
 generate
   for (i = 1; i < 8; i = i + 1)
     begin   : mmio_slot
-        assign mmio_vector[i] = ((data_address >= shadow_MMIO_base + (i * 1024)) && (data_address < shadow_MMIO_base + ((i + 1) * 1024))) && is_MMIO && data_enable;
+        assign mmio_vector[i] = ((data_address_internal >= shadow_MMIO_base + (i * 1024)) && (data_address_internal < shadow_MMIO_base + ((i + 1) * 1024))) && is_MMIO && data_enable;
     end     :mmio_slot
 endgenerate
 

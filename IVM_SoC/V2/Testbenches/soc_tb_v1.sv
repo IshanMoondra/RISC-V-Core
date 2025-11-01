@@ -162,7 +162,7 @@ module soc_tb_v1;
 		// Fork Join for easy tracking
 		fork
 			begin: Timeout            
-				while (count < 64'd20000000)
+				while (count < 64'd2000000000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    

@@ -1,0 +1,69 @@
+Information: Propagating switching activity (high effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort high
+Design : d_cache_v1
+Version: X-2025.06
+Date   : Mon Oct 13 19:41:47 2025
+****************************************
+
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+
+Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+d_cache_v1_MUX_OP_256_8_8
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+d_cache_v1_MUX_OP_256_8_8_1
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+d_cache_v1_MUX_OP_256_8_8_2
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+d_cache_v1_MUX_OP_256_8_8_3
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+
+
+Global Operating Voltage = 0.65 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   6.4796 uW   (22%)
+  Net Switching Power  =  22.8973 uW   (78%)
+                         ---------
+Total Dynamic Power    =  29.3769 uW  (100%)
+
+Cell Leakage Power     = 364.4664 nW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000        1.9909e-05            0.0000        1.9909e-05  (   0.07%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  6.4796e-03        2.2877e-02          364.4664        2.9722e-02  (  99.93%)
+--------------------------------------------------------------------------------------------------
+Total          6.4796e-03 mW     2.2897e-02 mW       364.4664 nW     2.9741e-02 mW
+1

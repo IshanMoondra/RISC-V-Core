@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : ivm_soc_v1
 Version: X-2025.06
-Date   : Sun Sep 28 23:06:05 2025
+Date   : Mon Oct 13 23:24:11 2025
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Sun Sep 28 23:06:05 2025
 Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
 Wire Load Model Mode: enclosed
 
-  Startpoint: iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/ram_core_reg[0][0]
+  Startpoint: iCPU/iPC/pc_reg[3]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/Q_tmp_reg[0]
+  Endpoint: iCC_V1/i_slice_inst/ram_core_reg[0][0]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -25,32 +25,36 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/ram_core_reg[0][0]/clocked_on (**SEQGEN**)
-                                                          0.00 #     0.00 r
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/ram_core_reg[0][0]/Q (**SEQGEN**)
-                                                          0.00       0.00 r
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/C6197/Z_7 (*MUX_OP_256_8_8)
-                                                          0.00       0.00 r
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/C6237/Z (GTECH_AND2)
-                                                          0.00       0.00 r
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/C6235/Z (GTECH_OR2)
-                                                          0.00       0.00 r
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/Q_tmp_reg[0]/next_state (**SEQGEN**)
-                                                          0.00       0.00 r
-  data arrival time                                                  0.00
+  iCPU/iPC/pc_reg[3]/CK (UDB116SVT36_FDPRBQ_V2_1)         0.00 #     0.00 r
+  iCPU/iPC/pc_reg[3]/Q (UDB116SVT36_FDPRBQ_V2_1)          0.10       0.10 f
+  iCC_V1/U375/X (UDB116SVT36_AO22_1)                      0.03       0.14 f
+  iCC_V1/i_slice_inst/ADR[1] (saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core)
+                                                          0.00       0.14 f
+  iCC_V1/i_slice_inst/C9/A_1 (*DECODE_OP_8_256)           0.00       0.14 f
+  iCC_V1/i_slice_inst/C9/*cell*607948/A[1] (DW01_decode_width8)
+                                                          0.00       0.14 f
+  ...
+  iCC_V1/i_slice_inst/C9/*cell*607948/B[0] (DW01_decode_width8)
+                                                          0.00       0.14 r
+  iCC_V1/i_slice_inst/C9/Z_0 (*DECODE_OP_8_256)           0.00       0.14 r
+  iCC_V1/i_slice_inst/C24700/Z_0 (*SELECT_OP_2.256_2.1_256)
+                                                          0.00       0.14 r
+  iCC_V1/i_slice_inst/ram_core_reg[0][0]/synch_enable (**SEQGEN**)
+                                                          0.00       0.14 r
+  data arrival time                                                  0.14
 
   clock clk (rise edge)                                   0.00       0.00
   clock network delay (ideal)                             0.00       0.00
   clock uncertainty                                       0.25       0.25
-  iCC_V1/D_Slice_Gen[0].d_slice_inst/d_way[0].d_byte/Q_tmp_reg[0]/clocked_on (**SEQGEN**)
+  iCC_V1/i_slice_inst/ram_core_reg[0][0]/clocked_on (**SEQGEN**)
                                                           0.00       0.25 r
   library hold time                                       0.00       0.25
   data required time                                                 0.25
   --------------------------------------------------------------------------
   data required time                                                 0.25
-  data arrival time                                                  0.00
+  data arrival time                                                 -0.14
   --------------------------------------------------------------------------
-  slack (VIOLATED)                                                  -0.25
+  slack (VIOLATED)                                                  -0.11
 
 
 1
