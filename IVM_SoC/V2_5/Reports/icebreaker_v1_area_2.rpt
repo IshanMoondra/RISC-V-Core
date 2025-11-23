@@ -1,0 +1,33 @@
+ 
+****************************************
+Report : area
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Mon Nov 17 23:02:21 2025
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+Number of ports:                        38599
+Number of nets:                        912133
+Number of cells:                       857676
+Number of combinational cells:         314066
+Number of sequential cells:            543553
+Number of macros/black boxes:               0
+Number of buf/inv:                     103412
+Number of references:                       1
+
+Combinational area:               3164.635383
+Buf/Inv area:                      376.591664
+Noncombinational area:            3226.273296
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  6390.908679
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+1

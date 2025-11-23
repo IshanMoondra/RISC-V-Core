@@ -1,0 +1,52 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : cache_controller_v1
+Version: X-2025.06
+Date   : Thu Oct  9 01:01:17 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: d_slice_0/d_byte0/ram_core_reg[0][0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: d_slice_0/d_byte0/Q_tmp_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  d_slice_0/d_byte0/ram_core_reg[0][0]/clocked_on (**SEQGEN**)
+                                                          0.00 #     0.00 r
+  d_slice_0/d_byte0/ram_core_reg[0][0]/Q (**SEQGEN**)     0.00       0.00 r
+  d_slice_0/d_byte0/C6197/Z_7 (*MUX_OP_256_8_8)           0.00       0.00 r
+  d_slice_0/d_byte0/C6237/Z (GTECH_AND2)                  0.00       0.00 r
+  d_slice_0/d_byte0/C6235/Z (GTECH_OR2)                   0.00       0.00 r
+  d_slice_0/d_byte0/Q_tmp_reg[0]/next_state (**SEQGEN**)
+                                                          0.00       0.00 r
+  data arrival time                                                  0.00
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.25       0.25
+  d_slice_0/d_byte0/Q_tmp_reg[0]/clocked_on (**SEQGEN**)
+                                                          0.00       0.25 r
+  library hold time                                       0.00       0.25
+  data required time                                                 0.25
+  --------------------------------------------------------------------------
+  data required time                                                 0.25
+  data arrival time                                                  0.00
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.25
+
+
+1

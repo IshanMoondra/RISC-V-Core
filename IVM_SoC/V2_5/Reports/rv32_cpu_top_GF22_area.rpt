@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : rv32_cpu_top
+Version: X-2025.06
+Date   : Mon Oct 13 19:12:27 2025
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+    gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+
+Number of ports:                          205
+Number of nets:                         17591
+Number of cells:                        17375
+Number of combinational cells:          15608
+Number of sequential cells:              1767
+Number of macros/black boxes:               0
+Number of buf/inv:                      10957
+Number of references:                     172
+
+Combinational area:               4175.645021
+Buf/Inv area:                     2034.421956
+Noncombinational area:            2104.015024
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                  6279.660045
+Total area:                 undefined
+1

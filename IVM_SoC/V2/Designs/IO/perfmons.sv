@@ -14,7 +14,8 @@ module perfmons
 			input [6:0] addr_bus,
 			input [31:0] data_store,
 			output logic [31:0] data_fetch,
-			output logic watchdog_panic
+			output logic watchdog_panic,
+			output logic dis_sram_gater 
     );
 
 // Actual Timers/Counters
@@ -57,6 +58,9 @@ logic pet_watchdog;
 
 logic update_timer;
 logic timer_done;
+
+logic set_dis_sram_gater;
+logic get_dis_sram_gater;
 
 // Getters for Programmable Reads
 logic get_soc_cycles_high;
@@ -246,6 +250,15 @@ always_ff @( posedge soc_clk, negedge rst_n)
 			end
 	end
 
+// Disable SRAM Gater Register
+always_ff @( posedge core_clk, negedge rst_n)
+	begin
+		if (~rst_n)
+			dis_sram_gater <= 0;
+		else if (set_dis_sram_gater)
+			dis_sram_gater <= data_store[0];
+	end
+
 assign global_enable 	= perfmon_status[0];
 assign scalar_enable	= perfmon_status[1] && global_enable;
 assign timer_enable		= perfmon_status[2] && global_enable;
@@ -278,6 +291,9 @@ assign set_watchdog_low					= perfmons_enable && (addr_bus == 7'h38);
 assign get_watchdog_high	 			= perfmons_enable && (addr_bus == 7'h3C);
 assign get_watchdog_low					= perfmons_enable && (addr_bus == 7'h40);
 
+assign set_dis_sram_gater				= perfmons_enable && (addr_bus == 7'h44);
+assign get_dis_sram_gater				= perfmons_enable && (addr_bus == 7'h48);
+
 // Final MMIO Output Mux
 assign data_fetch	= 	(perfmons_enable) ? 
 												(get_perfmon_status) 			? (perfmon_status) 						:
@@ -291,6 +307,7 @@ assign data_fetch	= 	(perfmons_enable) ?
 												(get_retired_count) 			? (non_nop_retired_counter)		:
 												(get_watchdog_high)				?	(watchdog_threshold[63:32])	:
 												(get_watchdog_low)				?	(watchdog_threshold[31:0])	:
+												(get_dis_sram_gater)			? (dis_sram_gater)						:
 												(0) : 
 											(0);
 

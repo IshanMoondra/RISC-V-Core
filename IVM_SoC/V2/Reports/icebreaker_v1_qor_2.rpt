@@ -1,92 +1,202 @@
-Module: DW01_decode_width9, Ports: 521, Input: 9, Output: 512, Inout: 0
-Module: DW01_decode_width9, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Error: Could not read the following target libraries:
+gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db 
+ (UIO-3)
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Module: DW01_cmp2_width32, Ports: 68, Input: 66, Output: 2, Inout: 0
+Module: DW01_cmp2_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_add_width32, Ports: 98, Input: 65, Output: 33, Inout: 0
+Module: DW01_add_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width13, Ports: 26, Input: 13, Output: 13, Inout: 0
+Module: DW01_inc_width13, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width3, Ports: 6, Input: 3, Output: 3, Inout: 0
+Module: DW01_inc_width3, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width24, Ports: 55, Input: 49, Output: 6, Inout: 0
+Module: DW01_cmp6_width24, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_add_width25, Ports: 77, Input: 51, Output: 26, Inout: 0
+Module: DW01_add_width25, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width25, Ports: 57, Input: 51, Output: 6, Inout: 0
+Module: DW01_cmp6_width25, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_add_width24, Ports: 74, Input: 49, Output: 25, Inout: 0
+Module: DW01_add_width24, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width64, Ports: 135, Input: 129, Output: 6, Inout: 0
+Module: DW01_cmp6_width64, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width64, Ports: 128, Input: 64, Output: 64, Inout: 0
+Module: DW01_inc_width64, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width32, Ports: 71, Input: 65, Output: 6, Inout: 0
+Module: DW01_cmp6_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width32, Ports: 64, Input: 32, Output: 32, Inout: 0
+Module: DW01_inc_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width5, Ports: 17, Input: 11, Output: 6, Inout: 0
+Module: DW01_cmp6_width5, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_sub_width4, Ports: 14, Input: 9, Output: 5, Inout: 0
+Module: DW01_sub_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_cmp6_width4, Ports: 15, Input: 9, Output: 6, Inout: 0
+Module: DW01_cmp6_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_sub_width32, Ports: 98, Input: 65, Output: 33, Inout: 0
+Module: DW01_sub_width32, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width12, Ports: 24, Input: 12, Output: 12, Inout: 0
+Module: DW01_inc_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Module: DW01_inc_width4, Ports: 8, Input: 4, Output: 4, Inout: 0
+Module: DW01_inc_width4, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Warning: Can't read link_library file 'gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edf116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
+Warning: Can't read link_library file 'gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db'. (UID-3)
 Information: Updating design information... (UID-85)
-Warning: Design 'icebreaker_v1' contains 12 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'icebreaker_v1' contains 11 high-fanout nets. A fanout number of 5000 will be used for delay calculations involving these nets. (TIM-134)
 Information: Timing loop detected. (OPT-150)
-	iSoC/iCPU/iPC/pc_reg[31]/CK iSoC/iCPU/iPC/pc_reg[31]/Q iSoC/iCC_V1/U128/A iSoC/iCC_V1/U128/X iSoC/iCC_V1/U125/A2 iSoC/iCC_V1/U125/X iSoC/iCC_V1/U162/A1 iSoC/iCC_V1/U162/X iSoC/iCC_V1/U587/A2 iSoC/iCC_V1/U587/X iSoC/U334/A2 iSoC/U334/X iSoC/U460/A iSoC/U460/X 
+	iSoC/iCPU/iPC/pc_reg[31]/clocked_on iSoC/iCPU/iPC/pc_reg[31]/Q iSoC/iCC_V1/gte_350/*cell*423/UB/B iSoC/iCC_V1/gte_350/*cell*423/UB/Z iSoC/iCC_V1/gte_350/*cell*423/ULTI0/B iSoC/iCC_V1/gte_350/*cell*423/ULTI0/Z iSoC/iCC_V1/gte_350/*cell*423/ULTI2/A iSoC/iCC_V1/gte_350/*cell*423/ULTI2/Z iSoC/iCC_V1/C1085/A iSoC/iCC_V1/C1085/Z iSoC/iCC_V1/C1069/D0_3 iSoC/iCC_V1/C1069/Z_3 iSoC/iCC_V1/C1119/A iSoC/iCC_V1/C1119/Z iSoC/C1067/B iSoC/C1067/Z 
 Information: Timing loop detected. (OPT-150)
-	iSoC/iCPU/iPC/pc_reg[29]/CK iSoC/iCPU/iPC/pc_reg[29]/Q iSoC/iCC_V1/U156/A iSoC/iCC_V1/U156/X iSoC/iCC_V1/U150/A2 iSoC/iCC_V1/U150/X iSoC/iCC_V1/U126/A1 iSoC/iCC_V1/U126/X iSoC/iCC_V1/U125/A3 iSoC/iCC_V1/U125/X iSoC/iCC_V1/U162/A1 iSoC/iCC_V1/U162/X iSoC/iCC_V1/U587/A2 iSoC/iCC_V1/U587/X iSoC/U334/A2 iSoC/U334/X iSoC/U460/A iSoC/U460/X 
-Warning: Disabling timing arc between pins 'A2' and 'X' on cell 'iSoC/U334'
+	iSoC/iCPU/iPC/pc_reg[30]/clocked_on iSoC/iCPU/iPC/pc_reg[30]/Q iSoC/iCC_V1/gte_350/*cell*423/ULTI0_30/B iSoC/iCC_V1/gte_350/*cell*423/ULTI0_30/Z iSoC/iCC_V1/gte_350/*cell*423/ULTI2_30/A iSoC/iCC_V1/gte_350/*cell*423/ULTI2_30/Z iSoC/iCC_V1/gte_350/*cell*423/ULTI1/B iSoC/iCC_V1/gte_350/*cell*423/ULTI1/Z iSoC/iCC_V1/gte_350/*cell*423/ULTI2/B iSoC/iCC_V1/gte_350/*cell*423/ULTI2/Z iSoC/iCC_V1/C1085/A iSoC/iCC_V1/C1085/Z iSoC/iCC_V1/C1069/D0_3 iSoC/iCC_V1/C1069/Z_3 iSoC/iCC_V1/C1119/A iSoC/iCC_V1/C1119/Z iSoC/C1067/B iSoC/C1067/Z 
+Warning: Disabling timing arc between pins 'B' and 'Z' on cell 'iSoC/C1067'
          to break a timing loop. (OPT-314)
  
 ****************************************
 Report : qor
 Design : icebreaker_v1
 Version: X-2025.06
-Date   : Fri Oct 31 04:56:06 2025
+Date   : Thu Nov  6 18:27:52 2025
 ****************************************
 
 
   Timing Path Group 'clkin'
   -----------------------------------
-  Levels of Logic:              42.00
-  Critical Path Length:          0.67
-  Critical Path Slack:           0.00
-  Critical Path Clk Period:      0.90
+  Levels of Logic:               3.00
+  Critical Path Length:          0.00
+  Critical Path Slack:           0.47
+  Critical Path Clk Period:      1.33
   Total Negative Slack:          0.00
   No. of Violating Paths:        0.00
   Worst Hold Violation:         -0.25
-  Total Hold Violation:     -34912.79
-  No. of Hold Violations:   166864.00
+  Total Hold Violation:     -42277.75
+  No. of Hold Violations:   169111.00
   -----------------------------------
 
 
   Cell Count
   -----------------------------------
-  Hierarchical Cell Count:         47
-  Hierarchical Port Count:       9869
-  Leaf Cell Count:             132289
-  Buf/Inv Cell Count:           14548
-  Buf Cell Count:                 514
-  Inv Cell Count:               14034
+  Hierarchical Cell Count:        207
+  Hierarchical Port Count:      18522
+  Leaf Cell Count:              99392
+  Buf/Inv Cell Count:            1188
+  Buf Cell Count:                 335
+  Inv Cell Count:                 853
   CT Buf/Inv Cell Count:            1
-  Combinational Cell Count:     47499
-  Sequential Cell Count:        84790
+  Combinational Cell Count:     14122
+  Sequential Cell Count:        85270
   Macro Count:                      0
   -----------------------------------
 
 
   Area
   -----------------------------------
-  Combinational Area:     3531.956344
-  Noncombinational Area:  3235.794578
-  Buf/Inv Area:            461.782064
-  Total Buffer Area:           136.87
-  Total Inverter Area:         324.91
+  Combinational Area:        0.000000
+  Noncombinational Area:     0.000000
+  Buf/Inv Area:              0.000000
+  Total Buffer Area:             0.00
+  Total Inverter Area:           0.00
   Macro/Black Box Area:      0.000000
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:              6767.750922
-  Design Area:            6767.750922
+  Cell Area:                 0.000000
+  Design Area:               0.000000
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:        135546
-  Nets With Violations:          2788
+  Total Number of Nets:        105658
+  Nets With Violations:          3197
   Max Trans Violations:             0
   Max Cap Violations:               0
-  Max Fanout Violations:         2788
+  Max Fanout Violations:         3197
   -----------------------------------
 
 
-  Hostname: compute-hal
+  Hostname: tux-116
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                    0.11
-  Logic Optimization:                 58.94
-  Mapping Optimization:              238.29
+  Resource Sharing:                    0.00
+  Logic Optimization:                  0.00
+  Mapping Optimization:                0.00
   -----------------------------------------
-  Overall Compile Time:              475.97
-  Overall Compile Wall Clock Time:   487.18
+  Overall Compile Time:                0.00
+  Overall Compile Wall Clock Time:     0.00
 
   --------------------------------------------------------------------
 
   Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
 
 
-  Design (Hold)  WNS: 0.25  TNS: 34912.79  Number of Violating Paths: 166864
+  Design (Hold)  WNS: 0.25  TNS: 42277.75  Number of Violating Paths: 169111
 
   --------------------------------------------------------------------
 

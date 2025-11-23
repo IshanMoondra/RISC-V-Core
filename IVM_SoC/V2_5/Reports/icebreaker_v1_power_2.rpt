@@ -1,0 +1,90 @@
+Information: Propagating switching activity (high effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort high
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Mon Nov 17 23:02:20 2025
+****************************************
+
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+rv32_cpu_top           ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+spimemio               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+perfmons               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+gpio_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_pc_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_if_id_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_cu_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+hazard_detection       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_register_file     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+branch_resolver_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_id_ex_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+forwarding_unit_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_v2            ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_ex_mem_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_mem_wb_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+write_back             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+spimemio_xfer          ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART                   ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_comp_1        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_add_sub       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_comp_0        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_logical       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_barrel_shifter    ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_tx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_rx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+
+
+Global Operating Voltage = 0.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =   2.1658 mW   (99%)
+  Net Switching Power  =  22.2764 uW    (1%)
+                         ---------
+Total Dynamic Power    =   2.1881 mW  (100%)
+
+Cell Leakage Power     =   6.6814 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network  1.3025e+03            0.0000            4.3288        1.3025e+03  ( 59349.93%)
+                                                                                             i
+register       -1.3003e+03        5.2159e-03        3.5975e+03        -1.3003e+03
+                                                                                 ( -59251.50%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.4400e-02        1.7060e-02        3.0796e+03        3.4540e-02  (   1.57%)
+--------------------------------------------------------------------------------------------------
+Total              2.1658 mW     2.2276e-02 mW     6.6814e+03 nW         2.1946 mW
+1

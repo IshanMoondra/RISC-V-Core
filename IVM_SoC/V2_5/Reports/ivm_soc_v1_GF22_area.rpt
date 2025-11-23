@@ -3,31 +3,31 @@
 Report : area
 Design : ivm_soc_v1
 Version: X-2025.06
-Date   : Sun Oct  5 02:01:54 2025
+Date   : Mon Oct 13 23:24:10 2025
 ****************************************
 
 Library(s) Used:
 
-    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
     gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
     gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
 
-Number of ports:                        13732
-Number of nets:                        126352
-Number of cells:                       109353
-Number of combinational cells:          65423
-Number of sequential cells:             43815
+Number of ports:                        44297
+Number of nets:                        133380
+Number of cells:                        87919
+Number of combinational cells:          44538
+Number of sequential cells:             43351
 Number of macros/black boxes:               0
-Number of buf/inv:                      20344
-Number of references:                      30
+Number of buf/inv:                      20596
+Number of references:                     314
 
-Combinational area:               3767.545363
-Buf/Inv area:                      406.658867
-Noncombinational area:            3170.648976
+Combinational area:              22939.769796
+Buf/Inv area:                     2997.010843
+Noncombinational area:            2644.911438
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (No wire load specified)
 
-Total cell area:                  6938.194339
+Total cell area:                 25584.681234
 Total area:                 undefined
 
 Information: This design contains unmapped logic. (RPT-7)

@@ -1,0 +1,33 @@
+ 
+****************************************
+Report : area
+Design : d_cache_v1
+Version: X-2025.06
+Date   : Mon Oct 13 19:41:48 2025
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+Number of ports:                        10556
+Number of nets:                         35965
+Number of cells:                        24442
+Number of combinational cells:          16190
+Number of sequential cells:              8228
+Number of macros/black boxes:               0
+Number of buf/inv:                       4241
+Number of references:                      14
+
+Combinational area:               1852.452713
+Buf/Inv area:                       17.038080
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  1852.452713
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+1

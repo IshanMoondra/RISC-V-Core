@@ -1,10 +1,10 @@
-source /raid/GF22FDX_PLUS/e_chip_II/syn/risc-v_II/syn/scripts/values.tcl
+# source /raid/GF22FDX_PLUS/e_chip_II/syn/risc-v_II/syn/scripts/values.tcl
 
 ############################################
 
-set target_library "$libraries"
+# set target_library "$libraries"
 
-set link_library "$libraries"
+# set link_library "$libraries"
 
 analyze -format sverilog -lib work -vcs "-f /filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/RISC-V-Core/IVM_SoC/V2/design_files.f"
 
@@ -62,9 +62,10 @@ set CLK_BUF UDB116SVT36_BUF_2
 # Design rule constraint
 set_max_capacitance 0.2 $DESIGN_NAME
 set_max_fanout 15 $DESIGN_NAME
+set high_fanout_net_threshold 5000
 # set_max_area 0.0 
 # set PERIOD_CLK 1.00
-set PERIOD_CLK 0.90
+set PERIOD_CLK 1.33
 # set PERIOD_CLK 2.50
 
 # I0 drive & load

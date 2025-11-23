@@ -25,7 +25,9 @@ module rv32_cpu_top
         input wire busy,
         output wire halt,
         // Output of the CPU
-        output logic [31:0] wb_result
+        output logic [31:0] wb_result,
+        // Output for PerfMons
+        output logic non_nop_retired
     );
 
 // Creating Wires for Fetch/Decode Stage
@@ -51,6 +53,9 @@ wire [31:0] decode_rs2;
 // Creating Wires for Decode/Execute Stage
 
 wire [31:0] execute_code_bus;
+wire non_nop_instruction;
+reg  non_nop_instruction_ff1;
+reg  non_nop_instruction_ff2;
 wire [31:0] execute_pc;
 logic [31:0] execute_pc_ff;
 wire [31:0] execute_rs1;
@@ -367,6 +372,22 @@ rv32_ex_mem_queue iEX_MEM
         .code_out(memory_code_bus)
     );
 
+// New output to track Non NOP Retired Instructions
+assign non_nop_instruction = ~((execute_code_bus == 0) | (execute_code_bus == 32'h00000013));
+always_ff @(posedge clk, negedge rst_n)
+  begin
+    if (~rst_n)
+      begin
+        non_nop_instruction_ff1 <= 0;
+        non_nop_instruction_ff2 <= 0;
+      end
+    else
+      begin
+        non_nop_instruction_ff1 <= non_nop_instruction;
+        non_nop_instruction_ff2 <= non_nop_instruction_ff1;
+      end
+  end
+assign non_nop_retired = non_nop_instruction_ff2;
 // Splitting the Long combination data store path into two. 
 
 logic data_enable_int;

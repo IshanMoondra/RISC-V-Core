@@ -19,8 +19,16 @@
 ./Designs/IO/i_cache_v1.sv
 ./Designs/IO/saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core.v
 ./Designs/IO/saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core.v
+./Designs/IO/saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core.v
+./Designs/IO/saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+./Designs/IO/saduvssd8ULTRALOW1p1024x32m16b1w0c1p1d0l0rm3sdrw11_core.v
+./Designs/IO/saduvssd8ULTRALOW1p1024x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+./Designs/IO/saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core.v
+./Designs/IO/saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core.v
 ./Designs/IO/d_cache_v1.sv
 ./Designs/IO/cache_controller_v1.sv
+./Designs/IO/perfmons.sv
+./Designs/IO/gpio_v1.sv
 ./Designs/IO/spiflash.v
 ./Designs/IO/spimemio.v
 ./Designs/IO/UART_rx.sv

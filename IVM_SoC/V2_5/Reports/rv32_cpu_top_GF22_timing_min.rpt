@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : rv32_cpu_top
+Version: X-2025.06
+Date   : Mon Oct 13 19:12:27 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: mem_cancel_ff_reg
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: iRF/reg_d1_ff_reg[0]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       ZeroWLM               gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mem_cancel_ff_reg/CK (UDB116SVT36_FDPSBQ_1)             0.00 #     0.00 r
+  mem_cancel_ff_reg/Q (UDB116SVT36_FDPSBQ_1)              0.05       0.05 r
+  U977/X (UDB116SVT36_NR2B_V1_2)                          0.02       0.07 f
+  iWrite/U43/X (UDB116SVT36_AO222_4)                      0.05       0.12 f
+  U8459/X (UDB116SVT36_BUF_1)                             0.02       0.14 f
+  U8460/X (UDB116SVT36_BUF_1)                             0.02       0.17 f
+  U8463/X (UDB116SVT36_BUF_1)                             0.02       0.19 f
+  U8462/X (UDB116SVT36_BUF_1)                             0.03       0.22 f
+  U8461/X (UDB116SVT36_BUF_1)                             0.03       0.24 f
+  U8458/X (UDB116SVT36_BUF_1)                             0.02       0.27 f
+  iRF/reg_d1_ff_reg[0]/D (UDB116SVT36_FDPRBQ_V2_1)        0.00       0.27 f
+  data arrival time                                                  0.27
+
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.25       0.25
+  iRF/reg_d1_ff_reg[0]/CK (UDB116SVT36_FDPRBQ_V2_1)       0.00       0.25 r
+  library hold time                                       0.02       0.27
+  data required time                                                 0.27
+  --------------------------------------------------------------------------
+  data required time                                                 0.27
+  data arrival time                                                 -0.27
+  --------------------------------------------------------------------------
+  slack (VIOLATED: increase significant digits)                      0.00
+
+
+1

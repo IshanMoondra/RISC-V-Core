@@ -1,0 +1,96 @@
+Module: DW01_decode_width9, Ports: 521, Input: 9, Output: 512, Inout: 0
+Module: DW01_decode_width9, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_decode_width12, Ports: 4108, Input: 12, Output: 4096, Inout: 0
+Module: DW01_decode_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Updating design information... (UID-85)
+Warning: Design 'icebreaker_v1' contains 9 high-fanout nets. A fanout number of 40000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	iSoC/iCPU/iPC/pc_reg[30]/CK iSoC/iCPU/iPC/pc_reg[30]/Q iSoC/iCC_V1/U151/A iSoC/iCC_V1/U151/X iSoC/iCC_V1/U120/A2 iSoC/iCC_V1/U120/X iSoC/iCC_V1/U418/A1 iSoC/iCC_V1/U418/X iSoC/iCC_V1/U163/A1 iSoC/iCC_V1/U163/X iSoC/iCC_V1/U548/A2 iSoC/iCC_V1/U548/X iSoC/U335/A2 iSoC/U335/X iSoC/U517/A iSoC/U517/X 
+Information: Timing loop detected. (OPT-150)
+	iSoC/iCPU/iPC/pc_reg[29]/CK iSoC/iCPU/iPC/pc_reg[29]/Q iSoC/iCC_V1/U152/A iSoC/iCC_V1/U152/X iSoC/iCC_V1/U121/A2 iSoC/iCC_V1/U121/X iSoC/iCC_V1/U120/A3 iSoC/iCC_V1/U120/X iSoC/iCC_V1/U418/A1 iSoC/iCC_V1/U418/X iSoC/iCC_V1/U163/A1 iSoC/iCC_V1/U163/X iSoC/iCC_V1/U548/A2 iSoC/iCC_V1/U548/X iSoC/U335/A2 iSoC/U335/X iSoC/U517/A iSoC/U517/X 
+Warning: Disabling timing arc between pins 'A2' and 'X' on cell 'iSoC/U335'
+         to break a timing loop. (OPT-314)
+ 
+****************************************
+Report : qor
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Mon Nov 17 23:01:06 2025
+****************************************
+
+
+  Timing Path Group 'clkin'
+  -----------------------------------
+  Levels of Logic:              30.00
+  Critical Path Length:          0.77
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      1.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:         -0.25
+  Total Hold Violation:    -236887.56
+  No. of Hold Violations:  1084369.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         47
+  Hierarchical Port Count:      38579
+  Leaf Cell Count:             857619
+  Buf/Inv Cell Count:          103412
+  Buf Cell Count:                 469
+  Inv Cell Count:              102943
+  CT Buf/Inv Cell Count:            2
+  Combinational Cell Count:    314076
+  Sequential Cell Count:       543543
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     3164.635383
+  Noncombinational Area:  3226.273296
+  Buf/Inv Area:            376.591664
+  Total Buffer Area:            90.14
+  Total Inverter Area:         286.45
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:              6390.908679
+  Design Area:            6390.908679
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:        875212
+  Nets With Violations:         17120
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  Max Fanout Violations:        17120
+  -----------------------------------
+
+
+  Hostname: compute-hal
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.15
+  Logic Optimization:                219.28
+  Mapping Optimization:              547.07
+  -----------------------------------------
+  Overall Compile Time:             1385.83
+  Overall Compile Wall Clock Time:  1411.17
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.25  TNS: 236887.56  Number of Violating Paths: 1084369
+
+  --------------------------------------------------------------------
+
+
+1

@@ -83,6 +83,7 @@ wire 	[31:0] spimem_rdata;
 wire 	[31:0] ram_rdata;
 wire 	[31:0] cc_rdata;
 wire 				 watchdog_panic;
+wire  			 dis_sram_gater;
 wire 	[31:0] perfmons_rdata;
 reg 	[31:0] perfmons_rdata_ff;
 wire 	[31:0] gpio_rdata;
@@ -240,24 +241,6 @@ rv32_cpu_top iCPU
 		.non_nop_retired(non_nop_retired)
 	);
 
-// // Instantiating my MMIO Decoder V1
-// mmio_decoder_v1 iMMIO_DECODER
-// 	(
-// 		// Universal Signals
-// 		.clk(clk),
-// 		.rst_n(resetn),
-// 		// MMIO Interfacing Stuff
-// 		.data_enable(data_enable),
-// 		.data_read(data_read),
-// 		.data_address(mem_addr),
-// 		.data_store(mem_wdata),
-// 		.data_fetch(mmio_data_fetch),
-// 		// MMIO Vectors Module Selects
-// 		.mmio_vector(mmio_vector),
-// 		.cache_access(cache_access),
-// 		.cache_access_ff(cache_access_ff)
-// 	);
-
 assign cc_mem_addr = mmio_vector[1] ? mem_addr[4:0] : 0;
 
 // Instantiating my Cache Controller V1
@@ -392,7 +375,9 @@ perfmons iPerfMons
 		.data_store(mem_wdata),
 		.data_fetch(perfmons_rdata),
 		// Watchdog Panic
-		.watchdog_panic(watchdog_panic)
+		.watchdog_panic(watchdog_panic),
+		// SRAM Gater Chicken Bit
+		.dis_sram_gater(dis_sram_gater)
 	);
 
 assign gpio_addr = (mmio_vector[5]) ? (mem_addr[5:0]) : (0);
@@ -456,7 +441,7 @@ wire [3:0] sram_gated_clk;
 wire [3:0] sram_bank_sel;
 reg  [3:0] sram_bank_sel_ff;
 
-assign sram_gated_clk = {4{gated_clk}} & (sram_bank_sel | sram_bank_sel_ff);
+assign sram_gated_clk = (dis_sram_gater) ? ({4{clk}}) : ({4{gated_clk}} & (sram_bank_sel | sram_bank_sel_ff));
 
 assign sram_bank_sel[0] = (mem_addr >= 32'h0017E000) && (mem_addr < 32'h0017E800);
 assign sram_bank_sel[1] = (mem_addr >= 32'h0017E800) && (mem_addr < 32'h0017F000);

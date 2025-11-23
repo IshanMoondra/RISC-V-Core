@@ -1,0 +1,84 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : icebreaker_v1
+Version: X-2025.06
+Date   : Mon Nov 17 23:02:21 2025
+****************************************
+
+ # A fanout number of 40000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: iSoC/iPerfMons/core_cycle_counter_reg[0]
+              (rising edge-triggered flip-flop clocked by clkin)
+  Endpoint: iSoC/iPerfMons/core_cycle_counter_reg[63]
+            (rising edge-triggered flip-flop clocked by clkin)
+  Path Group: clkin
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  perfmons           ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clkin (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iSoC/iPerfMons/core_cycle_counter_reg[0]/CK (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.00       0.00 r
+  iSoC/iPerfMons/core_cycle_counter_reg[0]/Q (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.06       0.06 r
+  iSoC/iPerfMons/U203/X (UDB116SVT36_AN2_1P5)             0.03       0.09 r
+  iSoC/iPerfMons/U204/X (UDB116SVT36_ND2_1P75)            0.02       0.11 f
+  iSoC/iPerfMons/U206/X (UDB116SVT36_NR2_1P5)             0.02       0.13 r
+  iSoC/iPerfMons/U208/X (UDB116SVT36_ND2_1P75)            0.02       0.14 f
+  iSoC/iPerfMons/U153/X (UDB116SVT36_NR2_0P75)            0.02       0.16 r
+  iSoC/iPerfMons/U211/X (UDB116SVT36_ND2_MM_0P75)         0.02       0.19 f
+  iSoC/iPerfMons/U213/X (UDB116SVT36_NR2_0P75)            0.03       0.22 r
+  iSoC/iPerfMons/U231/X (UDB116SVT36_ND2B_0P75)           0.04       0.25 f
+  iSoC/iPerfMons/U233/X (UDB116SVT36_NR2_1P5)             0.02       0.28 r
+  iSoC/iPerfMons/U236/X (UDB116SVT36_ND2B_0P75)           0.03       0.31 f
+  iSoC/iPerfMons/U238/X (UDB116SVT36_NR2_1P5)             0.02       0.33 r
+  iSoC/iPerfMons/U241/X (UDB116SVT36_ND2B_MM_1)           0.03       0.36 f
+  iSoC/iPerfMons/U243/X (UDB116SVT36_NR2_1P5)             0.02       0.38 r
+  iSoC/iPerfMons/U246/X (UDB116SVT36_ND2B_1)              0.03       0.40 f
+  iSoC/iPerfMons/U248/X (UDB116SVT36_NR2_1P5)             0.02       0.42 r
+  iSoC/iPerfMons/U251/X (UDB116SVT36_ND2B_1)              0.03       0.45 f
+  iSoC/iPerfMons/U253/X (UDB116SVT36_NR2_1P5)             0.02       0.47 r
+  iSoC/iPerfMons/U277/X (UDB116SVT36_ND2B_1)              0.03       0.50 f
+  iSoC/iPerfMons/U278/X (UDB116SVT36_NR2_1P5)             0.02       0.52 r
+  iSoC/iPerfMons/U311/X (UDB116SVT36_ND2B_1)              0.03       0.54 f
+  iSoC/iPerfMons/U313/X (UDB116SVT36_NR2_1P5)             0.02       0.56 r
+  iSoC/iPerfMons/U159/X (UDB116SVT36_ND2B_1)              0.03       0.59 f
+  iSoC/iPerfMons/U422/X (UDB116SVT36_NR2_1P5)             0.02       0.61 r
+  iSoC/iPerfMons/U1424/X (UDB116SVT36_ND2B_1)             0.03       0.63 f
+  iSoC/iPerfMons/U1426/X (UDB116SVT36_NR2_1P5)            0.02       0.65 r
+  iSoC/iPerfMons/U1448/X (UDB116SVT36_ND2B_MM_1)          0.03       0.68 f
+  iSoC/iPerfMons/U1449/X (UDB116SVT36_NR2_1P5)            0.02       0.70 r
+  iSoC/iPerfMons/U1467/X (UDB116SVT36_ND2_MM_0P75)        0.02       0.72 f
+  iSoC/iPerfMons/U1479/X (UDB116SVT36_NR2_0P75)           0.03       0.75 r
+  iSoC/iPerfMons/U1592/X (UDB116SVT36_MUXI2_1)            0.03       0.77 r
+  iSoC/iPerfMons/core_cycle_counter_reg[63]/D (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.00       0.77 r
+  data arrival time                                                  0.77
+
+  clock clkin (rise edge)                                 1.00       1.00
+  clock network delay (ideal)                             0.00       1.00
+  clock uncertainty                                      -0.20       0.80
+  iSoC/iPerfMons/core_cycle_counter_reg[63]/CK (UDB116SVT36_FDPRBQ_V2_1)
+                                                          0.00       0.80 r
+  library setup time                                     -0.03       0.77
+  data required time                                                 0.77
+  --------------------------------------------------------------------------
+  data required time                                                 0.77
+  data arrival time                                                 -0.77
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

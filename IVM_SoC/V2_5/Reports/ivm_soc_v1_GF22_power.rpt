@@ -1,21 +1,20 @@
 Information: Propagating switching activity (high effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated primary inputs. (PWR-414)
 Warning: Design has unannotated sequential cell outputs. (PWR-415)
-Warning: Design has unannotated black box outputs. (PWR-428)
  
 ****************************************
 Report : power
         -analysis_effort high
 Design : ivm_soc_v1
 Version: X-2025.06
-Date   : Sun Oct  5 02:01:53 2025
+Date   : Mon Oct 13 23:24:10 2025
 ****************************************
 
 
 Library(s) Used:
 
-    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
     gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
+    gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/e_chip_I/GF22_libs/gf22nspslogl36edl116f_TT_0P65V_0P00V_0P00V_0P00V_25C.db)
     gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
 
 
@@ -24,31 +23,16 @@ Wire Load Model Mode: enclosed
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-rv32_cpu_top           ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-mmio_decoder_v1        ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-spimemio               ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-UART_v1                ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_pc_v2             ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_if_id_queue       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_cu_v2             ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-hazard_detection       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_register_file     ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-branch_resolver_v2     ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_id_ex_queue       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-forwarding_unit_v2     ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_alu_v2            ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_ex_mem_queue      ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_mem_wb_queue      ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-write_back             ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-spimemio_xfer          ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-UART                   ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_alu_comp_0        ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_alu_add_sub       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_alu_comp_1        ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_alu_logical       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-rv32_barrel_shifter    ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-UART_tx                ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
-UART_rx                ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+ivm_soc_v1_MUX_OP_256_8_32_1
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+ivm_soc_v1_MUX_OP_256_8_32_1_13
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+ivm_soc_v1_MUX_OP_256_8_32_1_14
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+ivm_soc_v1_MUX_OP_256_8_32_1_15
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+ivm_soc_v1_MUX_OP_256_8_32_1_16
+                       ZeroWLM           gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
 
 
 Global Operating Voltage = 0.65 
@@ -65,12 +49,12 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  = 541.9709 uW   (99%)
-  Net Switching Power  =   3.5259 uW    (1%)
+  Cell Internal Power  = 346.2841 uW   (97%)
+  Net Switching Power  =   9.5121 uW    (3%)
                          ---------
-Total Dynamic Power    = 545.4968 uW  (100%)
+Total Dynamic Power    = 355.7962 uW  (100%)
 
-Cell Leakage Power     =   3.4464 uW
+Cell Leakage Power     =   8.9309 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -79,11 +63,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network     19.5914            0.0000            0.2339           19.5914  ( 3569.02%) i
-register       -1.9052e+01        8.9827e-04        1.6776e+03        -1.9049e+01
-                                                                                 ( -3470.27%)
+clock_network      0.3334            0.0000            0.4424            0.3334  (  91.42%)  i
+register       2.6556e-03        7.9816e-04        1.4427e+03        4.8966e-03  (   1.34%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  2.4481e-03        2.6277e-03        1.7685e+03        6.8443e-03  (   1.25%)
+combinational  1.0204e-02        8.7141e-03        7.4877e+03        2.6405e-02  (   7.24%)
 --------------------------------------------------------------------------------------------------
-Total              0.5420 mW     3.5259e-03 mW     3.4464e+03 nW         0.5489 mW
+Total              0.3463 mW     9.5123e-03 mW     8.9309e+03 nW         0.3647 mW
 1

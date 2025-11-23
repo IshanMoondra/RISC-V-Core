@@ -1,0 +1,93 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : cache_controller_v1
+Version: X-2025.06
+Date   : Thu Oct  9 01:01:17 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P65V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36eda116f_TT_0P65V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: i_bound_0_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: i_bound_0_reg[29]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  i_bound_0_reg[0]/CK (UDB116SVT36_FDPSBQ_1)              0.00 #     0.00 r
+  i_bound_0_reg[0]/Q (UDB116SVT36_FDPSBQ_1)               0.04       0.04 r
+  U1115/X (UDB116SVT36_BUF_1)                             0.03       0.07 r
+  U1976/X (UDB116SVT36_INV_1)                             0.01       0.08 f
+  U1980/X (UDB116SVT36_NR2_MM_1)                          0.02       0.10 r
+  U1971/X (UDB116SVT36_MAJ3_0P75)                         0.05       0.15 r
+  U1970/X (UDB116SVT36_MAJI3_1)                           0.04       0.19 f
+  U928/X (UDB116SVT36_MAJI3B_1)                           0.04       0.23 r
+  U1969/X (UDB116SVT36_MAJI3_1)                           0.04       0.27 f
+  U926/X (UDB116SVT36_MAJI3B_1)                           0.04       0.31 r
+  U1973/X (UDB116SVT36_MAJI3_1)                           0.04       0.35 f
+  U924/X (UDB116SVT36_MAJI3B_1)                           0.03       0.38 r
+  U1972/X (UDB116SVT36_MAJ3_0P75)                         0.05       0.43 r
+  U1957/X (UDB116SVT36_OAI222_1)                          0.05       0.48 f
+  U1956/X (UDB116SVT36_AO21B_1)                           0.03       0.51 r
+  U920/X (UDB116SVT36_MAJI3B_1)                           0.03       0.54 f
+  U919/X (UDB116SVT36_MAJI3B_1)                           0.04       0.58 r
+  U1962/X (UDB116SVT36_MAJI3_1)                           0.04       0.62 f
+  U917/X (UDB116SVT36_MAJI3B_1)                           0.04       0.66 r
+  U1961/X (UDB116SVT36_MAJI3_1)                           0.04       0.70 f
+  U915/X (UDB116SVT36_MAJI3B_1)                           0.04       0.74 r
+  U1964/X (UDB116SVT36_MAJI3_1)                           0.04       0.78 f
+  U913/X (UDB116SVT36_MAJI3B_1)                           0.04       0.82 r
+  U1963/X (UDB116SVT36_MAJI3_1)                           0.04       0.87 f
+  U911/X (UDB116SVT36_MAJI3B_1)                           0.04       0.91 r
+  U1966/X (UDB116SVT36_MAJI3_1)                           0.04       0.95 f
+  U909/X (UDB116SVT36_MAJI3B_1)                           0.04       0.99 r
+  U1965/X (UDB116SVT36_MAJI3_1)                           0.04       1.03 f
+  U907/X (UDB116SVT36_MAJI3B_1)                           0.04       1.07 r
+  U1968/X (UDB116SVT36_MAJI3_1)                           0.04       1.11 f
+  U905/X (UDB116SVT36_MAJI3B_1)                           0.04       1.15 r
+  U1967/X (UDB116SVT36_MAJI3_1)                           0.04       1.19 f
+  U903/X (UDB116SVT36_MAJI3B_1)                           0.04       1.23 r
+  U1975/X (UDB116SVT36_MAJI3_1)                           0.04       1.27 f
+  U901/X (UDB116SVT36_MAJI3B_1)                           0.05       1.32 f
+  U1974/X (UDB116SVT36_INV_1)                             0.02       1.34 r
+  U1955/X (UDB116SVT36_AO21B_1)                           0.03       1.37 r
+  U1952/X (UDB116SVT36_OAI2111_1)                         0.10       1.47 f
+  U1960/X (UDB116SVT36_AN3B_0P75)                         0.10       1.57 f
+  U1959/X (UDB116SVT36_INV_1)                             0.08       1.66 r
+  U1917/X (UDB116SVT36_BUF_1)                             0.09       1.74 r
+  U1902/X (UDB116SVT36_INV_1)                             0.08       1.82 f
+  U1978/X (UDB116SVT36_AO22_1)                            0.06       1.89 f
+  U1619/X (UDB116SVT36_BUF_1)                             0.02       1.91 f
+  U1618/X (UDB116SVT36_BUF_1)                             0.02       1.94 f
+  U1617/X (UDB116SVT36_BUF_1)                             0.02       1.96 f
+  U1616/X (UDB116SVT36_BUF_1)                             0.02       1.98 f
+  U1615/X (UDB116SVT36_BUF_1)                             0.02       2.01 f
+  U1614/X (UDB116SVT36_BUF_1)                             0.02       2.03 f
+  i_bound_0_reg[29]/D (UDB116SVT36_FDPSBQ_1)              0.00       2.03 f
+  data arrival time                                                  2.03
+
+  clock clk (rise edge)                                   3.00       3.00
+  clock network delay (ideal)                             0.00       3.00
+  clock uncertainty                                      -0.20       2.80
+  i_bound_0_reg[29]/CK (UDB116SVT36_FDPSBQ_1)             0.00       2.80 r
+  library setup time                                     -0.05       2.75
+  data required time                                                 2.75
+  --------------------------------------------------------------------------
+  data required time                                                 2.75
+  data arrival time                                                 -2.03
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.72
+
+
+1

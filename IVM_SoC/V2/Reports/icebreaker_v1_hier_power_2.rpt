@@ -1,3 +1,4 @@
+Warning: Main library 'dw_foundation.sldb' does not specify the following units required for power: 'Leakage Power, Capacitance, Voltage, Time'. (PWR-424)
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated primary inputs. (PWR-414)
 Warning: Design has unannotated sequential cell outputs. (PWR-415)
@@ -9,123 +10,525 @@ Report : power
         -analysis_effort low
 Design : icebreaker_v1
 Version: X-2025.06
-Date   : Fri Oct 31 04:56:24 2025
+Date   : Thu Nov  6 18:28:13 2025
 ****************************************
 
 
 Library(s) Used:
 
-    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
     gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
 
 
-Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-Wire Load Model Mode: enclosed
-
-Design        Wire Load Model            Library
-------------------------------------------------
-rv32_cpu_top           ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-spimemio               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-UART_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-perfmons               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-gpio_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_pc_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_if_id_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_cu_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-hazard_detection       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_register_file     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-branch_resolver_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_id_ex_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-forwarding_unit_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_alu_v2            ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_ex_mem_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_mem_wb_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-write_back             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-spimemio_xfer          ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-UART                   ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_alu_comp_1        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_alu_add_sub       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_alu_comp_0        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_alu_logical       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-rv32_barrel_shifter    ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-UART_tx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-UART_rx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Operating Conditions: nom_pvt   Library: dw_foundation.sldb
+Wire Load Model Mode: top
 
 
-Global Operating Voltage = 0.8  
+Global Operating Voltage = 5    
 Power-specific unit information :
-    Voltage Units = 1V
-    Capacitance Units = 1.000000pf
-    Time Units = 1ns
-    Dynamic Power Units = 1mW    (derived from V,C,T units)
-    Leakage Power Units = 1nW
+    Voltage Units = Unitless
+    Capacitance Units = Unitless
+    Time Units = Unitless
+    Dynamic Power Units = Unitless    (derived from V,C,T units)
+    Leakage Power Units = Unitless
 
 
 --------------------------------------------------------------------------------
                                        Switch   Int      Leak     Total
 Hierarchy                              Power    Power    Power    Power    %
 --------------------------------------------------------------------------------
-icebreaker_v1                          2.47e-02    2.403 7.21e+03    2.435 100.0
-  iSoC (ivm_soc_v1)                    2.47e-02    2.403 7.21e+03    2.435 100.0
-    sram_b3 (d_cache_v1_0)                0.000    0.000   15.224 1.52e-05   0.0
+icebreaker_v1                          1.88e+04    0.000    0.000      N/A   N/A
+  iSoC (ivm_soc_v1)                    1.88e+04    0.000    0.000      N/A   N/A
+    C981 (*MUX_OP_2_1_9)                  0.000    0.000    0.000      N/A   N/A
+    C980 (*MUX_OP_2_1_9)                  0.000    0.000    0.000      N/A   N/A
+    C979 (*MUX_OP_2_1_9)                  0.000    0.000    0.000      N/A   N/A
+    C978 (*MUX_OP_2_1_9_1)                0.000    0.000    0.000      N/A   N/A
+    C977 (*MUX_OP_2_1_4)               1.88e+04    0.000    0.000      N/A   N/A
+    C976 (*MUX_OP_2_1_3)                  0.000    0.000    0.000      N/A   N/A
+    C975 (*MUX_OP_2_1_3)                  0.000    0.000    0.000      N/A   N/A
+    C974 (*MUX_OP_2_1_3)                  0.000    0.000    0.000      N/A   N/A
+    C973 (*MUX_OP_2_1_3_3)                0.000    0.000    0.000      N/A   N/A
+    C972 (*MUX_OP_2_1_6)                  0.000    0.000    0.000      N/A   N/A
+    C971 (*MUX_OP_2_1_7)                  0.000    0.000    0.000      N/A   N/A
+    C970 (*MUX_OP_2_1_4_6)                0.000    0.000    0.000      N/A   N/A
+    C969 (*MUX_OP_2_1_5)                  0.000    0.000    0.000      N/A   N/A
+    C968 (*MUX_OP_2_1_36)                 0.000    0.000    0.000      N/A   N/A
+    C967 (*SELECT_OP_5.32_5.1_32)         0.000    0.000    0.000      N/A   N/A
+    C966 (*SELECT_OP_2.1_2.1_1)           0.000    0.000    0.000      N/A   N/A
+    C965 (*SELECT_OP_2.1_2.1_1)           0.000    0.000    0.000      N/A   N/A
+    C964 (*SELECT_OP_2.1_2.1_1)           0.000    0.000    0.000      N/A   N/A
+    C963 (*SELECT_OP_2.1_2.1_1)           0.000    0.000    0.000      N/A   N/A
+    C962 (*SELECT_OP_3.1_3.1_1)           0.000    0.000    0.000      N/A   N/A
+    C961 (*SELECT_OP_3.1_3.1_1)           0.000    0.000    0.000      N/A   N/A
+    C960 (*SELECT_OP_9.32_9.1_32)         0.000    0.000    0.000      N/A   N/A
+    sram_b3 (d_cache_v1)                  0.000    0.000    0.000      N/A   N/A
+      C212 (*MUX_OP_16_4_8)               0.000    0.000    0.000      N/A   N/A
+      C211 (*MUX_OP_2_1_8)                0.000    0.000    0.000      N/A   N/A
+      C210 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C209 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C208 (*SELECT_OP_2.8_2.1_8)         0.000    0.000    0.000      N/A   N/A
       d_sram (saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core)
-                                          0.000    0.000    0.000    0.000   0.0
-        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000    0.000   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000      N/A   N/A
         C49302 (*SELECT_OP_2.512_2.1_512)
-                                          0.000    0.000    0.000    0.000   0.0
-        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000    0.000   0.0
-    sram_b2 (d_cache_v1_1)                0.000    0.000   17.410 1.74e-05   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000      N/A   N/A
+    sram_b2 (d_cache_v1)                  0.000    0.000    0.000      N/A   N/A
+      C212 (*MUX_OP_16_4_8)               0.000    0.000    0.000      N/A   N/A
+      C211 (*MUX_OP_2_1_8)                0.000    0.000    0.000      N/A   N/A
+      C210 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C209 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C208 (*SELECT_OP_2.8_2.1_8)         0.000    0.000    0.000      N/A   N/A
       d_sram (saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core)
-                                          0.000    0.000    0.000    0.000   0.0
-        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000    0.000   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000      N/A   N/A
         C49302 (*SELECT_OP_2.512_2.1_512)
-                                          0.000    0.000    0.000    0.000   0.0
-        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000    0.000   0.0
-    sram_b1 (d_cache_v1_2)                0.000    0.000   16.682 1.67e-05   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000      N/A   N/A
+    sram_b1 (d_cache_v1)                  0.000    0.000    0.000      N/A   N/A
+      C212 (*MUX_OP_16_4_8)               0.000    0.000    0.000      N/A   N/A
+      C211 (*MUX_OP_2_1_8)                0.000    0.000    0.000      N/A   N/A
+      C210 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C209 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C208 (*SELECT_OP_2.8_2.1_8)         0.000    0.000    0.000      N/A   N/A
       d_sram (saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core)
-                                          0.000    0.000    0.000    0.000   0.0
-        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000    0.000   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000      N/A   N/A
         C49302 (*SELECT_OP_2.512_2.1_512)
-                                          0.000    0.000    0.000    0.000   0.0
-        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000    0.000   0.0
-    sram_b0 (d_cache_v1_3)                0.000    0.000   16.723 1.67e-05   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000      N/A   N/A
+    sram_b0 (d_cache_v1)                  0.000    0.000    0.000      N/A   N/A
+      C212 (*MUX_OP_16_4_8)               0.000    0.000    0.000      N/A   N/A
+      C211 (*MUX_OP_2_1_8)                0.000    0.000    0.000      N/A   N/A
+      C210 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C209 (*SELECT_OP_3.8_3.1_8)         0.000    0.000    0.000      N/A   N/A
+      C208 (*SELECT_OP_2.8_2.1_8)         0.000    0.000    0.000      N/A   N/A
       d_sram (saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core)
-                                          0.000    0.000    0.000    0.000   0.0
-        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000    0.000   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C49303 (*MUX_OP_512_9_32_1)       0.000    0.000    0.000      N/A   N/A
         C49302 (*SELECT_OP_2.512_2.1_512)
-                                          0.000    0.000    0.000    0.000   0.0
-        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000    0.000   0.0
-    iGPIO (gpio_v1)                       0.000    0.144   96.234    0.144   5.9
-    iPerfMons (perfmons)               5.44e-03    0.659  964.893    0.666  27.3
-    iUART (UART_v1)                    3.98e-03    0.295  236.214    0.299  12.3
-      iUART (UART)                     3.98e-03    0.295  212.820    0.299  12.3
-        iRX (UART_rx)                  2.37e-03 8.97e-02   71.620 9.22e-02   3.8
-        iTX (UART_tx)                  1.60e-03 8.40e-02   65.749 8.57e-02   3.5
-    spimemio (spimemio)                1.24e-02    0.555  344.349    0.567  23.3
-      xfer (spimemio_xfer)             9.30e-03    0.136   88.968    0.145   6.0
-    iCC_V1 (cache_controller_v1)       2.31e-03    0.367  323.765    0.369  15.2
+                                          0.000    0.000    0.000      N/A   N/A
+        C10 (*DECODE_OP_9_512)            0.000    0.000    0.000      N/A   N/A
+    lt_449 (*LT_UNS_OP_32_21_1)           0.000    0.000    0.000      N/A   N/A
+    gte_449 (*GEQ_UNS_OP_32_21_1)         0.000    0.000    0.000      N/A   N/A
+    lt_448 (*LT_UNS_OP_32_21_1)           0.000    0.000    0.000      N/A   N/A
+    gte_448 (*GEQ_UNS_OP_32_21_1)         0.000    0.000    0.000      N/A   N/A
+    lt_447 (*LT_UNS_OP_32_21_1)           0.000    0.000    0.000      N/A   N/A
+    gte_447 (*GEQ_UNS_OP_32_21_1)         0.000    0.000    0.000      N/A   N/A
+    lt_446 (*LT_UNS_OP_32_21_1)           0.000    0.000    0.000      N/A   N/A
+    gte_446 (*GEQ_UNS_OP_32_21_1)         0.000    0.000    0.000      N/A   N/A
+    iGPIO (gpio_v1)                       0.000    0.000    0.000      N/A   N/A
+      C538 (*MUX_OP_2_1_32_5)             0.000    0.000    0.000      N/A   N/A
+      C537 (*MUX_OP_2_1_4_2)              0.000    0.000    0.000      N/A   N/A
+      C536 (*SELECT_OP_9.32_9.1_32)       0.000    0.000    0.000      N/A   N/A
+      C535 (*SELECT_OP_4.4_4.1_4)         0.000    0.000    0.000      N/A   N/A
+      C534 (*SELECT_OP_3.4_3.1_4)         0.000    0.000    0.000      N/A   N/A
+      C533 (*SELECT_OP_4.1_4.1_1)         0.000    0.000    0.000      N/A   N/A
+      C532 (*SELECT_OP_4.4_4.1_4)         0.000    0.000    0.000      N/A   N/A
+      C531 (*SELECT_OP_3.4_3.1_4)         0.000    0.000    0.000      N/A   N/A
+      C530 (*SELECT_OP_4.1_4.1_1)         0.000    0.000    0.000      N/A   N/A
+      C529 (*SELECT_OP_4.4_4.1_4)         0.000    0.000    0.000      N/A   N/A
+      C528 (*SELECT_OP_3.4_3.1_4)         0.000    0.000    0.000      N/A   N/A
+      C527 (*SELECT_OP_4.1_4.1_1)         0.000    0.000    0.000      N/A   N/A
+      C526 (*SELECT_OP_4.4_4.1_4)         0.000    0.000    0.000      N/A   N/A
+      C525 (*SELECT_OP_4.1_4.1_1)         0.000    0.000    0.000      N/A   N/A
+      C224 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+    iPerfMons (perfmons)                  0.000    0.000    0.000      N/A   N/A
+      C2329 (*MUX_OP_2_1_32)              0.000    0.000    0.000      N/A   N/A
+      C2328 (*MUX_OP_2_1_32)              0.000    0.000    0.000      N/A   N/A
+      C2327 (*MUX_OP_2_1_32)              0.000    0.000    0.000      N/A   N/A
+      C2326 (*MUX_OP_2_1_32)              0.000    0.000    0.000      N/A   N/A
+      C2325 (*MUX_OP_2_1_32_6)            0.000    0.000    0.000      N/A   N/A
+      C2324 (*SELECT_OP_13.32_13.1_32)    0.000    0.000    0.000      N/A   N/A
+      C2323 (*SELECT_OP_3.1_3.1_1)        0.000    0.000    0.000      N/A   N/A
+      C2322 (*SELECT_OP_2.32_2.1_32)      0.000    0.000    0.000      N/A   N/A
+      C2321 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C2320 (*SELECT_OP_2.32_2.1_32)      0.000    0.000    0.000      N/A   N/A
+      C2319 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C2318 (*SELECT_OP_3.1_3.1_1)        0.000    0.000    0.000      N/A   N/A
+      C2317 (*SELECT_OP_3.2_3.1_2)        0.000    0.000    0.000      N/A   N/A
+      add_164 (*ADD_UNS_OP_32_1_32)       0.000    0.000    0.000      N/A   N/A
+      add_176 (*ADD_UNS_OP_32_1_32)       0.000    0.000    0.000      N/A   N/A
+      add_204 (*ADD_UNS_OP_32_1_32)       0.000    0.000    0.000      N/A   N/A
+      add_190 (*ADD_UNS_OP_32_1_32)       0.000    0.000    0.000      N/A   N/A
+      add_120 (*ADD_UNS_OP_64_1_64)       0.000    0.000    0.000      N/A   N/A
+      add_111 (*ADD_UNS_OP_64_1_64)       0.000    0.000    0.000      N/A   N/A
+      C1949 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1860 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1854 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1853 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1852 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1851 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1850 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1820 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1814 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1808 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1802 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1669 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1602 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1466 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1399 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1194 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1053 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      eq_152 (*EQ_UNS_OP_32_32_1)         0.000    0.000    0.000      N/A   N/A
+      eq_151_2 (*EQ_UNS_OP_32_32_1)       0.000    0.000    0.000      N/A   N/A
+      C874 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C807 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C671 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C604 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      eq_101 (*EQ_UNS_OP_64_64_1)         0.000    0.000    0.000      N/A   N/A
+    iUART (UART_v1)                       0.000    0.000    0.000      N/A   N/A
+      C127 (*MUX_OP_2_1_4_3)              0.000    0.000    0.000      N/A   N/A
+      C126 (*SELECT_OP_2.32_2.1_32)       0.000    0.000    0.000      N/A   N/A
+      C125 (*SELECT_OP_4.32_4.1_32)       0.000    0.000    0.000      N/A   N/A
+      iUART (UART)                        0.000    0.000    0.000      N/A   N/A
+        C286 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C285 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        iRX (UART_rx)                     0.000    0.000    0.000      N/A   N/A
+          C238 (*MUX_OP_4_2_5)            0.000    0.000    0.000      N/A   N/A
+          C237 (*MUX_OP_2_1_2)            0.000    0.000    0.000      N/A   N/A
+          C236 (*MUX_OP_2_1_3_1)          0.000    0.000    0.000      N/A   N/A
+          C235 (*SELECT_OP_2.2_2.1_2)     0.000    0.000    0.000      N/A   N/A
+          C234 (*SELECT_OP_2.2_2.1_2)     0.000    0.000    0.000      N/A   N/A
+          C233 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          C232 (*SELECT_OP_2.9_2.1_9)     0.000    0.000    0.000      N/A   N/A
+          C231 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          C230 (*SELECT_OP_2.12_2.1_12)
+                                          0.000    0.000    0.000      N/A   N/A
+          C229 (*SELECT_OP_2.4_2.1_4)     0.000    0.000    0.000      N/A   N/A
+          C228 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          add_47 (*ADD_UNS_OP_12_1_12)    0.000    0.000    0.000      N/A   N/A
+          add_41_S2 (*ADD_UNS_OP_4_1_4)
+                                          0.000    0.000    0.000      N/A   N/A
+          eq_90 (*EQ_UNS_OP_12_32_1)      0.000    0.000    0.000      N/A   N/A
+          eq_85 (*EQ_UNS_OP_12_32_1)      0.000    0.000    0.000      N/A   N/A
+        iTX (UART_tx)                     0.000    0.000    0.000      N/A   N/A
+          C217 (*MUX_OP_4_2_5_1)          0.000    0.000    0.000      N/A   N/A
+          C216 (*MUX_OP_2_1_2_1)          0.000    0.000    0.000      N/A   N/A
+          C215 (*MUX_OP_2_1_3_2)          0.000    0.000    0.000      N/A   N/A
+          C214 (*SELECT_OP_2.2_2.1_2)     0.000    0.000    0.000      N/A   N/A
+          C213 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          C212 (*SELECT_OP_2.9_2.1_9)     0.000    0.000    0.000      N/A   N/A
+          C211 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          C210 (*SELECT_OP_2.4_2.1_4)     0.000    0.000    0.000      N/A   N/A
+          C209 (*SELECT_OP_3.1_3.1_1)     0.000    0.000    0.000      N/A   N/A
+          C208 (*SELECT_OP_2.12_2.1_12)
+                                          0.000    0.000    0.000      N/A   N/A
+          add_43_S2 (*ADD_UNS_OP_4_1_4)
+                                          0.000    0.000    0.000      N/A   N/A
+          add_38 (*ADD_UNS_OP_12_1_12)    0.000    0.000    0.000      N/A   N/A
+          eq_70 (*EQ_UNS_OP_12_32_1)      0.000    0.000    0.000      N/A   N/A
+    spimemio (spimemio)                   0.000    0.000    0.000      N/A   N/A
+      C1038 (*MUX_OP_2_1_9)               0.000    0.000    0.000      N/A   N/A
+      C1037 (*MUX_OP_16_4_19)             0.000    0.000    0.000      N/A   N/A
+      C1036 (*MUX_OP_2_1_4)               0.000    0.000    0.000      N/A   N/A
+      C1035 (*MUX_OP_4_2_7)               0.000    0.000    0.000      N/A   N/A
+      C1034 (*MUX_OP_2_1_2_2)             0.000    0.000    0.000      N/A   N/A
+      C1033 (*MUX_OP_2_1_15)              0.000    0.000    0.000      N/A   N/A
+      C1032 (*MUX_OP_2_1_1_3)             0.000    0.000    0.000      N/A   N/A
+      C1031 (*MUX_OP_2_1_24)              0.000    0.000    0.000      N/A   N/A
+      C1030 (*MUX_OP_2_1_4_4)             0.000    0.000    0.000      N/A   N/A
+      C1029 (*MUX_OP_2_1_10)              0.000    0.000    0.000      N/A   N/A
+      C1028 (*MUX_OP_2_1_19)              0.000    0.000    0.000      N/A   N/A
+      C1027 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1026 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1025 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1024 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1023 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1022 (*SELECT_OP_2.3_2.1_3)        0.000    0.000    0.000      N/A   N/A
+      C1021 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1020 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1019 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1018 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1017 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1016 (*SELECT_OP_2.4_2.1_4)        0.000    0.000    0.000      N/A   N/A
+      C1015 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1014 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1013 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1012 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1011 (*SELECT_OP_2.4_2.1_4)        0.000    0.000    0.000      N/A   N/A
+      C1010 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1009 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1008 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1006 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1005 (*SELECT_OP_2.1_2.1_1)        0.000    0.000    0.000      N/A   N/A
+      add_226 (*ADD_UNS_OP_24_3_24)       0.000    0.000    0.000      N/A   N/A
+      add_72 (*ADD_UNS_OP_24_3_25)        0.000    0.000    0.000      N/A   N/A
+      C774 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C770 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C768 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C759 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C757 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C750 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C744 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C740 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C738 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C735 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C727 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C719 (*SELECT_OP_16.1_16.1_1)       0.000    0.000    0.000      N/A   N/A
+      C633 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C616 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C604 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C592 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C566 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C551 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C524 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C474 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C457 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C428 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C416 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C404 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C392 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      C383 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
+      xfer (spimemio_xfer)                0.000    0.000    0.000      N/A   N/A
+        C473 (*MUX_OP_2_1_20_1)           0.000    0.000    0.000      N/A   N/A
+        C472 (*MUX_OP_2_1_4_5)            0.000    0.000    0.000      N/A   N/A
+        C471 (*MUX_OP_2_1_1)              0.000    0.000    0.000      N/A   N/A
+        C470 (*MUX_OP_2_1_55)             0.000    0.000    0.000      N/A   N/A
+        C469 (*MUX_OP_2_1_1_4)            0.000    0.000    0.000      N/A   N/A
+        C468 (*SELECT_OP_2.8_2.1_8)       0.000    0.000    0.000      N/A   N/A
+        C467 (*SELECT_OP_2.4_2.1_4)       0.000    0.000    0.000      N/A   N/A
+        C466 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C465 (*SELECT_OP_2.4_2.1_4)       0.000    0.000    0.000      N/A   N/A
+        C464 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C463 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C462 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C461 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C460 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C459 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C458 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C457 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C456 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C455 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C454 (*SELECT_OP_2.4_2.1_4)       0.000    0.000    0.000      N/A   N/A
+        C453 (*SELECT_OP_2.8_2.1_8)       0.000    0.000    0.000      N/A   N/A
+        C452 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C451 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C450 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C449 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C448 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C447 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C446 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C445 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C444 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C443 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C442 (*SELECT_OP_5.8_5.1_8)       0.000    0.000    0.000      N/A   N/A
+        C441 (*SELECT_OP_5.4_5.1_4)       0.000    0.000    0.000      N/A   N/A
+        C440 (*SELECT_OP_5.8_5.1_8)       0.000    0.000    0.000      N/A   N/A
+        C439 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        C438 (*SELECT_OP_5.1_5.1_1)       0.000    0.000    0.000      N/A   N/A
+        sub_524 (*SUB_UNS_OP_4_2_4)       0.000    0.000    0.000      N/A   N/A
+        sub_511 (*SUB_UNS_OP_4_3_4)       0.000    0.000    0.000      N/A   N/A
+        sub_491 (*SUB_UNS_OP_4_3_4)       0.000    0.000    0.000      N/A   N/A
+        sub_471 (*SUB_UNS_OP_4_1_4)       0.000    0.000    0.000      N/A   N/A
+        sub_554 (*SUB_UNS_OP_4_1_4)       0.000    0.000    0.000      N/A   N/A
+        C384 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C368 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C336 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C328 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C320 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C318 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        eq_513 (*EQ_UNS_OP_4_1_1)         0.000    0.000    0.000      N/A   N/A
+      C84 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C71 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C64 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C62 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C56 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C39 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C31 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      C13 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+      ne_72 (*NE_UNS_OP_24_25_1)          0.000    0.000    0.000      N/A   N/A
+      eq_71 (*EQ_UNS_OP_24_24_1)          0.000    0.000    0.000      N/A   N/A
+    iCC_V1 (cache_controller_v1)          0.000    0.000    0.000      N/A   N/A
+      C1074 (*MUX_OP_2_1_1)               0.000    0.000    0.000      N/A   N/A
+      C1073 (*MUX_OP_2_1_1_1)             0.000    0.000    0.000      N/A   N/A
+      C1072 (*MUX_OP_8_3_42)              0.000    0.000    0.000      N/A   N/A
+      C1071 (*MUX_OP_2_1_3)               0.000    0.000    0.000      N/A   N/A
+      C1070 (*MUX_OP_2_1_3)               0.000    0.000    0.000      N/A   N/A
+      C1069 (*MUX_OP_2_1_4_1)             0.000    0.000    0.000      N/A   N/A
+      C1068 (*SELECT_OP_3.32_3.1_32)      0.000    0.000    0.000      N/A   N/A
+      C1067 (*SELECT_OP_2.9_2.1_9)        0.000    0.000    0.000      N/A   N/A
+      C1066 (*SELECT_OP_3.32_3.1_32)      0.000    0.000    0.000      N/A   N/A
+      C1065 (*SELECT_OP_4.1_4.1_1)        0.000    0.000    0.000      N/A   N/A
+      C1064 (*SELECT_OP_2.13_2.1_13)      0.000    0.000    0.000      N/A   N/A
+      C1063 (*SELECT_OP_3.1_3.1_1)        0.000    0.000    0.000      N/A   N/A
+      add_390 (*ADD_UNS_OP_13_1_13)       0.000    0.000    0.000      N/A   N/A
+      add_401 (*ADD_UNS_OP_32_3_32)       0.000    0.000    0.000      N/A   N/A
+      add_420 (*ADD_UNS_OP_3_1_3)         0.000    0.000    0.000      N/A   N/A
+      add_120 (*ADD_UNS_OP_32_12_32)      0.000    0.000    0.000      N/A   N/A
+      lt_350 (*LT_UNS_OP_32_32_1)         0.000    0.000    0.000      N/A   N/A
+      gte_350 (*GEQ_UNS_OP_32_32_1)       0.000    0.000    0.000      N/A   N/A
+      C209 (*SELECT_OP_2.1_2.1_1)         0.000    0.000    0.000      N/A   N/A
       i_slice_inst (saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core)
-                                       4.09e-04    0.000    0.000 4.09e-04   0.0
-        C49270 (*MUX_OP_512_9_32)         0.000    0.000    0.000    0.000   0.0
+                                          0.000    0.000    0.000      N/A   N/A
+        C49270 (*MUX_OP_512_9_32)         0.000    0.000    0.000      N/A   N/A
         C49269 (*SELECT_OP_2.512_2.1_512)
-                                          0.000    0.000    0.000    0.000   0.0
-        C9 (*DECODE_OP_9_512)             0.000    0.000    0.000    0.000   0.0
-    iCPU (rv32_cpu_top)                1.66e-04 8.23e-03 4.84e+03 1.32e-02   0.5
-      iWrite (write_back)                 0.000    0.000   63.535 6.35e-05   0.0
-      iMEM_WB (rv32_mem_wb_queue)      5.05e-07 2.36e-04   97.054 3.33e-04   0.0
-      iEX_MEM (rv32_ex_mem_queue)      9.77e-08 2.67e-04  110.374 3.78e-04   0.0
-      iALU (rv32_alu_v2)               2.32e-05 1.37e-05  373.980 4.11e-04   0.0
-        iBarrel (rv32_barrel_shifter)     0.000    0.000  129.645 1.30e-04   0.0
-        iLogical (rv32_alu_logical)    1.19e-05 6.47e-06   22.806 4.11e-05   0.0
-        iComp (rv32_alu_comp_0)        8.49e-07 1.32e-06   24.065 2.62e-05   0.0
-        iAdd_Sub (rv32_alu_add_sub)    8.63e-06 3.78e-06  111.218 1.24e-04   0.0
-      iForward (forwarding_unit_v2)       0.000 1.29e-05   21.051 3.39e-05   0.0
-      iID_EX (rv32_id_ex_queue)        4.00e-06 4.87e-04  180.269 6.71e-04   0.0
-      iResolver (branch_resolver_v2)      0.000    0.000   97.747 9.77e-05   0.0
-        iBrComp (rv32_alu_comp_1)         0.000    0.000   60.159 6.02e-05   0.0
-      iRF (rv32_register_file)            0.000 3.51e-03 2.58e+03 6.09e-03   0.3
-      iHazard (hazard_detection)          0.000    0.000   12.742 1.27e-05   0.0
-      iControl (rv32_cu_v2)               0.000    0.000   44.489 4.45e-05   0.0
-      iIF_ID (rv32_if_id_queue)           0.000 3.71e-04  315.207 6.86e-04   0.0
-      iPC (rv32_pc_v2)                 1.37e-04 3.01e-03  494.226 3.64e-03   0.1
+                                          0.000    0.000    0.000      N/A   N/A
+        C9 (*DECODE_OP_9_512)             0.000    0.000    0.000      N/A   N/A
+      C61 (*SELECT_OP_2.1_2.1_1)          0.000    0.000    0.000      N/A   N/A
+    iCPU (rv32_cpu_top)                   0.000    0.000    0.000      N/A   N/A
+      C927 (*MUX_OP_2_1_32)               0.000    0.000    0.000      N/A   N/A
+      C926 (*MUX_OP_16_4_32)              0.000    0.000    0.000      N/A   N/A
+      C925 (*MUX_OP_2_1_4)                0.000    0.000    0.000      N/A   N/A
+      C924 (*MUX_OP_8_3_10)               0.000    0.000    0.000      N/A   N/A
+      C923 (*MUX_OP_2_1_12)               0.000    0.000    0.000      N/A   N/A
+      C922 (*MUX_OP_2_1_32_4)             0.000    0.000    0.000      N/A   N/A
+      C921 (*SELECT_OP_3.4_3.1_4)         0.000    0.000    0.000      N/A   N/A
+      C920 (*SELECT_OP_3.1_3.1_1)         0.000    0.000    0.000      N/A   N/A
+      C919 (*SELECT_OP_3.4_3.1_4)         0.000    0.000    0.000      N/A   N/A
+      C918 (*SELECT_OP_2.4_2.1_4)         0.000    0.000    0.000      N/A   N/A
+      C917 (*SELECT_OP_2.4_2.1_4)         0.000    0.000    0.000      N/A   N/A
+      C916 (*SELECT_OP_2.4_2.1_4)         0.000    0.000    0.000      N/A   N/A
+      C915 (*SELECT_OP_2.32_2.1_32)       0.000    0.000    0.000      N/A   N/A
+      C914 (*SELECT_OP_3.32_3.1_32)       0.000    0.000    0.000      N/A   N/A
+      C913 (*SELECT_OP_3.32_3.1_32)       0.000    0.000    0.000      N/A   N/A
+      iWrite (write_back)                 0.000    0.000    0.000      N/A   N/A
+        C47 (*MUX_OP_4_2_32_1)            0.000    0.000    0.000      N/A   N/A
+      iMEM_WB (rv32_mem_wb_queue)         0.000    0.000    0.000      N/A   N/A
+      sll_469 (*ASH_UNS_UNS_OP_4_2_4)     0.000    0.000    0.000      N/A   N/A
+      sll_451 (*ASH_UNS_UNS_OP_4_2_4)     0.000    0.000    0.000      N/A   N/A
+      sll_427 (*ASH_UNS_UNS_OP_4_2_4)     0.000    0.000    0.000      N/A   N/A
+      iEX_MEM (rv32_ex_mem_queue)         0.000    0.000    0.000      N/A   N/A
+      iALU (rv32_alu_v2)                  0.000    0.000    0.000      N/A   N/A
+        C534 (*MUX_OP_2_1_20)             0.000    0.000    0.000      N/A   N/A
+        C533 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C532 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C531 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C530 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C529 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C528 (*SELECT_OP_10.32_10.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        C527 (*SELECT_OP_10.32_10.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        C526 (*SELECT_OP_10.32_10.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        C525 (*SELECT_OP_10.32_10.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        C524 (*SELECT_OP_10.32_10.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        iBarrel (rv32_barrel_shifter)     0.000    0.000    0.000      N/A   N/A
+          C119 (*MUX_OP_2_1_32)           0.000    0.000    0.000      N/A   N/A
+          C118 (*MUX_OP_4_2_32)           0.000    0.000    0.000      N/A   N/A
+          C117 (*MUX_OP_2_1_32_2)         0.000    0.000    0.000      N/A   N/A
+          sll_44 (*ASH_UNS_UNS_OP_32_32_32)
+                                          0.000    0.000    0.000      N/A   N/A
+          sra_43 (*ASHR_TC_UNS_OP_32_32_32)
+                                          0.000    0.000    0.000      N/A   N/A
+          srl_42 (*ASHR_UNS_UNS_OP_32_32_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        iLogical (rv32_alu_logical)       0.000    0.000    0.000      N/A   N/A
+          C188 (*SELECT_OP_4.32_4.1_32)
+                                          0.000    0.000    0.000      N/A   N/A
+        iComp (rv32_alu_comp)             0.000    0.000    0.000      N/A   N/A
+          C45 (*SELECT_OP_3.1_3.1_1)      0.000    0.000    0.000      N/A   N/A
+          lt_39 (*LT_UNS_OP_32_32_1)      0.000    0.000    0.000      N/A   N/A
+          lt_19 (*LT_TC_OP_32_32_1)       0.000    0.000    0.000      N/A   N/A
+        iAdd_Sub (rv32_alu_add_sub)       0.000    0.000    0.000      N/A   N/A
+          C99 (*SELECT_OP_3.32_3.1_32)    0.000    0.000    0.000      N/A   N/A
+          sub_20 (*SUB_UNS_OP_32_32_32)
+                                          0.000    0.000    0.000      N/A   N/A
+          add_18 (*ADD_UNS_OP_32_32_32)
+                                          0.000    0.000    0.000      N/A   N/A
+      iForward (forwarding_unit_v2)       0.000    0.000    0.000      N/A   N/A
+        eq_80 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+        eq_79 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+        eq_68 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+        eq_67 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+        eq_56 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+      iID_EX (rv32_id_ex_queue)           0.000    0.000    0.000      N/A   N/A
+        C800 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C799 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C798 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C797 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C796 (*SELECT_OP_2.2_2.1_2)       0.000    0.000    0.000      N/A   N/A
+        C795 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C794 (*SELECT_OP_2.4_2.1_4)       0.000    0.000    0.000      N/A   N/A
+        C793 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C792 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C791 (*SELECT_OP_2.3_2.1_3)       0.000    0.000    0.000      N/A   N/A
+        C790 (*SELECT_OP_2.6_2.1_6)       0.000    0.000    0.000      N/A   N/A
+        C789 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C788 (*SELECT_OP_3.2_3.1_2)       0.000    0.000    0.000      N/A   N/A
+      iResolver (branch_resolver_v2)      0.000    0.000    0.000      N/A   N/A
+        C165 (*MUX_OP_2_1_1)              0.000    0.000    0.000      N/A   N/A
+        C164 (*MUX_OP_8_3_1)              0.000    0.000    0.000      N/A   N/A
+        C163 (*SELECT_OP_3.3_3.1_3)       0.000    0.000    0.000      N/A   N/A
+        iBrComp (rv32_alu_comp)           0.000    0.000    0.000      N/A   N/A
+          C45 (*SELECT_OP_3.1_3.1_1)      0.000    0.000    0.000      N/A   N/A
+          lt_39 (*LT_UNS_OP_32_32_1)      0.000    0.000    0.000      N/A   N/A
+          lt_19 (*LT_TC_OP_32_32_1)       0.000    0.000    0.000      N/A   N/A
+        eq_59 (*EQ_UNS_OP_32_32_1)        0.000    0.000    0.000      N/A   N/A
+      iRF (rv32_register_file)            0.000    0.000    0.000      N/A   N/A
+        C4480 (*MUX_OP_2_1_32)            0.000    0.000    0.000      N/A   N/A
+        C4479 (*MUX_OP_2_1_32)            0.000    0.000    0.000      N/A   N/A
+        C4478 (*MUX_OP_2_1_32)            0.000    0.000    0.000      N/A   N/A
+        C4477 (*MUX_OP_32_5_32)           0.000    0.000    0.000      N/A   N/A
+        C4476 (*MUX_OP_2_1_32_1)          0.000    0.000    0.000      N/A   N/A
+        C4475 (*MUX_OP_32_5_32)           0.000    0.000    0.000      N/A   N/A
+        C4474 (*SELECT_OP_2.32_2.1_32)    0.000    0.000    0.000      N/A   N/A
+        C88 (*DECODE_OP_5_32)             0.000    0.000    0.000      N/A   N/A
+        eq_50 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+        eq_49 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+      iHazard (hazard_detection)          0.000    0.000    0.000      N/A   N/A
+        eq_39_2 (*EQ_UNS_OP_5_5_1)        0.000    0.000    0.000      N/A   N/A
+        eq_39 (*EQ_UNS_OP_5_5_1)          0.000    0.000    0.000      N/A   N/A
+      iControl (rv32_cu_v2)               0.000    0.000    0.000      N/A   N/A
+        C328 (*MUX_OP_32_5_33)            0.000    0.000    0.000      N/A   N/A
+        C327 (*MUX_OP_8_3_15)             0.000    0.000    0.000      N/A   N/A
+        C326 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C325 (*SELECT_OP_2.3_2.1_3)       0.000    0.000    0.000      N/A   N/A
+        C324 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C323 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C322 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C321 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C320 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C319 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C318 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C317 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C316 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C315 (*SELECT_OP_2.2_2.1_2)       0.000    0.000    0.000      N/A   N/A
+        C314 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C313 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C312 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C311 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C310 (*SELECT_OP_2.3_2.1_3)       0.000    0.000    0.000      N/A   N/A
+        C309 (*SELECT_OP_2.5_2.1_5)       0.000    0.000    0.000      N/A   N/A
+        C308 (*SELECT_OP_2.4_2.1_4)       0.000    0.000    0.000      N/A   N/A
+        C307 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C306 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C305 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        C304 (*SELECT_OP_2.3_2.1_3)       0.000    0.000    0.000      N/A   N/A
+        C303 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+      iIF_ID (rv32_if_id_queue)           0.000    0.000    0.000      N/A   N/A
+        C741 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C740 (*SELECT_OP_3.32_3.1_32)     0.000    0.000    0.000      N/A   N/A
+        C739 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C738 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C737 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+        C736 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C735 (*SELECT_OP_3.1_3.1_1)       0.000    0.000    0.000      N/A   N/A
+      iPC (rv32_pc_v2)                    0.000    0.000    0.000      N/A   N/A
+        C732 (*MUX_OP_8_3_32)             0.000    0.000    0.000      N/A   N/A
+        C731 (*MUX_OP_2_1_33)             0.000    0.000    0.000      N/A   N/A
+        C730 (*MUX_OP_2_1_32)             0.000    0.000    0.000      N/A   N/A
+        C729 (*MUX_OP_2_1_32)             0.000    0.000    0.000      N/A   N/A
+        C728 (*MUX_OP_2_1_96)             0.000    0.000    0.000      N/A   N/A
+        C727 (*SELECT_OP_2.32_2.1_32)     0.000    0.000    0.000      N/A   N/A
+        C726 (*SELECT_OP_2.1_2.1_1)       0.000    0.000    0.000      N/A   N/A
+        add_79 (*ADD_UNS_OP_32_3_32)      0.000    0.000    0.000      N/A   N/A
+        add_81 (*ADD_UNS_OP_32_32_32)     0.000    0.000    0.000      N/A   N/A
+        add_80 (*ADD_UNS_OP_32_32_32)     0.000    0.000    0.000      N/A   N/A
+        add_84 (*ADD_UNS_OP_32_32_32)     0.000    0.000    0.000      N/A   N/A
+    lt_146 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    gte_146 (*GEQ_UNS_OP_32_22_1)         0.000    0.000    0.000      N/A   N/A
+    lt_145 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    gte_145 (*GEQ_UNS_OP_32_22_1)         0.000    0.000    0.000      N/A   N/A
+    lt_144 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    gte_144 (*GEQ_UNS_OP_32_22_1)         0.000    0.000    0.000      N/A   N/A
+    lt_143 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    gte_143 (*GEQ_UNS_OP_32_22_1)         0.000    0.000    0.000      N/A   N/A
+    lt_142 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    gte_142 (*GEQ_UNS_OP_32_22_1)         0.000    0.000    0.000      N/A   N/A
+    lt_141 (*LT_UNS_OP_32_22_1)           0.000    0.000    0.000      N/A   N/A
+    lt_95 (*LT_UNS_OP_32_21_1)            0.000    0.000    0.000      N/A   N/A
+    gte_95 (*GEQ_UNS_OP_32_21_1)          0.000    0.000    0.000      N/A   N/A
 1

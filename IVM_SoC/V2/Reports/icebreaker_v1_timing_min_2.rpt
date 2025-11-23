@@ -6,17 +6,17 @@ Report : timing
         -max_paths 1
 Design : icebreaker_v1
 Version: X-2025.06
-Date   : Fri Oct 31 04:56:18 2025
+Date   : Thu Nov  6 18:28:06 2025
 ****************************************
 
- # A fanout number of 1000 was used for high fanout net computations.
+ # A fanout number of 5000 was used for high fanout net computations.
 
-Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
-Wire Load Model Mode: enclosed
+Operating Conditions: nom_pvt   Library: dw_foundation.sldb
+Wire Load Model Mode: top
 
-  Startpoint: iSoC/iCC_V1/i_slice_inst/ram_core_reg[0][0]
+  Startpoint: iSoC/iCPU/data_addr_ff_reg[31]
               (rising edge-triggered flip-flop clocked by clkin)
-  Endpoint: iSoC/iCC_V1/i_slice_inst/Q_tmp_reg[0]
+  Endpoint: iSoC/cache_access_ff_reg
             (rising edge-triggered flip-flop clocked by clkin)
   Path Group: clkin
   Path Type: min
@@ -25,23 +25,23 @@ Wire Load Model Mode: enclosed
   --------------------------------------------------------------------------
   clock clkin (rise edge)                                 0.00       0.00
   clock network delay (ideal)                             0.00       0.00
-  iSoC/iCC_V1/i_slice_inst/ram_core_reg[0][0]/clocked_on (**SEQGEN**)
-                                                          0.00 #     0.00 r
-  iSoC/iCC_V1/i_slice_inst/ram_core_reg[0][0]/Q (**SEQGEN**)
+  iSoC/iCPU/data_addr_ff_reg[31]/clocked_on (**SEQGEN**)
                                                           0.00       0.00 r
-  iSoC/iCC_V1/i_slice_inst/C49270/Z_31 (*MUX_OP_512_9_32)
-                                                          0.00       0.00 r
-  iSoC/iCC_V1/i_slice_inst/C49406/Z (GTECH_AND2)          0.00       0.00 r
-  iSoC/iCC_V1/i_slice_inst/C49404/Z (GTECH_OR2)           0.00       0.00 r
-  iSoC/iCC_V1/i_slice_inst/Q_tmp_reg[0]/next_state (**SEQGEN**)
-                                                          0.00       0.00 r
+  iSoC/iCPU/data_addr_ff_reg[31]/Q (**SEQGEN**)           0.00       0.00 r
+  iSoC/iCPU/data_addr[31] (rv32_cpu_top)                  0.00       0.00 r
+  iSoC/gte_95/A_31 (*GEQ_UNS_OP_32_21_1)                  0.00       0.00 r
+  iSoC/gte_95/*cell*339/B[31] (DW01_cmp2_width32)         0.00       0.00 r
+  ...
+  iSoC/gte_95/*cell*339/LT_LE (DW01_cmp2_width32)         0.00       0.00 r
+  iSoC/gte_95/Z_0 (*GEQ_UNS_OP_32_21_1)                   0.00       0.00 r
+  iSoC/C984/Z (GTECH_AND2)                                0.00       0.00 r
+  iSoC/cache_access_ff_reg/next_state (**SEQGEN**)        0.00       0.00 r
   data arrival time                                                  0.00
 
   clock clkin (rise edge)                                 0.00       0.00
   clock network delay (ideal)                             0.00       0.00
   clock uncertainty                                       0.25       0.25
-  iSoC/iCC_V1/i_slice_inst/Q_tmp_reg[0]/clocked_on (**SEQGEN**)
-                                                          0.00       0.25 r
+  iSoC/cache_access_ff_reg/clocked_on (**SEQGEN**)        0.00       0.25 r
   library hold time                                       0.00       0.25
   data required time                                                 0.25
   --------------------------------------------------------------------------
