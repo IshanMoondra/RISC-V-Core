@@ -1,0 +1,7 @@
+Multi-threading is on. Using 10 slave threads.
+Running compilation flowF:\Vivado\Vivado\2023.1\data\..\tps\mingw\6.2.0\win64.o\nt\bin\gcc.exe  -fPIC -c -Wa,-W  -I"--dll"   -I"F:\Vivado\Vivado\2023.1\data/xsim/include" -I"F:\Vivado\Vivado\2023.1\data/xsim/systemc" "./Testbenches/DPI_Programs/hello_world_dpi.c" -o "xsim.dir/work\xsc\hello_world_dpi.win64.obj" -DXILINX_SIMULATOR -Wno-deprecated-declarations 
+Done compilation
+Linking with command:
+F:\Vivado\Vivado\2023.1\data\..\tps\mingw\6.2.0\win64.o\nt\bin\ar.exe rcs "./Testbenches/DPI_Programs/hello_world_dpi.dll" "xsim.dir/work\xsc\hello_world_dpi.win64.obj"   
+
+Done linking: "./Testbenches/DPI_Programs/hello_world_dpi.dll"

@@ -259,7 +259,7 @@ cache_controller_v1 iCC_V1
 		.mem_wstrb(mem_wstrb),
 		.data_read(data_read),
 		.cache_enable(cache_access),
-		.cache_enable_ff(cache_access_ff),
+		// .cache_enable_ff(cache_access_ff),
 		.mmio_enable(mmio_vector[1]),
 		// SPI IO
 		.spi_fetch(spimem_rdata),
