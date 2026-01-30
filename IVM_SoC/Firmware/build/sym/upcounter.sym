@@ -1,0 +1,9 @@
+         U _start
+00010074 T main
+0001110c R __BSS_END__
+0001110c R __DATA_BEGIN__
+0001110c R __SDATA_BEGIN__
+0001110c R __bss_start
+0001110c R _edata
+0001110c R _end
+0001190c A __global_pointer$

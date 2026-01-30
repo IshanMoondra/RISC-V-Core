@@ -1,0 +1,31 @@
+
+/out/upcounter.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00010074 <main>:
+   10074:	fe010113          	add	sp,sp,-32
+   10078:	00812e23          	sw	s0,28(sp)
+   1007c:	02010413          	add	s0,sp,32
+   10080:	fe042623          	sw	zero,-20(s0)
+   10084:	fe042423          	sw	zero,-24(s0)
+   10088:	0280006f          	j	100b0 <main+0x3c>
+   1008c:	fec42703          	lw	a4,-20(s0)
+   10090:	00500793          	li	a5,5
+   10094:	00f71863          	bne	a4,a5,100a4 <main+0x30>
+   10098:	00100793          	li	a5,1
+   1009c:	fef42423          	sw	a5,-24(s0)
+   100a0:	01c0006f          	j	100bc <main+0x48>
+   100a4:	fec42783          	lw	a5,-20(s0)
+   100a8:	00178793          	add	a5,a5,1
+   100ac:	fef42623          	sw	a5,-20(s0)
+   100b0:	fec42703          	lw	a4,-20(s0)
+   100b4:	00900793          	li	a5,9
+   100b8:	fce7dae3          	bge	a5,a4,1008c <main+0x18>
+   100bc:	ffffffff          	.word	0xffffffff
+   100c0:	00000793          	li	a5,0
+   100c4:	00078513          	mv	a0,a5
+   100c8:	01c12403          	lw	s0,28(sp)
+   100cc:	02010113          	add	sp,sp,32
+   100d0:	00008067          	ret
