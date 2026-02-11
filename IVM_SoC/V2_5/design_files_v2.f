@@ -15,6 +15,7 @@ $SOC_HOME/Designs/CPU/rv32_pc_v2.sv
 $SOC_HOME/Designs/CPU/rv32_register_file.sv
 $SOC_HOME/Designs/CPU/forwarding_unit_v2.sv
 $SOC_HOME/Designs/CPU/hazard_detection.sv
+$SOC_HOME/Designs/CPU/rv32_cpu_top.sv
     
 $SOC_HOME/Designs/IO/i_cache_v1.sv
 $SOC_HOME/Designs/IO/saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core.v
@@ -53,4 +54,8 @@ $SOC_HOME/Designs/IO/mmio_decoder_v1.sv
 
 $SOC_HOME/Designs/ivm_soc_v1.v
 $SOC_HOME/Designs/icebreaker_v1.v
-$SOC_HOME/Testbenches/soc_tb_v1.sv
+$SOC_HOME/Designs/soc_fpga_v1.v
+
+
+# $SOC_HOME/Testbenches/soc_tb_v1.sv
+$SOC_HOME/Testbenches/soc_fpga_tb_v1.sv

@@ -84,7 +84,7 @@ logic get_perfmon_status;
 always_ff @( posedge core_clk, negedge rst_n)
 	begin
 		if (~rst_n)
-			watchdog_threshold <= 64'd10000000;
+			watchdog_threshold <= 64'd200000;
 		else if (set_watchdog_high)
 			watchdog_threshold[63:32] <= data_store;
 		else if (set_watchdog_low)

@@ -103,8 +103,8 @@ module spiflash (
 
 	reg [1023:0] firmware_file;
 	initial begin
-		if (!$value$plusargs("firmware=%s", firmware_file))
-			firmware_file = "/filespace/i/imoondra/GlobalFoundries_RTL_Flow/Tapeout_V1/ModelSim/firmware.hex";
+		if (!$value$plusargs("SPI_FLASH_HEX=%s", firmware_file))
+			firmware_file = "/raid2/IVM_SOC/Tapeout_V1/RISC-V-Core/IVM_SoC/Firmware/build/hex/firmware.hex";
 		$readmemh(firmware_file, memory);
 	end
 

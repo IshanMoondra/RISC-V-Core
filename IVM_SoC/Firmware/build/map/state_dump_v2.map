@@ -1,0 +1,171 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x00180000         xr
+IO_MEM           0x00200000         0x00200000         rw
+TCM              0x10000000         0x00002000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /out/state_dump_v2.o
+
+.text           0x00000000      0x74c
+                0x00000000                        . = ORIGIN (FLASH)
+                0x00000000                        . = ALIGN (0x4)
+ *(.bare_start)
+ *(.start)
+ .start         0x00000000       0x20 /out/state_dump_v2.o
+                0x00000000                _start
+ *(.init)
+ *(.text.startup)
+ *(.text)
+ .text          0x00000020      0x72c /out/state_dump_v2.o
+                0x00000020                soc_bootup()
+                0x000000a8                main
+                0x0000016c                uart_putc(char)
+                0x000001f0                fib_iter(int)
+                0x0000028c                fib_recursive(int)
+                0x000002fc                dump_result(int)
+                0x00000404                uart_poll_watchdog()
+                0x000004c8                compute()
+                0x00000694                gpio_demo(int)
+ *(.text.*)
+ *(.fini)
+
+.rodata
+ *(.rodata)
+ *(.rodata.*)
+ *(.const)
+ *(.const.*)
+
+.eh_frame       0x00000800      0x18c
+ *(.eh_frame)
+ .eh_frame      0x00000800      0x18c /out/state_dump_v2.o
+
+.rela.dyn       0x0000098c        0x0
+ .rela.text     0x0000098c        0x0 /out/state_dump_v2.o
+ .rela.start    0x0000098c        0x0 /out/state_dump_v2.o
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.rtti
+ *(.rtti*)
+
+.vtable
+ *(.vtable*)
+
+.init_array     0x00000c00        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x00000c00        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+
+.spi_gpio       0x00000c00     0x1000
+                0x00001c00                        . = (. + 0x1000)
+ *fill*         0x00000c00     0x1000 
+ *(.spi_gpio)
+
+.spi_compute    0x00001c00     0x1000
+                0x00002c00                        . = (. + 0x1000)
+ *fill*         0x00001c00     0x1000 
+ *(.spi_compute)
+
+.spi_uart       0x00002c00     0x1000
+                0x00003c00                        . = (. + 0x1000)
+ *fill*         0x00002c00     0x1000 
+ *(.spi_uart)
+                0x0017e000                        . = 0x17e000
+
+.data           0x0017e000        0x0
+                0x0017e000                        __data_start = .
+ *(.data)
+ .data          0x0017e000        0x0 /out/state_dump_v2.o
+ *(.data.*)
+                0x0017e000                        __data_end = .
+
+.bss            0x0017e000        0x0
+                0x0017e000                        __bss_start = .
+ *(.bss)
+ .bss           0x0017e000        0x0 /out/state_dump_v2.o
+ *(.bss.*)
+ *(COMMON)
+                0x0017e000                        __bss_end = .
+
+.heap           0x0017e000      0x400
+                0x0017e000                        __heap_start = .
+ *(.heap*)
+                0x0017e400                        . = (. + 0x400)
+ *fill*         0x0017e000      0x400 
+                0x0017e400                        __heap_end = .
+
+.stack          0x0017e800        0x0
+                0x0017e800                        __stack_start = .
+ *(.stack*)
+                0x002fe800                        __stack_end = 0x180000
+                0x00180000                        _end = 0x180000
+                0x00180000                        PROVIDE (_stack_end = 0x180000)
+                0x0017e000                        PROVIDE (_global_pointer = 0x17e000)
+                0x00200000                        PROVIDE (IO_BASE = 0x200000)
+                [!provide]                        PROVIDE (SET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x0))
+                [!provide]                        PROVIDE (SET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0x4))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x8))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0xc))
+                [!provide]                        PROVIDE (SET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x10))
+                [!provide]                        PROVIDE (GET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x14))
+                0x00200800                        PROVIDE (UART_BAUD = ((IO_BASE + 0x800) + 0x0))
+                0x00200804                        PROVIDE (UART_RECV = ((IO_BASE + 0x800) + 0x4))
+                0x00200808                        PROVIDE (UART_SEND = ((IO_BASE + 0x800) + 0x8))
+                0x0020080c                        PROVIDE (UART_STAT = ((IO_BASE + 0x800) + 0xc))
+                [!provide]                        PROVIDE (SPI_BASE = (IO_BASE + 0xc00))
+                [!provide]                        PROVIDE (SET_PERFMON_STATUS = (IO_BASE + 0x1000))
+                [!provide]                        PROVIDE (SET_PERFMON_SCALAR = (IO_BASE + 0x1004))
+                [!provide]                        PROVIDE (SET_PERFMON_TIMER = (IO_BASE + 0x1008))
+                [!provide]                        PROVIDE (GET_PERFMON_STATUS = (IO_BASE + 0x100c))
+                [!provide]                        PROVIDE (GET_PERFMON_SOCH = (IO_BASE + 0x1010))
+                0x00201014                        PROVIDE (GET_PERFMON_SOCL = (IO_BASE + 0x1014))
+                [!provide]                        PROVIDE (GET_PERFMON_COREH = (IO_BASE + 0x1018))
+                0x0020101c                        PROVIDE (GET_PERFMON_COREL = (IO_BASE + 0x101c))
+                [!provide]                        PROVIDE (GET_PERFMON_SCALAR = (IO_BASE + 0x1020))
+                [!provide]                        PROVIDE (GET_PERFMON_TIMER = (IO_BASE + 0x1024))
+                [!provide]                        PROVIDE (GET_PERFMON_MISS = (IO_BASE + 0x1028))
+                0x0020102c                        PROVIDE (GET_PERFMON_RET_CNT = (IO_BASE + 0x102c))
+                [!provide]                        PROVIDE (PET_WATCHDOG = (IO_BASE + 0x1030))
+                0x00201034                        PROVIDE (SET_WATCHDOG_HIGH = (IO_BASE + 0x1034))
+                0x00201038                        PROVIDE (SET_WATCHDOG_LOW = (IO_BASE + 0x1038))
+                [!provide]                        PROVIDE (GET_WATCHDOG_HIGH = (IO_BASE + 0x103c))
+                [!provide]                        PROVIDE (GET_WATCHDOG_LOW = (IO_BASE + 0x1040))
+                [!provide]                        PROVIDE (SET_DIS_SRAM_GATER = (IO_BASE + 0x1044))
+                [!provide]                        PROVIDE (GET_DIS_SRAM_GATER = (IO_BASE + 0x1048))
+                [!provide]                        PROVIDE (GET_GPIO_WORD = (IO_BASE + 0x1400))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_HIGH = (IO_BASE + 0x1404))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_LOW = (IO_BASE + 0x1408))
+                [!provide]                        PROVIDE (GET_FLASH_SPECIAL = (IO_BASE + 0x140c))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN0 = (IO_BASE + 0x1410))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN1 = (IO_BASE + 0x1414))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN2 = (IO_BASE + 0x1418))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN3 = (IO_BASE + 0x141c))
+                [!provide]                        PROVIDE (SET_GPIO_WORD = (IO_BASE + 0x1420))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_HIGH = (IO_BASE + 0x1424))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_LOW = (IO_BASE + 0x1428))
+                0x0020142c                        PROVIDE (SET_FLASH_SPECIAL = (IO_BASE + 0x142c))
+                0x00201430                        PROVIDE (SET_GPIO_CHAN0 = (IO_BASE + 0x1430))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN1 = (IO_BASE + 0x1434))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN2 = (IO_BASE + 0x1438))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN3 = (IO_BASE + 0x143c))
+OUTPUT(/out/state_dump_v2.elf elf32-littleriscv)
+
+.comment        0x00000000       0x26
+ .comment       0x00000000       0x26 /out/state_dump_v2.o
+                                 0x27 (size before relaxing)
+
+.riscv.attributes
+                0x00000000       0x1c
+ .riscv.attributes
+                0x00000000       0x1c /out/state_dump_v2.o

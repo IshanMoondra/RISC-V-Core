@@ -6,11 +6,13 @@ if [ -z "$VERDI_ROOT" ]; then
 fi
 
 VERDI_BUILD="$VERDI_ROOT/verdi_build"
-FSDB="$VERDI_BUILD/dump.fsdb"
+VCD="$VERDI_BUILD/soc_fpga_tb_v1.vcd"
+FSDB="$VERDI_BUILD/soc_fpga_tb_v1.fsdb"
+FILELIST="$SOC_HOME/design_files_v2.f"
 
-if [ ! -f "$FSDB" ]; then
-    echo "[ERROR] FSDB not found at: $FSDB"
+if [ ! -f "$VCD" ]; then
+    echo "[ERROR] VCD not found at: $VCD"
     exit 1
 fi
-
-verdi -ssf "$FSDB" &
+# vcd2fsdb $VCD -sv -o $FSDB
+verdi -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" & 

@@ -33,9 +33,8 @@ always_ff @(posedge clk, negedge rst_n)
 always_ff @(posedge clk, negedge rst_n)
     if (~rst_n)
         begin
-            baud_rate <= 1000;
+            baud_rate <= 50;    // Changing from 1000 to 50, to speed up sim times. 
             transmit_buffer <= 0;
-            // receive_buffer <= '1;
         end
     else if (baud_we)
         baud_rate <= set_baud;

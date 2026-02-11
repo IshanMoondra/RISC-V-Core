@@ -10,7 +10,7 @@ if [ -z "$PROJ_ROOT" ] || [ -z "$VCS_ROOT" ]; then
     exit 1
 fi
 
-FILELIST="$SOC_HOME/design_files.f"
+FILELIST="$SOC_HOME/design_files_v2.f"
 VCS_BUILD="$VCS_ROOT/vcs_build"
 
 # Create build directory if missing
@@ -21,6 +21,7 @@ vcs -full64 -sverilog \
     -f "$FILELIST" \
     +v2k \
     -timescale=1ns/1ps \
+    +lint=TFIPC-L \
     -debug_access+all \
     -kdb \
     -Mdir="$VCS_BUILD/csrc" \

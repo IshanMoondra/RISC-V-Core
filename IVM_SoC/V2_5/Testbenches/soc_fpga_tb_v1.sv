@@ -38,17 +38,16 @@ module soc_fpga_tb_v1;
 	logic [31:0] tb_tx_buffer;
 	wire [31:0] tb_rx_buffer;
 
-	// What am I even testing here?
-	// A SoC where I want a 'perfect' cache, ie, no cache :P
-	// So SoC must have:
-	// CPU, UART (for IO basics), Byte Addressable Code Memory
-	// The 4KB of SRAM is untouched. 
-	// Okay: So I can instantiate the ice_breaker itself, but to the 
-	// SoC, add the faux cache memory. 
+	// DPI-C UART Terminal Control Stuff:
+	bit dpi_clr_rx_rdy;
+	int dpi_tx_buffer;
+	bit dpi_start_transmit;
+
+	// For VCD/FSDB Dumping
+	string verdi_root;
 	
 	// The wires for the Setup 
 	wire ser_rx;
-	// assign ser_rx = 1;
 	wire ser_tx;
 
 	wire flash_csb;
@@ -59,7 +58,7 @@ module soc_fpga_tb_v1;
 	wire flash_io2;
 	wire flash_io3;
 
-	// Instantiate the Icebreaker with the faux cache
+	// Instantiate the Icebreaker with the SPI Flash
 	soc_fpga iSOC_FPGA 
 	(
 		.clk      (clk      ),
@@ -85,6 +84,7 @@ module soc_fpga_tb_v1;
 		.io3(flash_io3)
 	);
 
+	// Testbench Side UART
 	UART iTB_UART (
 		.clk(clk),
 		.rst_n(rst_n),
@@ -92,8 +92,8 @@ module soc_fpga_tb_v1;
 		.data_we(tb_data_we),
 		.set_baud(tb_set_baud),
 		.get_baud(),
-		.data_tx(tb_tx_buffer),
-		.data_rx(tb_rx_buffer),
+		.data_tx(tb_tx_buffer),	// TO SOC
+		.data_rx(tb_rx_buffer),	// FROM SOC
 		// Note the reversed polarity
 		.RX(ser_tx),
 		.TX(ser_rx),
@@ -102,37 +102,71 @@ module soc_fpga_tb_v1;
 		.trmt(tb_trmt),
 		.tx_done(tb_trmt_done)
 	);
+	
+	// DPI-C Virtual UART Trials V2
+	import "DPI-C" context function void dpi_hello_world_v4();
 
-	// DPI-C Trials
-	// Import the DPI-C function
-	import "DPI-C" function void hello_world();
+	// UART monitor: inputs from TB UART into C
+	import "DPI-C" context function void dpi_uart_set_rx_inputs_v2
+	(
+		input bit rx_rdy,
+		input int rx_buffer,   // 32-bit, C masks to 8 bits
+		input bit tx_done
+	);
 
-	initial
-	begin
-		$display("Calling DPI-C function: ");
-		hello_world();
-		$stop();
+	// UART monitor: outputs from C back into TB UART
+	import "DPI-C" context function void dpi_uart_get_ctrl_outputs_v2
+	(
+		output bit clr_rx_rdy,
+		output int tx_buffer,  // 32-bit, bottom 8 bits valid
+		output bit start_transmit
+	);
+	
+	// DPI-C is called on the negedge so that I prevent unnecessary race conditions. 
+	always @(negedge clk) begin
+
+		dpi_uart_set_rx_inputs_v2(
+			tb_rx_rdy,
+			tb_rx_buffer,
+			tb_trmt_done
+		);
+
+		dpi_uart_get_ctrl_outputs_v2(
+			dpi_clr_rx_rdy,
+			dpi_tx_buffer,
+			dpi_start_transmit
+		);
+
+		tb_clr_rx_rdy   <= dpi_clr_rx_rdy;
+		tb_tx_buffer    <= dpi_tx_buffer;
+		tb_trmt			<= dpi_start_transmit;
 	end
-	
-	
+
 	initial
 	begin
-		// // Dumping the Waveforms // ModelSim dies around 47 ms
-		// $dumpfile("soc_v1.fsdb");
-		// $dumpvars(0, soc_tb_v1);
+		// Dumping the Waveforms // ModelSim dies around 47 ms
+		if (!$value$plusargs("VERDI_ROOT=%s", verdi_root))
+		begin
+        	verdi_root = ".";   // Fallback
+		end
+
+		$dumpfile({verdi_root, "/verdi_build/soc_fpga_tb_v1.vcd"});
+		$dumpvars(0, soc_fpga_tb_v1);
+
+		// BOZO Does not work, some licence problem???
+		// string verdi_dir = $getenv("VERDI_ROOT");
+		// if (verdi_dir == "") verdi_dir = ".";
+		// $dumpvars(0, soc_fpga_tb_v1);
+		// $fsdbDumpfile({verdi_dir, "verdi_build/soc_fpga_tb_v1.fsdb"});
+
+		// Calling the DPI-C Smoke Tester
+		$display("Calling DPI-C Function: ");
+		dpi_hello_world_v4();
 
 		// Set up the basic Universal Signals
 		clk     = 0;
 		rst_n   = 0;
 		count   = 0;
-
-		// TB_UART Setup
-		tb_baud_we = 0;
-		tb_data_we = 0;
-		tb_set_baud = 1000;
-		tb_clr_rx_rdy = 0;
-		tb_trmt = 0;
-		tb_tx_buffer = 32'd65;
 
 		// Hold SoC in RESET for 10 cycles
 		repeat(10) @(negedge clk);
@@ -142,26 +176,28 @@ module soc_fpga_tb_v1;
 		@(posedge clk);
 		// Fork Join for easy tracking
 		fork
-			begin: Timeout            
-				while (count < 64'd2000000000)
+			begin: Timeout
+				// while (count < 64'd2000000000)
+				while (count < 64'd1000000000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    
 					end
-				$display("More than %d cycles of simulation, timeout!", count);
-				$stop();
+				$display("\nMore than %d cycles of simulation, timeout!", count);
+				// $stop();
+				$finish();
 			end: Timeout
 			begin: Testing
 				@(posedge halt);
 				disable Timeout;
 				@(posedge clk);
-				$display("Processor Halted!");
+				$display("\nProcessor Halted!");
 				$display("Cycle Count: %d", count);
 				@(posedge clk);
 				$display("Cycle Count: %d", count);
 				$display("Test done!");
-				$stop();
-				// $finish();
+				// $stop();
+				$finish();
 			end: Testing
 		join
 	end
@@ -176,28 +212,10 @@ module soc_fpga_tb_v1;
 			// Checks for misaligned code memory fetches
 			if (misaligned_fetch)
 				begin
-					$display("Misalinged Memory access on: %h, at cycle %d", uut.iSoC.pc_fetch, count);
-					$stop();			
+					// $display("Misalinged Memory access on: %h, at cycle %d", iSOC_FPGA.iSOC_FPGA.iSoC.pc_fetch, count); // BOZO Need to fix
+					// $stop();
+					$display("\nPanic Pin: High. Ejecting. Something went wrong. Check Misaligned Fetch or Panic Watchdog to figure out. ");	
+					$finish();
 				end				
 		end
-
-	// Bare bones UART Transmit
-	always @(posedge clk)
-		begin
-			if (count === 0999)
-				tb_data_we = 1;
-			if (count === 1000)
-			begin
-				// tb_baud_we = 1;
-				// tb_set_baud = 50;
-				// tb_tx_buffer = 32'd65;
-				tb_trmt = 1;
-			end
-			if (count === 1001)
-			begin
-				tb_baud_we = 0;
-				tb_trmt = 0;
-			end
-		end
-
 endmodule

@@ -1,0 +1,19 @@
+Date: 02/09/2026
+Author: Ishan Moondra
+Title: Protocol Description for IVM SOC V2
+
+The UART on the SOC V2 supports the ability to send data and ASCII characters. For verbosity and due to lack of DMA ability in V2, 
+we have designed a simple single ASCII character based Protocol, that allows us to understand the information that is coming in via 
+the UART Monitor from the SOC. 
+This is a Work In Progress, and we will update the protocol as we test more and more complex use cases. 
+
+Here's a listing of the symbols, and their explanations. (As of 02/09/2026)
+> : Boot up Complete (From SOC)
+? : Program time-out, while waiting for User Input.
+P : Passed Software Self test. 
+F : Failed Software Self test. 
+S	: Start 		(Given from User/UART/TB)
+C	: Complete 	(Given from SOC)
+D#: Following # bytes are to be treated as raw Hex. Used to dump results. (Given from SOC)
+R : The next hex dump will give "Non-NOP Instructions Retired". 
+Y : The next hex dump will give "Number of Core Cycles". 

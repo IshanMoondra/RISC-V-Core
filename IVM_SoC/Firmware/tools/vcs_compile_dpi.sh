@@ -21,7 +21,7 @@ mkdir -p "$VCS_BUILD"
 echo "[INFO] Building DPI-C shared library..."
 gcc -shared -fPIC \
     -I"$DPI_DIR" \
-    -I"$VCS_HOME/include" \
+    -I"/cae/apps/data/synopsys-2025/vcs/X-2025.06/include" \
     -o "$DPI_LIB" \
     "$DPI_DIR"/*.c
 
@@ -37,13 +37,16 @@ vcs -full64 -sverilog \
     -f "$FILELIST" \
     +v2k \
     -timescale=1ns/1ps \
+    +lint=TFIPC-L \
+    +fsdb+all \
+    +vcs+lic+wait \
     -debug_access+all \
     -kdb \
     -Mdir="$VCS_BUILD/csrc" \
     -incremental \
-    -CFLAGS "-I$DPI_DIR -I$VCS_HOME/include" \
+    -CFLAGS "-I$DPI_DIR -I/cae/apps/data/synopsys-2025/vcs/X-2025.06/include" \
     -LDFLAGS "-L$DPI_DIR -ldpi" \
-    -sv_lib "$DPI_DIR/libdpi" \
+    -sv_lib "$DPI_LIB" \
     -l "$VCS_BUILD/compile.log" \
     -o "$VCS_BUILD/simv"
 

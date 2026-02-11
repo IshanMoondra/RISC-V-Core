@@ -15,10 +15,10 @@ VERDI_BUILD="$VERDI_ROOT/verdi_build"
 
 SIMV="$VCS_BUILD/simv"
 RUN_LOG="$VCS_BUILD/run.log"
-FSDB_FILE="$VERDI_BUILD/dump.fsdb"
+FSDB_FILE="$VERDI_BUILD/soc_fpga_tb_v1.fsdb"
 
 # Firmware / SPI flash image (adjust path if needed)
-SPI_FLASH_HEX="$SOC_HOME/firmware/build/spi_flash.hex"
+SPI_FLASH_HEX="$FW_ROOT/build/hex/firmware.hex"
 
 # Basic sanity checks
 if [ ! -x "$SIMV" ]; then
@@ -29,17 +29,20 @@ fi
 
 if [ ! -f "$SPI_FLASH_HEX" ]; then
     echo "[WARN] SPI flash hex not found at: $SPI_FLASH_HEX"
-    echo "       Continuing anyway, but RTL may $fatal on missing file."
+    echo "Continuing anyway, but RTL may fatal on missing file."
 fi
 
 mkdir -p "$VERDI_BUILD"
+rm -rf "$VERDI_BUILD"/*.vcd
+rm -rf "$VERDI_BUILD"/*.fsdb
 
 # Run simulation
 "$SIMV" \
+    +VERDI_ROOT=$VERDI_ROOT \
     -l "$RUN_LOG" \
     +fsdb+autoflush \
-    +dump_fsdb="$FSDB_FILE" \
+    +fsdb+all=on\
+    +fsdbfile+$FSDB_FILE \
     +SPI_FLASH_HEX="$SPI_FLASH_HEX" \
-    +vcs+lic+wait
 
 exit $?
