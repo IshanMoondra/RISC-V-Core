@@ -9,28 +9,28 @@ TCM              0x10000000         0x00002000         rw
 
 Linker script and memory map
 
-LOAD /out/state_dump_v2.o
+LOAD /out/state_dump_v3.o
 
-.text           0x00000000      0x730
+.text           0x00000000      0x7a4
                 0x00000000                        . = ORIGIN (FLASH)
                 0x00000000                        . = ALIGN (0x4)
  *(.bare_start)
  *(.start)
- .start         0x00000000       0x20 /out/state_dump_v2.o
+ .start         0x00000000       0x20 /out/state_dump_v3.o
                 0x00000000                _start
  *(.init)
  *(.text.startup)
  *(.text)
- .text          0x00000020      0x710 /out/state_dump_v2.o
+ .text          0x00000020      0x784 /out/state_dump_v3.o
                 0x00000020                soc_bootup()
                 0x000000a4                main
-                0x00000168                uart_putc(char)
-                0x000001ec                fib_iter(int)
-                0x00000288                fib_recursive(int)
-                0x000002f8                dump_result(int)
-                0x00000400                uart_poll_watchdog()
-                0x000004ac                compute()
-                0x00000678                gpio_demo(int)
+                0x000001b0                uart_putc(char)
+                0x00000234                fib_iter(int)
+                0x00000308                fib_recursive(int)
+                0x000003ac                dump_result(long long)
+                0x000004f4                uart_poll_watchdog()
+                0x00000594                compute()
+                0x000006ec                gpio_demo(int)
  *(.text.*)
  *(.fini)
 
@@ -40,13 +40,13 @@ LOAD /out/state_dump_v2.o
  *(.const)
  *(.const.*)
 
-.eh_frame       0x00000800      0x18c
+.eh_frame       0x00000800      0x1b4
  *(.eh_frame)
- .eh_frame      0x00000800      0x18c /out/state_dump_v2.o
+ .eh_frame      0x00000800      0x1b4 /out/state_dump_v3.o
 
-.rela.dyn       0x0000098c        0x0
- .rela.text     0x0000098c        0x0 /out/state_dump_v2.o
- .rela.start    0x0000098c        0x0 /out/state_dump_v2.o
+.rela.dyn       0x000009b4        0x0
+ .rela.text     0x000009b4        0x0 /out/state_dump_v3.o
+ .rela.start    0x000009b4        0x0 /out/state_dump_v3.o
 
 .gcc_except_table
  *(.gcc_except_table)
@@ -86,14 +86,14 @@ LOAD /out/state_dump_v2.o
 .data           0x0003e000        0x0
                 0x0003e000                        __data_start = .
  *(.data)
- .data          0x0003e000        0x0 /out/state_dump_v2.o
+ .data          0x0003e000        0x0 /out/state_dump_v3.o
  *(.data.*)
                 0x0003e000                        __data_end = .
 
 .bss            0x0003e000        0x0
                 0x0003e000                        __bss_start = .
  *(.bss)
- .bss           0x0003e000        0x0 /out/state_dump_v2.o
+ .bss           0x0003e000        0x0 /out/state_dump_v3.o
  *(.bss.*)
  *(COMMON)
                 0x0003e000                        __bss_end = .
@@ -159,13 +159,13 @@ LOAD /out/state_dump_v2.o
                 [!provide]                        PROVIDE (SET_GPIO_CHAN1 = (IO_BASE + 0x1434))
                 [!provide]                        PROVIDE (SET_GPIO_CHAN2 = (IO_BASE + 0x1438))
                 [!provide]                        PROVIDE (SET_GPIO_CHAN3 = (IO_BASE + 0x143c))
-OUTPUT(/out/state_dump_v2.elf elf32-littleriscv)
+OUTPUT(/out/state_dump_v3.elf elf32-littleriscv)
 
 .comment        0x00000000       0x26
- .comment       0x00000000       0x26 /out/state_dump_v2.o
+ .comment       0x00000000       0x26 /out/state_dump_v3.o
                                  0x27 (size before relaxing)
 
 .riscv.attributes
                 0x00000000       0x1c
  .riscv.attributes
-                0x00000000       0x1c /out/state_dump_v2.o
+                0x00000000       0x1c /out/state_dump_v3.o

@@ -54,7 +54,8 @@ module icebreaker_v1 (
 	wire [31:0] iomem_wdata;
 	reg  [31:0] iomem_rdata;
 
-	ivm_soc_v1 iSoC 
+	// ivm_soc_v1 iSoC
+	ivm_soc_v2 iSoC 							// L2 Upgrade
 	(
 		.clk          (clk         ),
 		.resetn       (resetn      ),

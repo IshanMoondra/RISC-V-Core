@@ -19,6 +19,7 @@ FSDB_FILE="$VERDI_BUILD/soc_fpga_tb_v1.fsdb"
 
 # Firmware / SPI flash image (adjust path if needed)
 SPI_FLASH_HEX="$FW_ROOT/build/hex/firmware.hex"
+L2_HEX="$FW_ROOT/build/hex/l2_firmware.hex"
 
 # Basic sanity checks
 if [ ! -x "$SIMV" ]; then
@@ -29,6 +30,11 @@ fi
 
 if [ ! -f "$SPI_FLASH_HEX" ]; then
     echo "[WARN] SPI flash hex not found at: $SPI_FLASH_HEX"
+    echo "Continuing anyway, but RTL may fatal on missing file."
+fi
+
+if [ ! -f "$L2_HEX" ]; then
+    echo "[WARN] L2 hex not found at: $L2_HEX"
     echo "Continuing anyway, but RTL may fatal on missing file."
 fi
 

@@ -19,6 +19,7 @@ mkdir -p "$VCS_BUILD"
 # Invoke VCS
 vcs -full64 -sverilog \
     -f "$FILELIST" \
+		-top soc_fpga_tb_v1 \
     +v2k \
     -timescale=1ns/1ps \
     +lint=TFIPC-L \

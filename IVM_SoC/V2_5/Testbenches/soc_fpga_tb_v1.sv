@@ -88,8 +88,10 @@ module soc_fpga_tb_v1;
 	UART iTB_UART (
 		.clk(clk),
 		.rst_n(rst_n),
-		.baud_we(tb_baud_we),
-		.data_we(tb_data_we),
+		// .baud_we(tb_baud_we),
+		// .data_we(tb_data_we),
+		.baud_we(1'b0),
+		.data_we(1'b1),
 		.set_baud(tb_set_baud),
 		.get_baud(),
 		.data_tx(tb_tx_buffer),	// TO SOC
@@ -123,23 +125,26 @@ module soc_fpga_tb_v1;
 	);
 	
 	// DPI-C is called on the negedge so that I prevent unnecessary race conditions. 
-	always @(negedge clk) begin
-
+	always @(negedge clk)
+	begin
 		dpi_uart_set_rx_inputs_v2(
 			tb_rx_rdy,
 			tb_rx_buffer,
 			tb_trmt_done
 		);
-
+	end
+	
+	always @(negedge clk)
+	begin
 		dpi_uart_get_ctrl_outputs_v2(
 			dpi_clr_rx_rdy,
 			dpi_tx_buffer,
 			dpi_start_transmit
 		);
 
-		tb_clr_rx_rdy   <= dpi_clr_rx_rdy;
-		tb_tx_buffer    <= dpi_tx_buffer;
-		tb_trmt			<= dpi_start_transmit;
+		tb_clr_rx_rdy <= dpi_clr_rx_rdy;
+		tb_tx_buffer  <= dpi_tx_buffer;
+		tb_trmt				<= dpi_start_transmit;
 	end
 
 	initial
@@ -178,7 +183,8 @@ module soc_fpga_tb_v1;
 		fork
 			begin: Timeout
 				// while (count < 64'd2000000000)
-				while (count < 64'd1000000000)
+				// while (count < 64'd1000000000)
+				while (count < 64'd10000000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    

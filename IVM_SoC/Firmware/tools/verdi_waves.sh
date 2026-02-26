@@ -15,4 +15,4 @@ if [ ! -f "$VCD" ]; then
     exit 1
 fi
 # vcd2fsdb $VCD -sv -o $FSDB
-verdi -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" & 
+verdi -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" -verdi_top soc_fpga_tb_v1 & 
