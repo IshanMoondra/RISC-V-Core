@@ -38,10 +38,10 @@ Disassembly of section .text:
   70:	fe442703          	lw	a4,-28(s0)
   74:	00e7a023          	sw	a4,0(a5)
   78:	00a00513          	li	a0,10
-  7c:	0ec000ef          	jal	168 <_Z9uart_putcc>
+  7c:	785030ef          	jal	4000 <_Z9uart_putcc>
   80:	00000013          	nop
   84:	03e00513          	li	a0,62
-  88:	0e0000ef          	jal	168 <_Z9uart_putcc>
+  88:	779030ef          	jal	4000 <_Z9uart_putcc>
   8c:	00000013          	nop
   90:	00000013          	nop
   94:	01c12083          	lw	ra,28(sp)
@@ -64,7 +64,7 @@ Disassembly of section .text:
   d0:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
   d4:	0007a783          	lw	a5,0(a5)
   d8:	fef42423          	sw	a5,-24(s0)
-  dc:	324000ef          	jal	400 <_Z18uart_poll_watchdogv>
+  dc:	08c000ef          	jal	168 <_Z18uart_poll_watchdogv>
   e0:	00000013          	nop
   e4:	002017b7          	lui	a5,0x201
   e8:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
@@ -83,15 +83,15 @@ Disassembly of section .text:
  11c:	40f707b3          	sub	a5,a4,a5
  120:	fcf42c23          	sw	a5,-40(s0)
  124:	05200513          	li	a0,82
- 128:	040000ef          	jal	168 <_Z9uart_putcc>
+ 128:	6d9030ef          	jal	4000 <_Z9uart_putcc>
  12c:	00000013          	nop
  130:	fd842503          	lw	a0,-40(s0)
- 134:	1c4000ef          	jal	2f8 <_Z11dump_resulti>
+ 134:	751030ef          	jal	4084 <_Z11dump_resulti>
  138:	05900513          	li	a0,89
- 13c:	02c000ef          	jal	168 <_Z9uart_putcc>
+ 13c:	6c5030ef          	jal	4000 <_Z9uart_putcc>
  140:	00000013          	nop
  144:	fdc42503          	lw	a0,-36(s0)
- 148:	1b0000ef          	jal	2f8 <_Z11dump_resulti>
+ 148:	73d030ef          	jal	4084 <_Z11dump_resulti>
  14c:	00000013          	nop
  150:	00000793          	li	a5,0
  154:	00078513          	mv	a0,a5
@@ -100,386 +100,401 @@ Disassembly of section .text:
  160:	03010113          	add	sp,sp,48
  164:	00008067          	ret
 
-00000168 <_Z9uart_putcc>:
- 168:	fd010113          	add	sp,sp,-48
- 16c:	02812623          	sw	s0,44(sp)
- 170:	03010413          	add	s0,sp,48
- 174:	00050793          	mv	a5,a0
- 178:	fcf40fa3          	sb	a5,-33(s0)
- 17c:	002017b7          	lui	a5,0x201
- 180:	80078793          	add	a5,a5,-2048 # 200800 <UART_BAUD>
- 184:	0007a783          	lw	a5,0(a5)
- 188:	fef42223          	sw	a5,-28(s0)
- 18c:	002017b7          	lui	a5,0x201
- 190:	80878793          	add	a5,a5,-2040 # 200808 <UART_SEND>
- 194:	fdf44703          	lbu	a4,-33(s0)
- 198:	00e78023          	sb	a4,0(a5)
- 19c:	fe042623          	sw	zero,-20(s0)
- 1a0:	0300006f          	j	1d0 <_Z9uart_putcc+0x68>
- 1a4:	fe042423          	sw	zero,-24(s0)
- 1a8:	0100006f          	j	1b8 <_Z9uart_putcc+0x50>
- 1ac:	fe842783          	lw	a5,-24(s0)
- 1b0:	00178793          	add	a5,a5,1
- 1b4:	fef42423          	sw	a5,-24(s0)
- 1b8:	fe842703          	lw	a4,-24(s0)
- 1bc:	fe442783          	lw	a5,-28(s0)
- 1c0:	fef746e3          	blt	a4,a5,1ac <_Z9uart_putcc+0x44>
- 1c4:	fec42783          	lw	a5,-20(s0)
- 1c8:	00178793          	add	a5,a5,1
- 1cc:	fef42623          	sw	a5,-20(s0)
- 1d0:	fec42783          	lw	a5,-20(s0)
- 1d4:	fcf058e3          	blez	a5,1a4 <_Z9uart_putcc+0x3c>
- 1d8:	00000013          	nop
- 1dc:	00000013          	nop
- 1e0:	02c12403          	lw	s0,44(sp)
- 1e4:	03010113          	add	sp,sp,48
- 1e8:	00008067          	ret
+00000168 <_Z18uart_poll_watchdogv>:
+ 168:	fe010113          	add	sp,sp,-32
+ 16c:	00112e23          	sw	ra,28(sp)
+ 170:	00812c23          	sw	s0,24(sp)
+ 174:	02010413          	add	s0,sp,32
+ 178:	fe042623          	sw	zero,-20(s0)
+ 17c:	0680006f          	j	1e4 <_Z18uart_poll_watchdogv+0x7c>
+ 180:	002017b7          	lui	a5,0x201
+ 184:	80c78793          	add	a5,a5,-2036 # 20080c <UART_STAT>
+ 188:	0007c783          	lbu	a5,0(a5)
+ 18c:	fef405a3          	sb	a5,-21(s0)
+ 190:	feb44783          	lbu	a5,-21(s0)
+ 194:	0047f793          	and	a5,a5,4
+ 198:	04078063          	beqz	a5,1d8 <_Z18uart_poll_watchdogv+0x70>
+ 19c:	002017b7          	lui	a5,0x201
+ 1a0:	80478793          	add	a5,a5,-2044 # 200804 <UART_RECV>
+ 1a4:	0007c783          	lbu	a5,0(a5)
+ 1a8:	fef40523          	sb	a5,-22(s0)
+ 1ac:	fea44703          	lbu	a4,-22(s0)
+ 1b0:	05300793          	li	a5,83
+ 1b4:	02f71263          	bne	a4,a5,1d8 <_Z18uart_poll_watchdogv+0x70>
+ 1b8:	05c000ef          	jal	214 <_Z7computev>
+ 1bc:	00050793          	mv	a5,a0
+ 1c0:	fef404a3          	sb	a5,-23(s0)
+ 1c4:	00000013          	nop
+ 1c8:	03200513          	li	a0,50
+ 1cc:	634010ef          	jal	1800 <_Z9gpio_demoi>
+ 1d0:	00000013          	nop
+ 1d4:	0300006f          	j	204 <_Z18uart_poll_watchdogv+0x9c>
+ 1d8:	fec42783          	lw	a5,-20(s0)
+ 1dc:	00178793          	add	a5,a5,1
+ 1e0:	fef42623          	sw	a5,-20(s0)
+ 1e4:	fec42703          	lw	a4,-20(s0)
+ 1e8:	000027b7          	lui	a5,0x2
+ 1ec:	70f78793          	add	a5,a5,1807 # 270f <_Z9gpio_demoi+0xf0f>
+ 1f0:	f8e7d8e3          	bge	a5,a4,180 <_Z18uart_poll_watchdogv+0x18>
+ 1f4:	03f00513          	li	a0,63
+ 1f8:	609030ef          	jal	4000 <_Z9uart_putcc>
+ 1fc:	00000013          	nop
+ 200:	00000013          	nop
+ 204:	01c12083          	lw	ra,28(sp)
+ 208:	01812403          	lw	s0,24(sp)
+ 20c:	02010113          	add	sp,sp,32
+ 210:	00008067          	ret
 
-000001ec <_Z8fib_iteri>:
- 1ec:	fc010113          	add	sp,sp,-64
- 1f0:	02812e23          	sw	s0,60(sp)
- 1f4:	04010413          	add	s0,sp,64
- 1f8:	fca42623          	sw	a0,-52(s0)
- 1fc:	00100793          	li	a5,1
- 200:	fef42623          	sw	a5,-20(s0)
- 204:	fe042423          	sw	zero,-24(s0)
- 208:	fe042223          	sw	zero,-28(s0)
- 20c:	fe042023          	sw	zero,-32(s0)
- 210:	fcc42703          	lw	a4,-52(s0)
- 214:	02e00793          	li	a5,46
- 218:	00e7d863          	bge	a5,a4,228 <_Z8fib_iteri+0x3c>
- 21c:	02e00793          	li	a5,46
- 220:	fef42023          	sw	a5,-32(s0)
- 224:	00c0006f          	j	230 <_Z8fib_iteri+0x44>
- 228:	fcc42783          	lw	a5,-52(s0)
- 22c:	fef42023          	sw	a5,-32(s0)
- 230:	00100793          	li	a5,1
- 234:	fcf42e23          	sw	a5,-36(s0)
- 238:	0300006f          	j	268 <_Z8fib_iteri+0x7c>
- 23c:	fec42703          	lw	a4,-20(s0)
- 240:	fe842783          	lw	a5,-24(s0)
- 244:	00f707b3          	add	a5,a4,a5
- 248:	fef42223          	sw	a5,-28(s0)
- 24c:	fec42783          	lw	a5,-20(s0)
- 250:	fef42423          	sw	a5,-24(s0)
- 254:	fe442783          	lw	a5,-28(s0)
- 258:	fef42623          	sw	a5,-20(s0)
- 25c:	fdc42783          	lw	a5,-36(s0)
- 260:	00178793          	add	a5,a5,1
- 264:	fcf42e23          	sw	a5,-36(s0)
- 268:	fdc42703          	lw	a4,-36(s0)
- 26c:	fe042783          	lw	a5,-32(s0)
- 270:	fcf746e3          	blt	a4,a5,23c <_Z8fib_iteri+0x50>
- 274:	fe442783          	lw	a5,-28(s0)
- 278:	00078513          	mv	a0,a5
- 27c:	03c12403          	lw	s0,60(sp)
- 280:	04010113          	add	sp,sp,64
- 284:	00008067          	ret
-
-00000288 <_Z13fib_recursivei>:
- 288:	fe010113          	add	sp,sp,-32
- 28c:	00112e23          	sw	ra,28(sp)
- 290:	00812c23          	sw	s0,24(sp)
- 294:	00912a23          	sw	s1,20(sp)
- 298:	02010413          	add	s0,sp,32
- 29c:	fea42623          	sw	a0,-20(s0)
- 2a0:	fec42703          	lw	a4,-20(s0)
- 2a4:	00100793          	li	a5,1
- 2a8:	00e7c663          	blt	a5,a4,2b4 <_Z13fib_recursivei+0x2c>
- 2ac:	fec42783          	lw	a5,-20(s0)
- 2b0:	0300006f          	j	2e0 <_Z13fib_recursivei+0x58>
- 2b4:	fec42783          	lw	a5,-20(s0)
- 2b8:	fff78793          	add	a5,a5,-1
- 2bc:	00078513          	mv	a0,a5
- 2c0:	fc9ff0ef          	jal	288 <_Z13fib_recursivei>
- 2c4:	00050493          	mv	s1,a0
- 2c8:	fec42783          	lw	a5,-20(s0)
- 2cc:	ffe78793          	add	a5,a5,-2
- 2d0:	00078513          	mv	a0,a5
- 2d4:	fb5ff0ef          	jal	288 <_Z13fib_recursivei>
- 2d8:	00050793          	mv	a5,a0
- 2dc:	00f487b3          	add	a5,s1,a5
- 2e0:	00078513          	mv	a0,a5
- 2e4:	01c12083          	lw	ra,28(sp)
- 2e8:	01812403          	lw	s0,24(sp)
- 2ec:	01412483          	lw	s1,20(sp)
- 2f0:	02010113          	add	sp,sp,32
- 2f4:	00008067          	ret
-
-000002f8 <_Z11dump_resulti>:
- 2f8:	fd010113          	add	sp,sp,-48
- 2fc:	02112623          	sw	ra,44(sp)
- 300:	02812423          	sw	s0,40(sp)
- 304:	03010413          	add	s0,sp,48
- 308:	fca42e23          	sw	a0,-36(s0)
- 30c:	00100793          	li	a5,1
- 310:	fef42623          	sw	a5,-20(s0)
- 314:	fdc42783          	lw	a5,-36(s0)
- 318:	0ff7f793          	zext.b	a5,a5
- 31c:	fef40223          	sb	a5,-28(s0)
- 320:	fdc42703          	lw	a4,-36(s0)
- 324:	0ff00793          	li	a5,255
- 328:	00e7de63          	bge	a5,a4,344 <_Z11dump_resulti+0x4c>
- 32c:	fdc42783          	lw	a5,-36(s0)
- 330:	4087d793          	sra	a5,a5,0x8
- 334:	0ff7f793          	zext.b	a5,a5
- 338:	fef402a3          	sb	a5,-27(s0)
- 33c:	00200793          	li	a5,2
- 340:	fef42623          	sw	a5,-20(s0)
- 344:	fdc42703          	lw	a4,-36(s0)
- 348:	000107b7          	lui	a5,0x10
- 34c:	00f74e63          	blt	a4,a5,368 <_Z11dump_resulti+0x70>
- 350:	fdc42783          	lw	a5,-36(s0)
- 354:	4107d793          	sra	a5,a5,0x10
- 358:	0ff7f793          	zext.b	a5,a5
- 35c:	fef40323          	sb	a5,-26(s0)
- 360:	00300793          	li	a5,3
- 364:	fef42623          	sw	a5,-20(s0)
- 368:	fdc42703          	lw	a4,-36(s0)
- 36c:	010007b7          	lui	a5,0x1000
- 370:	00f74e63          	blt	a4,a5,38c <_Z11dump_resulti+0x94>
- 374:	fdc42783          	lw	a5,-36(s0)
- 378:	0187d793          	srl	a5,a5,0x18
- 37c:	0ff7f793          	zext.b	a5,a5
- 380:	fef403a3          	sb	a5,-25(s0)
- 384:	00400793          	li	a5,4
- 388:	fef42623          	sw	a5,-20(s0)
- 38c:	04400513          	li	a0,68
- 390:	dd9ff0ef          	jal	168 <_Z9uart_putcc>
+00000214 <_Z7computev>:
+ 214:	fc010113          	add	sp,sp,-64
+ 218:	02112e23          	sw	ra,60(sp)
+ 21c:	02812c23          	sw	s0,56(sp)
+ 220:	04010413          	add	s0,sp,64
+ 224:	fe042423          	sw	zero,-24(s0)
+ 228:	fe042223          	sw	zero,-28(s0)
+ 22c:	00a00793          	li	a5,10
+ 230:	fef42023          	sw	a5,-32(s0)
+ 234:	fff00793          	li	a5,-1
+ 238:	fef407a3          	sb	a5,-17(s0)
+ 23c:	002017b7          	lui	a5,0x201
+ 240:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
+ 244:	0007a783          	lw	a5,0(a5)
+ 248:	fcf42e23          	sw	a5,-36(s0)
+ 24c:	002017b7          	lui	a5,0x201
+ 250:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
+ 254:	0007a783          	lw	a5,0(a5)
+ 258:	fcf42c23          	sw	a5,-40(s0)
+ 25c:	fe042503          	lw	a0,-32(s0)
+ 260:	1a1020ef          	jal	2c00 <_Z8fib_iteri>
+ 264:	fea42423          	sw	a0,-24(s0)
+ 268:	00000013          	nop
+ 26c:	002017b7          	lui	a5,0x201
+ 270:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
+ 274:	0007a783          	lw	a5,0(a5)
+ 278:	fcf42a23          	sw	a5,-44(s0)
+ 27c:	002017b7          	lui	a5,0x201
+ 280:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
+ 284:	0007a783          	lw	a5,0(a5)
+ 288:	fcf42823          	sw	a5,-48(s0)
+ 28c:	fd042703          	lw	a4,-48(s0)
+ 290:	fdc42783          	lw	a5,-36(s0)
+ 294:	40f707b3          	sub	a5,a4,a5
+ 298:	fcf42623          	sw	a5,-52(s0)
+ 29c:	fd442703          	lw	a4,-44(s0)
+ 2a0:	fd842783          	lw	a5,-40(s0)
+ 2a4:	40f707b3          	sub	a5,a4,a5
+ 2a8:	fcf42423          	sw	a5,-56(s0)
+ 2ac:	05900513          	li	a0,89
+ 2b0:	551030ef          	jal	4000 <_Z9uart_putcc>
+ 2b4:	00000013          	nop
+ 2b8:	fcc42503          	lw	a0,-52(s0)
+ 2bc:	5c9030ef          	jal	4084 <_Z11dump_resulti>
+ 2c0:	00000013          	nop
+ 2c4:	05200513          	li	a0,82
+ 2c8:	539030ef          	jal	4000 <_Z9uart_putcc>
+ 2cc:	00000013          	nop
+ 2d0:	fc842503          	lw	a0,-56(s0)
+ 2d4:	5b1030ef          	jal	4084 <_Z11dump_resulti>
+ 2d8:	00000013          	nop
+ 2dc:	002017b7          	lui	a5,0x201
+ 2e0:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
+ 2e4:	0007a783          	lw	a5,0(a5)
+ 2e8:	fcf42e23          	sw	a5,-36(s0)
+ 2ec:	002017b7          	lui	a5,0x201
+ 2f0:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
+ 2f4:	0007a783          	lw	a5,0(a5)
+ 2f8:	fcf42c23          	sw	a5,-40(s0)
+ 2fc:	fe042503          	lw	a0,-32(s0)
+ 300:	19d020ef          	jal	2c9c <_Z13fib_recursivei>
+ 304:	00050793          	mv	a5,a0
+ 308:	fef42223          	sw	a5,-28(s0)
+ 30c:	002017b7          	lui	a5,0x201
+ 310:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
+ 314:	0007a783          	lw	a5,0(a5)
+ 318:	fcf42a23          	sw	a5,-44(s0)
+ 31c:	002017b7          	lui	a5,0x201
+ 320:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
+ 324:	0007a783          	lw	a5,0(a5)
+ 328:	fcf42823          	sw	a5,-48(s0)
+ 32c:	fd042703          	lw	a4,-48(s0)
+ 330:	fdc42783          	lw	a5,-36(s0)
+ 334:	40f707b3          	sub	a5,a4,a5
+ 338:	fcf42623          	sw	a5,-52(s0)
+ 33c:	fd442703          	lw	a4,-44(s0)
+ 340:	fd842783          	lw	a5,-40(s0)
+ 344:	40f707b3          	sub	a5,a4,a5
+ 348:	fcf42423          	sw	a5,-56(s0)
+ 34c:	05900513          	li	a0,89
+ 350:	4b1030ef          	jal	4000 <_Z9uart_putcc>
+ 354:	00000013          	nop
+ 358:	fcc42503          	lw	a0,-52(s0)
+ 35c:	529030ef          	jal	4084 <_Z11dump_resulti>
+ 360:	00000013          	nop
+ 364:	05200513          	li	a0,82
+ 368:	499030ef          	jal	4000 <_Z9uart_putcc>
+ 36c:	00000013          	nop
+ 370:	fc842503          	lw	a0,-56(s0)
+ 374:	511030ef          	jal	4084 <_Z11dump_resulti>
+ 378:	fe842703          	lw	a4,-24(s0)
+ 37c:	fe442783          	lw	a5,-28(s0)
+ 380:	00f71e63          	bne	a4,a5,39c <_Z7computev+0x188>
+ 384:	00100793          	li	a5,1
+ 388:	fef407a3          	sb	a5,-17(s0)
+ 38c:	05000513          	li	a0,80
+ 390:	471030ef          	jal	4000 <_Z9uart_putcc>
  394:	00000013          	nop
- 398:	fec42783          	lw	a5,-20(s0)
- 39c:	0ff7f793          	zext.b	a5,a5
- 3a0:	00078513          	mv	a0,a5
- 3a4:	dc5ff0ef          	jal	168 <_Z9uart_putcc>
+ 398:	0140006f          	j	3ac <_Z7computev+0x198>
+ 39c:	fe0407a3          	sb	zero,-17(s0)
+ 3a0:	04600513          	li	a0,70
+ 3a4:	45d030ef          	jal	4000 <_Z9uart_putcc>
  3a8:	00000013          	nop
- 3ac:	fe042423          	sw	zero,-24(s0)
- 3b0:	02c0006f          	j	3dc <_Z11dump_resulti+0xe4>
- 3b4:	fe842783          	lw	a5,-24(s0)
- 3b8:	ff078793          	add	a5,a5,-16 # fffff0 <SET_GPIO_CHAN0+0xdfebc0>
- 3bc:	008787b3          	add	a5,a5,s0
- 3c0:	ff47c783          	lbu	a5,-12(a5)
- 3c4:	00078513          	mv	a0,a5
- 3c8:	da1ff0ef          	jal	168 <_Z9uart_putcc>
- 3cc:	00000013          	nop
- 3d0:	fe842783          	lw	a5,-24(s0)
- 3d4:	00178793          	add	a5,a5,1
- 3d8:	fef42423          	sw	a5,-24(s0)
- 3dc:	fe842703          	lw	a4,-24(s0)
- 3e0:	fec42783          	lw	a5,-20(s0)
- 3e4:	fcf748e3          	blt	a4,a5,3b4 <_Z11dump_resulti+0xbc>
- 3e8:	00000013          	nop
- 3ec:	00000013          	nop
- 3f0:	02c12083          	lw	ra,44(sp)
- 3f4:	02812403          	lw	s0,40(sp)
- 3f8:	03010113          	add	sp,sp,48
- 3fc:	00008067          	ret
+ 3ac:	00000013          	nop
+ 3b0:	fe842503          	lw	a0,-24(s0)
+ 3b4:	4d1030ef          	jal	4084 <_Z11dump_resulti>
+ 3b8:	00000013          	nop
+ 3bc:	04300513          	li	a0,67
+ 3c0:	441030ef          	jal	4000 <_Z9uart_putcc>
+ 3c4:	00000013          	nop
+ 3c8:	fef44783          	lbu	a5,-17(s0)
+ 3cc:	00078513          	mv	a0,a5
+ 3d0:	03c12083          	lw	ra,60(sp)
+ 3d4:	03812403          	lw	s0,56(sp)
+ 3d8:	04010113          	add	sp,sp,64
+ 3dc:	00008067          	ret
 
-00000400 <_Z18uart_poll_watchdogv>:
- 400:	fe010113          	add	sp,sp,-32
- 404:	00112e23          	sw	ra,28(sp)
- 408:	00812c23          	sw	s0,24(sp)
- 40c:	02010413          	add	s0,sp,32
- 410:	fe042623          	sw	zero,-20(s0)
- 414:	0680006f          	j	47c <_Z18uart_poll_watchdogv+0x7c>
- 418:	002017b7          	lui	a5,0x201
- 41c:	80c78793          	add	a5,a5,-2036 # 20080c <UART_STAT>
- 420:	0007c783          	lbu	a5,0(a5)
- 424:	fef405a3          	sb	a5,-21(s0)
- 428:	feb44783          	lbu	a5,-21(s0)
- 42c:	0047f793          	and	a5,a5,4
- 430:	04078063          	beqz	a5,470 <_Z18uart_poll_watchdogv+0x70>
- 434:	002017b7          	lui	a5,0x201
- 438:	80478793          	add	a5,a5,-2044 # 200804 <UART_RECV>
- 43c:	0007c783          	lbu	a5,0(a5)
- 440:	fef40523          	sb	a5,-22(s0)
- 444:	fea44703          	lbu	a4,-22(s0)
- 448:	05300793          	li	a5,83
- 44c:	02f71263          	bne	a4,a5,470 <_Z18uart_poll_watchdogv+0x70>
- 450:	05c000ef          	jal	4ac <_Z7computev>
- 454:	00050793          	mv	a5,a0
- 458:	fef404a3          	sb	a5,-23(s0)
- 45c:	00000013          	nop
- 460:	03200513          	li	a0,50
- 464:	214000ef          	jal	678 <_Z9gpio_demoi>
- 468:	00000013          	nop
- 46c:	0300006f          	j	49c <_Z18uart_poll_watchdogv+0x9c>
- 470:	fec42783          	lw	a5,-20(s0)
- 474:	00178793          	add	a5,a5,1
- 478:	fef42623          	sw	a5,-20(s0)
- 47c:	fec42703          	lw	a4,-20(s0)
- 480:	000027b7          	lui	a5,0x2
- 484:	70f78793          	add	a5,a5,1807 # 270f <_Z9gpio_demoi+0x2097>
- 488:	f8e7d8e3          	bge	a5,a4,418 <_Z18uart_poll_watchdogv+0x18>
- 48c:	03f00513          	li	a0,63
- 490:	cd9ff0ef          	jal	168 <_Z9uart_putcc>
- 494:	00000013          	nop
- 498:	00000013          	nop
- 49c:	01c12083          	lw	ra,28(sp)
- 4a0:	01812403          	lw	s0,24(sp)
- 4a4:	02010113          	add	sp,sp,32
- 4a8:	00008067          	ret
+Disassembly of section .spi_gpio:
 
-000004ac <_Z7computev>:
- 4ac:	fc010113          	add	sp,sp,-64
- 4b0:	02112e23          	sw	ra,60(sp)
- 4b4:	02812c23          	sw	s0,56(sp)
- 4b8:	04010413          	add	s0,sp,64
- 4bc:	fe042423          	sw	zero,-24(s0)
- 4c0:	fe042223          	sw	zero,-28(s0)
- 4c4:	01400793          	li	a5,20
- 4c8:	fef42023          	sw	a5,-32(s0)
- 4cc:	fff00793          	li	a5,-1
- 4d0:	fef407a3          	sb	a5,-17(s0)
- 4d4:	002017b7          	lui	a5,0x201
- 4d8:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
- 4dc:	0007a783          	lw	a5,0(a5)
- 4e0:	fcf42e23          	sw	a5,-36(s0)
- 4e4:	002017b7          	lui	a5,0x201
- 4e8:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
- 4ec:	0007a783          	lw	a5,0(a5)
- 4f0:	fcf42c23          	sw	a5,-40(s0)
- 4f4:	fe042503          	lw	a0,-32(s0)
- 4f8:	cf5ff0ef          	jal	1ec <_Z8fib_iteri>
- 4fc:	fea42423          	sw	a0,-24(s0)
- 500:	00000013          	nop
- 504:	002017b7          	lui	a5,0x201
- 508:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
- 50c:	0007a783          	lw	a5,0(a5)
- 510:	fcf42a23          	sw	a5,-44(s0)
- 514:	002017b7          	lui	a5,0x201
- 518:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
- 51c:	0007a783          	lw	a5,0(a5)
- 520:	fcf42823          	sw	a5,-48(s0)
- 524:	fd042703          	lw	a4,-48(s0)
- 528:	fdc42783          	lw	a5,-36(s0)
- 52c:	40f707b3          	sub	a5,a4,a5
- 530:	fcf42623          	sw	a5,-52(s0)
- 534:	fd442703          	lw	a4,-44(s0)
- 538:	fd842783          	lw	a5,-40(s0)
- 53c:	40f707b3          	sub	a5,a4,a5
- 540:	fcf42423          	sw	a5,-56(s0)
- 544:	05900513          	li	a0,89
- 548:	c21ff0ef          	jal	168 <_Z9uart_putcc>
- 54c:	00000013          	nop
- 550:	fcc42503          	lw	a0,-52(s0)
- 554:	da5ff0ef          	jal	2f8 <_Z11dump_resulti>
- 558:	00000013          	nop
- 55c:	05200513          	li	a0,82
- 560:	c09ff0ef          	jal	168 <_Z9uart_putcc>
- 564:	00000013          	nop
- 568:	fc842503          	lw	a0,-56(s0)
- 56c:	d8dff0ef          	jal	2f8 <_Z11dump_resulti>
- 570:	00000013          	nop
- 574:	002017b7          	lui	a5,0x201
- 578:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
- 57c:	0007a783          	lw	a5,0(a5)
- 580:	fcf42e23          	sw	a5,-36(s0)
- 584:	002017b7          	lui	a5,0x201
- 588:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
- 58c:	0007a783          	lw	a5,0(a5)
- 590:	fcf42c23          	sw	a5,-40(s0)
- 594:	fe042503          	lw	a0,-32(s0)
- 598:	cf1ff0ef          	jal	288 <_Z13fib_recursivei>
- 59c:	00050793          	mv	a5,a0
- 5a0:	fef42223          	sw	a5,-28(s0)
- 5a4:	002017b7          	lui	a5,0x201
- 5a8:	02c78793          	add	a5,a5,44 # 20102c <GET_PERFMON_RET_CNT>
- 5ac:	0007a783          	lw	a5,0(a5)
- 5b0:	fcf42a23          	sw	a5,-44(s0)
- 5b4:	002017b7          	lui	a5,0x201
- 5b8:	01c78793          	add	a5,a5,28 # 20101c <GET_PERFMON_COREL>
- 5bc:	0007a783          	lw	a5,0(a5)
- 5c0:	fcf42823          	sw	a5,-48(s0)
- 5c4:	fd042703          	lw	a4,-48(s0)
- 5c8:	fdc42783          	lw	a5,-36(s0)
- 5cc:	40f707b3          	sub	a5,a4,a5
- 5d0:	fcf42623          	sw	a5,-52(s0)
- 5d4:	fd442703          	lw	a4,-44(s0)
- 5d8:	fd842783          	lw	a5,-40(s0)
- 5dc:	40f707b3          	sub	a5,a4,a5
- 5e0:	fcf42423          	sw	a5,-56(s0)
- 5e4:	05900513          	li	a0,89
- 5e8:	b81ff0ef          	jal	168 <_Z9uart_putcc>
- 5ec:	00000013          	nop
- 5f0:	fcc42503          	lw	a0,-52(s0)
- 5f4:	d05ff0ef          	jal	2f8 <_Z11dump_resulti>
- 5f8:	00000013          	nop
- 5fc:	05200513          	li	a0,82
- 600:	b69ff0ef          	jal	168 <_Z9uart_putcc>
- 604:	00000013          	nop
- 608:	fc842503          	lw	a0,-56(s0)
- 60c:	cedff0ef          	jal	2f8 <_Z11dump_resulti>
- 610:	fe842703          	lw	a4,-24(s0)
- 614:	fe442783          	lw	a5,-28(s0)
- 618:	00f71e63          	bne	a4,a5,634 <_Z7computev+0x188>
- 61c:	00100793          	li	a5,1
- 620:	fef407a3          	sb	a5,-17(s0)
- 624:	05000513          	li	a0,80
- 628:	b41ff0ef          	jal	168 <_Z9uart_putcc>
- 62c:	00000013          	nop
- 630:	0140006f          	j	644 <_Z7computev+0x198>
- 634:	fe0407a3          	sb	zero,-17(s0)
- 638:	04600513          	li	a0,70
- 63c:	b2dff0ef          	jal	168 <_Z9uart_putcc>
- 640:	00000013          	nop
- 644:	00000013          	nop
- 648:	fe842503          	lw	a0,-24(s0)
- 64c:	cadff0ef          	jal	2f8 <_Z11dump_resulti>
- 650:	00000013          	nop
- 654:	04300513          	li	a0,67
- 658:	b11ff0ef          	jal	168 <_Z9uart_putcc>
- 65c:	00000013          	nop
- 660:	fef44783          	lbu	a5,-17(s0)
- 664:	00078513          	mv	a0,a5
- 668:	03c12083          	lw	ra,60(sp)
- 66c:	03812403          	lw	s0,56(sp)
- 670:	04010113          	add	sp,sp,64
- 674:	00008067          	ret
+00000800 <_Z9gpio_demoi-0x1000>:
+	...
 
-00000678 <_Z9gpio_demoi>:
- 678:	fd010113          	add	sp,sp,-48
- 67c:	02812623          	sw	s0,44(sp)
- 680:	03010413          	add	s0,sp,48
- 684:	fca42e23          	sw	a0,-36(s0)
- 688:	fe0407a3          	sb	zero,-17(s0)
- 68c:	0700006f          	j	6fc <_Z9gpio_demoi+0x84>
- 690:	fe042423          	sw	zero,-24(s0)
- 694:	002017b7          	lui	a5,0x201
- 698:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
- 69c:	00c00713          	li	a4,12
- 6a0:	00e7a023          	sw	a4,0(a5)
- 6a4:	0100006f          	j	6b4 <_Z9gpio_demoi+0x3c>
- 6a8:	fe842783          	lw	a5,-24(s0)
- 6ac:	00178793          	add	a5,a5,1
- 6b0:	fef42423          	sw	a5,-24(s0)
- 6b4:	fe842703          	lw	a4,-24(s0)
- 6b8:	fdc42783          	lw	a5,-36(s0)
- 6bc:	fef746e3          	blt	a4,a5,6a8 <_Z9gpio_demoi+0x30>
- 6c0:	fe042423          	sw	zero,-24(s0)
- 6c4:	002017b7          	lui	a5,0x201
- 6c8:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
- 6cc:	00d00713          	li	a4,13
- 6d0:	00e7a023          	sw	a4,0(a5)
- 6d4:	0100006f          	j	6e4 <_Z9gpio_demoi+0x6c>
- 6d8:	fe842783          	lw	a5,-24(s0)
- 6dc:	00178793          	add	a5,a5,1
- 6e0:	fef42423          	sw	a5,-24(s0)
- 6e4:	fe842703          	lw	a4,-24(s0)
- 6e8:	fdc42783          	lw	a5,-36(s0)
- 6ec:	fef746e3          	blt	a4,a5,6d8 <_Z9gpio_demoi+0x60>
- 6f0:	fef44783          	lbu	a5,-17(s0)
- 6f4:	00178793          	add	a5,a5,1
- 6f8:	fef407a3          	sb	a5,-17(s0)
- 6fc:	fef44703          	lbu	a4,-17(s0)
- 700:	00f00793          	li	a5,15
- 704:	f8e7f6e3          	bgeu	a5,a4,690 <_Z9gpio_demoi+0x18>
- 708:	002017b7          	lui	a5,0x201
- 70c:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
- 710:	0007a023          	sw	zero,0(a5)
- 714:	002017b7          	lui	a5,0x201
- 718:	42c78793          	add	a5,a5,1068 # 20142c <SET_FLASH_SPECIAL>
- 71c:	0007a023          	sw	zero,0(a5)
- 720:	00000013          	nop
- 724:	02c12403          	lw	s0,44(sp)
- 728:	03010113          	add	sp,sp,48
- 72c:	00008067          	ret
+00001800 <_Z9gpio_demoi>:
+    1800:	fd010113          	add	sp,sp,-48
+    1804:	02812623          	sw	s0,44(sp)
+    1808:	03010413          	add	s0,sp,48
+    180c:	fca42e23          	sw	a0,-36(s0)
+    1810:	fe0407a3          	sb	zero,-17(s0)
+    1814:	0700006f          	j	1884 <_Z9gpio_demoi+0x84>
+    1818:	fe042423          	sw	zero,-24(s0)
+    181c:	002017b7          	lui	a5,0x201
+    1820:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
+    1824:	00c00713          	li	a4,12
+    1828:	00e7a023          	sw	a4,0(a5)
+    182c:	0100006f          	j	183c <_Z9gpio_demoi+0x3c>
+    1830:	fe842783          	lw	a5,-24(s0)
+    1834:	00178793          	add	a5,a5,1
+    1838:	fef42423          	sw	a5,-24(s0)
+    183c:	fe842703          	lw	a4,-24(s0)
+    1840:	fdc42783          	lw	a5,-36(s0)
+    1844:	fef746e3          	blt	a4,a5,1830 <_Z9gpio_demoi+0x30>
+    1848:	fe042423          	sw	zero,-24(s0)
+    184c:	002017b7          	lui	a5,0x201
+    1850:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
+    1854:	00d00713          	li	a4,13
+    1858:	00e7a023          	sw	a4,0(a5)
+    185c:	0100006f          	j	186c <_Z9gpio_demoi+0x6c>
+    1860:	fe842783          	lw	a5,-24(s0)
+    1864:	00178793          	add	a5,a5,1
+    1868:	fef42423          	sw	a5,-24(s0)
+    186c:	fe842703          	lw	a4,-24(s0)
+    1870:	fdc42783          	lw	a5,-36(s0)
+    1874:	fef746e3          	blt	a4,a5,1860 <_Z9gpio_demoi+0x60>
+    1878:	fef44783          	lbu	a5,-17(s0)
+    187c:	00178793          	add	a5,a5,1
+    1880:	fef407a3          	sb	a5,-17(s0)
+    1884:	fef44703          	lbu	a4,-17(s0)
+    1888:	00f00793          	li	a5,15
+    188c:	f8e7f6e3          	bgeu	a5,a4,1818 <_Z9gpio_demoi+0x18>
+    1890:	002017b7          	lui	a5,0x201
+    1894:	43078793          	add	a5,a5,1072 # 201430 <SET_GPIO_CHAN0>
+    1898:	0007a023          	sw	zero,0(a5)
+    189c:	002017b7          	lui	a5,0x201
+    18a0:	42c78793          	add	a5,a5,1068 # 20142c <SET_FLASH_SPECIAL>
+    18a4:	0007a023          	sw	zero,0(a5)
+    18a8:	00000013          	nop
+    18ac:	02c12403          	lw	s0,44(sp)
+    18b0:	03010113          	add	sp,sp,48
+    18b4:	00008067          	ret
+
+Disassembly of section .spi_compute:
+
+00001c00 <_Z8fib_iteri-0x1000>:
+	...
+
+00002c00 <_Z8fib_iteri>:
+    2c00:	fc010113          	add	sp,sp,-64
+    2c04:	02812e23          	sw	s0,60(sp)
+    2c08:	04010413          	add	s0,sp,64
+    2c0c:	fca42623          	sw	a0,-52(s0)
+    2c10:	00100793          	li	a5,1
+    2c14:	fef42623          	sw	a5,-20(s0)
+    2c18:	fe042423          	sw	zero,-24(s0)
+    2c1c:	fe042223          	sw	zero,-28(s0)
+    2c20:	fe042023          	sw	zero,-32(s0)
+    2c24:	fcc42703          	lw	a4,-52(s0)
+    2c28:	02e00793          	li	a5,46
+    2c2c:	00e7d863          	bge	a5,a4,2c3c <_Z8fib_iteri+0x3c>
+    2c30:	02e00793          	li	a5,46
+    2c34:	fef42023          	sw	a5,-32(s0)
+    2c38:	00c0006f          	j	2c44 <_Z8fib_iteri+0x44>
+    2c3c:	fcc42783          	lw	a5,-52(s0)
+    2c40:	fef42023          	sw	a5,-32(s0)
+    2c44:	00100793          	li	a5,1
+    2c48:	fcf42e23          	sw	a5,-36(s0)
+    2c4c:	0300006f          	j	2c7c <_Z8fib_iteri+0x7c>
+    2c50:	fec42703          	lw	a4,-20(s0)
+    2c54:	fe842783          	lw	a5,-24(s0)
+    2c58:	00f707b3          	add	a5,a4,a5
+    2c5c:	fef42223          	sw	a5,-28(s0)
+    2c60:	fec42783          	lw	a5,-20(s0)
+    2c64:	fef42423          	sw	a5,-24(s0)
+    2c68:	fe442783          	lw	a5,-28(s0)
+    2c6c:	fef42623          	sw	a5,-20(s0)
+    2c70:	fdc42783          	lw	a5,-36(s0)
+    2c74:	00178793          	add	a5,a5,1
+    2c78:	fcf42e23          	sw	a5,-36(s0)
+    2c7c:	fdc42703          	lw	a4,-36(s0)
+    2c80:	fe042783          	lw	a5,-32(s0)
+    2c84:	fcf746e3          	blt	a4,a5,2c50 <_Z8fib_iteri+0x50>
+    2c88:	fe442783          	lw	a5,-28(s0)
+    2c8c:	00078513          	mv	a0,a5
+    2c90:	03c12403          	lw	s0,60(sp)
+    2c94:	04010113          	add	sp,sp,64
+    2c98:	00008067          	ret
+
+00002c9c <_Z13fib_recursivei>:
+    2c9c:	fe010113          	add	sp,sp,-32
+    2ca0:	00112e23          	sw	ra,28(sp)
+    2ca4:	00812c23          	sw	s0,24(sp)
+    2ca8:	00912a23          	sw	s1,20(sp)
+    2cac:	02010413          	add	s0,sp,32
+    2cb0:	fea42623          	sw	a0,-20(s0)
+    2cb4:	fec42703          	lw	a4,-20(s0)
+    2cb8:	00100793          	li	a5,1
+    2cbc:	00e7c663          	blt	a5,a4,2cc8 <_Z13fib_recursivei+0x2c>
+    2cc0:	fec42783          	lw	a5,-20(s0)
+    2cc4:	0300006f          	j	2cf4 <_Z13fib_recursivei+0x58>
+    2cc8:	fec42783          	lw	a5,-20(s0)
+    2ccc:	fff78793          	add	a5,a5,-1
+    2cd0:	00078513          	mv	a0,a5
+    2cd4:	fc9ff0ef          	jal	2c9c <_Z13fib_recursivei>
+    2cd8:	00050493          	mv	s1,a0
+    2cdc:	fec42783          	lw	a5,-20(s0)
+    2ce0:	ffe78793          	add	a5,a5,-2
+    2ce4:	00078513          	mv	a0,a5
+    2ce8:	fb5ff0ef          	jal	2c9c <_Z13fib_recursivei>
+    2cec:	00050793          	mv	a5,a0
+    2cf0:	00f487b3          	add	a5,s1,a5
+    2cf4:	00078513          	mv	a0,a5
+    2cf8:	01c12083          	lw	ra,28(sp)
+    2cfc:	01812403          	lw	s0,24(sp)
+    2d00:	01412483          	lw	s1,20(sp)
+    2d04:	02010113          	add	sp,sp,32
+    2d08:	00008067          	ret
+
+Disassembly of section .spi_uart:
+
+00003000 <_Z9uart_putcc-0x1000>:
+	...
+
+00004000 <_Z9uart_putcc>:
+    4000:	fd010113          	add	sp,sp,-48
+    4004:	02812623          	sw	s0,44(sp)
+    4008:	03010413          	add	s0,sp,48
+    400c:	00050793          	mv	a5,a0
+    4010:	fcf40fa3          	sb	a5,-33(s0)
+    4014:	002017b7          	lui	a5,0x201
+    4018:	80078793          	add	a5,a5,-2048 # 200800 <UART_BAUD>
+    401c:	0007a783          	lw	a5,0(a5)
+    4020:	fef42223          	sw	a5,-28(s0)
+    4024:	002017b7          	lui	a5,0x201
+    4028:	80878793          	add	a5,a5,-2040 # 200808 <UART_SEND>
+    402c:	fdf44703          	lbu	a4,-33(s0)
+    4030:	00e78023          	sb	a4,0(a5)
+    4034:	fe042623          	sw	zero,-20(s0)
+    4038:	0300006f          	j	4068 <_Z9uart_putcc+0x68>
+    403c:	fe042423          	sw	zero,-24(s0)
+    4040:	0100006f          	j	4050 <_Z9uart_putcc+0x50>
+    4044:	fe842783          	lw	a5,-24(s0)
+    4048:	00178793          	add	a5,a5,1
+    404c:	fef42423          	sw	a5,-24(s0)
+    4050:	fe842703          	lw	a4,-24(s0)
+    4054:	fe442783          	lw	a5,-28(s0)
+    4058:	fef746e3          	blt	a4,a5,4044 <_Z9uart_putcc+0x44>
+    405c:	fec42783          	lw	a5,-20(s0)
+    4060:	00178793          	add	a5,a5,1
+    4064:	fef42623          	sw	a5,-20(s0)
+    4068:	fec42783          	lw	a5,-20(s0)
+    406c:	fcf058e3          	blez	a5,403c <_Z9uart_putcc+0x3c>
+    4070:	00000013          	nop
+    4074:	00000013          	nop
+    4078:	02c12403          	lw	s0,44(sp)
+    407c:	03010113          	add	sp,sp,48
+    4080:	00008067          	ret
+
+00004084 <_Z11dump_resulti>:
+    4084:	fd010113          	add	sp,sp,-48
+    4088:	02112623          	sw	ra,44(sp)
+    408c:	02812423          	sw	s0,40(sp)
+    4090:	03010413          	add	s0,sp,48
+    4094:	fca42e23          	sw	a0,-36(s0)
+    4098:	00100793          	li	a5,1
+    409c:	fef42623          	sw	a5,-20(s0)
+    40a0:	fdc42783          	lw	a5,-36(s0)
+    40a4:	0ff7f793          	zext.b	a5,a5
+    40a8:	fef40223          	sb	a5,-28(s0)
+    40ac:	fdc42703          	lw	a4,-36(s0)
+    40b0:	0ff00793          	li	a5,255
+    40b4:	00e7de63          	bge	a5,a4,40d0 <_Z11dump_resulti+0x4c>
+    40b8:	fdc42783          	lw	a5,-36(s0)
+    40bc:	4087d793          	sra	a5,a5,0x8
+    40c0:	0ff7f793          	zext.b	a5,a5
+    40c4:	fef402a3          	sb	a5,-27(s0)
+    40c8:	00200793          	li	a5,2
+    40cc:	fef42623          	sw	a5,-20(s0)
+    40d0:	fdc42703          	lw	a4,-36(s0)
+    40d4:	000107b7          	lui	a5,0x10
+    40d8:	00f74e63          	blt	a4,a5,40f4 <_Z11dump_resulti+0x70>
+    40dc:	fdc42783          	lw	a5,-36(s0)
+    40e0:	4107d793          	sra	a5,a5,0x10
+    40e4:	0ff7f793          	zext.b	a5,a5
+    40e8:	fef40323          	sb	a5,-26(s0)
+    40ec:	00300793          	li	a5,3
+    40f0:	fef42623          	sw	a5,-20(s0)
+    40f4:	fdc42703          	lw	a4,-36(s0)
+    40f8:	010007b7          	lui	a5,0x1000
+    40fc:	00f74e63          	blt	a4,a5,4118 <_Z11dump_resulti+0x94>
+    4100:	fdc42783          	lw	a5,-36(s0)
+    4104:	0187d793          	srl	a5,a5,0x18
+    4108:	0ff7f793          	zext.b	a5,a5
+    410c:	fef403a3          	sb	a5,-25(s0)
+    4110:	00400793          	li	a5,4
+    4114:	fef42623          	sw	a5,-20(s0)
+    4118:	04400513          	li	a0,68
+    411c:	ee5ff0ef          	jal	4000 <_Z9uart_putcc>
+    4120:	00000013          	nop
+    4124:	fec42783          	lw	a5,-20(s0)
+    4128:	0ff7f793          	zext.b	a5,a5
+    412c:	00078513          	mv	a0,a5
+    4130:	ed1ff0ef          	jal	4000 <_Z9uart_putcc>
+    4134:	00000013          	nop
+    4138:	fe042423          	sw	zero,-24(s0)
+    413c:	02c0006f          	j	4168 <_Z11dump_resulti+0xe4>
+    4140:	fe842783          	lw	a5,-24(s0)
+    4144:	ff078793          	add	a5,a5,-16 # fffff0 <SET_GPIO_CHAN0+0xdfebc0>
+    4148:	008787b3          	add	a5,a5,s0
+    414c:	ff47c783          	lbu	a5,-12(a5)
+    4150:	00078513          	mv	a0,a5
+    4154:	eadff0ef          	jal	4000 <_Z9uart_putcc>
+    4158:	00000013          	nop
+    415c:	fe842783          	lw	a5,-24(s0)
+    4160:	00178793          	add	a5,a5,1
+    4164:	fef42423          	sw	a5,-24(s0)
+    4168:	fe842703          	lw	a4,-24(s0)
+    416c:	fec42783          	lw	a5,-20(s0)
+    4170:	fcf748e3          	blt	a4,a5,4140 <_Z11dump_resulti+0xbc>
+    4174:	00000013          	nop
+    4178:	00000013          	nop
+    417c:	02c12083          	lw	ra,44(sp)
+    4180:	02812403          	lw	s0,40(sp)
+    4184:	03010113          	add	sp,sp,48
+    4188:	00008067          	ret

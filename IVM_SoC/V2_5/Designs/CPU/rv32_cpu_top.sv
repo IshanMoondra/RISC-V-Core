@@ -206,25 +206,35 @@ rv32_cu_v2 iControl
 // Hazard Detection Unit
 hazard_detection iHazard
     (
-        .execute_mem_read(&execute_data_ctrl),
-        .decode_sel_rs1(decode_sel_rs1),
-        .decode_sel_rs2(decode_sel_rs2),
-        .execute_sel_rd1(execute_sel_rd1),
-        .stall(load_to_use_stall_int)
+			.execute_mem_read(&execute_data_ctrl),
+			.decode_sel_rs1(decode_sel_rs1),
+			.decode_sel_rs2(decode_sel_rs2),
+			.execute_sel_rd1(execute_sel_rd1),
+			.stall(load_to_use_stall_int)
     );
+
+// Muxing Skid Buffer vs Regular Input for RF Select lines: For Load to Use Stalls
+wire [4:0] execute_sel_rs1_skid;
+wire [4:0] execute_sel_rs2_skid;
+
+logic [4:0] rf_sel_s1;
+logic [4:0] rf_sel_s2;
+
+assign rf_sel_s1 = (load_to_use_stall_ff2) ? (execute_sel_rs1_skid) : (decode_sel_rs1);
+assign rf_sel_s2 = (load_to_use_stall_ff2) ? (execute_sel_rs2_skid) : (decode_sel_rs2);
 
 // Register File Unit
 rv32_register_file iRF
     (
-        .clk(clk),
-        .rst_n(rst_n),
-        .write_reg(wb_rf_ctrl[0]),
-        .sel_s1(decode_sel_rs1),
-        .sel_s2(decode_sel_rs2),        
-        .sel_d1(wb_sel_rd1),
-        .reg_d1(wb_result),
-        .reg_s1(decode_rs1),
-        .reg_s2(decode_rs2)
+			.clk(clk),									// Need to extend the clock timing for this clock pin by just 1 cycle extra
+			.rst_n(rst_n),
+			.write_reg(wb_rf_ctrl[0]),
+			.sel_s1(rf_sel_s1),
+			.sel_s2(rf_sel_s2),       
+			.sel_d1(wb_sel_rd1),
+			.reg_d1(wb_result),
+			.reg_s1(decode_rs1),
+			.reg_s2(decode_rs2)
     );
 
 // Branch Resolution Unit
@@ -245,6 +255,8 @@ rv32_id_ex_queue iID_EX
         .rst_n(rst_n),
         .flush(flush),
         .stall(internal_stall),
+				.load_to_use_stall(load_to_use_stall),
+				.load_to_use_stall_ff3(load_to_use_stall_ff3),
         .busy(1'b0),        // Will be used later when multicycle ALU comes into play.
         .code_in(decode_code_bus),
         .pc_in(decode_pc),
@@ -265,6 +277,9 @@ rv32_id_ex_queue iID_EX
         .sel_rs1_out(execute_sel_rs1),
         .sel_rs2_out(execute_sel_rs2),
         .sel_rd1_out(execute_sel_rd1),
+
+				.sel_rs1_queue_skid(execute_sel_rs1_skid),
+				.sel_rs2_queue_skid(execute_sel_rs2_skid),
 
         .bshift_in(decode_bshift_ctrl),
         .bshift_out(execute_bshift_ctrl),

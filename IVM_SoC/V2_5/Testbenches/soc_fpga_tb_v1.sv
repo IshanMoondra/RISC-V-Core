@@ -183,8 +183,8 @@ module soc_fpga_tb_v1;
 		fork
 			begin: Timeout
 				// while (count < 64'd2000000000)
-				// while (count < 64'd1000000000)
-				while (count < 64'd10000000)
+				while (count < 64'd1000000000)
+				// while (count < 64'd50000)
 					begin
 						@(posedge clk);
 						count = count + 1;                    

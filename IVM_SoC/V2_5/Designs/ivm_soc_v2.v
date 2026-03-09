@@ -64,6 +64,7 @@ wire core_clk_en;
 wire gated_clk;
 wire i_cache_miss;
 reg  i_cache_miss_ff1;
+reg  i_cache_miss_ff2;
 wire d_cache_miss;
 wire core_bubble;
 wire 	[31:0] 	l2_addr;
@@ -236,7 +237,7 @@ rv32_cpu_top iCPU
 		// CPU Control/Status Signals
 		.flush(flush),
 		.branch(branch),
-		.stall(stall),
+		.stall(core_bubble),
 		.busy(busy),
 		.halt(halt),
 		// CPU Output
@@ -388,9 +389,15 @@ assign perfmons_addr = (mmio_vector[4]) ? (mem_addr[6:0]) : (0);
 always @(posedge clk, negedge resetn)
   begin
     if (~resetn)
-      i_cache_miss_ff1 <= 0;
+			begin
+				i_cache_miss_ff1 	<= 0;
+				i_cache_miss_ff2	<= 0;	
+			end
     else
-      i_cache_miss_ff1 <= i_cache_miss;
+			begin
+				i_cache_miss_ff1	<= i_cache_miss;
+				i_cache_miss_ff2	<= i_cache_miss_ff1;
+			end
   end
 
 // Instantiating the Perfmons Module
@@ -401,7 +408,7 @@ perfmons iPerfMons
 		.core_clk(gated_clk),
 		.rst_n(resetn),
 		// Perfmon Tracker Bits
-		.i_miss(i_cache_miss_ff1),							// Check Correctness! // Done!
+		.i_miss(i_cache_miss_ff1 & ~i_cache_miss_ff2),		// Check Correctness! // Done!
 		.non_nop_retired(non_nop_retired),		  // Create the Signal bit from CPU! // Done!
 		// MMIO Interfacing
 		.perfmons_enable(mmio_vector[4]),

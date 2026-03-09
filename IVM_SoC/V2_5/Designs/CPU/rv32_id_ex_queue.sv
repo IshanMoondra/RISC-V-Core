@@ -28,6 +28,8 @@ module rv32_id_ex_queue
         // Pipeline control inputs
         input flush,
         input stall,
+				input load_to_use_stall,
+				input load_to_use_stall_ff3,
         input busy,
         // Input Output Pairs for Code & PC
         input [31:0] code_in,
@@ -56,6 +58,8 @@ module rv32_id_ex_queue
         output logic [4:0] sel_rs1_out,
         output logic [4:0] sel_rs2_out,
         output logic [4:0] sel_rd1_out,
+				output logic [4:0] sel_rs1_queue_skid,
+				output logic [4:0] sel_rs2_queue_skid,
         // Barrel Shifter Control
         input [3:0] bshift_in,
         output logic [3:0] bshift_out,
@@ -81,6 +85,88 @@ reg [1:0] data_ctrl_queue;  // {EN, Read}
 reg [4:0] sel_rs1_queue;
 reg [4:0] sel_rs2_queue;
 reg [4:0] sel_rd1_queue;
+
+// Turns out, I need a Skid Buffer to properly solve this.
+reg [31:0] 	code_queue_skid			;
+
+reg [31:0] 	pc_queue_skid				;
+reg [31:0] 	pc_ret_queue_skid		;
+reg 				pc_hlt_queue_skid		;
+
+reg [31:0] 	rf_rs1_queue_skid		;
+reg [31:0] 	rf_rs2_queue_skid		;
+reg [2:0] 	rf_queue_skid				;
+// reg [4:0]		sel_rs1_queue_skid	;
+// reg [4:0]		sel_rs2_queue_skid	;
+reg [4:0]		sel_rd1_queue_skid	;
+
+reg [5:0] 	alu_queue_skid			;
+reg [3:0] 	bshift_queue_skid		;
+
+reg [1:0] 	data_ctrl_queue_skid;
+
+
+logic [31:0] shadow_code_out;
+always_ff @(posedge clk, negedge rst_n)
+	begin
+		if (~rst_n)
+			begin
+				code_queue_skid 			<= 0;
+				
+				pc_queue_skid					<= 0;
+				pc_ret_queue_skid			<= 0;
+				pc_hlt_queue_skid			<= 0;
+
+				rf_rs1_queue_skid			<= 0;
+				rf_rs2_queue_skid			<= 0;
+				rf_queue_skid					<= 0;
+				sel_rs1_queue_skid		<= 0;
+				sel_rs2_queue_skid		<= 0;
+				sel_rd1_queue_skid		<= 0;
+
+				alu_queue_skid				<= 0;
+				bshift_queue_skid			<= 0;
+
+				data_ctrl_queue_skid	<= 0;
+
+			end
+		else if (load_to_use_stall)
+			begin
+				code_queue_skid 			<= code_in;
+				rf_rs1_queue_skid			<= rf_rs1_in;
+				rf_rs2_queue_skid			<= rf_rs2_in;
+				rf_queue_skid					<= rf_in;
+				sel_rs1_queue_skid		<= sel_rs1_in;
+				sel_rs2_queue_skid		<= sel_rs2_in;
+				sel_rd1_queue_skid		<= sel_rd1_in;
+				alu_queue_skid				<= alu_in;
+				bshift_queue_skid			<= bshift_in;
+				data_ctrl_queue_skid	<= data_ctrl_in;
+				pc_queue_skid					<= pc_in;
+				pc_ret_queue_skid			<= pc_ret_in;
+				pc_hlt_queue_skid			<= pc_hlt_in;
+			end
+	end
+
+assign shadow_code_out = (load_to_use_stall_ff3) ? (code_queue_skid) : (code_queue); 
+
+assign code_out 			= (load_to_use_stall_ff3) ? (code_queue_skid) 			: (code_queue)			;
+assign rf_rs1_out			= (load_to_use_stall_ff3) ? (rf_rs1_queue_skid)			: (rf_rs1_queue)		;
+assign rf_rs2_out			= (load_to_use_stall_ff3) ? (rf_rs2_queue_skid)			: (rf_rs2_queue)		;
+// assign rf_rs1_out			= rf_rs1_queue;
+// assign rf_rs2_out			= rf_rs2_queue;
+assign rf_out					= (load_to_use_stall_ff3) ? (rf_queue_skid)					: (rf_queue)				;
+assign sel_rs1_out		= (load_to_use_stall_ff3) ? (sel_rs1_queue_skid)		: (sel_rs1_queue)		;
+assign sel_rs2_out		= (load_to_use_stall_ff3) ? (sel_rs2_queue_skid)		: (sel_rs2_queue)		;
+assign sel_rd1_out		= (load_to_use_stall_ff3) ? (sel_rd1_queue_skid)		: (sel_rd1_queue)		;
+assign alu_out				= (load_to_use_stall_ff3)	? (alu_queue_skid)				: (alu_queue)				;
+assign bshift_out			= (load_to_use_stall_ff3)	? (bshift_queue_skid)			: (bshift_queue)		;
+assign data_ctrl_out	= (load_to_use_stall_ff3) ? (data_ctrl_queue_skid)	: (data_ctrl_queue)	;
+// assign pc_out					= (load_to_use_stall_ff3) ? (pc_queue_skid)					: (pc_queue)				;
+// assign pc_ret_out			= (load_to_use_stall_ff3)	? (pc_ret_queue_skid)			: (pc_ret_queue)		;
+assign pc_out					= pc_queue;
+assign pc_ret_out			= pc_ret_queue;
+assign pc_hlt_out			= (load_to_use_stall_ff3) ? (pc_hlt_queue_skid)			: (pc_hlt_queue)		;
 
 // The Pipeline Flop will be flushed on every reset, as controlled by the PC module.
 
@@ -158,41 +244,21 @@ end
 
 // Output from the Queues.
 always_comb
-    begin
-        if (~stall | 1'b1)
-            begin
-                code_out        = code_queue;
-                pc_out          = pc_queue;
-                pc_ret_out      = pc_ret_queue;
-                alu_out         = alu_queue;
-                rf_rs1_out      = rf_rs1_queue;
-                rf_rs2_out      = rf_rs2_queue;
-                rf_out          = rf_queue;
-                bshift_out      = bshift_queue;
-                pc_hlt_out      = pc_hlt_queue;
-                data_ctrl_out   = data_ctrl_queue;
+	begin
+		// code_out        = code_queue;
+		// pc_out          = pc_queue;
+		// pc_ret_out      = pc_ret_queue;
+		// alu_out         = alu_queue;
+		// rf_rs1_out      = rf_rs1_queue;
+		// rf_rs2_out      = rf_rs2_queue;
+		// rf_out          = rf_queue;
+		// bshift_out      = bshift_queue;
+		// pc_hlt_out      = pc_hlt_queue;
+		// data_ctrl_out   = data_ctrl_queue;
 
-                sel_rs1_out     = sel_rs1_queue;
-                sel_rs2_out     = sel_rs2_queue;
-                sel_rd1_out     = sel_rd1_queue; 
-            end
-        else
-            begin
-                code_out        = 32'h0;
-                pc_out          = 32'h0;
-                pc_ret_out      = pc_ret_queue;
-                alu_out         = {1'd0, 5'd7};
-                rf_rs1_out      = 32'h0;
-                rf_rs2_out      = 32'h0;
-                rf_out          = {2'd0, 1'd0};
-                bshift_out      = {1'd0, 1'd0, 1'd0, 1'd0};
-                pc_hlt_out      = 1'b1;
-                data_ctrl_out   = {1'd0, 1'd1};
-
-                sel_rs1_out     = 0;
-                sel_rs2_out     = 0;
-                sel_rd1_out     = 0;
-            end
-    end
+		// sel_rs1_out     = sel_rs1_queue;
+		// sel_rs2_out     = sel_rs2_queue;
+		// sel_rd1_out     = sel_rd1_queue; 
+	end
 
 endmodule    

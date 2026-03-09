@@ -388,14 +388,26 @@ genvar i_idx, d_idx;
 		else
 			bubble_count <= bubble_count + 1;
 
+	always_comb
+		begin		: BUBBLE_BLOCK
+			// Okay what do I need here? 
+			// IF		: I_MISS_ACTIVE and !(D_MISS_ACTIVE), then BUBBLE for 5 cycles
+			// ELSE	: No BUBBLE	
+			if (i_cache_miss_active && ~d_cache_miss_active)
+				clr_bubble_count = 0;
+			else
+				clr_bubble_count = 1;
+
+			if (bubble_count < 4 && i_cache_miss_active && (iSTATE != FETCH))
+				core_bubble = 1;
+			else
+				core_bubble = 0;
+		end			: BUBBLE_BLOCK
+
 // Actual FSM Comb Block
 	always_comb 
 		begin   : CC_FSM
 			// Setting up safe defaults
-				// Bubble Defaults
-				clr_bubble_count    	= 1;
-				core_bubble         	= 0;
-				
 				// L2 Helper Defaults
 				clr_fetch_count_instr	= 1;
 				clr_fetch_count_data	= 1;
@@ -445,20 +457,20 @@ genvar i_idx, d_idx;
 					end 
 				I_MISS  : 
 					begin
-						iNEXT_STATE = (BUBBLE);
+						iNEXT_STATE = (WAY_SEL);		// Decoupling Bubble from State Machine, to improve responsiveness. 
 					end
 				D_MISS  : 
 					begin
 						iNEXT_STATE = (WAY_SEL); 
 					end
-				BUBBLE  :
-					begin
-						clr_bubble_count  = 0;
-						core_bubble       = 1;
-						fsm_clk_en				= 1;
-						if (bubble_count == 4)
-							iNEXT_STATE     = WAY_SEL;
-					end
+				// BUBBLE  :
+				// 	begin
+				// 		clr_bubble_count  = 0;
+				// 		core_bubble       = 1;
+				// 		fsm_clk_en				= 1;
+				// 		if (bubble_count == 4)
+				// 			iNEXT_STATE     = WAY_SEL;
+				// 	end
 				WAY_SEL :
 					begin
 						iNEXT_STATE	= (d_cache_miss_active && cache_enable) ? (WR_BK) : (LOCK_BB);
@@ -556,7 +568,7 @@ assign data_fetch   =   (mmio_enable)   ?
 
 assign i_clk_en         = (dis_i_cache) ? (l2_full_word_ready) : (|i_cache_hit);
 assign d_clk_en         = (cache_enable) ? (|d_cache_hit) : (1'b1);
-assign set_clk_enable   = d_clk_en && i_clk_en && fsm_clk_en;
+assign set_clk_enable   = d_clk_en && (i_clk_en && fsm_clk_en || core_bubble);
 
 assign i_cache_miss     = ~i_clk_en;
 assign d_cache_miss     = ~d_clk_en;
