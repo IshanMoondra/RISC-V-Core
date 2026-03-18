@@ -40,7 +40,7 @@ $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw1
 $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core.v
 ### 16K Byte SRAM: 4096x32
 // $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core.v
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core.v
 ### 32K Byte SRAM: 4096x64
 // $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x64m16b1w1c1p1d0l0rm3sdrw11_core.v
 ### 128K Byte SRAM: 32768x32

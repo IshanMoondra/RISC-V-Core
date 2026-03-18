@@ -1,3 +1,9 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                              /out/phantom_data_deep_copy.o (__mulsi3)
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                              /out/phantom_data_deep_copy.o (__divsi3)
 
 Memory Configuration
 
@@ -10,53 +16,33 @@ TCM              0x10000000         0x00002000         rw
 Linker script and memory map
 
 LOAD /out/phantom_data_deep_copy.o
+LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
 
-.text           0x00000000      0x2f4
+.text           0x00000000      0x4e4
                 0x00000000                        . = ORIGIN (FLASH)
                 0x00000000                        . = ALIGN (0x4)
  *(.bare_start)
  *(.start)
- .start         0x00000000       0x20 /out/phantom_data_deep_copy.o
+ .start         0x00000000       0x40 /out/phantom_data_deep_copy.o
                 0x00000000                _start
  *(.init)
  *(.text.startup)
  *(.text)
- .text          0x00000020      0x2d4 /out/phantom_data_deep_copy.o
-                0x00000020                add_ptr(int volatile*, int volatile*, int volatile*)
-                0x00000064                sub_ptr(int volatile*, int volatile*, int volatile*)
-                0x000000a8                soc_bootup()
-                0x00000124                main
+ .text          0x00000040      0x3cc /out/phantom_data_deep_copy.o
+                0x00000040                add_ptr(int volatile*, int volatile*, int volatile*)
+                0x00000084                sub_ptr(int volatile*, int volatile*, int volatile*)
+                0x000000c8                soc_bootup()
+                0x00000144                main
+ .text          0x0000040c       0x24 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                0x0000040c                __mulsi3
+ .text          0x00000430       0xb4 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                0x00000430                __divsi3
+                0x00000438                __hidden___udivsi3
+                0x00000438                __udivsi3
+                0x00000480                __umodsi3
+                0x000004b4                __modsi3
  *(.text.*)
  *(.fini)
-
-.rodata
- *(.rodata)
- *(.rodata.*)
- *(.const)
- *(.const.*)
-
-.eh_frame       0x00000400      0x13c
- *(.eh_frame)
- .eh_frame      0x00000400      0x13c /out/phantom_data_deep_copy.o
-
-.gcc_except_table
- *(.gcc_except_table)
-
-.rtti
- *(.rtti*)
-
-.vtable
- *(.vtable*)
-
-.init_array     0x00000800        0x0
-                [!provide]                        PROVIDE (__init_array_start = .)
- *(.init_array)
-                [!provide]                        PROVIDE (__init_array_end = .)
-
-.fini_array     0x00000800        0x0
-                [!provide]                        PROVIDE (__fini_array_start = .)
- *(.fini_array)
-                [!provide]                        PROVIDE (__fini_array_end = .)
 
 .spi_gpio       0x00000800     0x1000
                 0x00001800                        . = (. + 0x1000)
@@ -68,25 +54,59 @@ LOAD /out/phantom_data_deep_copy.o
  *fill*         0x00001800     0x1000 
  *(.spi_compute)
 
-.spi_uart       0x00002800     0x11c0
+.spi_uart       0x00002800     0x1230
                 0x00003800                        . = (. + 0x1000)
  *fill*         0x00002800     0x1000 
  *(.spi_uart)
- .spi_uart      0x00003800      0x1c0 /out/phantom_data_deep_copy.o
+ .spi_uart      0x00003800      0x230 /out/phantom_data_deep_copy.o
                 0x00003800                uart_putc(char)
-                0x00003884                dump_result(long long)
+                0x00003870                uart_print(char const*)
+                0x000038f0                dump_result(long long)
+                0x0003d000                        . = 0x3d000
 
-.rela.dyn       0x000039c0        0x0
- .rela.text     0x000039c0        0x0 /out/phantom_data_deep_copy.o
- .rela.start    0x000039c0        0x0 /out/phantom_data_deep_copy.o
+.rodata         0x0003d000       0x1d
+ *(.rodata)
+ .rodata        0x0003d000       0x1d /out/phantom_data_deep_copy.o
+ *(.rodata.*)
+ *(.const)
+ *(.const.*)
+
+.eh_frame       0x0003d400      0x164
+ *(.eh_frame)
+ .eh_frame      0x0003d400      0x164 /out/phantom_data_deep_copy.o
+
+.rela.dyn       0x0003d564        0x0
+ .rela.text     0x0003d564        0x0 /out/phantom_data_deep_copy.o
  .rela.spi_uart
-                0x000039c0        0x0 /out/phantom_data_deep_copy.o
+                0x0003d564        0x0 /out/phantom_data_deep_copy.o
+ .rela.start    0x0003d564        0x0 /out/phantom_data_deep_copy.o
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.rtti
+ *(.rtti*)
+
+.vtable
+ *(.vtable*)
+
+.init_array     0x0003d800        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x0003d800        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
                 0x0003e000                        . = 0x3e000
 
 .data           0x0003e000        0x0
                 0x0003e000                        __data_start = .
  *(.data)
  .data          0x0003e000        0x0 /out/phantom_data_deep_copy.o
+ .data          0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .data          0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
  *(.data.*)
                 0x0003e000                        __data_end = .
 
@@ -94,6 +114,8 @@ LOAD /out/phantom_data_deep_copy.o
                 0x0003e000                        __bss_start = .
  *(.bss)
  .bss           0x0003e000        0x0 /out/phantom_data_deep_copy.o
+ .bss           0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .bss           0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
  *(.bss.*)
  *(COMMON)
                 0x0003e000                        __bss_end = .
@@ -169,3 +191,38 @@ OUTPUT(/out/phantom_data_deep_copy.elf elf32-littleriscv)
                 0x00000000       0x1c
  .riscv.attributes
                 0x00000000       0x1c /out/phantom_data_deep_copy.o
+ .riscv.attributes
+                0x0000001c       0x1a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .riscv.attributes
+                0x00000036       0x1a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+
+.debug_line     0x00000000      0x1cd
+ .debug_line    0x00000000       0x7a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_line    0x0000007a      0x153 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+
+.debug_line_str
+                0x00000000       0xa1
+ .debug_line_str
+                0x00000000       0x9b /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_line_str
+                0x0000009b        0x6 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                                 0x98 (size before relaxing)
+
+.debug_info     0x00000000       0x90
+ .debug_info    0x00000000       0x31 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_info    0x00000031       0x5f /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+
+.debug_abbrev   0x00000000       0x50
+ .debug_abbrev  0x00000000       0x28 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_abbrev  0x00000028       0x28 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_aranges
+                0x00000020       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+
+.debug_str      0x00000000      0x113
+ .debug_str     0x00000000       0xb0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_str     0x000000b0       0x63 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                                 0xdd (size before relaxing)

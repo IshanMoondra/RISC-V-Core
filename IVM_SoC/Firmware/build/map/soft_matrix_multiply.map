@@ -1,3 +1,7 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                              /out/soft_matrix_multiply.o (__mulsi3)
 
 Memory Configuration
 
@@ -9,69 +13,66 @@ TCM              0x10000000         0x00002000         rw
 
 Linker script and memory map
 
-LOAD /out/instrument_cpi_v1.o
+LOAD /out/soft_matrix_multiply.o
+LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
 
-.text           0x00000000      0x708
+.text           0x00000000      0x30c
                 0x00000000                        . = ORIGIN (FLASH)
                 0x00000000                        . = ALIGN (0x4)
  *(.bare_start)
  *(.start)
- .start         0x00000000       0x20 /out/instrument_cpi_v1.o
+ .start         0x00000000       0x68 /out/soft_matrix_multiply.o
                 0x00000000                _start
  *(.init)
  *(.text.startup)
  *(.text)
- .text          0x00000020      0x6e8 /out/instrument_cpi_v1.o
-                0x00000020                soc_bootup()
-                0x000000a4                main
-                0x00000114                uart_poll_watchdog()
+ .text          0x00000068      0x280 /out/soft_matrix_multiply.o
+                0x00000068                soc_bootup()
+                0x00000134                main
+ .text          0x000002e8       0x24 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                0x000002e8                __mulsi3
  *(.text.*)
  *(.fini)
 
-.spi_gpio       0x00000800     0x10b8
-                0x00001800                        . = (. + 0x1000)
- *fill*         0x00000800     0x1000 
+.spi_gpio       0x00000400     0x2000
+                0x00002400                        . = (. + 0x2000)
+ *fill*         0x00000400     0x2000 
  *(.spi_gpio)
- .spi_gpio      0x00001800       0xb8 /out/instrument_cpi_v1.o
-                0x00001800                gpio_demo(int)
 
-.spi_compute    0x00001c00     0x140c
-                0x00002c00                        . = (. + 0x1000)
- *fill*         0x00001c00     0x1000 
+.spi_compute    0x00002400     0x214c
+                0x00004400                        . = (. + 0x2000)
+ *fill*         0x00002400     0x2000 
  *(.spi_compute)
- .spi_compute   0x00002c00      0x40c /out/instrument_cpi_v1.o
-                0x00002c00                add(int, int)
-                0x00002c38                add_ptr(int volatile*, int volatile*, int volatile*)
-                0x00002c80                fib_iter(int)
-                0x00002d6c                fib_recursive(int)
-                0x00002e10                compute()
+ .spi_compute   0x00004400      0x14c /out/soft_matrix_multiply.o
+                0x00004400                matmul(int const (*) [3], int (*) [3], int (*) [3])
 
-.spi_uart       0x00003400     0x11cc
-                0x00004400                        . = (. + 0x1000)
- *fill*         0x00003400     0x1000 
+.spi_uart       0x00004800     0x230c
+                0x00006800                        . = (. + 0x2000)
+ *fill*         0x00004800     0x2000 
  *(.spi_uart)
- .spi_uart      0x00004400      0x1cc /out/instrument_cpi_v1.o
-                0x00004400                uart_putc(char)
-                0x00004484                dump_result(long long)
-                0x0003c000                        . = 0x3c000
+ .spi_uart      0x00006800      0x30c /out/soft_matrix_multiply.o
+                0x00006800                uart_putc(char)
+                0x00006870                uart_print(char const*)
+                0x000068f0                dump_result(long long)
+                0x00006a30                print_matrix(int const (*) [3])
+                0x0003d000                        . = 0x3d000
 
-.rodata
+.rodata         0x0003d000       0x70
  *(.rodata)
+ .rodata        0x0003d000       0x70 /out/soft_matrix_multiply.o
  *(.rodata.*)
  *(.const)
  *(.const.*)
 
-.eh_frame       0x0003c000      0x380
+.eh_frame       0x0003d400      0x158
  *(.eh_frame)
- .eh_frame      0x0003c000      0x380 /out/instrument_cpi_v1.o
+ .eh_frame      0x0003d400      0x158 /out/soft_matrix_multiply.o
 
-.rela.dyn       0x0003c380        0x0
- .rela.text     0x0003c380        0x0 /out/instrument_cpi_v1.o
- .rela.start    0x0003c380        0x0 /out/instrument_cpi_v1.o
+.rela.dyn       0x0003d558        0x0
+ .rela.text     0x0003d558        0x0 /out/soft_matrix_multiply.o
  .rela.spi_uart
-                0x0003c380        0x0 /out/instrument_cpi_v1.o
- .rela.spi_gpio
-                0x0003c380        0x0 /out/instrument_cpi_v1.o
+                0x0003d558        0x0 /out/soft_matrix_multiply.o
+ .rela.start    0x0003d558        0x0 /out/soft_matrix_multiply.o
 
 .gcc_except_table
  *(.gcc_except_table)
@@ -82,12 +83,12 @@ LOAD /out/instrument_cpi_v1.o
 .vtable
  *(.vtable*)
 
-.init_array     0x0003c400        0x0
+.init_array     0x0003d800        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(.init_array)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x0003c400        0x0
+.fini_array     0x0003d800        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(.fini_array)
                 [!provide]                        PROVIDE (__fini_array_end = .)
@@ -96,24 +97,26 @@ LOAD /out/instrument_cpi_v1.o
 .data           0x0003e000        0x0
                 0x0003e000                        __data_start = .
  *(.data)
- .data          0x0003e000        0x0 /out/instrument_cpi_v1.o
+ .data          0x0003e000        0x0 /out/soft_matrix_multiply.o
+ .data          0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
  *(.data.*)
                 0x0003e000                        __data_end = .
 
 .bss            0x0003e000        0x0
                 0x0003e000                        __bss_start = .
  *(.bss)
- .bss           0x0003e000        0x0 /out/instrument_cpi_v1.o
+ .bss           0x0003e000        0x0 /out/soft_matrix_multiply.o
+ .bss           0x0003e000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
  *(.bss.*)
  *(COMMON)
                 0x0003e000                        __bss_end = .
 
-.heap           0x0003e000      0x400
+.heap           0x0003e000      0x800
                 0x0003e000                        __heap_start = .
  *(.heap*)
-                0x0003e400                        . = (. + 0x400)
- *fill*         0x0003e000      0x400 
-                0x0003e400                        __heap_end = .
+                0x0003e800                        . = (. + 0x800)
+ *fill*         0x0003e000      0x800 
+                0x0003e800                        __heap_end = .
 
 .stack          0x0003e800        0x0
                 0x0003e800                        __stack_start = .
@@ -141,16 +144,16 @@ LOAD /out/instrument_cpi_v1.o
                 [!provide]                        PROVIDE (GET_PERFMON_SOCH = (IO_BASE + 0x1010))
                 [!provide]                        PROVIDE (GET_PERFMON_SOCL = (IO_BASE + 0x1014))
                 [!provide]                        PROVIDE (GET_PERFMON_COREH = (IO_BASE + 0x1018))
-                0x0020101c                        PROVIDE (GET_PERFMON_COREL = (IO_BASE + 0x101c))
+                [!provide]                        PROVIDE (GET_PERFMON_COREL = (IO_BASE + 0x101c))
                 [!provide]                        PROVIDE (GET_PERFMON_SCALAR = (IO_BASE + 0x1020))
                 [!provide]                        PROVIDE (GET_PERFMON_TIMER = (IO_BASE + 0x1024))
                 0x00201028                        PROVIDE (GET_PERFMON_MISS = (IO_BASE + 0x1028))
-                0x0020102c                        PROVIDE (GET_PERFMON_RET_CNT = (IO_BASE + 0x102c))
+                [!provide]                        PROVIDE (GET_PERFMON_RET_CNT = (IO_BASE + 0x102c))
                 [!provide]                        PROVIDE (PET_WATCHDOG = (IO_BASE + 0x1030))
                 0x00201034                        PROVIDE (SET_WATCHDOG_HIGH = (IO_BASE + 0x1034))
                 0x00201038                        PROVIDE (SET_WATCHDOG_LOW = (IO_BASE + 0x1038))
-                [!provide]                        PROVIDE (GET_WATCHDOG_HIGH = (IO_BASE + 0x103c))
-                [!provide]                        PROVIDE (GET_WATCHDOG_LOW = (IO_BASE + 0x1040))
+                0x0020103c                        PROVIDE (GET_WATCHDOG_HIGH = (IO_BASE + 0x103c))
+                0x00201040                        PROVIDE (GET_WATCHDOG_LOW = (IO_BASE + 0x1040))
                 [!provide]                        PROVIDE (SET_DIS_SRAM_GATER = (IO_BASE + 0x1044))
                 [!provide]                        PROVIDE (GET_DIS_SRAM_GATER = (IO_BASE + 0x1048))
                 [!provide]                        PROVIDE (GET_GPIO_WORD = (IO_BASE + 0x1400))
@@ -164,18 +167,41 @@ LOAD /out/instrument_cpi_v1.o
                 [!provide]                        PROVIDE (SET_GPIO_WORD = (IO_BASE + 0x1420))
                 [!provide]                        PROVIDE (SET_GPIO_HALF_HIGH = (IO_BASE + 0x1424))
                 [!provide]                        PROVIDE (SET_GPIO_HALF_LOW = (IO_BASE + 0x1428))
-                0x0020142c                        PROVIDE (SET_FLASH_SPECIAL = (IO_BASE + 0x142c))
-                0x00201430                        PROVIDE (SET_GPIO_CHAN0 = (IO_BASE + 0x1430))
+                [!provide]                        PROVIDE (SET_FLASH_SPECIAL = (IO_BASE + 0x142c))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN0 = (IO_BASE + 0x1430))
                 [!provide]                        PROVIDE (SET_GPIO_CHAN1 = (IO_BASE + 0x1434))
                 [!provide]                        PROVIDE (SET_GPIO_CHAN2 = (IO_BASE + 0x1438))
                 [!provide]                        PROVIDE (SET_GPIO_CHAN3 = (IO_BASE + 0x143c))
-OUTPUT(/out/instrument_cpi_v1.elf elf32-littleriscv)
+OUTPUT(/out/soft_matrix_multiply.elf elf32-littleriscv)
 
 .comment        0x00000000       0x26
- .comment       0x00000000       0x26 /out/instrument_cpi_v1.o
+ .comment       0x00000000       0x26 /out/soft_matrix_multiply.o
                                  0x27 (size before relaxing)
 
 .riscv.attributes
                 0x00000000       0x1c
  .riscv.attributes
-                0x00000000       0x1c /out/instrument_cpi_v1.o
+                0x00000000       0x1c /out/soft_matrix_multiply.o
+ .riscv.attributes
+                0x0000001c       0x1a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_line     0x00000000       0x7a
+ .debug_line    0x00000000       0x7a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_line_str
+                0x00000000       0x9b
+ .debug_line_str
+                0x00000000       0x9b /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_info     0x00000000       0x31
+ .debug_info    0x00000000       0x31 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_abbrev   0x00000000       0x28
+ .debug_abbrev  0x00000000       0x28 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_aranges  0x00000000       0x20
+ .debug_aranges
+                0x00000000       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+
+.debug_str      0x00000000       0xb0
+ .debug_str     0x00000000       0xb0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)

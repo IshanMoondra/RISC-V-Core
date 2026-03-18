@@ -38,11 +38,11 @@ assign uart_setchar_sel = data_address_internal[3:0] == 4'd8;
 assign uart_status_sel  = data_address_internal[3:0] == 4'd12;
 
 assign data_fetch       =   (data_enable && data_read) ? 
-							    (uart_status_sel)   ? ({24'h0, uart_status})
+							    							(uart_status_sel)   ? ({24'h0, uart_status})
                             :   (uart_baud_sel)     ? (get_baud)
                             :   (uart_getchar_sel)  ? (get_char)
                             :   (32'h0)
-							:	(32'h0);
+														:		(32'h0);
 
 // Instantiating the UART and wrapping it neater
 	UART iUART

@@ -97,7 +97,7 @@ reg 	[31:0] cc_rdata_ff;
 wire 	cache_access;
 reg 	cache_access_ff;
 
-assign cache_access = (mem_addr >= 32'h0003E000) && (mem_addr < 32'h00040000);
+assign cache_access = (mem_addr >= 32'h0003C000) && (mem_addr < 32'h00040000);
 
 always @(posedge clk, negedge resetn) begin
 	if (~resetn)
@@ -254,7 +254,7 @@ cache_controller_v2 #(
 		.num_d_ways(1),
 		.num_i_ways(1),
 		.i_slice_size(8192),
-		.d_slice_size(8192),
+		.d_slice_size(16384),
 		.l2_64bit(1)
 	)iCC_V2
 	(

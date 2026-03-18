@@ -66,19 +66,20 @@ begin
     if (~rst_n)
         begin
             // code_queue  <= {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};
-            code_queue  <= {12'b0, 5'b0, 3'b0, 5'b0, 7'b0};
+            code_queue 	<= {12'b0, 5'b0, 3'b0, 5'b0, 7'b0};
             pc_queue    <= 0;
         end  
     else if (flush)
         begin
             //Reinitialise the Queues with NOP Conditions.
             // code_queue <= {12'b0, 5'b0, 3'b0, 5'b0, 7'b0010011};     //Replaced with the Appropriate NOP Condition. ADDi x0, x0, 0.    
-            code_queue <= 0;
+            code_queue 	<= 0;
+						pc_queue		<= pc_in;
         end
     else if (stall)
         begin
-            code_queue <= code_queue;
-            pc_queue <= pc_queue;            
+            code_queue	<= code_queue;
+            pc_queue 		<= pc_queue;            
         end
     else
         begin
@@ -88,8 +89,8 @@ begin
 end
 
 // Output from the Queues.
-assign code_out = (flush) ? (0) : (load_to_use_stall_ff3) ? (code_skid) : (code_queue);
-assign pc_out   = (flush) ? (0) : (load_to_use_stall_ff3) ? (pc_skid) : (pc_queue);
+assign code_out = (flush) ? (0) 				: (load_to_use_stall_ff3) ? (code_skid) : (code_queue);
+assign pc_out   = (flush) ? (pc_queue) 	: (load_to_use_stall_ff3) ? (pc_skid) 	: (pc_queue)	;
 // assign code_out = code_queue;
 // assign pc_out   = pc_queue;
 

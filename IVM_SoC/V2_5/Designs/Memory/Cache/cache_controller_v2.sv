@@ -235,7 +235,7 @@ genvar i_idx, d_idx;
 			.clk            (clk                ),	// Need SRAM Clock Gating too
 			.rst_n          (rst_n              ),
 			// Memory Enable/Read/Write Signals
-			.data_enable    (d_cache_hit[0] | d_cache_hit_ff[0]),
+			.data_enable    (d_cache_hit[0] | d_cache_hit_ff[0] | (d_way_override[0] & use_d_way_override)),
 			.data_read      (data_read | ((~d_way_override[0]) & use_d_way_override)),
 			.mem_wstrb      (mem_wstrb          ),
 			// Input Output Buses
@@ -261,8 +261,10 @@ genvar i_idx, d_idx;
 	always_ff @(posedge clk, negedge rst_n)
 		if (~rst_n)
 			begin
-				d_base[0]    <= 32'h0003E000;		// BOZO Need to find the right Address
-				d_bound[0]   <= 32'h00040000;
+				// d_base[0]    <= 32'h0003E000;		// BOZO Need to find the right Address
+				// d_bound[0]   <= 32'h00040000;
+				d_base[0]    <= 32'h00000000;		// D$ Miss works without WB!
+				d_bound[0]   <= 32'h00000000;
 			end
 		else if (set_d_base[0])
 			begin

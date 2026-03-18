@@ -58,33 +58,98 @@ wire [7:0] byte_fetch3;
 //         end     : d_way
 // endgenerate
 
-saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
-	(
-		.CLK(clk),
-		.ME(data_enable),
-		.WE(~data_read),
-		.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
-		.ADR(ram_address[(d_addr_width-1):2]),
-		.D({byte_store3, byte_store2, byte_store1, byte_store0}),
-		.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
-	);
+// generate
+// 	case (d_slice_size)
+// 		1024: begin : gen_dcache_1k
+// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
+// 		end
+// 		2048: begin : gen_dcache_2k
+// 			saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+// 			(
+// 				.CLK(clk),
+// 				.ME(data_enable),
+// 				.WE(~data_read),
+// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+// 				.ADR(ram_address[(d_addr_width-1):2]),
+// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+// 			);
+// 		end
+// 		4096: begin : gen_dcache_4k
+// 			saduvssd8ULTRALOW1p1024x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+// 			(
+// 				.CLK(clk),
+// 				.ME(data_enable),
+// 				.WE(~data_read),
+// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+// 				.ADR(ram_address[(d_addr_width-1):2]),
+// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+// 			);
+// 		end
+// 		8192: begin : gen_dcache_8k
+// 			saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+// 			(
+// 				.CLK(clk),
+// 				.ME(data_enable),
+// 				.WE(~data_read),
+// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+// 				.ADR(ram_address[(d_addr_width-1):2]),
+// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+// 			);
+// 		end
+// 		16384: begin : gen_dcache_16k
+// 			saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+// 			(
+// 				.CLK(clk),
+// 				.ME(data_enable),
+// 				.WE(~data_read),
+// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+// 				.ADR(ram_address[(d_addr_width-1):2]),
+// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+// 			);
+// 		end
+// 		32768: begin : gen_dcache_32k
+// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
+// 		end
+// 		65536: begin : gen_dcache_64k
+// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
+// 		end
+// 		default: begin : gen_dcache_invalid
+// 				initial $error("Unsupported d_cache_size = %0d", d_cache_size);
+// 		end
+// 	endcase
+// endgenerate
+
+saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
 
 always_comb
-    begin
-        // Just to prevent any latches.
-        mem_cancel      = 0;
-        casex (mem_wstrb)
-            4'b0001: mem_cancel = 0; // Store Byte
-            4'b0010: mem_cancel = 0; // Store Byte
-            4'b0100: mem_cancel = 0; // Store Byte
-            4'b1000: mem_cancel = 0; // Store Byte
-            4'b0011: mem_cancel = 0; // Store Half Words
-            4'b1100: mem_cancel = 0; // Store Half Words
-            4'b1111: mem_cancel = 0; // Store Full Word
-            // Default case to catch any bad write_strobes, will do cancel the write. 
-            default: mem_cancel = 1;
-        endcase
-    end
+	begin
+			// Just to prevent any latches.
+			mem_cancel      = 0;
+			casex (mem_wstrb)
+				4'b0001: mem_cancel = 0; // Store Byte
+				4'b0010: mem_cancel = 0; // Store Byte
+				4'b0100: mem_cancel = 0; // Store Byte
+				4'b1000: mem_cancel = 0; // Store Byte
+				4'b0011: mem_cancel = 0; // Store Half Words
+				4'b1100: mem_cancel = 0; // Store Half Words
+				4'b1111: mem_cancel = 0; // Store Full Word
+				// Default case to catch any bad write_strobes, will do cancel the write. 
+				default: mem_cancel = 1;
+			endcase
+	end
 
 // Needs some updates if the fan out is resolved via the flopping. 
 assign byte_store0 = (mem_wstrb == 4'b0001 || mem_wstrb == 4'b1111) ? (ram_store[7:0]) : 0;
