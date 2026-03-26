@@ -66,9 +66,9 @@ saduvssd8ULTRALOW1p32768x64m16b8w1c1p0d0l0rm3sdrw11_core l2_sram
 		.Q(ram_fetch)
 	);
 
-string firmware_file;	// Just holds the string of the file path, not a real memory copy.
 initial
 	begin
+		string firmware_file;	// Just holds the string of the file path, not a real memory copy.
 		if (!$value$plusargs("L2_HEX=%s", firmware_file))
 			begin
 				firmware_file = "/raid2/IVM_SOC/Tapeout_V1/RISC-V-Core/IVM_SoC/Firmware/build/hex/l2_firmware.hex";

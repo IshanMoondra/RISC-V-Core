@@ -1,0 +1,98 @@
+ 
+****************************************
+Report : area
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:54:46 2026
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+Number of ports:                        82640
+Number of nets:                       3274825
+Number of cells:                      3154495
+Number of combinational cells:         857777
+Number of sequential cells:           2296671
+Number of macros/black boxes:               0
+Number of buf/inv:                     284781
+Number of references:                       3
+
+Combinational area:               3752.762343
+Buf/Inv area:                      517.093182
+Noncombinational area:            3350.175225
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  7102.937567
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ----------------------------------------------------------------------------------------
+soc_fpga                          7102.9376    100.0     0.5011     0.0000  0.0000  soc_fpga
+iSoC_FPGA                         7102.4364    100.0     0.0000     0.0000  0.0000  icebreaker_v1
+iSoC_FPGA/iSoC                    7102.4364    100.0   145.0742   188.6090  0.0000  ivm_soc_v2
+iSoC_FPGA/iSoC/iCC_V2              596.2702      8.4   329.2358   237.9067  0.0000  cache_controller_v2_num_d_ways1_num_i_ways1_i_slice_size8192_d_slice_size16384_l2_64bit1
+iSoC_FPGA/iSoC/iCC_V2/d_slice_inst
+                                    20.9844      0.3    20.9844     0.0000  0.0000  d_cache_v2_d_slice_size16384
+iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram
+                                     0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core
+iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/C10
+                                     0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_12_4096
+iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/C10/*cell*214843
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width12
+iSoC_FPGA/iSoC/iCC_V2/i_slice_inst
+                                     8.1432      0.1     8.1432     0.0000  0.0000  i_cache_v2_i_slice_size8192
+iSoC_FPGA/iSoC/iCC_V2/i_slice_inst/i_sram
+                                     0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw11_core
+iSoC_FPGA/iSoC/iCC_V2/i_slice_inst/i_sram/C9
+                                     0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_11_2048
+iSoC_FPGA/iSoC/iCC_V2/i_slice_inst/i_sram/C9/*cell*214838
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width11
+iSoC_FPGA/iSoC/iCPU               4795.5932     67.5   285.9516   143.7588  0.0000  rv32_cpu_top
+iSoC_FPGA/iSoC/iCPU/iALU           405.0929      5.7    96.3403     0.0000  0.0000  rv32_alu_v2
+iSoC_FPGA/iSoC/iCPU/iALU/iAdd_Sub   90.3269      1.3    90.3269     0.0000  0.0000  rv32_alu_add_sub
+iSoC_FPGA/iSoC/iCPU/iALU/iBarrel   156.9758      2.2   156.9758     0.0000  0.0000  rv32_barrel_shifter
+iSoC_FPGA/iSoC/iCPU/iALU/iComp      26.7473      0.4    26.7473     0.0000  0.0000  rv32_alu_comp_0
+iSoC_FPGA/iSoC/iCPU/iALU/iLogical   34.7026      0.5    34.7026     0.0000  0.0000  rv32_alu_logical
+iSoC_FPGA/iSoC/iCPU/iControl        48.1702      0.7    48.1702     0.0000  0.0000  rv32_cu_v2
+iSoC_FPGA/iSoC/iCPU/iEX_MEM         98.9086      1.4     0.0000    98.9086  0.0000  rv32_ex_mem_queue
+iSoC_FPGA/iSoC/iCPU/iForward        17.7898      0.3    12.5280     5.2618  0.0000  forwarding_unit_v2
+iSoC_FPGA/iSoC/iCPU/iHazard         14.0940      0.2    14.0940     0.0000  0.0000  hazard_detection
+iSoC_FPGA/iSoC/iCPU/iID_EX         301.4863      4.2   120.5194   180.9670  0.0000  rv32_id_ex_queue
+iSoC_FPGA/iSoC/iCPU/iIF_ID         309.8174      4.4   145.9512   163.8662  0.0000  rv32_if_id_queue
+iSoC_FPGA/iSoC/iCPU/iMEM_WB         87.0070      1.2     0.0000    87.0070  0.0000  rv32_mem_wb_queue
+iSoC_FPGA/iSoC/iCPU/iPC            486.7754      6.9   291.0254   195.7500  0.0000  rv32_pc_v2
+iSoC_FPGA/iSoC/iCPU/iRF           2429.6177     34.2  1124.2001  1305.4176  0.0000  rv32_register_file
+iSoC_FPGA/iSoC/iCPU/iResolver      108.4298      1.5    40.2149     0.0000  0.0000  branch_resolver_v2
+iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp
+                                    68.2150      1.0    68.2150     0.0000  0.0000  rv32_alu_comp_1
+iSoC_FPGA/iSoC/iCPU/iWrite          58.6937      0.8    58.6937     0.0000  0.0000  write_back
+iSoC_FPGA/iSoC/iGPIO               103.1054      1.5    45.9778    57.1277  0.0000  gpio_v1
+iSoC_FPGA/iSoC/iL2Cache              0.2506      0.0     0.2506     0.0000  0.0000  l2_cache_v1_262144_1
+iSoC_FPGA/iSoC/iL2Cache/l2_sram      0.0000      0.0     0.0000     0.0000  0.0000  saduvssd8ULTRALOW1p32768x64m16b8w1c1p0d0l0rm3sdrw11_core
+iSoC_FPGA/iSoC/iL2Cache/l2_sram/C10
+                                     0.0000      0.0     0.0000     0.0000  0.0000  *DECODE_OP_15_32768
+iSoC_FPGA/iSoC/iL2Cache/l2_sram/C10/*cell*214833
+                                     0.0000      0.0     0.0000     0.0000  0.0000  DW01_decode_width15
+iSoC_FPGA/iSoC/iPerfMons           940.7902     13.2   445.3704   495.4198  0.0000  perfmons
+iSoC_FPGA/iSoC/iUART               213.8530      3.0    14.4698     0.0000  0.0000  UART_v1
+iSoC_FPGA/iSoC/iUART/iUART         199.3831      2.8    18.5414    49.1724  0.0000  UART
+iSoC_FPGA/iSoC/iUART/iUART/iRX      70.0942      1.0    33.0113    37.0829  0.0000  UART_rx
+iSoC_FPGA/iSoC/iUART/iUART/iTX      61.5751      0.9    27.1231    34.4520  0.0000  UART_tx
+iSoC_FPGA/iSoC/spimemio            118.8907      1.7    31.6332    42.5952  0.0000  spimemio
+iSoC_FPGA/iSoC/spimemio/xfer        44.6623      0.6    17.7898    26.8726  0.0000  spimemio_xfer
+--------------------------------  ---------  -------  ---------  ---------  ------  ----------------------------------------------------------------------------------------
+Total                                                 3752.7623  3350.1752  0.0000
+
+1

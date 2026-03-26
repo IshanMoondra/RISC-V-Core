@@ -1,0 +1,128 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:51:41 2026
+****************************************
+
+ # A fanout number of 40000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: iSoC_FPGA/iSoC/mmio_vector_ff_reg[5]
+              (rising edge-triggered flip-flop clocked by clkin)
+  Endpoint: iSoC_FPGA/iSoC/iCPU/iRF/rf_s1_reg[3]
+            (rising edge-triggered flip-flop clocked by clkin)
+  Path Group: clkin
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  rv32_cpu_top       ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_alu_comp_1    ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  branch_resolver_v2 ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_cu_v2         ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+  rv32_register_file ZeroWLM               gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clkin (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iSoC_FPGA/iSoC/mmio_vector_ff_reg[5]/CK (UDB116SVT36_FDPRBQ_2)
+                                                          0.00 #     0.00 r
+  iSoC_FPGA/iSoC/mmio_vector_ff_reg[5]/Q (UDB116SVT36_FDPRBQ_2)
+                                                          0.05       0.05 f
+  iSoC_FPGA/iSoC/U162/X (UDB116SVT36_NR2_3P75)            0.02       0.07 r
+  iSoC_FPGA/iSoC/U119/X (UDB116SVT36_INV_4)               0.01       0.09 f
+  iSoC_FPGA/iSoC/U228/X (UDB116SVT36_NR3_0P75)            0.03       0.12 r
+  iSoC_FPGA/iSoC/U75/X (UDB116SVT36_NR2_3P75)             0.02       0.14 f
+  iSoC_FPGA/iSoC/U78/X (UDB116SVT36_ND2_12)               0.01       0.15 r
+  iSoC_FPGA/iSoC/iCPU/data_fetch[23] (rv32_cpu_top)       0.00       0.15 r
+  iSoC_FPGA/iSoC/iCPU/U251/X (UDB116SVT36_OAI22_12)       0.02       0.17 f
+  iSoC_FPGA/iSoC/iCPU/U168/X (UDB116SVT36_ND2B_16)        0.04       0.20 f
+  iSoC_FPGA/iSoC/iCPU/U176/X (UDB116SVT36_ND2_1P75)       0.01       0.22 r
+  iSoC_FPGA/iSoC/iCPU/iWrite/data_result[10] (write_back)
+                                                          0.00       0.22 r
+  iSoC_FPGA/iSoC/iCPU/iWrite/U6/X (UDB116SVT36_AO21B_4)
+                                                          0.03       0.25 r
+  iSoC_FPGA/iSoC/iCPU/iWrite/write_result[10] (write_back)
+                                                          0.00       0.25 r
+  iSoC_FPGA/iSoC/iCPU/U57/X (UDB116SVT36_AO21B_6)         0.03       0.27 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/rf_reg_s1[10] (branch_resolver_v2)
+                                                          0.00       0.27 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/opA[10] (rv32_alu_comp_1)
+                                                          0.00       0.27 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/U7/X (UDB116SVT36_INV_2)
+                                                          0.01       0.29 f
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/U144/X (UDB116SVT36_AOI211_4)
+                                                          0.02       0.31 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/U40/X (UDB116SVT36_AOI31_2)
+                                                          0.02       0.33 f
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/U48/X (UDB116SVT36_ND4_2)
+                                                          0.02       0.35 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/U97/X (UDB116SVT36_AOI31_2)
+                                                          0.02       0.37 f
+  iSoC_FPGA/iSoC/iCPU/iResolver/iBrComp/result[0] (rv32_alu_comp_1)
+                                                          0.00       0.37 f
+  iSoC_FPGA/iSoC/iCPU/iResolver/U30/X (UDB116SVT36_AOI21B_2)
+                                                          0.01       0.38 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/U84/X (UDB116SVT36_AN3B_2)
+                                                          0.03       0.41 r
+  iSoC_FPGA/iSoC/iCPU/iResolver/branch (branch_resolver_v2)
+                                                          0.00       0.41 r
+  iSoC_FPGA/iSoC/iCPU/U322/X (UDB116SVT36_OR2_D_20)       0.04       0.45 r
+  iSoC_FPGA/iSoC/iCPU/iIF_ID/flush (rv32_if_id_queue)     0.00       0.45 r
+  iSoC_FPGA/iSoC/iCPU/iIF_ID/U22/X (UDB116SVT36_NR2_16)
+                                                          0.01       0.46 f
+  iSoC_FPGA/iSoC/iCPU/iIF_ID/code_out[6] (rv32_if_id_queue)
+                                                          0.00       0.46 f
+  iSoC_FPGA/iSoC/iCPU/iControl/code_bus[6] (rv32_cu_v2)
+                                                          0.00       0.46 f
+  iSoC_FPGA/iSoC/iCPU/iControl/U69/X (UDB116SVT36_AOI21B_8)
+                                                          0.02       0.48 f
+  iSoC_FPGA/iSoC/iCPU/iControl/U65/X (UDB116SVT36_AOI21_8)
+                                                          0.02       0.50 r
+  iSoC_FPGA/iSoC/iCPU/iControl/U64/X (UDB116SVT36_ND2_12)
+                                                          0.02       0.52 f
+  iSoC_FPGA/iSoC/iCPU/iControl/U66/X (UDB116SVT36_NR2_6)
+                                                          0.02       0.53 r
+  iSoC_FPGA/iSoC/iCPU/iControl/sel_rs1[4] (rv32_cu_v2)
+                                                          0.00       0.53 r
+  iSoC_FPGA/iSoC/iCPU/U29/X (UDB116SVT36_ND2_3P75)        0.02       0.56 f
+  iSoC_FPGA/iSoC/iCPU/U281/X (UDB116SVT36_ND2_16)         0.02       0.58 r
+  iSoC_FPGA/iSoC/iCPU/iRF/sel_s1[4] (rv32_register_file)
+                                                          0.00       0.58 r
+  iSoC_FPGA/iSoC/iCPU/iRF/U522/X (UDB116SVT36_ND2_2P75)
+                                                          0.01       0.59 f
+  iSoC_FPGA/iSoC/iCPU/iRF/U384/X (UDB116SVT36_NR2_1P5)
+                                                          0.02       0.61 r
+  iSoC_FPGA/iSoC/iCPU/iRF/U521/X (UDB116SVT36_OR3B_4)     0.02       0.62 f
+  iSoC_FPGA/iSoC/iCPU/iRF/U720/X (UDB116SVT36_INV_1P5)
+                                                          0.02       0.65 r
+  iSoC_FPGA/iSoC/iCPU/iRF/U404/X (UDB116SVT36_AO22_2)     0.04       0.68 r
+  iSoC_FPGA/iSoC/iCPU/iRF/U535/X (UDB116SVT36_NR4_2)      0.01       0.69 f
+  iSoC_FPGA/iSoC/iCPU/iRF/U422/X (UDB116SVT36_ND4_2)      0.01       0.70 r
+  iSoC_FPGA/iSoC/iCPU/iRF/rf_s1_reg[3]/D (UDB116SVT36_FDPRBQ_V2_4)
+                                                          0.00       0.70 r
+  data arrival time                                                  0.70
+
+  clock clkin (rise edge)                                 0.91       0.91
+  clock network delay (ideal)                             0.00       0.91
+  clock uncertainty                                      -0.20       0.71
+  iSoC_FPGA/iSoC/iCPU/iRF/rf_s1_reg[3]/CK (UDB116SVT36_FDPRBQ_V2_4)
+                                                          0.00       0.71 r
+  library setup time                                     -0.02       0.69
+  data required time                                                 0.69
+  --------------------------------------------------------------------------
+  data required time                                                 0.69
+  data arrival time                                                 -0.70
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.02
+
+
+1

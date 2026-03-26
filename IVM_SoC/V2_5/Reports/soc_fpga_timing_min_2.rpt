@@ -1,0 +1,56 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay min
+        -max_paths 1
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:51:55 2026
+****************************************
+
+ # A fanout number of 40000 was used for high fanout net computations.
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+  Startpoint: iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/ram_core_reg[0][0]
+              (rising edge-triggered flip-flop clocked by clkin)
+  Endpoint: iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/Q_tmp_reg[0]
+            (rising edge-triggered flip-flop clocked by clkin)
+  Path Group: clkin
+  Path Type: min
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clkin (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/ram_core_reg[0][0]/clocked_on (**SEQGEN**)
+                                                          0.00 #     0.00 r
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/ram_core_reg[0][0]/Q (**SEQGEN**)
+                                                          0.00       0.00 r
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/C393367/Z_31 (*MUX_OP_4096_12_32)
+                                                          0.00       0.00 r
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/C393631/Z (GTECH_AND2)
+                                                          0.00       0.00 r
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/C393629/Z (GTECH_OR2)
+                                                          0.00       0.00 r
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/Q_tmp_reg[0]/next_state (**SEQGEN**)
+                                                          0.00       0.00 r
+  data arrival time                                                  0.00
+
+  clock clkin (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                       0.25       0.25
+  iSoC_FPGA/iSoC/iCC_V2/d_slice_inst/d_sram/Q_tmp_reg[0]/clocked_on (**SEQGEN**)
+                                                          0.00       0.25 r
+  library hold time                                       0.00       0.25
+  data required time                                                 0.25
+  --------------------------------------------------------------------------
+  data required time                                                 0.25
+  data arrival time                                                  0.00
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.25
+
+
+1

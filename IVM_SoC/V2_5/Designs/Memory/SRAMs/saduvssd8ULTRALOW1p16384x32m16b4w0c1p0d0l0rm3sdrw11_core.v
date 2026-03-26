@@ -31,7 +31,7 @@
 //  Compiler Name      : gf22nsd81p11saduv02msa03p1                    
 //  Platform           : Linux6.1.0-40-amd64                           
 //                     : #1 SMP PREEMPT_DYNAMIC Debian 6.1.153-1 (2025-09-20)x86_64
-//  Date of Generation : Thu Mar 26 12:25:20 CDT 2026                  
+//  Date of Generation : Thu Mar 26 12:19:18 CDT 2026                  
 //                                                                     
 //---------------------------------------------------------------------
 //   --------------------------------------------------------------     
@@ -41,15 +41,15 @@
 //                    * Core used by Emulation Model *                
 //                THIS IS A SYNCHRONOUS 1-PORT MEMORY MODEL           
 //                                                                    
-//   Memory Name:saduvssd8ULTRALOW1p32768x32m16b8w0c1p0d0l0rm3sdrw11  
-//   Memory Size:32768 words x 32 bits                                
+//   Memory Name:saduvssd8ULTRALOW1p16384x32m16b4w0c1p0d0l0rm3sdrw11  
+//   Memory Size:16384 words x 32 bits                                
 //                                                                    
 //                               PORT NAME                            
 //                               ---------                            
 //               Output Ports                                         
 //                                   Q[31:0]                          
 //               Input Ports:                                         
-//                                   ADR[14:0]                        
+//                                   ADR[13:0]                        
 //                                   D[31:0]                          
 //                                   WE                               
 //                                   ME                               
@@ -57,10 +57,10 @@
 // -------------------------------------------------------------------- 
 
 
-module saduvssd8ULTRALOW1p32768x32m16b8w0c1p0d0l0rm3sdrw11_core ( Q, ADR, D, WE, ME, CLK);
+module saduvssd8ULTRALOW1p16384x32m16b4w0c1p0d0l0rm3sdrw11_core ( Q, ADR, D, WE, ME, CLK);
 
 output [31:0] Q;
-input [14:0] ADR;
+input [13:0] ADR;
 input [31:0] D;
 input WE;
 input ME;
@@ -69,7 +69,7 @@ input CLK;
 
 // behavior to be replaced by actual SRAM in VLE
 
-reg [31:0] ram_core [32767:0];
+reg [31:0] ram_core [16383:0];
 
 reg [31:0] Q_tmp;
 

@@ -1,0 +1,33 @@
+ 
+****************************************
+Report : area
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:51:40 2026
+****************************************
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+Number of ports:                        82640
+Number of nets:                       3274825
+Number of cells:                      3154495
+Number of combinational cells:         857777
+Number of sequential cells:           2296671
+Number of macros/black boxes:               0
+Number of buf/inv:                     284781
+Number of references:                       3
+
+Combinational area:               3752.762343
+Buf/Inv area:                      517.093182
+Noncombinational area:            3350.175225
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  7102.937567
+Total area:                 undefined
+
+Information: This design contains unmapped logic. (RPT-7)
+1

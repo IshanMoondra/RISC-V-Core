@@ -1,0 +1,99 @@
+Module: DW01_decode_width15, Ports: 32783, Input: 15, Output: 32768, Inout: 0
+Module: DW01_decode_width15, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_decode_width15, Elapsed Time: 00:13:29, CPU Time: 00:13:20, Total Mem: 65.36 GB, Mem: 34.98 GB, Time: Tue Mar 24 15:39:14 2026
+Module: DW01_decode_width11, Ports: 2059, Input: 11, Output: 2048, Inout: 0
+Module: DW01_decode_width11, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Module: DW01_decode_width12, Ports: 4108, Input: 12, Output: 4096, Inout: 0
+Module: DW01_decode_width12, Registers: 0, Async set/reset: 0, Sync set/reset: 0
+Information: Updating design information... (UID-85)
+Warning: Design 'soc_fpga' contains 4 high-fanout nets. A fanout number of 40000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	iSoC_FPGA/iSoC/iCPU/iPC/pc_reg[31]/CK iSoC_FPGA/iSoC/iCPU/iPC/pc_reg[31]/Q iSoC_FPGA/iSoC/iCC_V2/U280/A iSoC_FPGA/iSoC/iCC_V2/U280/X iSoC_FPGA/iSoC/iCC_V2/U216/A2 iSoC_FPGA/iSoC/iCC_V2/U216/X iSoC_FPGA/iSoC/iCC_V2/U979/A1 iSoC_FPGA/iSoC/iCC_V2/U979/X iSoC_FPGA/iSoC/iCC_V2/U982/A1 iSoC_FPGA/iSoC/iCC_V2/U982/X iSoC_FPGA/iSoC/U233/A1 iSoC_FPGA/iSoC/U233/X 
+Information: Timing loop detected. (OPT-150)
+	iSoC_FPGA/iSoC/iCPU/iPC/pc_reg[30]/CK iSoC_FPGA/iSoC/iCPU/iPC/pc_reg[30]/Q iSoC_FPGA/iSoC/iCC_V2/U158/A iSoC_FPGA/iSoC/iCC_V2/U158/X iSoC_FPGA/iSoC/iCC_V2/U217/A2 iSoC_FPGA/iSoC/iCC_V2/U217/X iSoC_FPGA/iSoC/iCC_V2/U216/A3 iSoC_FPGA/iSoC/iCC_V2/U216/X iSoC_FPGA/iSoC/iCC_V2/U979/A1 iSoC_FPGA/iSoC/iCC_V2/U979/X iSoC_FPGA/iSoC/iCC_V2/U982/A1 iSoC_FPGA/iSoC/iCC_V2/U982/X iSoC_FPGA/iSoC/U233/A1 iSoC_FPGA/iSoC/U233/X 
+Warning: Disabling timing arc between pins 'A1' and 'X' on cell 'iSoC_FPGA/iSoC/U233'
+         to break a timing loop. (OPT-314)
+ 
+****************************************
+Report : qor
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:46:25 2026
+****************************************
+
+
+  Timing Path Group 'clkin'
+  -----------------------------------
+  Levels of Logic:              32.00
+  Critical Path Length:          0.70
+  Critical Path Slack:          -0.02
+  Critical Path Clk Period:      0.91
+  Total Negative Slack:         -3.14
+  No. of Violating Paths:      369.00
+  Worst Hold Violation:         -0.25
+  Total Hold Violation:   -1012281.19
+  No. of Hold Violations:  4590482.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         41
+  Hierarchical Port Count:      82628
+  Leaf Cell Count:            3154448
+  Buf/Inv Cell Count:          284781
+  Buf Cell Count:                 516
+  Inv Cell Count:              284265
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:    857787
+  Sequential Cell Count:      2296661
+  Macro Count:                      0
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:     3752.762343
+  Noncombinational Area:  3350.175225
+  Buf/Inv Area:            517.093182
+  Total Buffer Area:           148.77
+  Total Inverter Area:         368.32
+  Macro/Black Box Area:      0.000000
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:              7102.937567
+  Design Area:            7102.937567
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:       3194128
+  Nets With Violations:         39093
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  Max Fanout Violations:        39093
+  -----------------------------------
+
+
+  Hostname: compute-hal
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.33
+  Logic Optimization:                806.67
+  Mapping Optimization:             2463.32
+  -----------------------------------------
+  Overall Compile Time:             6154.51
+  Overall Compile Wall Clock Time:  6317.59
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.02  TNS: 3.14  Number of Violating Paths: 369
+
+
+  Design (Hold)  WNS: 0.25  TNS: 1012281.19  Number of Violating Paths: 4590482
+
+  --------------------------------------------------------------------
+
+
+1

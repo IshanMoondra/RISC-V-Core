@@ -1,0 +1,126 @@
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : soc_fpga
+Version: X-2025.06
+Date   : Tue Mar 24 15:54:34 2026
+****************************************
+
+
+Library(s) Used:
+
+    gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C (File: /raid/GF22FDX_PLUS/GF22STDLIB/dwc_logic_gf22nspslogl36edl116f/lvf/DesignWare_logic_libs/globalfoundaries22nhsp/36hd116/edl/svt/3.00a/liberty/ccs_lvf/gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C.db)
+    gtech (File: /cae/apps/data/synopsys-2025/syn/X-2025.06/libraries/syn/gtech.db)
+
+
+Operating Conditions: TT_0P80V_0P00V_0P00V_0P00V_25C   Library: gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+Wire Load Model Mode: enclosed
+
+Design        Wire Load Model            Library
+------------------------------------------------
+rv32_cpu_top           ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+spimemio               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+perfmons               ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+gpio_v1                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_pc_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_if_id_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_cu_v2             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+hazard_detection       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_register_file     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+branch_resolver_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_id_ex_queue       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+forwarding_unit_v2     ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_v2            ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_ex_mem_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_mem_wb_queue      ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+write_back             ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+spimemio_xfer          ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART                   ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_comp_1        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_add_sub       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_comp_0        ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_alu_logical       ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+rv32_barrel_shifter    ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_tx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+UART_rx                ZeroWLM           gf22nspslogl36edl116f_TT_0P80V_0P00V_0P00V_0P00V_25C
+
+
+Global Operating Voltage = 0.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+soc_fpga                                  0.680    6.644 7.57e+03    7.331 100.0
+  iSoC_FPGA (icebreaker_v1)               0.680    6.644 7.57e+03    7.331 100.0
+    iSoC (ivm_soc_v2)                     0.680    6.644 7.57e+03    7.331 100.0
+      iGPIO (gpio_v1)                     0.000    0.142   93.502    0.142   1.9
+      iPerfMons (perfmons)             5.50e-03    1.068  944.239    1.074  14.7
+      iUART (UART_v1)                  3.86e-03    0.293  226.076    0.297   4.0
+        iUART (UART)                   3.83e-03    0.293  206.163    0.297   4.0
+          iRX (UART_rx)                2.28e-03 8.88e-02   68.295 9.12e-02   1.2
+          iTX (UART_tx)                1.55e-03 8.31e-02   62.669 8.47e-02   1.2
+      spimemio (spimemio)              3.81e-03    0.218  126.333    0.222   3.0
+        xfer (spimemio_xfer)           1.75e-03 8.31e-02   48.151 8.49e-02   1.2
+      iL2Cache (l2_cache_v1_262144_1)  2.16e-03    0.000 1.86e-02 2.16e-03   0.0
+        l2_sram (saduvssd8ULTRALOW1p32768x64m16b8w1c1p0d0l0rm3sdrw11_core)
+                                       2.16e-03    0.000    0.000 2.16e-03   0.0
+          C6291735 (*MUX_OP_32768_15_64)
+                                          0.000    0.000    0.000    0.000   0.0
+          C6291734 (*SELECT_OP_2.32768_2.1_32768)
+                                          0.000    0.000    0.000    0.000   0.0
+          C10 (*DECODE_OP_15_32768)       0.000    0.000    0.000    0.000   0.0
+      iCC_V2 (cache_controller_v2_num_d_ways1_num_i_ways1_i_slice_size8192_d_slice_size16384_l2_64bit1)
+                                       2.04e-02    0.580  621.132    0.601   8.2
+        d_slice_inst (d_cache_v2_d_slice_size16384)
+                                          0.000 1.29e-05   25.907 3.88e-05   0.0
+          d_sram (saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core)
+                                          0.000    0.000    0.000    0.000   0.0
+            C393367 (*MUX_OP_4096_12_32)
+                                          0.000    0.000    0.000    0.000   0.0
+            C393366 (*SELECT_OP_2.4096_2.1_4096)
+                                          0.000    0.000    0.000    0.000   0.0
+            C10 (*DECODE_OP_12_4096)      0.000    0.000    0.000    0.000   0.0
+        i_slice_inst (i_cache_v2_i_slice_size8192)
+                                       1.51e-03 2.01e-03   14.448 3.54e-03   0.0
+          i_sram (saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw11_core)
+                                       3.74e-04    0.000    0.000 3.74e-04   0.0
+            C196726 (*MUX_OP_2048_11_32)
+                                          0.000    0.000    0.000    0.000   0.0
+            C196725 (*SELECT_OP_2.2048_2.1_2048)
+                                          0.000    0.000    0.000    0.000   0.0
+            C9 (*DECODE_OP_11_2048)       0.000    0.000    0.000    0.000   0.0
+      iCPU (rv32_cpu_top)              9.34e-03    3.885 5.18e+03    3.899  53.2
+        iWrite (write_back)               0.000 1.19e-07   88.846 8.90e-05   0.0
+        iMEM_WB (rv32_mem_wb_queue)    1.02e-05    0.158   94.682    0.158   2.2
+        iEX_MEM (rv32_ex_mem_queue)    1.06e-05    0.179  107.668    0.179   2.4
+        iALU (rv32_alu_v2)             5.59e-04 4.04e-04  384.795 1.35e-03   0.0
+          iBarrel (rv32_barrel_shifter)
+                                          0.000    0.000  153.423 1.53e-04   0.0
+          iLogical (rv32_alu_logical)  2.18e-05 4.98e-05   27.816 9.94e-05   0.0
+          iComp (rv32_alu_comp_0)      3.76e-05 6.83e-05   22.907 1.29e-04   0.0
+          iAdd_Sub (rv32_alu_add_sub)  3.74e-04 2.31e-04   98.101 7.03e-04   0.0
+        iForward (forwarding_unit_v2)     0.000 8.49e-03   13.082 8.50e-03   0.1
+        iID_EX (rv32_id_ex_queue)      2.88e-03    0.321  327.666    0.324   4.4
+        iResolver (branch_resolver_v2)    0.000    0.000   87.070 8.71e-05   0.0
+          iBrComp (rv32_alu_comp_1)       0.000    0.000   53.301 5.33e-05   0.0
+        iRF (rv32_register_file)          0.000    2.355 2.58e+03    2.357  32.2
+        iHazard (hazard_detection)        0.000    0.000    8.215 8.21e-06   0.0
+        iControl (rv32_cu_v2)             0.000    0.000   39.288 3.93e-05   0.0
+        iIF_ID (rv32_if_id_queue)      2.82e-03    0.276  354.858    0.279   3.8
+        iPC (rv32_pc_v2)               2.29e-03    0.349  535.419    0.352   4.8
+1
