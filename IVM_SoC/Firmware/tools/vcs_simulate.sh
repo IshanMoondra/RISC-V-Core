@@ -50,5 +50,6 @@ rm -rf "$VERDI_BUILD"/*.fsdb
     +fsdb+all=on\
     +fsdbfile+$FSDB_FILE \
     +SPI_FLASH_HEX="$SPI_FLASH_HEX" \
+		+L2_HEX="$L2_HEX" \
 
 exit $?

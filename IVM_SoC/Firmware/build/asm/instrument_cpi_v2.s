@@ -992,7 +992,7 @@ Disassembly of section .text:
      ec0:	fd042623          	sw	a6,-52(s0)
      ec4:	fcf42023          	sw	a5,-64(s0)
      ec8:	fd042223          	sw	a6,-60(s0)
-     ecc:	01400793          	li	a5,20
+     ecc:	00500793          	li	a5,5
      ed0:	eaf42a23          	sw	a5,-332(s0)
      ed4:	eb440793          	add	a5,s0,-332
      ed8:	f6f42823          	sw	a5,-144(s0)

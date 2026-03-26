@@ -14,5 +14,6 @@ if [ ! -f "$VCD" ]; then
     echo "[ERROR] VCD not found at: $VCD"
     exit 1
 fi
-# vcd2fsdb $VCD -sv -o $FSDB
-verdi -sv -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" -verdi_top soc_fpga_tb_v1 & 
+
+# verdi -sv -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" -verdi_top soc_fpga_tb_v1 & 
+Verdi-Ultra -sv -f $FILELIST -ssf "$VCD" -rcfile "$VERDI_BUILD/signal.rc" -verdi_top soc_fpga_tb_v1 & 

@@ -23,7 +23,7 @@ gcc -shared -fPIC \
     -I"$DPI_DIR" \
     -I"/cae/apps/data/synopsys-2025/vcs/X-2025.06/include" \
     -o "$DPI_LIB" \
-    "$DPI_DIR"/*.c
+    "$DPI_DIR"/uart_terminal_v2.c
 
 if [ $? -ne 0 ]; then
     echo "[ERROR] DPI-C build failed."
