@@ -26,32 +26,113 @@ module i_cache_v2
 
 localparam i_addr_width = $clog2(i_slice_size);
 
-// parameter num_byte = 4;
-// genvar idx;
+// Generate For Loop for Number of Ways // Or do we do that in Cache Controller? BOZO
 
-// generate
-//     for (idx = 0; idx < num_byte; idx = idx + 1)
-//         begin   : d_way
-//             saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core d_byte
-//                 (
-//                     .CLK    (clk                            ),
-//                     .ME     (data_enable),
-//                     .WE     (mem_wstrb[idx] & (~data_read)  ),
-//                     .ADR    (index[7:0]                     ),
-//                     .D      (byte_store[idx]                ),
-//                     .Q      (byte_fetch[idx]                )
-//                 );
-//         end     : d_way
-// endgenerate
-
-saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw11_core i_sram
-	(
-		.CLK(clk),
-		.ME(data_enable),
-		.WE(~data_read),
-		.ADR(ram_address[(i_addr_width-1):2]),
-		.D(ram_store),
-		.Q(ram_fetch)
-	);
+generate
+	begin
+		case (i_slice_size)
+			1024:
+				begin : gen_icache_1k 
+					saduvssd8ULTRALOW1p256x32m4b1w0c1p1d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			2048:
+				begin : gen_icache_2k 
+					saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			4096:
+				begin :  gen_icache_4k 
+					saduvssd8ULTRALOW1p1024x32m4b1w0c1p1d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			8192:
+				begin : gen_icache_8k 
+					saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			16384:
+				begin : gen_icache_16k 
+					saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			32768:
+				begin : gen_icache_32k 
+					saduvssd8ULTRALOW1p8192x32m16b4w0c1p0d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			65536:
+				begin : gen_icache_64k 
+					saduvssd8ULTRALOW1p16384x32m16b4w0c1p0d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			131072: 
+				begin : gen_icache_128k 
+					saduvssd8ULTRALOW1p32768x32m16b8w0c1p0d0l0rm3sdrw11_core i_sram
+						(
+							.CLK(clk),
+							.ME(data_enable),
+							.WE(~data_read),
+							.ADR(ram_address[(i_addr_width-1):2]),
+							.D(ram_store),
+							.Q(ram_fetch)
+						);
+				end
+			default: 
+				begin : gen_dcache_invalid
+					initial $error("Unsupported d_cache_size = %0d", d_cache_size);
+				end
+		endcase
+	end
+endgenerate
 
 endmodule

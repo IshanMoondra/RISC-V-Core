@@ -4,35 +4,78 @@
 #include <sys/select.h>
 #include "svdpi.h"
 
+#include <termios.h>
+#include <stdlib.h>
+
 // -----------------------------------------------------------------------------
-// Hello World Smoke Tester
+// Raw terminal mode
 // -----------------------------------------------------------------------------
-void dpi_hello_world_v4() {
-    printf("\nHello World from DPI-C!\t");
-    printf("Now the UART Works begin: \n");
-    fflush(stdout);
+static struct termios g_orig_termios;
+
+static void restore_terminal(void) {
+    tcsetattr(STDIN_FILENO, TCSANOW, &g_orig_termios);
+}
+
+static void set_raw_mode(void) {
+    if (!isatty(STDIN_FILENO)) return; // skip if piped input
+
+    tcgetattr(STDIN_FILENO, &g_orig_termios);
+    atexit(restore_terminal); // always clean up on exit
+
+    struct termios raw = g_orig_termios;
+
+    // Disable canonical mode and echo
+    raw.c_lflag &= ~(ICANON | ECHO | ECHOE | ECHOK | ECHONL | ISIG);
+
+    // Disable CR→NL translation on input
+    raw.c_iflag &= ~(ICRNL | INLCR);
+
+    // Read returns immediately with whatever is available
+    raw.c_cc[VMIN]  = 0;
+    raw.c_cc[VTIME] = 0;
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 }
 
 // -----------------------------------------------------------------------------
-// Internal UART state
+// Hello World
 // -----------------------------------------------------------------------------
-static int      g_rx_rdy         = 0;
-static int      g_rx_buffer      = 0;
-static int      g_tx_done        = 0;
+void dpi_hello_world_v4() {
+    printf("\nDPI-C UART Terminal Ready\n");
+    fflush(stdout);
+		set_raw_mode();
+}
 
-static int      g_clr_rx_rdy     = 0;
-static int      g_start_transmit = 0;
-static int      g_tx_buffer      = 0;
+// -----------------------------------------------------------------------------
+// UART Interface State
+// -----------------------------------------------------------------------------
+static int g_rx_rdy    = 0;
+static int g_rx_buffer = 0;
+static int g_tx_done   = 0;
+
+static int g_clr_rx_rdy     = 0;
+static int g_start_transmit = 0;
+static int g_tx_buffer      = 0;
 
 typedef enum { RX_IDLE, RX_WAIT_READ, RX_PULSE_CLR } rx_state_e;
-typedef enum { TX_IDLE, TX_WRITE_BUF, TX_PULSE_START } tx_state_e;
+typedef enum { TX_IDLE, TX_PULSE_START, TX_WAIT } tx_state_e;
 
 static rx_state_e rx_state = RX_IDLE;
 static tx_state_e tx_state = TX_IDLE;
 
 // -----------------------------------------------------------------------------
-// Raw hex dump parser state
+// Input Line Buffer (stdin)
+#define INPUT_BUF_SIZE 256
+
+// TX queue (feeds UART one byte at a time)
+static char tx_queue[INPUT_BUF_SIZE];
+static int  tx_head = 0;
+static int  tx_tail = 0;
+
+static int current_tx_byte_valid = 0;
+
 // -----------------------------------------------------------------------------
+// RAW dump parser state
 typedef enum {
     UART_MODE_ASCII,
     UART_MODE_WAIT_LEN,
@@ -40,24 +83,18 @@ typedef enum {
 } uart_mode_e;
 
 static uart_mode_e uart_mode = UART_MODE_ASCII;
-static int      raw_expected  = 0;
-static int      raw_count     = 0;
-static uint8_t  raw_bytes[8];
-
-// Prefix tracking: R = retired count, Y = core cycles
-static char pending_prefix = 0;
-
-// stdin → UART RX
-static int pending_rx_char = -1;
-static int first_tx_byte = 1;
+static int     raw_expected = 0;
+static int     raw_count    = 0;
+static uint8_t raw_bytes[8];
+static char    pending_prefix = 0;
 
 // -----------------------------------------------------------------------------
-// Non-blocking stdin poll (Linux / Debian)
-// -----------------------------------------------------------------------------
+// // Non-blocking stdin polling
+
 static void poll_stdin_for_uart(void)
 {
     fd_set rfds;
-    struct timeval tv = {0, 0}; // non-blocking
+    struct timeval tv = {0, 0};
 
     FD_ZERO(&rfds);
     FD_SET(STDIN_FILENO, &rfds);
@@ -66,39 +103,50 @@ static void poll_stdin_for_uart(void)
 
     if (ret > 0 && FD_ISSET(STDIN_FILENO, &rfds)) {
         int c = getchar();
-        if (c != EOF) {
-            pending_rx_char = c;
-            printf("\n[SENT]: %c", c);
-            fflush(stdout);
+        if (c == EOF) return;
+
+        // Translate Enter key (\r) → \n for the SOC
+        if (c == '\r') c = '\n';
+
+        // Local echo so user can see what they type
+        if (c == '\n') {
+            putchar('\r');
+            putchar('\n');
+        } else {
+            putchar(c);
         }
+        fflush(stdout);
+
+        if (tx_tail < INPUT_BUF_SIZE)
+            tx_queue[tx_tail++] = (char)c;
     }
 }
 
 // -----------------------------------------------------------------------------
-// SV → C : Capture UART RX inputs from the testbench
-// -----------------------------------------------------------------------------
+// SV → C : Capture UART RX inputs
 void dpi_uart_set_rx_inputs_v2(svBit rx_rdy, int rx_buffer, svBit tx_done)
 {
     g_rx_rdy    = rx_rdy;
     g_rx_buffer = rx_buffer;
     g_tx_done   = tx_done;
+
+    // Clear tx_busy when SoC reports done
+    if (g_tx_done)
+        current_tx_byte_valid = 0;
 }
 
 // -----------------------------------------------------------------------------
-// C → SV : Compute UART control outputs and print TX bytes to stdout
-// -----------------------------------------------------------------------------
+// C → SV : Main control + terminal behavior
 void dpi_uart_get_ctrl_outputs_v2(
     svBit *clr_rx_rdy,
     int   *tx_buffer,
     svBit *start_transmit
 ) {
-    // Default outputs
     g_clr_rx_rdy     = 0;
     g_start_transmit = 0;
-    // g_tx_buffer      = 0;
 
     // ============================================================
-    // RX PATH: SoC UART TX → DPI → stdout
+    // RX PATH (SoC → Terminal)
     // ============================================================
     switch (rx_state) {
 
@@ -111,64 +159,42 @@ void dpi_uart_get_ctrl_outputs_v2(
     {
         uint8_t b = (uint8_t)(g_rx_buffer & 0xFF);
 
-        // UART protocol parsing
         if (uart_mode == UART_MODE_ASCII) {
-
-            // Detect prefix commands
-            if (b == 'R' || b == 'Y') {
-                pending_prefix = (char)b;
-                printf("\n[GOT PREFIX]: %c", b);
-                fflush(stdout);
-            }
-
-            // Detect start of dump
-            else if (b == 'D') {
-                uart_mode = UART_MODE_WAIT_LEN;
-            }
-
-            // Normal ASCII
-            else {
-                printf("\n[GOT]: %c", b);
-                fflush(stdout);
-            }
+					// Normal ASCII output
+					if (b == '\n') {
+							putchar('\n');
+					} else {
+							putchar(b);
+					}
+					fflush(stdout);
         }
         else if (uart_mode == UART_MODE_WAIT_LEN) {
             raw_expected = b;
             raw_count    = 0;
             uart_mode    = UART_MODE_RAW;
 
-            if (pending_prefix)
-                printf("\n[GOT %c DUMP]: [HEX:", pending_prefix);
-            else
-                printf("\n[GOT DUMP]: [HEX:");
-
+            printf("\n[HEX:");
             fflush(stdout);
         }
         else if (uart_mode == UART_MODE_RAW) {
-            raw_bytes[raw_count] = b;   // store for later conversion
+            raw_bytes[raw_count] = b;
             printf(" %02X", b);
             fflush(stdout);
 
             raw_count++;
+
             if (raw_count >= raw_expected) {
                 printf(" ]");
-                fflush(stdout);
 
-                // If this dump was prefixed with R or Y, convert to decimal
                 if (pending_prefix) {
                     uint32_t value = 0;
                     for (int i = 0; i < raw_expected; i++)
                         value |= ((uint32_t)raw_bytes[i] << (8 * i));
 
-                    if (pending_prefix == 'R')
-                        printf("  => Count = %u (Non-NOP Retired Instructions)", value);
-                    else if (pending_prefix == 'Y')
-                        printf("  => Count = %u (Core Cycles)", value);
-
+                    printf(" => %u", value);
                     pending_prefix = 0;
-                    fflush(stdout);
                 }
-
+                fflush(stdout);
                 uart_mode = UART_MODE_ASCII;
             }
         }
@@ -183,37 +209,49 @@ void dpi_uart_get_ctrl_outputs_v2(
     }
 
     // ============================================================
-    // TX PATH: (host → SoC UART RX)
+    // TX PATH (Terminal → SoC)
     // ============================================================
 
-    // Poll for user input
     poll_stdin_for_uart();
 
-    // TX state machine
+    // Only start next byte if previous finished
+    int tx_queue_empty = (tx_head == tx_tail);
+
     switch (tx_state) {
 
     case TX_IDLE:
-        // If user typed something AND UART is ready, start TX
-        if (pending_rx_char >=0 ) {
-					if (first_tx_byte || g_tx_done) {
-            tx_state = TX_WRITE_BUF;
-					}
+        if (!current_tx_byte_valid && !tx_queue_empty) {
+            g_tx_buffer = tx_queue[tx_head]; // keep stable
+            current_tx_byte_valid = 1;
+            tx_state = TX_PULSE_START;
         }
         break;
 
-    case TX_WRITE_BUF:
-        // Load the byte into the TX buffer
-        g_tx_buffer = pending_rx_char;
-        pending_rx_char = -1;
-				first_tx_byte	= 0;
-        tx_state = TX_PULSE_START;
-        break;
-
     case TX_PULSE_START:
-        // Pulse transmit
-        g_start_transmit = 1;
-        tx_state         = TX_IDLE;
+        g_start_transmit = 1; // 1-cycle pulse
+        tx_state = TX_WAIT;
         break;
+		
+		case TX_WAIT:
+				g_start_transmit = 0;
+				if (g_tx_done)
+					{
+						tx_state = TX_IDLE;
+						if (current_tx_byte_valid)
+						{
+							tx_head++;
+							current_tx_byte_valid = 0;
+						}
+					}
+				else
+					tx_state = TX_WAIT;
+				break;
+    }
+
+    // Increment head ONLY after SoC confirms byte done
+    if (g_tx_done && current_tx_byte_valid) {
+        tx_head++;
+        current_tx_byte_valid = 0;
     }
 
     // Drive outputs back to SV

@@ -40,90 +40,12 @@ wire [7:0] byte_fetch1;
 wire [7:0] byte_fetch2;
 wire [7:0] byte_fetch3;
 
-// parameter num_byte = 4;
-// genvar idx;
+// Generate For Loop for Number of Ways // Or do we do that in Cache Controller? BOZO
 
-// generate
-//     for (idx = 0; idx < num_byte; idx = idx + 1)
-//         begin   : d_way
-//             saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core d_byte
-//                 (
-//                     .CLK    (clk                            ),
-//                     .ME     (data_enable),
-//                     .WE     (mem_wstrb[idx] & (~data_read)  ),
-//                     .ADR    (index[7:0]                     ),
-//                     .D      (byte_store[idx]                ),
-//                     .Q      (byte_fetch[idx]                )
-//                 );
-//         end     : d_way
-// endgenerate
-
-// generate
-// 	case (d_slice_size)
-// 		1024: begin : gen_dcache_1k
-// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
-// 		end
-// 		2048: begin : gen_dcache_2k
-// 			saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
-// 			(
-// 				.CLK(clk),
-// 				.ME(data_enable),
-// 				.WE(~data_read),
-// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
-// 				.ADR(ram_address[(d_addr_width-1):2]),
-// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
-// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
-// 			);
-// 		end
-// 		4096: begin : gen_dcache_4k
-// 			saduvssd8ULTRALOW1p1024x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
-// 			(
-// 				.CLK(clk),
-// 				.ME(data_enable),
-// 				.WE(~data_read),
-// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
-// 				.ADR(ram_address[(d_addr_width-1):2]),
-// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
-// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
-// 			);
-// 		end
-// 		8192: begin : gen_dcache_8k
-// 			saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
-// 			(
-// 				.CLK(clk),
-// 				.ME(data_enable),
-// 				.WE(~data_read),
-// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
-// 				.ADR(ram_address[(d_addr_width-1):2]),
-// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
-// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
-// 			);
-// 		end
-// 		16384: begin : gen_dcache_16k
-// 			saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
-// 			(
-// 				.CLK(clk),
-// 				.ME(data_enable),
-// 				.WE(~data_read),
-// 				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
-// 				.ADR(ram_address[(d_addr_width-1):2]),
-// 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
-// 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
-// 			);
-// 		end
-// 		32768: begin : gen_dcache_32k
-// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
-// 		end
-// 		65536: begin : gen_dcache_64k
-// 			initial $error("BOZO d_cache_size = %0d", d_cache_size);
-// 		end
-// 		default: begin : gen_dcache_invalid
-// 				initial $error("Unsupported d_cache_size = %0d", d_cache_size);
-// 		end
-// 	endcase
-// endgenerate
-
-saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+generate
+	case (d_slice_size)
+		1024: begin : gen_dcache_1k
+			saduvssd8ULTRALOW1p256x32m4b1w1c1p1d0l0rm3sdrw11_core d_sram
 			(
 				.CLK(clk),
 				.ME(data_enable),
@@ -133,6 +55,97 @@ saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
 				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
 				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
 			);
+		end
+		2048: begin : gen_dcache_2k
+			saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		4096: begin : gen_dcache_4k
+			saduvssd8ULTRALOW1p1024x32m4b1w1c1p1d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		8192: begin : gen_dcache_8k
+			saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		16384: begin : gen_dcache_16k
+			saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				// .ME(data_enable & ~mem_cancel),					// BOZO NOT WORKING
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		32768: begin : gen_dcache_32k
+			saduvssd8ULTRALOW1p8192x32m16b4w1c1p0d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		65536: begin : gen_dcache_64k
+			saduvssd8ULTRALOW1p16384x32m16b4w1c1p0d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		131072: begin : gen_dcache_128k
+			saduvssd8ULTRALOW1p32768x32m16b8w1c1p0d0l0rm3sdrw11_core d_sram
+			(
+				.CLK(clk),
+				.ME(data_enable),
+				.WE(~data_read),
+				.WEM({{8{mem_wstrb[3]}}, {8{mem_wstrb[2]}}, {8{mem_wstrb[1]}}, {8{mem_wstrb[0]}}}),
+				.ADR(ram_address[(d_addr_width-1):2]),
+				.D({byte_store3, byte_store2, byte_store1, byte_store0}),
+				.Q({byte_fetch3, byte_fetch2, byte_fetch1, byte_fetch0})
+			);
+		end
+		default: begin : gen_dcache_invalid
+			initial $error("Unsupported d_cache_size = %0d", d_cache_size);
+		end
+	endcase
+endgenerate
 
 always_comb
 	begin

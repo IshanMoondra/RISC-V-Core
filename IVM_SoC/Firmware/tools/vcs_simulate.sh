@@ -45,10 +45,13 @@ rm -rf "$VERDI_BUILD"/*.fsdb
 # Run simulation
 "$SIMV" \
     +VERDI_ROOT=$VERDI_ROOT \
+		+VIVADO_ROOT=$VERDI_ROOT \
     -l "$RUN_LOG" \
     +fsdb+autoflush \
     +fsdb+all=on\
     +fsdbfile+$FSDB_FILE \
+		+dump_on \
+		+FSDB \
     +SPI_FLASH_HEX="$SPI_FLASH_HEX" \
 		+L2_HEX="$L2_HEX" \
 

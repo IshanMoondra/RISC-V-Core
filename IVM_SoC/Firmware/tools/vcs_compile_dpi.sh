@@ -23,7 +23,7 @@ gcc -shared -fPIC \
     -I"$DPI_DIR" \
     -I"/cae/apps/data/synopsys-2025/vcs/X-2025.06/include" \
     -o "$DPI_LIB" \
-    "$DPI_DIR"/uart_terminal_v2.c
+    "$DPI_DIR"/uart_terminal_v3.c
 
 if [ $? -ne 0 ]; then
     echo "[ERROR] DPI-C build failed."
@@ -44,10 +44,9 @@ vcs -full64 -sverilog \
     -debug_access+all \
     -kdb \
     -Mdir="$VCS_BUILD/csrc" \
-    -incremental \
     -CFLAGS "-I$DPI_DIR -I/cae/apps/data/synopsys-2025/vcs/X-2025.06/include" \
     -LDFLAGS "-L$DPI_DIR -ldpi" \
-    -sv_lib "$DPI_LIB" \
+		-sv_lib "$DPI_LIB" \
     -l "$VCS_BUILD/compile.log" \
     -o "$VCS_BUILD/simv"
 

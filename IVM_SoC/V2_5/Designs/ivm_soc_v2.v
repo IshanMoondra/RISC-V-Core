@@ -52,6 +52,10 @@ module ivm_soc_v2 (
 	input  flash_io3_di
 );
 
+localparam i_cache_slice_size 	= 4*1024;
+localparam d_cache_slice_size 	= 64*1024;
+localparam l2_cache_slice_size	= 256*1024;
+
 wire mem_valid;
 wire mem_ready;
 wire [31:0] mem_addr;
@@ -97,7 +101,8 @@ reg 	[31:0] cc_rdata_ff;
 wire 	cache_access;
 reg 	cache_access_ff;
 
-assign cache_access = (mem_addr >= 32'h0003C000) && (mem_addr < 32'h00040000);
+// assign cache_access = (mem_addr >= 32'h0003C000) && (mem_addr < 32'h00040000);
+assign cache_access	= (mem_addr >= (l2_cache_slice_size - d_cache_slice_size) && (mem_addr < l2_cache_slice_size));
 
 always @(posedge clk, negedge resetn) begin
 	if (~resetn)
@@ -143,6 +148,7 @@ wire 	[31:0] spimemio_cfgreg_do;
 wire 	[31:0] uart_rdata;
 reg 	[31:0] uart_rdata_ff;
 
+// Need to update this to use localparams and Linker provided stuff. Build Automation Coming Soon(tm)? 
 assign mmio_vector[0] = (mem_addr >= 32'h00200000) && (mem_addr < 32'h00200400);	// For MMIO Decoder
 assign mmio_vector[1] = (mem_addr >= 32'h00200400) && (mem_addr < 32'h00200800);	// For Cache Controller
 assign mmio_vector[2] = (mem_addr >= 32'h00200800) && (mem_addr < 32'h00200C00);	// For UART
@@ -252,9 +258,9 @@ assign cc_mem_addr = mem_addr;
 // Instantiating my Cache Controller V1
 cache_controller_v2 #(
 		.num_d_ways(1),
-		.num_i_ways(1),
-		.i_slice_size(8192),
-		.d_slice_size(16384),
+		.num_i_ways(2),
+		.i_slice_size(i_cache_slice_size),
+		.d_slice_size(d_cache_slice_size),
 		.l2_64bit(1)
 	)iCC_V2
 	(
@@ -280,7 +286,7 @@ cache_controller_v2 #(
 		.l2_address(l2_addr),
 		.l2_write_strobe(l2_write_strobe),						// Unconnected for now, FEATURE DEFERRED
 		.l2_write_enable(l2_write_enable),						// Unconnected for now, FEATURE DEFERRED
-		.l2_clock_enable(l2_clock_enable),						// Unconnected for now, FEATURE DEFERRED
+		.l2_clock_enable(l2_clock_enable),						// FEATURE ENABLED
 		.l2_high_bit_enable(l2_high_bit_enable),			// Unconnected for now, FEATURE DEFERRED
 		// Clock Gate Signals
 		.set_clk_enable(core_clk_en),			
@@ -288,16 +294,16 @@ cache_controller_v2 #(
 		.d_cache_miss(d_cache_miss),			// Create the counter!
 		.l2_cache_busy(l2_cache_busy),
 		// Core Stall Signals: For Branch Resolution by bubbling for 5 cycles
-		.core_bubble(core_bubble)				  // Unconnected for now, but can add later.
+		.core_bubble(core_bubble)				  // FEATURE ENABLED
 	);
 
 // Unifined L2 Cache Instantiation
 l2_cache_v1 #(
-		.l2_slice_size(262144),
+		.l2_slice_size(l2_cache_slice_size),
 		.l2_64bit(1'b1)
 	) iL2Cache (
 		// Universal Signals
-		.clk(clk & l2_clock_enable),	// Need to gate the Clock later.
+		.clk(clk & l2_clock_enable),	// Clock Gating ENABLED
 		.rst_n(resetn),
 		// Byte Mask/Enables
 		.data_enable(1'b1),						// Tied high, as L2 is active all the time, for now. 
@@ -447,11 +453,11 @@ gpio_v1 iGPIO
 // Pin Muxing Control portion of the SOC!
 assign flash_csb = 	(flash_control[0]) 	? (flash_output[0]) :
 										(|master_control) 	? (1'b1) 						:
-										(spi_csb); // : (spi_csb);
+										(spi_csb);
 
 assign flash_clk = 	(flash_control[1]) 	? (flash_output[1]) :
 										(|master_control) 	? (1'b0) 						:
-										(spi_clk); // : (spi_clk);
+										(spi_clk);
 
 assign flash_io0_oe = (master_control[0]) ? (gpio_oe[0]) : (spi_io0_oe);
 assign flash_io1_oe = (master_control[1]) ? (gpio_oe[1]) : (spi_io1_oe);

@@ -47,7 +47,7 @@ module cache_controller_v2
 		output  logic   d_cache_miss,
 		output  logic   l2_cache_busy,
 		// Core Stall Signals: For the Branch resolution by bubbling for 5 cycles
-		output  logic   core_bubble             // Can do it later as well. 
+		output  logic   core_bubble             // Done.
 	);
 
 localparam d_addr_width = $clog2(d_slice_size);
@@ -168,116 +168,89 @@ genvar i_idx, d_idx;
 
 // Unrolling Loops cause Synopsys hates it.
 	// I-Cache Instantiation   
-		// generate
-		//     for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
-		//         begin   : I_Slice_Gen
-		//             saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core i_slice_inst
-		//                 (
-		//                     .CLK    (clk                    ),
-		//                     // .ME     (i_way_sel[i_idx]       ),
-		//                     .ME     (1'b1                   ),
-		//                     .WE     (i_way_we[i_idx]        ),
-		//                     .Q      (i_way_out[i_idx]       ),
-		//                     .D      (i_cache_store          ),
-		//                     .ADR    (i_cache_addr[9:2]      )
-		//                 );         
-		//         end     : I_Slice_Gen
-		// endgenerate
-
-	// I-Cache Instantiation: BOZO: Need to do this in the For Loop
-	i_cache_v2 #(
-		.i_slice_size(i_slice_size)
-		) i_slice_inst
-		(
-			// Universal Signals
-			.clk(clk										),
-			.rst_n(rst_n								),
-			// SRAM control Signals
-			.data_enable(1'b1						),
-			.data_read(~i_way_we[0]			),
-			// SRAM Inputs & Outputs
-			.ram_address(i_cache_addr		),
-			.ram_store(i_cache_store		),
-			.ram_fetch(i_way_out[0]			)
-		);
+		generate
+		    for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
+		        begin   : I_Slice_Gen
+		            i_cache_v2 #(
+														.i_slice_size(i_slice_size)
+														) i_slice_inst
+														(
+															// Universal Signals
+															.clk					(clk					),
+															.rst_n				(rst_n				),
+															// SRAM control Signals
+															.data_enable	(1'b1					),
+															.data_read		(~i_way_we[i_idx]	),
+															// SRAM Inputs & Outputs
+															.ram_address	(i_cache_addr	),
+															.ram_store		(i_cache_store),
+															.ram_fetch		(i_way_out[i_idx]	)
+														);         
+		        end     : I_Slice_Gen
+		endgenerate
 
 // D-Cache Instantiation
-	// generate
-	//     for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
-	//         begin   : D_Slice_Gen
-	//             d_cache_v1 d_slice_inst
-	//                 (
-	//                     // Universal Signals
-	//                     .clk            (clk                ),
-	//                     .rst_n          (rst_n              ),
-	//                     // Memory Enable/Read/Write Signals
-	//                     // .data_enable    (d_way_sel[d_idx]   ),
-	//                     .data_enable    (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx]),
-	//                     .data_read      (data_read | ((~d_way_override[d_idx]) & use_d_way_override)),
-	//                     .mem_wstrb      (mem_wstrb          ),
-	//                     // Input Output Buses
-	//                     .ram_store      (d_cache_store      ),
-	//                     .ram_fetch      (d_way_out[d_idx]   ),
-	//                     .ram_address    (d_cache_addr       )
-	//                 );         
-	//         end     : D_Slice_Gen
-	// endgenerate
-	
-	// // D-Cache Bus
-	// assign d_cache_store       = (cache_enable | cache_enable_ff) ? (data_store) 		: (32'h0);
-	// assign d_cache_addr        = (cache_enable | cache_enable_ff) ? (data_address) 	: (32'h0);
+	generate
+	    for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
+	        begin   : D_Slice_Gen
+	            	d_cache_v2 #(
+															.d_slice_size(d_slice_size)
+														) d_slice_inst
+														(
+															// Universal Signals
+															.clk            (clk & (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx] | (d_way_override[d_idx] & use_d_way_override))),	// Done // Need to clean this mess up.
+															.rst_n          (rst_n              ),
+															// Memory Enable/Read/Write Signals
+															.data_enable    (d_cache_hit[d_idx] | d_cache_hit_ff[d_idx] | (d_way_override[d_idx] & use_d_way_override)),
+															.data_read      (data_read | ((~d_way_override[d_idx]) & use_d_way_override)),
+															.mem_wstrb      (mem_wstrb          ),
+															// Input Output Buses
+															.ram_store      (d_cache_store      ),
+															.ram_fetch      (d_way_out[d_idx]       ),
+															.ram_address    (d_cache_addr			  )
+														);         
+	        end     : D_Slice_Gen
+	endgenerate
 
-	d_cache_v2 #(
-			.d_slice_size(d_slice_size)
-		) d_slice_inst
-		(
-			// Universal Signals
-			.clk            (clk                ),	// Need SRAM Clock Gating too
-			.rst_n          (rst_n              ),
-			// Memory Enable/Read/Write Signals
-			.data_enable    (d_cache_hit[0] | d_cache_hit_ff[0] | (d_way_override[0] & use_d_way_override)),
-			.data_read      (data_read | ((~d_way_override[0]) & use_d_way_override)),
-			.mem_wstrb      (mem_wstrb          ),
-			// Input Output Buses
-			.ram_store      (d_cache_store      ),
-			.ram_fetch      (d_way_out[0]       ),
-			.ram_address    (d_cache_addr			  )
-		);
-
-// BB for I-cache // BOZO: Need to wrap this in a For Loop
-	always_ff @(posedge clk, negedge rst_n)
-		if (~rst_n)
+for (i_idx = 0; i_idx < num_i_ways; i_idx = i_idx + 1)
+	begin 	: I$_BB_Generator
+		// BB for I-cache // Done.
+		always_ff @(posedge clk, negedge rst_n)
+			if (~rst_n)
+					begin
+						i_base[i_idx]    <= '1;
+						i_bound[i_idx]   <= '1;
+					end
+			else if (set_i_base[i_idx])
 				begin
-					i_base[0]    <= '1;
-					i_bound[0]   <= '1;
+					i_base[i_idx]    <= base_buffer_instr;
+					i_bound[i_idx]   <= bound_buffer_instr;
 				end
-		else if (set_i_base[0])
-			begin
-				i_base[0]    <= base_buffer_instr;
-				i_bound[0]   <= bound_buffer_instr;
-			end
+			
+			// I$ BB Checker
+			assign i_cache_hit[i_idx] = (pc_fetch >= i_base[i_idx]) && (pc_fetch < i_bound[i_idx]);
 
-// BB For D-Cache // BOZO: Need to wrap this in a For Loop
-	always_ff @(posedge clk, negedge rst_n)
-		if (~rst_n)
-			begin
-				// d_base[0]    <= 32'h0003E000;		// BOZO Need to find the right Address
-				// d_bound[0]   <= 32'h00040000;
-				d_base[0]    <= 32'h00000000;		// D$ Miss works without WB!
-				d_bound[0]   <= 32'h00000000;
-			end
-		else if (set_d_base[0])
-			begin
-				d_base[0]    <= base_buffer_data;
-				d_bound[0]   <= bound_buffer_data;
-			end
+	end		: I$_BB_Generator
 
-// Cache Hit Checkers // BOZO: Need to wrap this in a For Loop
-    // I-Cache
-			assign i_cache_hit[0] = (pc_fetch >= i_base[0]) && (pc_fetch < i_bound[0]);
-    // D-Cache
-			assign d_cache_hit[0] = (data_address >= d_base[0]) && (data_address < d_bound[0]);
-		// assign d_cache_hit = '1;
+for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
+	begin		: D$_BB_Generator
+		// BB for D-cache // Done.
+		always_ff @(posedge clk, negedge rst_n)
+			if (~rst_n)
+				begin
+					d_base[d_idx]    <= 32'h00000000;		// D$ Miss works without WB!
+					d_bound[d_idx]   <= 32'h00000000;
+				end
+			else if (set_d_base[d_idx])
+				begin
+					d_base[d_idx]    <= base_buffer_data;
+					d_bound[d_idx]   <= bound_buffer_data;
+				end
+			
+			// D$ BB Checker
+			assign d_cache_hit[d_idx] = (data_address >= d_base[d_idx]) && (data_address < d_bound[d_idx]);
+
+	end			: D$_BB_Generator
 	
 	assign i_cache_miss_active 	= ~|i_cache_hit;
 	assign d_cache_miss_active 	= (~|d_cache_hit) && (cache_enable | cache_enable_ff);
@@ -359,7 +332,7 @@ genvar i_idx, d_idx;
 			else if (enable_counter_data)
 				fetch_count_data <= fetch_count_data + 1;
 
-	// L2 Address Buffer (Auto Increment on Odd Address, because 64 bit Shift Reg ready)
+	// L2 Address Buffer (Auto Increment on Odd Address, because 64 bit Shift Reg ready) // DEFERRED
 		always_ff @(posedge clk, negedge rst_n)
 			if (~rst_n)
 				l2_address <= 0;
@@ -392,7 +365,6 @@ genvar i_idx, d_idx;
 
 	always_comb
 		begin		: BUBBLE_BLOCK
-			// Okay what do I need here? 
 			// IF		: I_MISS_ACTIVE and !(D_MISS_ACTIVE), then BUBBLE for 5 cycles
 			// ELSE	: No BUBBLE	
 			if (i_cache_miss_active && ~d_cache_miss_active)
@@ -420,6 +392,9 @@ genvar i_idx, d_idx;
 				l2_store							= 0;
 				l2_high_bit_enable		= 0;
 				
+				// L2 Clock Gater
+				l2_clock_enable				= 0;
+				
 				fsm_clk_en          = 0;
 				
 				set_i_base          = 0;
@@ -428,10 +403,10 @@ genvar i_idx, d_idx;
 				set_d_bound         = 0;
 
 				new_base_instr			= 0;
-				new_page_instr	    = (pc_fetch[31:i_addr_width]); 			// Should work
+				new_page_instr	    = (pc_fetch[31:i_addr_width]); 			// Works
 				
 				new_base_data       = 0;
-				new_page_data				= (d_cache_addr[31:d_addr_width]);	// Should work
+				new_page_data				= (d_cache_addr[31:d_addr_width]);	// Works
 
 				set_base_buffer_instr	= 0;
 				set_base_buffer_data	= 0;
@@ -459,23 +434,18 @@ genvar i_idx, d_idx;
 					end 
 				I_MISS  : 
 					begin
-						iNEXT_STATE = (WAY_SEL);		// Decoupling Bubble from State Machine, to improve responsiveness. 
+						iNEXT_STATE 		= (WAY_SEL);		// Decoupling Bubble from State Machine, to improve response times.
+						l2_clock_enable	= 1; 
 					end
 				D_MISS  : 
 					begin
-						iNEXT_STATE = (WAY_SEL); 
+						iNEXT_STATE 		= (WAY_SEL);
+						l2_clock_enable	= 1;
 					end
-				// BUBBLE  :
-				// 	begin
-				// 		clr_bubble_count  = 0;
-				// 		core_bubble       = 1;
-				// 		fsm_clk_en				= 1;
-				// 		if (bubble_count == 4)
-				// 			iNEXT_STATE     = WAY_SEL;
-				// 	end
 				WAY_SEL :
 					begin
 						iNEXT_STATE	= (d_cache_miss_active && cache_enable) ? (WR_BK) : (LOCK_BB);
+						l2_clock_enable	= 1;
 						if (d_cache_miss_active)
 							begin
 								set_base_buffer_data 	= 1;
@@ -486,24 +456,28 @@ genvar i_idx, d_idx;
 							begin
 								set_base_buffer_instr	= 1;
 								new_base_instr				= {new_page_instr, {i_addr_width{1'b0}}};
-								i_way_sel							= 1;
+								// i_way_sel							= 1;
+								i_way_sel = (i_cache_hit_ff[0]) ? (2) : (1);
 							end
 					end
 				WR_BK  : 
 					begin
 						// BOZO: No Write Back for now, will get to it later. 
+						l2_clock_enable	= 1;
 						iNEXT_STATE = (LOCK_BB); // Directly going to Lock BB for now, will come back Write Back
 					end
 				LOCK_BB :
 					begin
-						iNEXT_STATE        = FETCH;
-						update_l2_address  = 1;
+						iNEXT_STATE        	= FETCH;
+						update_l2_address  	= 1;
+						l2_clock_enable			= 1;
 					end
 				FETCH   :
 					begin
 						// l2_full_word_ready 	= l2_address[2];
 						// l2_high_bit_enable	= l2_address[2]; 
-						l2_full_word_ready		= 1'b1;
+						l2_full_word_ready	= 1'b1;
+						l2_clock_enable			= 1;
 						if (d_cache_miss_active)
 							begin
 								use_d_way_override 		= 1;
@@ -519,7 +493,8 @@ genvar i_idx, d_idx;
 							end
 						else if (i_cache_miss_active)
 							begin
-								i_way_we        			= 1;
+								// i_way_we        			= 1;
+								i_way_we							=	(i_cache_hit_ff[0]) ? (2) : (1);
 								clr_fetch_count_instr	= 0;
 								enable_counter_instr	= 1;
 								i_cache_addr    			= l2_address_ff;
@@ -533,19 +508,21 @@ genvar i_idx, d_idx;
 					end
 				UPD_BB1 :
 					begin
-						iNEXT_STATE = UPD_BB2;
+						iNEXT_STATE 		= UPD_BB2;
+						l2_clock_enable	= 1;
 						if (d_cache_miss_active)
 							set_d_base = 1;
 						else if (i_cache_miss_active)
-							set_i_base = 1;
+							set_i_base = (i_cache_hit_ff[0]) ? (2) : (1);
 					end
 				UPD_BB2 :
 					begin
-						iNEXT_STATE = IDLE;
+						iNEXT_STATE 		= IDLE;
+						l2_clock_enable	= 1;
 						if (d_cache_miss_active)
 							set_d_bound = d_way_override;
 						else if (i_cache_miss_active)
-							set_i_bound = 1;
+							set_i_bound = (i_cache_hit_ff[0]) ? (2) : (1);
 					end
 				default: iNEXT_STATE = IDLE;
 			endcase
@@ -574,24 +551,22 @@ assign set_clk_enable   = d_clk_en && (i_clk_en && fsm_clk_en || core_bubble);
 
 assign i_cache_miss     = ~i_clk_en;
 assign d_cache_miss     = ~d_clk_en;
-// assign d_cache_miss     = 0;
 
 // Non Supported Features
 assign l2_write_strobe		= 0;
 assign l2_write_enable		= 0;
-assign l2_clock_enable		= 1;
 assign l2_cache_busy			= 1;
 
 // MMIO Stuff to be done
-assign set_i_lock           = 0;
-assign set_d_lock           = 0;
-assign get_i_lock           = 0;
-assign get_d_lock           = 0;
 assign set_dynamic_base     = mmio_enable && data_address[4:0] == 5'd0;
 assign set_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd4;
 assign get_dynamic_base     = mmio_enable && data_address[4:0] == 5'd8;
 assign get_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd12;
 assign set_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd16;
 assign get_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd20;
+assign set_i_lock           = mmio_enable && data_address[4:0] == 5'd24;
+assign set_d_lock           = mmio_enable && data_address[4:0] == 5'd28;
+assign get_i_lock           = mmio_enable && data_address[4:0] == 5'd32;
+assign get_d_lock           = mmio_enable && data_address[4:0] == 5'd36
 
 endmodule

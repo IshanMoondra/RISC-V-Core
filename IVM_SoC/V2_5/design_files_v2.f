@@ -28,24 +28,31 @@ $SOC_HOME/Designs/CPU/rv32_cpu_top.sv
 ### 256 Byte SRAM: 256x8
 // $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p256x8m4b1w0c0p0d0l0rm3sdrw01_core.v
 ### 1K Byte SRAM: 256x32
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p256x32m8b1w0c0p0d0l0rm3sdrw01_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p256x32m4b1w0c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p256x32m4b1w1c1p1d0l0rm3sdrw11_core.v
 ### 2K Byte SRAM: 512x32
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core.v
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p512x32m16b1w0c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p512x32m16b1w1c1p1d0l0rm3sdrw11_core.v
 ### 4K Byte SRAM: 1024x32
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p1024x32m16b1w0c1p1d0l0rm3sdrw11_core.v
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p1024x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p1024x32m4b1w0c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p1024x32m4b1w1c1p1d0l0rm3sdrw11_core.v
 ### 8K Byte SRAM: 2048x32
 $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p2048x32m16b1w0c1p1d0l0rm3sdrw11_core.v
 $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p2048x32m16b1w1c1p1d0l0rm3sdrw11_core.v
 ### 16K Byte SRAM: 4096x32
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w0c1p1d0l0rm3sdrw11_core.v
 $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x32m16b1w1c1p1d0l0rm3sdrw11_core.v
+### 32K Byte SRAM: 8192x32
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p8192x32m16b4w0c1p0d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p8192x32m16b4w1c1p0d0l0rm3sdrw11_core.v
 ### 32K Byte SRAM: 4096x64
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x64m16b1w1c1p1d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p4096x64m16b1w1c1p1d0l0rm3sdrw11_core.v
+### 64K Byte SRAM: 16384x32
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p16384x32m16b4w0c1p0d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p16384x32m16b4w1c1p0d0l0rm3sdrw11_core.v
 ### 128K Byte SRAM: 32768x32
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x32m16b8w0c1p0d0l0rm3sdrw11_core.v
-// $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x32m16b8w1c1p0d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x32m16b8w0c1p0d0l0rm3sdrw11_core.v
+$SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x32m16b8w1c1p0d0l0rm3sdrw11_core.v
 ### 256K Byte SRAM: 32768x64
 // $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x64m16b8w0c1p0d0l0rm3sdrw11_core.v
 $SOC_HOME/Designs/Memory/SRAMs/saduvssd8ULTRALOW1p32768x64m16b8w1c1p0d0l0rm3sdrw11_core.v

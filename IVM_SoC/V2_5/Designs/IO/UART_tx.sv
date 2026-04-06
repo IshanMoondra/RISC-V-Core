@@ -50,7 +50,7 @@ module UART_tx(
 
   // dff for setting done flag
   always_ff @(posedge clk, negedge rst_n)
-    if (!rst_n) tx_done <= 0;
+    if (!rst_n) tx_done <= 1;
     else if (init) tx_done <= 0;
     else if (set_done) tx_done <= 1;
 
