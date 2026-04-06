@@ -29,7 +29,6 @@ localparam i_addr_width = $clog2(i_slice_size);
 // Generate For Loop for Number of Ways // Or do we do that in Cache Controller? BOZO
 
 generate
-	begin
 		case (i_slice_size)
 			1024:
 				begin : gen_icache_1k 
@@ -132,7 +131,6 @@ generate
 					initial $error("Unsupported i_slice_size = %0d", i_slice_size);
 				end
 		endcase
-	end
 endgenerate
 
 endmodule

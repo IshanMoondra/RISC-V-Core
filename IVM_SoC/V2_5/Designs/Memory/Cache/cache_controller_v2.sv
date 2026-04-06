@@ -558,15 +558,15 @@ assign l2_write_enable		= 0;
 assign l2_cache_busy			= 1;
 
 // MMIO Stuff to be done
-assign set_dynamic_base     = mmio_enable && data_address[4:0] == 5'd0;
-assign set_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd4;
-assign get_dynamic_base     = mmio_enable && data_address[4:0] == 5'd8;
-assign get_dynamic_bound    = mmio_enable && data_address[4:0] == 5'd12;
-assign set_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd16;
-assign get_dis_i_cache      = mmio_enable && data_address[4:0] == 5'd20;
-assign set_i_lock           = mmio_enable && data_address[4:0] == 5'd24;
-assign set_d_lock           = mmio_enable && data_address[4:0] == 5'd28;
-assign get_i_lock           = mmio_enable && data_address[4:0] == 5'd32;
-assign get_d_lock           = mmio_enable && data_address[4:0] == 5'd36
+assign set_dynamic_base     = mmio_enable && data_address[5:0] == 5'd0;
+assign set_dynamic_bound    = mmio_enable && data_address[5:0] == 5'd4;
+assign get_dynamic_base     = mmio_enable && data_address[5:0] == 5'd8;
+assign get_dynamic_bound    = mmio_enable && data_address[5:0] == 5'd12;
+assign set_dis_i_cache      = mmio_enable && data_address[5:0] == 5'd16;
+assign get_dis_i_cache      = mmio_enable && data_address[5:0] == 5'd20;
+assign set_i_lock           = mmio_enable && data_address[5:0] == 5'd24;
+assign set_d_lock           = mmio_enable && data_address[5:0] == 5'd28;
+assign get_i_lock           = mmio_enable && data_address[5:0] == 5'd32;
+assign get_d_lock           = mmio_enable && data_address[5:0] == 5'd36;
 
 endmodule
