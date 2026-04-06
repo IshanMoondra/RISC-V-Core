@@ -129,7 +129,7 @@ generate
 				end
 			default: 
 				begin : gen_dcache_invalid
-					initial $error("Unsupported d_cache_size = %0d", d_cache_size);
+					initial $error("Unsupported i_slice_size = %0d", i_slice_size);
 				end
 		endcase
 	end
