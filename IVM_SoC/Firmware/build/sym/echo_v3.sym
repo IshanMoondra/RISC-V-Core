@@ -29,11 +29,11 @@
 00007738 W _Z16uart_print_int32i
 00007850 W _Z16uart_print_int64x
 000079cc W _Z12uart_getlinePci
-00007af4 W _Z6strcmpPKcS0_
-00007b98 W _Z7strncmpPKcS0_i
-00007c50 W _Z15process_commandPcS_PVb
-00007d58 W _Z17cmd_arg_tokenizerPcS_S_ii
-0003019c R __clz_tab
+00007b10 W _Z6strcmpPKcS0_
+00007bb4 W _Z7strncmpPKcS0_i
+00007c6c W _Z15process_commandPcS_PVb
+00007d74 W _Z17cmd_arg_tokenizerPcS_S_ii
+000301a0 R __clz_tab
 00034000 d _ZL8heap_end
 00034000 D __data_end
 00034000 D __data_start

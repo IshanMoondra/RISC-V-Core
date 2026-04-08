@@ -82,11 +82,11 @@ LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
                 0x0000525c                fibonacci_iterative(int)
                 0x00005308                fibonacci_recursive(int)
 
-.spi_uart       0x00005400     0x2a70
+.spi_uart       0x00005400     0x2a8c
                 0x00007400                        . = (. + 0x2000)
  *fill*         0x00005400     0x2000 
  *(.spi_uart)
- .spi_uart      0x00007400      0xa70 /out/spi_uart.o
+ .spi_uart      0x00007400      0xa8c /out/spi_uart.o
                 0x00007400                uart_getc(bool)
                 0x00007478                uart_putc(char)
                 0x000074dc                uart_print(char const*)
@@ -95,13 +95,13 @@ LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
                 0x00007738                uart_print_int32(int)
                 0x00007850                uart_print_int64(long long)
                 0x000079cc                uart_getline(char*, int)
-                0x00007af4                strcmp(char const*, char const*)
-                0x00007b98                strncmp(char const*, char const*, int)
-                0x00007c50                process_command(char*, char*, bool volatile*)
-                0x00007d58                cmd_arg_tokenizer(char*, char*, char*, int, int)
+                0x00007b10                strcmp(char const*, char const*)
+                0x00007bb4                strncmp(char const*, char const*, int)
+                0x00007c6c                process_command(char*, char*, bool volatile*)
+                0x00007d74                cmd_arg_tokenizer(char*, char*, char*, int, int)
                 0x00030000                        . = 0x30000
 
-.rodata         0x00030000      0x29c
+.rodata         0x00030000      0x2a0
  *(.rodata)
  .rodata        0x00030000        0x5 /out/echo_v3.o
  *fill*         0x00030005        0x3 
@@ -110,10 +110,10 @@ LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
  .rodata        0x00030048       0x3f /out/soc_start.o
  *fill*         0x00030087        0x1 
  .rodata        0x00030088       0xb4 /out/spi_compute.o
- .rodata        0x0003013c       0x5d /out/spi_uart.o
- *fill*         0x00030199        0x3 
- .rodata        0x0003019c      0x100 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
-                0x0003019c                __clz_tab
+ .rodata        0x0003013c       0x61 /out/spi_uart.o
+ *fill*         0x0003019d        0x3 
+ .rodata        0x000301a0      0x100 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                0x000301a0                __clz_tab
  *(.rodata.*)
  *(.const)
  *(.const.*)

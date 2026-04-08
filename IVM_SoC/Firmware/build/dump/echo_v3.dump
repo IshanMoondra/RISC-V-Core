@@ -16,13 +16,13 @@ Disassembly of section .text:
   20:	00050793          	mv	a5,a0
   24:	00078493          	mv	s1,a5
   28:	000307b7          	lui	a5,0x30
-  2c:	04878513          	add	a0,a5,72 # 30048 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282f0>
+  2c:	04878513          	add	a0,a5,72 # 30048 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282d4>
   30:	4ac070ef          	jal	74dc <_Z10uart_printPKc>
   34:	00048513          	mv	a0,s1
   38:	700070ef          	jal	7738 <_Z16uart_print_int32i>
   3c:	00000013          	nop
   40:	000307b7          	lui	a5,0x30
-  44:	05878513          	add	a0,a5,88 # 30058 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28300>
+  44:	05878513          	add	a0,a5,88 # 30058 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282e4>
   48:	494070ef          	jal	74dc <_Z10uart_printPKc>
   4c:	002017b7          	lui	a5,0x201
   50:	02878793          	add	a5,a5,40 # 201028 <GET_PERFMON_MISS>
@@ -31,7 +31,7 @@ Disassembly of section .text:
   5c:	6dc070ef          	jal	7738 <_Z16uart_print_int32i>
   60:	00000013          	nop
   64:	000307b7          	lui	a5,0x30
-  68:	07878513          	add	a0,a5,120 # 30078 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28320>
+  68:	07878513          	add	a0,a5,120 # 30078 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28304>
   6c:	470070ef          	jal	74dc <_Z10uart_printPKc>
   70:	ffffffff          	.word	0xffffffff
   74:	00000013          	nop
@@ -59,11 +59,11 @@ Disassembly of section .text:
   c4:	fec42703          	lw	a4,-20(s0)
   c8:	00e7a023          	sw	a4,0(a5)
   cc:	000307b7          	lui	a5,0x30
-  d0:	00878513          	add	a0,a5,8 # 30008 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282b0>
+  d0:	00878513          	add	a0,a5,8 # 30008 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28294>
   d4:	408070ef          	jal	74dc <_Z10uart_printPKc>
   d8:	03c050ef          	jal	5114 <_Z8cmd_freev>
   dc:	000307b7          	lui	a5,0x30
-  e0:	01478513          	add	a0,a5,20 # 30014 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282bc>
+  e0:	01478513          	add	a0,a5,20 # 30014 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282a0>
   e4:	3f8070ef          	jal	74dc <_Z10uart_printPKc>
   e8:	002017b7          	lui	a5,0x201
   ec:	03c78793          	add	a5,a5,60 # 20103c <GET_WATCHDOG_HIGH>
@@ -82,10 +82,10 @@ Disassembly of section .text:
  120:	730070ef          	jal	7850 <_Z16uart_print_int64x>
  124:	00000013          	nop
  128:	000307b7          	lui	a5,0x30
- 12c:	03078513          	add	a0,a5,48 # 30030 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282d8>
+ 12c:	03078513          	add	a0,a5,48 # 30030 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282bc>
  130:	3ac070ef          	jal	74dc <_Z10uart_printPKc>
  134:	000307b7          	lui	a5,0x30
- 138:	04078513          	add	a0,a5,64 # 30040 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282e8>
+ 138:	04078513          	add	a0,a5,64 # 30040 <_Z17cmd_arg_tokenizerPcS_S_ii+0x282cc>
  13c:	3a0070ef          	jal	74dc <_Z10uart_printPKc>
  140:	00000013          	nop
  144:	02c12083          	lw	ra,44(sp)
@@ -117,14 +117,14 @@ Disassembly of section .text:
  1a4:	fe442703          	lw	a4,-28(s0)
  1a8:	fe842683          	lw	a3,-24(s0)
  1ac:	00078513          	mv	a0,a5
- 1b0:	3a9070ef          	jal	7d58 <_Z17cmd_arg_tokenizerPcS_S_ii>
+ 1b0:	3c5070ef          	jal	7d74 <_Z17cmd_arg_tokenizerPcS_S_ii>
  1b4:	fe340693          	add	a3,s0,-29
  1b8:	ee040713          	add	a4,s0,-288
  1bc:	f4040793          	add	a5,s0,-192
  1c0:	00068613          	mv	a2,a3
  1c4:	00070593          	mv	a1,a4
  1c8:	00078513          	mv	a0,a5
- 1cc:	285070ef          	jal	7c50 <_Z15process_commandPcS_PVb>
+ 1cc:	2a1070ef          	jal	7c6c <_Z15process_commandPcS_PVb>
  1d0:	000307b7          	lui	a5,0x30
  1d4:	00078513          	mv	a0,a5
  1d8:	304070ef          	jal	74dc <_Z10uart_printPKc>
@@ -191,7 +191,7 @@ Disassembly of section .text:
  2bc:	00058913          	mv	s2,a1
  2c0:	38069c63          	bnez	a3,658 <__divdi3+0x414>
  2c4:	00030697          	auipc	a3,0x30
- 2c8:	ed868693          	add	a3,a3,-296 # 3019c <__clz_tab>
+ 2c8:	edc68693          	add	a3,a3,-292 # 301a0 <__clz_tab>
  2cc:	12c5f663          	bgeu	a1,a2,3f8 <__divdi3+0x1b4>
  2d0:	000107b7          	lui	a5,0x10
  2d4:	10f67863          	bgeu	a2,a5,3e4 <__divdi3+0x1a0>
@@ -427,7 +427,7 @@ Disassembly of section .text:
  66c:	00371713          	sll	a4,a4,0x3
  670:	00e6d533          	srl	a0,a3,a4
  674:	00030797          	auipc	a5,0x30
- 678:	b2878793          	add	a5,a5,-1240 # 3019c <__clz_tab>
+ 678:	b2c78793          	add	a5,a5,-1236 # 301a0 <__clz_tab>
  67c:	00a787b3          	add	a5,a5,a0
  680:	0007c803          	lbu	a6,0(a5)
  684:	02000793          	li	a5,32
@@ -504,7 +504,7 @@ Disassembly of section .text:
  7a0:	010c9793          	sll	a5,s9,0x10
  7a4:	00010e37          	lui	t3,0x10
  7a8:	00d7e7b3          	or	a5,a5,a3
- 7ac:	fffe0313          	add	t1,t3,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x82a7>
+ 7ac:	fffe0313          	add	t1,t3,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x828b>
  7b0:	0067f8b3          	and	a7,a5,t1
  7b4:	00647333          	and	t1,s0,t1
  7b8:	41770733          	sub	a4,a4,s7
@@ -536,7 +536,7 @@ Disassembly of section .text:
  820:	02c76663          	bltu	a4,a2,84c <__divdi3+0x608>
  824:	bac71ce3          	bne	a4,a2,3dc <__divdi3+0x198>
  828:	00010637          	lui	a2,0x10
- 82c:	fff60613          	add	a2,a2,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x82a7>
+ 82c:	fff60613          	add	a2,a2,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x828b>
  830:	00c6f6b3          	and	a3,a3,a2
  834:	01069693          	sll	a3,a3,0x10
  838:	00c87833          	and	a6,a6,a2
@@ -582,7 +582,7 @@ Disassembly of section .text:
  8d0:	00058913          	mv	s2,a1
  8d4:	26069663          	bnez	a3,b40 <__moddi3+0x2e0>
  8d8:	00030697          	auipc	a3,0x30
- 8dc:	8c468693          	add	a3,a3,-1852 # 3019c <__clz_tab>
+ 8dc:	8c868693          	add	a3,a3,-1848 # 301a0 <__clz_tab>
  8e0:	14c5fa63          	bgeu	a1,a2,a34 <__moddi3+0x1d4>
  8e4:	000107b7          	lui	a5,0x10
  8e8:	12f67c63          	bgeu	a2,a5,a20 <__moddi3+0x1c0>
@@ -743,7 +743,7 @@ Disassembly of section .text:
  b54:	00379793          	sll	a5,a5,0x3
  b58:	00f6d833          	srl	a6,a3,a5
  b5c:	0002f717          	auipc	a4,0x2f
- b60:	64070713          	add	a4,a4,1600 # 3019c <__clz_tab>
+ b60:	64470713          	add	a4,a4,1604 # 301a0 <__clz_tab>
  b64:	01070733          	add	a4,a4,a6
  b68:	00074a03          	lbu	s4,0(a4)
  b6c:	00fa0a33          	add	s4,s4,a5
@@ -826,7 +826,7 @@ Disassembly of section .text:
  ca0:	00010337          	lui	t1,0x10
  ca4:	010b1b13          	sll	s6,s6,0x10
  ca8:	00eb6b33          	or	s6,s6,a4
- cac:	fff30713          	add	a4,t1,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x82a7>
+ cac:	fff30713          	add	a4,t1,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x828b>
  cb0:	00eb7e33          	and	t3,s6,a4
  cb4:	00eaf733          	and	a4,s5,a4
  cb8:	419587b3          	sub	a5,a1,s9
@@ -853,7 +853,7 @@ Disassembly of section .text:
  d0c:	00e47463          	bgeu	s0,a4,d14 <__moddi3+0x4b4>
  d10:	00650533          	add	a0,a0,t1
  d14:	000106b7          	lui	a3,0x10
- d18:	fff68693          	add	a3,a3,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x82a7>
+ d18:	fff68693          	add	a3,a3,-1 # ffff <_Z17cmd_arg_tokenizerPcS_S_ii+0x828b>
  d1c:	01045713          	srl	a4,s0,0x10
  d20:	00d47433          	and	s0,s0,a3
  d24:	01041413          	sll	s0,s0,0x10
@@ -956,7 +956,7 @@ Disassembly of section .spi_compute:
     5014:	fec42503          	lw	a0,-20(s0)
     5018:	4c4020ef          	jal	74dc <_Z10uart_printPKc>
     501c:	000307b7          	lui	a5,0x30
-    5020:	08878513          	add	a0,a5,136 # 30088 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28330>
+    5020:	08878513          	add	a0,a5,136 # 30088 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28314>
     5024:	4b8020ef          	jal	74dc <_Z10uart_printPKc>
     5028:	00000013          	nop
     502c:	01c12083          	lw	ra,28(sp)
@@ -971,22 +971,22 @@ Disassembly of section .spi_compute:
     5048:	02010413          	add	s0,sp,32
     504c:	fea42623          	sw	a0,-20(s0)
     5050:	000307b7          	lui	a5,0x30
-    5054:	08c78513          	add	a0,a5,140 # 3008c <_Z17cmd_arg_tokenizerPcS_S_ii+0x28334>
+    5054:	08c78513          	add	a0,a5,140 # 3008c <_Z17cmd_arg_tokenizerPcS_S_ii+0x28318>
     5058:	484020ef          	jal	74dc <_Z10uart_printPKc>
     505c:	000307b7          	lui	a5,0x30
-    5060:	0ac78513          	add	a0,a5,172 # 300ac <_Z17cmd_arg_tokenizerPcS_S_ii+0x28354>
+    5060:	0ac78513          	add	a0,a5,172 # 300ac <_Z17cmd_arg_tokenizerPcS_S_ii+0x28338>
     5064:	478020ef          	jal	74dc <_Z10uart_printPKc>
     5068:	000307b7          	lui	a5,0x30
-    506c:	0bc78513          	add	a0,a5,188 # 300bc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28364>
+    506c:	0bc78513          	add	a0,a5,188 # 300bc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28348>
     5070:	46c020ef          	jal	74dc <_Z10uart_printPKc>
     5074:	000307b7          	lui	a5,0x30
-    5078:	0cc78513          	add	a0,a5,204 # 300cc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28374>
+    5078:	0cc78513          	add	a0,a5,204 # 300cc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28358>
     507c:	460020ef          	jal	74dc <_Z10uart_printPKc>
     5080:	000307b7          	lui	a5,0x30
-    5084:	0dc78513          	add	a0,a5,220 # 300dc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28384>
+    5084:	0dc78513          	add	a0,a5,220 # 300dc <_Z17cmd_arg_tokenizerPcS_S_ii+0x28368>
     5088:	454020ef          	jal	74dc <_Z10uart_printPKc>
     508c:	000307b7          	lui	a5,0x30
-    5090:	0ec78513          	add	a0,a5,236 # 300ec <_Z17cmd_arg_tokenizerPcS_S_ii+0x28394>
+    5090:	0ec78513          	add	a0,a5,236 # 300ec <_Z17cmd_arg_tokenizerPcS_S_ii+0x28378>
     5094:	448020ef          	jal	74dc <_Z10uart_printPKc>
     5098:	00000013          	nop
     509c:	01c12083          	lw	ra,28(sp)
@@ -1002,7 +1002,7 @@ Disassembly of section .spi_compute:
     50bc:	fea42623          	sw	a0,-20(s0)
     50c0:	feb42423          	sw	a1,-24(s0)
     50c4:	000307b7          	lui	a5,0x30
-    50c8:	11078513          	add	a0,a5,272 # 30110 <_Z17cmd_arg_tokenizerPcS_S_ii+0x283b8>
+    50c8:	11078513          	add	a0,a5,272 # 30110 <_Z17cmd_arg_tokenizerPcS_S_ii+0x2839c>
     50cc:	410020ef          	jal	74dc <_Z10uart_printPKc>
     50d0:	fe842783          	lw	a5,-24(s0)
     50d4:	00078023          	sb	zero,0(a5)
@@ -1036,7 +1036,7 @@ Disassembly of section .spi_compute:
     5134:	604020ef          	jal	7738 <_Z16uart_print_int32i>
     5138:	00000013          	nop
     513c:	000307b7          	lui	a5,0x30
-    5140:	11c78513          	add	a0,a5,284 # 3011c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283c4>
+    5140:	11c78513          	add	a0,a5,284 # 3011c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283a8>
     5144:	398020ef          	jal	74dc <_Z10uart_printPKc>
     5148:	00000013          	nop
     514c:	01c12083          	lw	ra,28(sp)
@@ -1064,7 +1064,7 @@ Disassembly of section .spi_compute:
     519c:	fe842783          	lw	a5,-24(s0)
     51a0:	00f76c63          	bltu	a4,a5,51b8 <_Z5_sbrki+0x5c>
     51a4:	000307b7          	lui	a5,0x30
-    51a8:	12c78513          	add	a0,a5,300 # 3012c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283d4>
+    51a8:	12c78513          	add	a0,a5,300 # 3012c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283b8>
     51ac:	330020ef          	jal	74dc <_Z10uart_printPKc>
     51b0:	fff00793          	li	a5,-1
     51b4:	0240006f          	j	51d8 <_Z5_sbrki+0x7c>
@@ -1601,285 +1601,292 @@ Disassembly of section .spi_uart:
     7a1c:	00f707b3          	add	a5,a4,a5
     7a20:	00078023          	sb	zero,0(a5)
     7a24:	000307b7          	lui	a5,0x30
-    7a28:	13c78513          	add	a0,a5,316 # 3013c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283e4>
+    7a28:	13c78513          	add	a0,a5,316 # 3013c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283c8>
     7a2c:	ab1ff0ef          	jal	74dc <_Z10uart_printPKc>
     7a30:	fe042623          	sw	zero,-20(s0)
-    7a34:	0ac0006f          	j	7ae0 <_Z12uart_getlinePci+0x114>
+    7a34:	0c80006f          	j	7afc <_Z12uart_getlinePci+0x130>
     7a38:	feb44703          	lbu	a4,-21(s0)
     7a3c:	00800793          	li	a5,8
     7a40:	00f70863          	beq	a4,a5,7a50 <_Z12uart_getlinePci+0x84>
     7a44:	feb44703          	lbu	a4,-21(s0)
     7a48:	07f00793          	li	a5,127
-    7a4c:	02f71263          	bne	a4,a5,7a70 <_Z12uart_getlinePci+0xa4>
+    7a4c:	02f71863          	bne	a4,a5,7a7c <_Z12uart_getlinePci+0xb0>
     7a50:	fec42783          	lw	a5,-20(s0)
-    7a54:	00f05a63          	blez	a5,7a68 <_Z12uart_getlinePci+0x9c>
+    7a54:	02f05063          	blez	a5,7a74 <_Z12uart_getlinePci+0xa8>
     7a58:	fec42783          	lw	a5,-20(s0)
     7a5c:	fff78793          	add	a5,a5,-1
     7a60:	fef42623          	sw	a5,-20(s0)
-    7a64:	0780006f          	j	7adc <_Z12uart_getlinePci+0x110>
-    7a68:	fe042623          	sw	zero,-20(s0)
-    7a6c:	0700006f          	j	7adc <_Z12uart_getlinePci+0x110>
-    7a70:	fd842783          	lw	a5,-40(s0)
-    7a74:	fff78793          	add	a5,a5,-1
-    7a78:	fec42703          	lw	a4,-20(s0)
-    7a7c:	f6f758e3          	bge	a4,a5,79ec <_Z12uart_getlinePci+0x20>
-    7a80:	feb44783          	lbu	a5,-21(s0)
-    7a84:	02078263          	beqz	a5,7aa8 <_Z12uart_getlinePci+0xdc>
-    7a88:	feb44703          	lbu	a4,-21(s0)
-    7a8c:	fdc42683          	lw	a3,-36(s0)
-    7a90:	fec42783          	lw	a5,-20(s0)
-    7a94:	00178613          	add	a2,a5,1
-    7a98:	fec42623          	sw	a2,-20(s0)
-    7a9c:	00f687b3          	add	a5,a3,a5
-    7aa0:	00e78023          	sb	a4,0(a5)
-    7aa4:	f49ff06f          	j	79ec <_Z12uart_getlinePci+0x20>
-    7aa8:	fd842783          	lw	a5,-40(s0)
-    7aac:	fff78793          	add	a5,a5,-1
-    7ab0:	fdc42703          	lw	a4,-36(s0)
-    7ab4:	00f707b3          	add	a5,a4,a5
-    7ab8:	00078023          	sb	zero,0(a5)
-    7abc:	000307b7          	lui	a5,0x30
-    7ac0:	14478513          	add	a0,a5,324 # 30144 <_Z17cmd_arg_tokenizerPcS_S_ii+0x283ec>
-    7ac4:	a19ff0ef          	jal	74dc <_Z10uart_printPKc>
-    7ac8:	fd842583          	lw	a1,-40(s0)
-    7acc:	fdc42503          	lw	a0,-36(s0)
-    7ad0:	bcdff0ef          	jal	769c <_Z11dump_bufferPKci>
-    7ad4:	fe042623          	sw	zero,-20(s0)
-    7ad8:	0080006f          	j	7ae0 <_Z12uart_getlinePci+0x114>
-    7adc:	f11ff06f          	j	79ec <_Z12uart_getlinePci+0x20>
-    7ae0:	00000013          	nop
-    7ae4:	02c12083          	lw	ra,44(sp)
-    7ae8:	02812403          	lw	s0,40(sp)
-    7aec:	03010113          	add	sp,sp,48
-    7af0:	00008067          	ret
+    7a64:	000307b7          	lui	a5,0x30
+    7a68:	14478513          	add	a0,a5,324 # 30144 <_Z17cmd_arg_tokenizerPcS_S_ii+0x283d0>
+    7a6c:	a71ff0ef          	jal	74dc <_Z10uart_printPKc>
+    7a70:	0880006f          	j	7af8 <_Z12uart_getlinePci+0x12c>
+    7a74:	fe042623          	sw	zero,-20(s0)
+    7a78:	0800006f          	j	7af8 <_Z12uart_getlinePci+0x12c>
+    7a7c:	fd842783          	lw	a5,-40(s0)
+    7a80:	fff78793          	add	a5,a5,-1
+    7a84:	fec42703          	lw	a4,-20(s0)
+    7a88:	f6f752e3          	bge	a4,a5,79ec <_Z12uart_getlinePci+0x20>
+    7a8c:	feb44783          	lbu	a5,-21(s0)
+    7a90:	02078a63          	beqz	a5,7ac4 <_Z12uart_getlinePci+0xf8>
+    7a94:	feb44703          	lbu	a4,-21(s0)
+    7a98:	fdc42683          	lw	a3,-36(s0)
+    7a9c:	fec42783          	lw	a5,-20(s0)
+    7aa0:	00178613          	add	a2,a5,1
+    7aa4:	fec42623          	sw	a2,-20(s0)
+    7aa8:	00f687b3          	add	a5,a3,a5
+    7aac:	00e78023          	sb	a4,0(a5)
+    7ab0:	feb44783          	lbu	a5,-21(s0)
+    7ab4:	00078513          	mv	a0,a5
+    7ab8:	9c1ff0ef          	jal	7478 <_Z9uart_putcc>
+    7abc:	00000013          	nop
+    7ac0:	f2dff06f          	j	79ec <_Z12uart_getlinePci+0x20>
+    7ac4:	fd842783          	lw	a5,-40(s0)
+    7ac8:	fff78793          	add	a5,a5,-1
+    7acc:	fdc42703          	lw	a4,-36(s0)
+    7ad0:	00f707b3          	add	a5,a4,a5
+    7ad4:	00078023          	sb	zero,0(a5)
+    7ad8:	000307b7          	lui	a5,0x30
+    7adc:	14878513          	add	a0,a5,328 # 30148 <_Z17cmd_arg_tokenizerPcS_S_ii+0x283d4>
+    7ae0:	9fdff0ef          	jal	74dc <_Z10uart_printPKc>
+    7ae4:	fd842583          	lw	a1,-40(s0)
+    7ae8:	fdc42503          	lw	a0,-36(s0)
+    7aec:	bb1ff0ef          	jal	769c <_Z11dump_bufferPKci>
+    7af0:	fe042623          	sw	zero,-20(s0)
+    7af4:	0080006f          	j	7afc <_Z12uart_getlinePci+0x130>
+    7af8:	ef5ff06f          	j	79ec <_Z12uart_getlinePci+0x20>
+    7afc:	00000013          	nop
+    7b00:	02c12083          	lw	ra,44(sp)
+    7b04:	02812403          	lw	s0,40(sp)
+    7b08:	03010113          	add	sp,sp,48
+    7b0c:	00008067          	ret
 
-00007af4 <_Z6strcmpPKcS0_>:
-    7af4:	fd010113          	add	sp,sp,-48
-    7af8:	02812623          	sw	s0,44(sp)
-    7afc:	03010413          	add	s0,sp,48
-    7b00:	fca42e23          	sw	a0,-36(s0)
-    7b04:	fcb42c23          	sw	a1,-40(s0)
-    7b08:	fe042623          	sw	zero,-20(s0)
-    7b0c:	fec42783          	lw	a5,-20(s0)
-    7b10:	fdc42703          	lw	a4,-36(s0)
-    7b14:	00f707b3          	add	a5,a4,a5
-    7b18:	0007c703          	lbu	a4,0(a5)
-    7b1c:	fec42783          	lw	a5,-20(s0)
-    7b20:	fd842683          	lw	a3,-40(s0)
-    7b24:	00f687b3          	add	a5,a3,a5
-    7b28:	0007c783          	lbu	a5,0(a5)
-    7b2c:	02f70863          	beq	a4,a5,7b5c <_Z6strcmpPKcS0_+0x68>
-    7b30:	fec42783          	lw	a5,-20(s0)
-    7b34:	fdc42703          	lw	a4,-36(s0)
-    7b38:	00f707b3          	add	a5,a4,a5
-    7b3c:	0007c783          	lbu	a5,0(a5)
-    7b40:	00078693          	mv	a3,a5
-    7b44:	fec42783          	lw	a5,-20(s0)
-    7b48:	fd842703          	lw	a4,-40(s0)
-    7b4c:	00f707b3          	add	a5,a4,a5
-    7b50:	0007c783          	lbu	a5,0(a5)
-    7b54:	40f687b3          	sub	a5,a3,a5
-    7b58:	0300006f          	j	7b88 <_Z6strcmpPKcS0_+0x94>
-    7b5c:	fec42783          	lw	a5,-20(s0)
-    7b60:	fdc42703          	lw	a4,-36(s0)
-    7b64:	00f707b3          	add	a5,a4,a5
-    7b68:	0007c783          	lbu	a5,0(a5)
-    7b6c:	00079663          	bnez	a5,7b78 <_Z6strcmpPKcS0_+0x84>
-    7b70:	00000793          	li	a5,0
-    7b74:	0140006f          	j	7b88 <_Z6strcmpPKcS0_+0x94>
+00007b10 <_Z6strcmpPKcS0_>:
+    7b10:	fd010113          	add	sp,sp,-48
+    7b14:	02812623          	sw	s0,44(sp)
+    7b18:	03010413          	add	s0,sp,48
+    7b1c:	fca42e23          	sw	a0,-36(s0)
+    7b20:	fcb42c23          	sw	a1,-40(s0)
+    7b24:	fe042623          	sw	zero,-20(s0)
+    7b28:	fec42783          	lw	a5,-20(s0)
+    7b2c:	fdc42703          	lw	a4,-36(s0)
+    7b30:	00f707b3          	add	a5,a4,a5
+    7b34:	0007c703          	lbu	a4,0(a5)
+    7b38:	fec42783          	lw	a5,-20(s0)
+    7b3c:	fd842683          	lw	a3,-40(s0)
+    7b40:	00f687b3          	add	a5,a3,a5
+    7b44:	0007c783          	lbu	a5,0(a5)
+    7b48:	02f70863          	beq	a4,a5,7b78 <_Z6strcmpPKcS0_+0x68>
+    7b4c:	fec42783          	lw	a5,-20(s0)
+    7b50:	fdc42703          	lw	a4,-36(s0)
+    7b54:	00f707b3          	add	a5,a4,a5
+    7b58:	0007c783          	lbu	a5,0(a5)
+    7b5c:	00078693          	mv	a3,a5
+    7b60:	fec42783          	lw	a5,-20(s0)
+    7b64:	fd842703          	lw	a4,-40(s0)
+    7b68:	00f707b3          	add	a5,a4,a5
+    7b6c:	0007c783          	lbu	a5,0(a5)
+    7b70:	40f687b3          	sub	a5,a3,a5
+    7b74:	0300006f          	j	7ba4 <_Z6strcmpPKcS0_+0x94>
     7b78:	fec42783          	lw	a5,-20(s0)
-    7b7c:	00178793          	add	a5,a5,1
-    7b80:	fef42623          	sw	a5,-20(s0)
-    7b84:	f89ff06f          	j	7b0c <_Z6strcmpPKcS0_+0x18>
-    7b88:	00078513          	mv	a0,a5
-    7b8c:	02c12403          	lw	s0,44(sp)
-    7b90:	03010113          	add	sp,sp,48
-    7b94:	00008067          	ret
+    7b7c:	fdc42703          	lw	a4,-36(s0)
+    7b80:	00f707b3          	add	a5,a4,a5
+    7b84:	0007c783          	lbu	a5,0(a5)
+    7b88:	00079663          	bnez	a5,7b94 <_Z6strcmpPKcS0_+0x84>
+    7b8c:	00000793          	li	a5,0
+    7b90:	0140006f          	j	7ba4 <_Z6strcmpPKcS0_+0x94>
+    7b94:	fec42783          	lw	a5,-20(s0)
+    7b98:	00178793          	add	a5,a5,1
+    7b9c:	fef42623          	sw	a5,-20(s0)
+    7ba0:	f89ff06f          	j	7b28 <_Z6strcmpPKcS0_+0x18>
+    7ba4:	00078513          	mv	a0,a5
+    7ba8:	02c12403          	lw	s0,44(sp)
+    7bac:	03010113          	add	sp,sp,48
+    7bb0:	00008067          	ret
 
-00007b98 <_Z7strncmpPKcS0_i>:
-    7b98:	fd010113          	add	sp,sp,-48
-    7b9c:	02812623          	sw	s0,44(sp)
-    7ba0:	03010413          	add	s0,sp,48
-    7ba4:	fca42e23          	sw	a0,-36(s0)
-    7ba8:	fcb42c23          	sw	a1,-40(s0)
-    7bac:	fcc42a23          	sw	a2,-44(s0)
-    7bb0:	fe042623          	sw	zero,-20(s0)
-    7bb4:	07c0006f          	j	7c30 <_Z7strncmpPKcS0_i+0x98>
-    7bb8:	fec42783          	lw	a5,-20(s0)
-    7bbc:	fdc42703          	lw	a4,-36(s0)
-    7bc0:	00f707b3          	add	a5,a4,a5
-    7bc4:	0007c703          	lbu	a4,0(a5)
-    7bc8:	fec42783          	lw	a5,-20(s0)
-    7bcc:	fd842683          	lw	a3,-40(s0)
-    7bd0:	00f687b3          	add	a5,a3,a5
-    7bd4:	0007c783          	lbu	a5,0(a5)
-    7bd8:	02f70863          	beq	a4,a5,7c08 <_Z7strncmpPKcS0_i+0x70>
-    7bdc:	fec42783          	lw	a5,-20(s0)
-    7be0:	fdc42703          	lw	a4,-36(s0)
-    7be4:	00f707b3          	add	a5,a4,a5
-    7be8:	0007c783          	lbu	a5,0(a5)
-    7bec:	00078693          	mv	a3,a5
-    7bf0:	fec42783          	lw	a5,-20(s0)
-    7bf4:	fd842703          	lw	a4,-40(s0)
-    7bf8:	00f707b3          	add	a5,a4,a5
-    7bfc:	0007c783          	lbu	a5,0(a5)
-    7c00:	40f687b3          	sub	a5,a3,a5
-    7c04:	03c0006f          	j	7c40 <_Z7strncmpPKcS0_i+0xa8>
-    7c08:	fec42783          	lw	a5,-20(s0)
-    7c0c:	fdc42703          	lw	a4,-36(s0)
-    7c10:	00f707b3          	add	a5,a4,a5
-    7c14:	0007c783          	lbu	a5,0(a5)
-    7c18:	00079663          	bnez	a5,7c24 <_Z7strncmpPKcS0_i+0x8c>
-    7c1c:	00000793          	li	a5,0
-    7c20:	0200006f          	j	7c40 <_Z7strncmpPKcS0_i+0xa8>
+00007bb4 <_Z7strncmpPKcS0_i>:
+    7bb4:	fd010113          	add	sp,sp,-48
+    7bb8:	02812623          	sw	s0,44(sp)
+    7bbc:	03010413          	add	s0,sp,48
+    7bc0:	fca42e23          	sw	a0,-36(s0)
+    7bc4:	fcb42c23          	sw	a1,-40(s0)
+    7bc8:	fcc42a23          	sw	a2,-44(s0)
+    7bcc:	fe042623          	sw	zero,-20(s0)
+    7bd0:	07c0006f          	j	7c4c <_Z7strncmpPKcS0_i+0x98>
+    7bd4:	fec42783          	lw	a5,-20(s0)
+    7bd8:	fdc42703          	lw	a4,-36(s0)
+    7bdc:	00f707b3          	add	a5,a4,a5
+    7be0:	0007c703          	lbu	a4,0(a5)
+    7be4:	fec42783          	lw	a5,-20(s0)
+    7be8:	fd842683          	lw	a3,-40(s0)
+    7bec:	00f687b3          	add	a5,a3,a5
+    7bf0:	0007c783          	lbu	a5,0(a5)
+    7bf4:	02f70863          	beq	a4,a5,7c24 <_Z7strncmpPKcS0_i+0x70>
+    7bf8:	fec42783          	lw	a5,-20(s0)
+    7bfc:	fdc42703          	lw	a4,-36(s0)
+    7c00:	00f707b3          	add	a5,a4,a5
+    7c04:	0007c783          	lbu	a5,0(a5)
+    7c08:	00078693          	mv	a3,a5
+    7c0c:	fec42783          	lw	a5,-20(s0)
+    7c10:	fd842703          	lw	a4,-40(s0)
+    7c14:	00f707b3          	add	a5,a4,a5
+    7c18:	0007c783          	lbu	a5,0(a5)
+    7c1c:	40f687b3          	sub	a5,a3,a5
+    7c20:	03c0006f          	j	7c5c <_Z7strncmpPKcS0_i+0xa8>
     7c24:	fec42783          	lw	a5,-20(s0)
-    7c28:	00178793          	add	a5,a5,1
-    7c2c:	fef42623          	sw	a5,-20(s0)
-    7c30:	fec42703          	lw	a4,-20(s0)
-    7c34:	fd442783          	lw	a5,-44(s0)
-    7c38:	f8f740e3          	blt	a4,a5,7bb8 <_Z7strncmpPKcS0_i+0x20>
-    7c3c:	00000793          	li	a5,0
-    7c40:	00078513          	mv	a0,a5
-    7c44:	02c12403          	lw	s0,44(sp)
-    7c48:	03010113          	add	sp,sp,48
-    7c4c:	00008067          	ret
+    7c28:	fdc42703          	lw	a4,-36(s0)
+    7c2c:	00f707b3          	add	a5,a4,a5
+    7c30:	0007c783          	lbu	a5,0(a5)
+    7c34:	00079663          	bnez	a5,7c40 <_Z7strncmpPKcS0_i+0x8c>
+    7c38:	00000793          	li	a5,0
+    7c3c:	0200006f          	j	7c5c <_Z7strncmpPKcS0_i+0xa8>
+    7c40:	fec42783          	lw	a5,-20(s0)
+    7c44:	00178793          	add	a5,a5,1
+    7c48:	fef42623          	sw	a5,-20(s0)
+    7c4c:	fec42703          	lw	a4,-20(s0)
+    7c50:	fd442783          	lw	a5,-44(s0)
+    7c54:	f8f740e3          	blt	a4,a5,7bd4 <_Z7strncmpPKcS0_i+0x20>
+    7c58:	00000793          	li	a5,0
+    7c5c:	00078513          	mv	a0,a5
+    7c60:	02c12403          	lw	s0,44(sp)
+    7c64:	03010113          	add	sp,sp,48
+    7c68:	00008067          	ret
 
-00007c50 <_Z15process_commandPcS_PVb>:
-    7c50:	fe010113          	add	sp,sp,-32
-    7c54:	00112e23          	sw	ra,28(sp)
-    7c58:	00812c23          	sw	s0,24(sp)
-    7c5c:	02010413          	add	s0,sp,32
-    7c60:	fea42623          	sw	a0,-20(s0)
-    7c64:	feb42423          	sw	a1,-24(s0)
-    7c68:	fec42223          	sw	a2,-28(s0)
-    7c6c:	fec42783          	lw	a5,-20(s0)
-    7c70:	0007c783          	lbu	a5,0(a5)
-    7c74:	0c078863          	beqz	a5,7d44 <_Z15process_commandPcS_PVb+0xf4>
-    7c78:	000307b7          	lui	a5,0x30
-    7c7c:	15878593          	add	a1,a5,344 # 30158 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28400>
-    7c80:	fec42503          	lw	a0,-20(s0)
-    7c84:	e71ff0ef          	jal	7af4 <_Z6strcmpPKcS0_>
-    7c88:	00050793          	mv	a5,a0
-    7c8c:	0017b793          	seqz	a5,a5
-    7c90:	0ff7f793          	zext.b	a5,a5
-    7c94:	00078863          	beqz	a5,7ca4 <_Z15process_commandPcS_PVb+0x54>
-    7c98:	fe842503          	lw	a0,-24(s0)
-    7c9c:	b64fd0ef          	jal	5000 <_Z8cmd_echoPc>
-    7ca0:	0a80006f          	j	7d48 <_Z15process_commandPcS_PVb+0xf8>
-    7ca4:	000307b7          	lui	a5,0x30
-    7ca8:	16078593          	add	a1,a5,352 # 30160 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28408>
-    7cac:	fec42503          	lw	a0,-20(s0)
-    7cb0:	e45ff0ef          	jal	7af4 <_Z6strcmpPKcS0_>
-    7cb4:	00050793          	mv	a5,a0
-    7cb8:	0017b793          	seqz	a5,a5
-    7cbc:	0ff7f793          	zext.b	a5,a5
-    7cc0:	00078863          	beqz	a5,7cd0 <_Z15process_commandPcS_PVb+0x80>
-    7cc4:	fe842503          	lw	a0,-24(s0)
-    7cc8:	b74fd0ef          	jal	503c <_Z8cmd_helpPc>
-    7ccc:	07c0006f          	j	7d48 <_Z15process_commandPcS_PVb+0xf8>
-    7cd0:	000307b7          	lui	a5,0x30
-    7cd4:	16878593          	add	a1,a5,360 # 30168 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28410>
-    7cd8:	fec42503          	lw	a0,-20(s0)
-    7cdc:	e19ff0ef          	jal	7af4 <_Z6strcmpPKcS0_>
-    7ce0:	00050793          	mv	a5,a0
-    7ce4:	0017b793          	seqz	a5,a5
-    7ce8:	0ff7f793          	zext.b	a5,a5
-    7cec:	00078663          	beqz	a5,7cf8 <_Z15process_commandPcS_PVb+0xa8>
-    7cf0:	c24fd0ef          	jal	5114 <_Z8cmd_freev>
-    7cf4:	0540006f          	j	7d48 <_Z15process_commandPcS_PVb+0xf8>
-    7cf8:	000307b7          	lui	a5,0x30
-    7cfc:	17078593          	add	a1,a5,368 # 30170 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28418>
-    7d00:	fec42503          	lw	a0,-20(s0)
-    7d04:	df1ff0ef          	jal	7af4 <_Z6strcmpPKcS0_>
-    7d08:	00050793          	mv	a5,a0
-    7d0c:	0017b793          	seqz	a5,a5
-    7d10:	0ff7f793          	zext.b	a5,a5
-    7d14:	00078a63          	beqz	a5,7d28 <_Z15process_commandPcS_PVb+0xd8>
-    7d18:	fe442583          	lw	a1,-28(s0)
-    7d1c:	fe842503          	lw	a0,-24(s0)
-    7d20:	b8cfd0ef          	jal	50ac <_Z8cmd_exitPcPVb>
-    7d24:	0240006f          	j	7d48 <_Z15process_commandPcS_PVb+0xf8>
-    7d28:	000307b7          	lui	a5,0x30
-    7d2c:	17878513          	add	a0,a5,376 # 30178 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28420>
-    7d30:	facff0ef          	jal	74dc <_Z10uart_printPKc>
-    7d34:	000307b7          	lui	a5,0x30
-    7d38:	17c78513          	add	a0,a5,380 # 3017c <_Z17cmd_arg_tokenizerPcS_S_ii+0x28424>
-    7d3c:	fa0ff0ef          	jal	74dc <_Z10uart_printPKc>
-    7d40:	0080006f          	j	7d48 <_Z15process_commandPcS_PVb+0xf8>
-    7d44:	00000013          	nop
-    7d48:	01c12083          	lw	ra,28(sp)
-    7d4c:	01812403          	lw	s0,24(sp)
-    7d50:	02010113          	add	sp,sp,32
-    7d54:	00008067          	ret
+00007c6c <_Z15process_commandPcS_PVb>:
+    7c6c:	fe010113          	add	sp,sp,-32
+    7c70:	00112e23          	sw	ra,28(sp)
+    7c74:	00812c23          	sw	s0,24(sp)
+    7c78:	02010413          	add	s0,sp,32
+    7c7c:	fea42623          	sw	a0,-20(s0)
+    7c80:	feb42423          	sw	a1,-24(s0)
+    7c84:	fec42223          	sw	a2,-28(s0)
+    7c88:	fec42783          	lw	a5,-20(s0)
+    7c8c:	0007c783          	lbu	a5,0(a5)
+    7c90:	0c078863          	beqz	a5,7d60 <_Z15process_commandPcS_PVb+0xf4>
+    7c94:	000307b7          	lui	a5,0x30
+    7c98:	15c78593          	add	a1,a5,348 # 3015c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283e8>
+    7c9c:	fec42503          	lw	a0,-20(s0)
+    7ca0:	e71ff0ef          	jal	7b10 <_Z6strcmpPKcS0_>
+    7ca4:	00050793          	mv	a5,a0
+    7ca8:	0017b793          	seqz	a5,a5
+    7cac:	0ff7f793          	zext.b	a5,a5
+    7cb0:	00078863          	beqz	a5,7cc0 <_Z15process_commandPcS_PVb+0x54>
+    7cb4:	fe842503          	lw	a0,-24(s0)
+    7cb8:	b48fd0ef          	jal	5000 <_Z8cmd_echoPc>
+    7cbc:	0a80006f          	j	7d64 <_Z15process_commandPcS_PVb+0xf8>
+    7cc0:	000307b7          	lui	a5,0x30
+    7cc4:	16478593          	add	a1,a5,356 # 30164 <_Z17cmd_arg_tokenizerPcS_S_ii+0x283f0>
+    7cc8:	fec42503          	lw	a0,-20(s0)
+    7ccc:	e45ff0ef          	jal	7b10 <_Z6strcmpPKcS0_>
+    7cd0:	00050793          	mv	a5,a0
+    7cd4:	0017b793          	seqz	a5,a5
+    7cd8:	0ff7f793          	zext.b	a5,a5
+    7cdc:	00078863          	beqz	a5,7cec <_Z15process_commandPcS_PVb+0x80>
+    7ce0:	fe842503          	lw	a0,-24(s0)
+    7ce4:	b58fd0ef          	jal	503c <_Z8cmd_helpPc>
+    7ce8:	07c0006f          	j	7d64 <_Z15process_commandPcS_PVb+0xf8>
+    7cec:	000307b7          	lui	a5,0x30
+    7cf0:	16c78593          	add	a1,a5,364 # 3016c <_Z17cmd_arg_tokenizerPcS_S_ii+0x283f8>
+    7cf4:	fec42503          	lw	a0,-20(s0)
+    7cf8:	e19ff0ef          	jal	7b10 <_Z6strcmpPKcS0_>
+    7cfc:	00050793          	mv	a5,a0
+    7d00:	0017b793          	seqz	a5,a5
+    7d04:	0ff7f793          	zext.b	a5,a5
+    7d08:	00078663          	beqz	a5,7d14 <_Z15process_commandPcS_PVb+0xa8>
+    7d0c:	c08fd0ef          	jal	5114 <_Z8cmd_freev>
+    7d10:	0540006f          	j	7d64 <_Z15process_commandPcS_PVb+0xf8>
+    7d14:	000307b7          	lui	a5,0x30
+    7d18:	17478593          	add	a1,a5,372 # 30174 <_Z17cmd_arg_tokenizerPcS_S_ii+0x28400>
+    7d1c:	fec42503          	lw	a0,-20(s0)
+    7d20:	df1ff0ef          	jal	7b10 <_Z6strcmpPKcS0_>
+    7d24:	00050793          	mv	a5,a0
+    7d28:	0017b793          	seqz	a5,a5
+    7d2c:	0ff7f793          	zext.b	a5,a5
+    7d30:	00078a63          	beqz	a5,7d44 <_Z15process_commandPcS_PVb+0xd8>
+    7d34:	fe442583          	lw	a1,-28(s0)
+    7d38:	fe842503          	lw	a0,-24(s0)
+    7d3c:	b70fd0ef          	jal	50ac <_Z8cmd_exitPcPVb>
+    7d40:	0240006f          	j	7d64 <_Z15process_commandPcS_PVb+0xf8>
+    7d44:	000307b7          	lui	a5,0x30
+    7d48:	17c78513          	add	a0,a5,380 # 3017c <_Z17cmd_arg_tokenizerPcS_S_ii+0x28408>
+    7d4c:	f90ff0ef          	jal	74dc <_Z10uart_printPKc>
+    7d50:	000307b7          	lui	a5,0x30
+    7d54:	18078513          	add	a0,a5,384 # 30180 <_Z17cmd_arg_tokenizerPcS_S_ii+0x2840c>
+    7d58:	f84ff0ef          	jal	74dc <_Z10uart_printPKc>
+    7d5c:	0080006f          	j	7d64 <_Z15process_commandPcS_PVb+0xf8>
+    7d60:	00000013          	nop
+    7d64:	01c12083          	lw	ra,28(sp)
+    7d68:	01812403          	lw	s0,24(sp)
+    7d6c:	02010113          	add	sp,sp,32
+    7d70:	00008067          	ret
 
-00007d58 <_Z17cmd_arg_tokenizerPcS_S_ii>:
-    7d58:	fc010113          	add	sp,sp,-64
-    7d5c:	02812e23          	sw	s0,60(sp)
-    7d60:	04010413          	add	s0,sp,64
-    7d64:	fca42e23          	sw	a0,-36(s0)
-    7d68:	fcb42c23          	sw	a1,-40(s0)
-    7d6c:	fcc42a23          	sw	a2,-44(s0)
-    7d70:	fcd42823          	sw	a3,-48(s0)
-    7d74:	fce42623          	sw	a4,-52(s0)
-    7d78:	fe042623          	sw	zero,-20(s0)
-    7d7c:	fe042423          	sw	zero,-24(s0)
-    7d80:	02c0006f          	j	7dac <_Z17cmd_arg_tokenizerPcS_S_ii+0x54>
-    7d84:	fdc42783          	lw	a5,-36(s0)
-    7d88:	00178713          	add	a4,a5,1
-    7d8c:	fce42e23          	sw	a4,-36(s0)
-    7d90:	0007c703          	lbu	a4,0(a5)
-    7d94:	fd842683          	lw	a3,-40(s0)
-    7d98:	fec42783          	lw	a5,-20(s0)
-    7d9c:	00178613          	add	a2,a5,1
-    7da0:	fec42623          	sw	a2,-20(s0)
-    7da4:	00f687b3          	add	a5,a3,a5
-    7da8:	00e78023          	sb	a4,0(a5)
-    7dac:	fdc42783          	lw	a5,-36(s0)
-    7db0:	0007c783          	lbu	a5,0(a5)
-    7db4:	02078263          	beqz	a5,7dd8 <_Z17cmd_arg_tokenizerPcS_S_ii+0x80>
-    7db8:	fdc42783          	lw	a5,-36(s0)
-    7dbc:	0007c703          	lbu	a4,0(a5)
-    7dc0:	02000793          	li	a5,32
-    7dc4:	00f70a63          	beq	a4,a5,7dd8 <_Z17cmd_arg_tokenizerPcS_S_ii+0x80>
-    7dc8:	fd042783          	lw	a5,-48(s0)
-    7dcc:	fff78793          	add	a5,a5,-1
-    7dd0:	fec42703          	lw	a4,-20(s0)
-    7dd4:	faf748e3          	blt	a4,a5,7d84 <_Z17cmd_arg_tokenizerPcS_S_ii+0x2c>
-    7dd8:	fec42783          	lw	a5,-20(s0)
-    7ddc:	fd842703          	lw	a4,-40(s0)
-    7de0:	00f707b3          	add	a5,a4,a5
-    7de4:	00078023          	sb	zero,0(a5)
-    7de8:	0100006f          	j	7df8 <_Z17cmd_arg_tokenizerPcS_S_ii+0xa0>
-    7dec:	fdc42783          	lw	a5,-36(s0)
-    7df0:	00178793          	add	a5,a5,1
-    7df4:	fcf42e23          	sw	a5,-36(s0)
-    7df8:	fdc42783          	lw	a5,-36(s0)
-    7dfc:	0007c703          	lbu	a4,0(a5)
-    7e00:	02000793          	li	a5,32
-    7e04:	fef704e3          	beq	a4,a5,7dec <_Z17cmd_arg_tokenizerPcS_S_ii+0x94>
-    7e08:	02c0006f          	j	7e34 <_Z17cmd_arg_tokenizerPcS_S_ii+0xdc>
-    7e0c:	fdc42783          	lw	a5,-36(s0)
-    7e10:	00178713          	add	a4,a5,1
-    7e14:	fce42e23          	sw	a4,-36(s0)
+00007d74 <_Z17cmd_arg_tokenizerPcS_S_ii>:
+    7d74:	fc010113          	add	sp,sp,-64
+    7d78:	02812e23          	sw	s0,60(sp)
+    7d7c:	04010413          	add	s0,sp,64
+    7d80:	fca42e23          	sw	a0,-36(s0)
+    7d84:	fcb42c23          	sw	a1,-40(s0)
+    7d88:	fcc42a23          	sw	a2,-44(s0)
+    7d8c:	fcd42823          	sw	a3,-48(s0)
+    7d90:	fce42623          	sw	a4,-52(s0)
+    7d94:	fe042623          	sw	zero,-20(s0)
+    7d98:	fe042423          	sw	zero,-24(s0)
+    7d9c:	02c0006f          	j	7dc8 <_Z17cmd_arg_tokenizerPcS_S_ii+0x54>
+    7da0:	fdc42783          	lw	a5,-36(s0)
+    7da4:	00178713          	add	a4,a5,1
+    7da8:	fce42e23          	sw	a4,-36(s0)
+    7dac:	0007c703          	lbu	a4,0(a5)
+    7db0:	fd842683          	lw	a3,-40(s0)
+    7db4:	fec42783          	lw	a5,-20(s0)
+    7db8:	00178613          	add	a2,a5,1
+    7dbc:	fec42623          	sw	a2,-20(s0)
+    7dc0:	00f687b3          	add	a5,a3,a5
+    7dc4:	00e78023          	sb	a4,0(a5)
+    7dc8:	fdc42783          	lw	a5,-36(s0)
+    7dcc:	0007c783          	lbu	a5,0(a5)
+    7dd0:	02078263          	beqz	a5,7df4 <_Z17cmd_arg_tokenizerPcS_S_ii+0x80>
+    7dd4:	fdc42783          	lw	a5,-36(s0)
+    7dd8:	0007c703          	lbu	a4,0(a5)
+    7ddc:	02000793          	li	a5,32
+    7de0:	00f70a63          	beq	a4,a5,7df4 <_Z17cmd_arg_tokenizerPcS_S_ii+0x80>
+    7de4:	fd042783          	lw	a5,-48(s0)
+    7de8:	fff78793          	add	a5,a5,-1
+    7dec:	fec42703          	lw	a4,-20(s0)
+    7df0:	faf748e3          	blt	a4,a5,7da0 <_Z17cmd_arg_tokenizerPcS_S_ii+0x2c>
+    7df4:	fec42783          	lw	a5,-20(s0)
+    7df8:	fd842703          	lw	a4,-40(s0)
+    7dfc:	00f707b3          	add	a5,a4,a5
+    7e00:	00078023          	sb	zero,0(a5)
+    7e04:	0100006f          	j	7e14 <_Z17cmd_arg_tokenizerPcS_S_ii+0xa0>
+    7e08:	fdc42783          	lw	a5,-36(s0)
+    7e0c:	00178793          	add	a5,a5,1
+    7e10:	fcf42e23          	sw	a5,-36(s0)
+    7e14:	fdc42783          	lw	a5,-36(s0)
     7e18:	0007c703          	lbu	a4,0(a5)
-    7e1c:	fd442683          	lw	a3,-44(s0)
-    7e20:	fe842783          	lw	a5,-24(s0)
-    7e24:	00178613          	add	a2,a5,1
-    7e28:	fec42423          	sw	a2,-24(s0)
-    7e2c:	00f687b3          	add	a5,a3,a5
-    7e30:	00e78023          	sb	a4,0(a5)
-    7e34:	fdc42783          	lw	a5,-36(s0)
-    7e38:	0007c783          	lbu	a5,0(a5)
-    7e3c:	00078a63          	beqz	a5,7e50 <_Z17cmd_arg_tokenizerPcS_S_ii+0xf8>
-    7e40:	fcc42783          	lw	a5,-52(s0)
-    7e44:	fff78793          	add	a5,a5,-1
-    7e48:	fe842703          	lw	a4,-24(s0)
-    7e4c:	fcf740e3          	blt	a4,a5,7e0c <_Z17cmd_arg_tokenizerPcS_S_ii+0xb4>
-    7e50:	fe842783          	lw	a5,-24(s0)
-    7e54:	fd442703          	lw	a4,-44(s0)
-    7e58:	00f707b3          	add	a5,a4,a5
-    7e5c:	00078023          	sb	zero,0(a5)
-    7e60:	00000013          	nop
-    7e64:	03c12403          	lw	s0,60(sp)
-    7e68:	04010113          	add	sp,sp,64
-    7e6c:	00008067          	ret
+    7e1c:	02000793          	li	a5,32
+    7e20:	fef704e3          	beq	a4,a5,7e08 <_Z17cmd_arg_tokenizerPcS_S_ii+0x94>
+    7e24:	02c0006f          	j	7e50 <_Z17cmd_arg_tokenizerPcS_S_ii+0xdc>
+    7e28:	fdc42783          	lw	a5,-36(s0)
+    7e2c:	00178713          	add	a4,a5,1
+    7e30:	fce42e23          	sw	a4,-36(s0)
+    7e34:	0007c703          	lbu	a4,0(a5)
+    7e38:	fd442683          	lw	a3,-44(s0)
+    7e3c:	fe842783          	lw	a5,-24(s0)
+    7e40:	00178613          	add	a2,a5,1
+    7e44:	fec42423          	sw	a2,-24(s0)
+    7e48:	00f687b3          	add	a5,a3,a5
+    7e4c:	00e78023          	sb	a4,0(a5)
+    7e50:	fdc42783          	lw	a5,-36(s0)
+    7e54:	0007c783          	lbu	a5,0(a5)
+    7e58:	00078a63          	beqz	a5,7e6c <_Z17cmd_arg_tokenizerPcS_S_ii+0xf8>
+    7e5c:	fcc42783          	lw	a5,-52(s0)
+    7e60:	fff78793          	add	a5,a5,-1
+    7e64:	fe842703          	lw	a4,-24(s0)
+    7e68:	fcf740e3          	blt	a4,a5,7e28 <_Z17cmd_arg_tokenizerPcS_S_ii+0xb4>
+    7e6c:	fe842783          	lw	a5,-24(s0)
+    7e70:	fd442703          	lw	a4,-44(s0)
+    7e74:	00f707b3          	add	a5,a4,a5
+    7e78:	00078023          	sb	zero,0(a5)
+    7e7c:	00000013          	nop
+    7e80:	03c12403          	lw	s0,60(sp)
+    7e84:	04010113          	add	sp,sp,64
+    7e88:	00008067          	ret

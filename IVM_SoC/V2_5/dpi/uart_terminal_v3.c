@@ -108,15 +108,6 @@ static void poll_stdin_for_uart(void)
         // Translate Enter key (\r) → \n for the SOC
         if (c == '\r') c = '\n';
 
-        // Local echo so user can see what they type
-        if (c == '\n') {
-            putchar('\r');
-            putchar('\n');
-        } else {
-            putchar(c);
-        }
-        fflush(stdout);
-
         if (tx_tail < INPUT_BUF_SIZE)
             tx_queue[tx_tail++] = (char)c;
     }
