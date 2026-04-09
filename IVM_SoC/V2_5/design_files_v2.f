@@ -68,6 +68,9 @@ $SOC_HOME/Designs/Memory/Cache/d_cache_v2.sv
 ### L2 Caches
 $SOC_HOME/Designs/Memory/Cache/level_2_cache_v1.sv
 
+### Way Pickers for Caches
+$SOC_HOME/Designs/Memory/Cache/l1_way_picker_v1.sv
+
 ### Cache Controllers
 // $SOC_HOME/Designs/Memory/Cache/cache_controller_v1.sv
 $SOC_HOME/Designs/Memory/Cache/cache_controller_v2.sv

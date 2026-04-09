@@ -52,9 +52,14 @@ module ivm_soc_v2 (
 	input  flash_io3_di
 );
 
-localparam i_cache_slice_size 	= 8*1024;
+localparam i_cache_slice_size 	= 16*1024;
 localparam d_cache_slice_size 	= 64*1024;
 localparam l2_cache_slice_size	= 256*1024;
+localparam l2_is_64bit					= 1;
+localparam i_cache_ways					= 2;
+localparam d_cache_ways					= 1;
+localparam i_cache_policy				= 1;
+localparam d_cache_policy				= 1;
 
 wire mem_valid;
 wire mem_ready;
@@ -77,6 +82,7 @@ wire	[63:0] 	l2_store;
 wire	[7:0] 	l2_write_strobe;
 wire					l2_write_enable;
 wire 					l2_clock_enable;
+wire					l2_gated_clock;
 wire 					l2_high_bit_enable;
 wire 	[3:0] uart_mem_addr;
 wire 	[31:0] cc_mem_addr;
@@ -257,11 +263,13 @@ assign cc_mem_addr = mem_addr;
 
 // Instantiating my Cache Controller V1
 cache_controller_v2 #(
-		.num_d_ways(1),
-		.num_i_ways(2),
-		.i_slice_size(i_cache_slice_size),
-		.d_slice_size(d_cache_slice_size),
-		.l2_64bit(1)
+		.num_d_ways					(d_cache_ways				),
+		.num_i_ways					(i_cache_ways				),
+		.i_slice_size				(i_cache_slice_size	),
+		.d_slice_size				(d_cache_slice_size	),
+		.l2_64bit						(l2_is_64bit				),
+		.i_cache_policy			(i_cache_policy			),
+		.d_cache_policy			(d_cache_policy			)
 	)iCC_V2
 	(
 		// Universal Signals
@@ -297,13 +305,15 @@ cache_controller_v2 #(
 		.core_bubble(core_bubble)				  // FEATURE ENABLED
 	);
 
+assign l2_gated_clock = clk & l2_clock_enable;
+
 // Unifined L2 Cache Instantiation
 l2_cache_v1 #(
-		.l2_slice_size(l2_cache_slice_size),
-		.l2_64bit(1'b1)
+		.l2_slice_size	(l2_cache_slice_size	),
+		.l2_64bit				(l2_is_64bit					)
 	) iL2Cache (
 		// Universal Signals
-		.clk(clk & l2_clock_enable),	// Clock Gating ENABLED
+		.clk(l2_gated_clock),	// Clock Gating ENABLED
 		.rst_n(resetn),
 		// Byte Mask/Enables
 		.data_enable(1'b1),						// Tied high, as L2 is active all the time, for now. 
