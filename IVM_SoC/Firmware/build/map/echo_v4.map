@@ -1,0 +1,380 @@
+Archive member included to satisfy reference by file (symbol)
+
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                              /out/spi_uart.o (__divdi3)
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                              /out/spi_uart.o (__moddi3)
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                              /out/spi_compute.o (__mulsi3)
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                              /out/spi_compute.o (__divsi3)
+/usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                              /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o) (__clz_tab)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x00040000         xr
+IO_MEM           0x00200000         0x00200000         rw
+TCM              0x10000000         0x00002000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /out/echo_v4.o
+LOAD /out/soc_mmio.o
+LOAD /out/soc_start.o
+LOAD /out/spi_compute.o
+LOAD /out/spi_uart.o
+LOAD /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a
+
+.text           0x00000000     0x19a4
+                0x00000000                        . = ORIGIN (FLASH)
+                0x00000000                        . = ALIGN (0x4)
+ *(.bare_start)
+ .bare_start    0x00000000       0x78 /out/soc_start.o
+                0x00000000                _start()
+ *(.start)
+ .start         0x00000078       0xdc /out/soc_mmio.o
+                0x00000078                soc_bootup()
+ *(.init)
+ *(.text.startup)
+ *(.text)
+ .text          0x00000154      0x888 /out/echo_v4.o
+                0x000006a4                main
+ .text          0x000009dc        0x0 /out/soc_mmio.o
+ .text          0x000009dc        0x0 /out/soc_start.o
+ .text          0x000009dc      0x3bc /out/spi_compute.o
+                0x000009dc                get_free_bytes()
+                0x00000c8c                math_gauntlet(int*, int*, int*, int*, int*, int*, int*)
+ .text          0x00000d98        0x0 /out/spi_uart.o
+ .text          0x00000d98      0x61c /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                0x00000d98                __divdi3
+ .text          0x000013b4      0x518 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                0x000013b4                __moddi3
+ .text          0x000018cc       0x24 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                0x000018cc                __mulsi3
+ .text          0x000018f0       0xb4 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                0x000018f0                __divsi3
+                0x000018f8                __hidden___udivsi3
+                0x000018f8                __udivsi3
+                0x00001940                __umodsi3
+                0x00001974                __modsi3
+ .text          0x000019a4        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ *(.text.*)
+ *(.fini)
+
+.spi_gpio       0x00001c00     0x2000
+                0x00003c00                        . = (. + 0x2000)
+ *fill*         0x00001c00     0x2000 
+ *(.spi_gpio)
+
+.spi_compute    0x00003c00     0x26b0
+                0x00005c00                        . = (. + 0x2000)
+ *fill*         0x00003c00     0x2000 
+ *(.spi_compute)
+ .spi_compute   0x00005c00      0x6b0 /out/spi_compute.o
+                0x00005c00                cmd_echo(char*)
+                0x00005c3c                cmd_help(char*)
+                0x00005cb8                cmd_exit(char*, bool volatile*)
+                0x00005d20                cmd_free()
+                0x00005d68                _sbrk(int)
+                0x00005df8                compute()
+                0x00005e68                matmul(int const (*) [3], int (*) [3], int (*) [3])
+                0x00005fb4                cmd_matrix_multiplier()
+                0x00006194                fibonacci_iterative(int)
+                0x00006240                fibonacci_recursive(int)
+
+.spi_uart       0x00006400     0x2ab4
+                0x00008400                        . = (. + 0x2000)
+ *fill*         0x00006400     0x2000 
+ *(.spi_uart)
+ .spi_uart      0x00008400      0xab4 /out/spi_uart.o
+                0x00008400                uart_getc(bool)
+                0x00008478                uart_putc(char)
+                0x000084dc                uart_print(char const*)
+                0x0000855c                dump_result(long long)
+                0x0000869c                dump_buffer(char const*, int)
+                0x00008738                uart_print_int32(int)
+                0x00008850                uart_print_int64(long long)
+                0x000089cc                uart_getline(char*, int)
+                0x00008b10                strcmp(char const*, char const*)
+                0x00008bb4                strncmp(char const*, char const*, int)
+                0x00008c6c                process_command(char*, char*, bool volatile*)
+                0x00008d9c                cmd_arg_tokenizer(char*, char*, char*, int, int)
+                0x00030000                        . = 0x30000
+
+.rodata         0x00030000      0x4f4
+ *(.rodata)
+ .rodata        0x00030000      0x118 /out/echo_v4.o
+ .rodata        0x00030118       0x3d /out/soc_mmio.o
+ *fill*         0x00030155        0x3 
+ .rodata        0x00030158       0x3f /out/soc_start.o
+ *fill*         0x00030197        0x1 
+ .rodata        0x00030198      0x1ed /out/spi_compute.o
+ *fill*         0x00030385        0x3 
+ .rodata        0x00030388       0x69 /out/spi_uart.o
+ *fill*         0x000303f1        0x3 
+ .rodata        0x000303f4      0x100 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                0x000303f4                __clz_tab
+ *(.rodata.*)
+ *(.const)
+ *(.const.*)
+
+.eh_frame       0x00030800      0x6fc
+ *(.eh_frame)
+ .eh_frame      0x00030800      0x180 /out/echo_v4.o
+ .eh_frame      0x00030980       0x28 /out/soc_mmio.o
+                                 0x3c (size before relaxing)
+ .eh_frame      0x000309a8       0x14 /out/soc_start.o
+                                 0x28 (size before relaxing)
+ .eh_frame      0x000309bc      0x2ac /out/spi_compute.o
+                                0x2c0 (size before relaxing)
+ .eh_frame      0x00030c68      0x1ec /out/spi_uart.o
+                                0x200 (size before relaxing)
+ .eh_frame      0x00030e54       0x54 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                                 0x68 (size before relaxing)
+ .eh_frame      0x00030ea8       0x54 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                                 0x68 (size before relaxing)
+
+.rela.dyn       0x00030efc        0x0
+ .rela.text     0x00030efc        0x0 /out/echo_v4.o
+ .rela.start    0x00030efc        0x0 /out/echo_v4.o
+ .rela.bare_start
+                0x00030efc        0x0 /out/echo_v4.o
+ .rela.sdata    0x00030efc        0x0 /out/echo_v4.o
+ .rela.spi_uart
+                0x00030efc        0x0 /out/echo_v4.o
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.rtti
+ *(.rtti*)
+
+.vtable
+ *(.vtable*)
+
+.init_array     0x00031000        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x00031000        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+                0x00034000                        . = 0x34000
+
+.data           0x00034000        0x0
+                0x00034000                        __data_start = .
+ *(.data)
+ .data          0x00034000        0x0 /out/echo_v4.o
+ .data          0x00034000        0x0 /out/soc_mmio.o
+ .data          0x00034000        0x0 /out/soc_start.o
+ .data          0x00034000        0x0 /out/spi_compute.o
+ .data          0x00034000        0x0 /out/spi_uart.o
+ .data          0x00034000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .data          0x00034000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .data          0x00034000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .data          0x00034000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .data          0x00034000        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ *(.data.*)
+                0x00034000                        __data_end = .
+
+.sdata          0x00034000        0x4
+ .sdata         0x00034000        0x4 /out/spi_compute.o
+
+.bss            0x00034800        0x0
+                0x00034800                        __bss_start = .
+ *(.bss)
+ .bss           0x00034800        0x0 /out/echo_v4.o
+ .bss           0x00034800        0x0 /out/soc_mmio.o
+ .bss           0x00034800        0x0 /out/soc_start.o
+ .bss           0x00034800        0x0 /out/spi_compute.o
+ .bss           0x00034800        0x0 /out/spi_uart.o
+ .bss           0x00034800        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .bss           0x00034800        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .bss           0x00034800        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .bss           0x00034800        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .bss           0x00034800        0x0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ *(.bss.*)
+ *(COMMON)
+                0x00034800                        __bss_end = .
+
+.heap           0x00034800     0x4000
+                0x00034800                        __heap_start = .
+ *(.heap*)
+                0x00038800                        . = (. + 0x4000)
+ *fill*         0x00034800     0x4000 
+                0x00038800                        __heap_end = .
+
+.stack          0x00038800        0x0
+                0x00038800                        __stack_start = .
+ *(.stack*)
+                0x00078800                        __stack_end = 0x40000
+                0x00040000                        _end = 0x40000
+                0x00040000                        PROVIDE (_stack_end = 0x40000)
+                0x00034800                        PROVIDE (_heap_start = __heap_start)
+                0x0003e800                        PROVIDE (_global_pointer = 0x3e800)
+                0x00200000                        PROVIDE (IO_BASE = 0x200000)
+                [!provide]                        PROVIDE (SET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x0))
+                [!provide]                        PROVIDE (SET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0x4))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x8))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0xc))
+                [!provide]                        PROVIDE (SET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x10))
+                [!provide]                        PROVIDE (GET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x14))
+                0x00200418                        PROVIDE (SET_I_LOCK = ((IO_BASE + 0x400) + 0x18))
+                [!provide]                        PROVIDE (SET_D_LOCK = ((IO_BASE + 0x400) + 0x1c))
+                [!provide]                        PROVIDE (GET_I_LOCK = ((IO_BASE + 0x400) + 0x20))
+                [!provide]                        PROVIDE (GET_D_LOCK = ((IO_BASE + 0x400) + 0x24))
+                0x00200800                        PROVIDE (UART_BAUD = ((IO_BASE + 0x800) + 0x0))
+                0x00200804                        PROVIDE (UART_RECV = ((IO_BASE + 0x800) + 0x4))
+                0x00200808                        PROVIDE (UART_SEND = ((IO_BASE + 0x800) + 0x8))
+                0x0020080c                        PROVIDE (UART_STAT = ((IO_BASE + 0x800) + 0xc))
+                [!provide]                        PROVIDE (SPI_BASE = (IO_BASE + 0xc00))
+                [!provide]                        PROVIDE (SET_PERFMON_STATUS = (IO_BASE + 0x1000))
+                [!provide]                        PROVIDE (SET_PERFMON_SCALAR = (IO_BASE + 0x1004))
+                [!provide]                        PROVIDE (SET_PERFMON_TIMER = (IO_BASE + 0x1008))
+                [!provide]                        PROVIDE (GET_PERFMON_STATUS = (IO_BASE + 0x100c))
+                [!provide]                        PROVIDE (GET_PERFMON_SOCH = (IO_BASE + 0x1010))
+                [!provide]                        PROVIDE (GET_PERFMON_SOCL = (IO_BASE + 0x1014))
+                [!provide]                        PROVIDE (GET_PERFMON_COREH = (IO_BASE + 0x1018))
+                0x0020101c                        PROVIDE (GET_PERFMON_COREL = (IO_BASE + 0x101c))
+                [!provide]                        PROVIDE (GET_PERFMON_SCALAR = (IO_BASE + 0x1020))
+                [!provide]                        PROVIDE (GET_PERFMON_TIMER = (IO_BASE + 0x1024))
+                0x00201028                        PROVIDE (GET_PERFMON_MISS = (IO_BASE + 0x1028))
+                0x0020102c                        PROVIDE (GET_PERFMON_RET_CNT = (IO_BASE + 0x102c))
+                [!provide]                        PROVIDE (PET_WATCHDOG = (IO_BASE + 0x1030))
+                0x00201034                        PROVIDE (SET_WATCHDOG_HIGH = (IO_BASE + 0x1034))
+                0x00201038                        PROVIDE (SET_WATCHDOG_LOW = (IO_BASE + 0x1038))
+                0x0020103c                        PROVIDE (GET_WATCHDOG_HIGH = (IO_BASE + 0x103c))
+                0x00201040                        PROVIDE (GET_WATCHDOG_LOW = (IO_BASE + 0x1040))
+                [!provide]                        PROVIDE (SET_DIS_SRAM_GATER = (IO_BASE + 0x1044))
+                [!provide]                        PROVIDE (GET_DIS_SRAM_GATER = (IO_BASE + 0x1048))
+                [!provide]                        PROVIDE (GET_GPIO_WORD = (IO_BASE + 0x1400))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_HIGH = (IO_BASE + 0x1404))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_LOW = (IO_BASE + 0x1408))
+                [!provide]                        PROVIDE (GET_FLASH_SPECIAL = (IO_BASE + 0x140c))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN0 = (IO_BASE + 0x1410))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN1 = (IO_BASE + 0x1414))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN2 = (IO_BASE + 0x1418))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN3 = (IO_BASE + 0x141c))
+                [!provide]                        PROVIDE (SET_GPIO_WORD = (IO_BASE + 0x1420))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_HIGH = (IO_BASE + 0x1424))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_LOW = (IO_BASE + 0x1428))
+                [!provide]                        PROVIDE (SET_FLASH_SPECIAL = (IO_BASE + 0x142c))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN0 = (IO_BASE + 0x1430))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN1 = (IO_BASE + 0x1434))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN2 = (IO_BASE + 0x1438))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN3 = (IO_BASE + 0x143c))
+OUTPUT(/out/echo_v4.elf elf32-littleriscv)
+
+.comment        0x00000000       0x26
+ .comment       0x00000000       0x26 /out/echo_v4.o
+                                 0x27 (size before relaxing)
+ .comment       0x00000026       0x27 /out/soc_mmio.o
+ .comment       0x00000026       0x27 /out/soc_start.o
+ .comment       0x00000026       0x27 /out/spi_compute.o
+ .comment       0x00000026       0x27 /out/spi_uart.o
+ .comment       0x00000026       0x27 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .comment       0x00000026       0x27 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .comment       0x00000026       0x27 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.riscv.attributes
+                0x00000000       0x1c
+ .riscv.attributes
+                0x00000000       0x1c /out/echo_v4.o
+ .riscv.attributes
+                0x0000001c       0x1c /out/soc_mmio.o
+ .riscv.attributes
+                0x00000038       0x1c /out/soc_start.o
+ .riscv.attributes
+                0x00000054       0x1c /out/spi_compute.o
+ .riscv.attributes
+                0x00000070       0x1c /out/spi_uart.o
+ .riscv.attributes
+                0x0000008c       0x1c /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .riscv.attributes
+                0x000000a8       0x1c /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .riscv.attributes
+                0x000000c4       0x1a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .riscv.attributes
+                0x000000de       0x1a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .riscv.attributes
+                0x000000f8       0x1c /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.debug_info     0x00000000     0x1429
+ .debug_info    0x00000000      0x964 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_info    0x00000964      0x96b /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .debug_info    0x000012cf       0x31 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_info    0x00001300       0x5f /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .debug_info    0x0000135f       0xca /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.debug_abbrev   0x00000000      0x47e
+ .debug_abbrev  0x00000000      0x1de /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_abbrev  0x000001de      0x1e0 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .debug_abbrev  0x000003be       0x28 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_abbrev  0x000003e6       0x28 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .debug_abbrev  0x0000040e       0x70 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.debug_loclists
+                0x00000000     0x1146
+ .debug_loclists
+                0x00000000      0x972 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_loclists
+                0x00000972      0x7d4 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+
+.debug_aranges  0x00000000       0x98
+ .debug_aranges
+                0x00000000       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_aranges
+                0x00000020       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .debug_aranges
+                0x00000040       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_aranges
+                0x00000060       0x20 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .debug_aranges
+                0x00000080       0x18 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.debug_rnglists
+                0x00000000      0x1d9
+ .debug_rnglists
+                0x00000000      0x112 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_rnglists
+                0x00000112       0xc7 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+
+.debug_line     0x00000000     0x124c
+ .debug_line    0x00000000      0x822 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .debug_line    0x00000822      0x81e /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .debug_line    0x00001040       0x7a /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .debug_line    0x000010ba      0x153 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .debug_line    0x0000120d       0x3f /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+
+.debug_str      0x00000000      0x3ab
+ .debug_str     0x00000000      0x1fc /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                                0x24b (size before relaxing)
+ .debug_str     0x000001fc        0x9 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                                0x24b (size before relaxing)
+ .debug_str     0x00000205       0xa7 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                                 0xb0 (size before relaxing)
+ .debug_str     0x000002ac       0x59 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                                 0xdd (size before relaxing)
+ .debug_str     0x00000305       0xa6 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                                0x170 (size before relaxing)
+
+.debug_line_str
+                0x00000000       0xf7
+ .debug_line_str
+                0x00000000       0xba /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                                0x132 (size before relaxing)
+ .debug_line_str
+                0x000000ba      0x132 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .debug_line_str
+                0x000000ba       0x37 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                                 0x9b (size before relaxing)
+ .debug_line_str
+                0x000000f1        0x6 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(div.o)
+                                 0x98 (size before relaxing)
+ .debug_line_str
+                0x000000f7      0x132 /usr/lib/gcc/riscv64-unknown-elf/12.2.0/rv32i/ilp32/libgcc.a(_clz.o)

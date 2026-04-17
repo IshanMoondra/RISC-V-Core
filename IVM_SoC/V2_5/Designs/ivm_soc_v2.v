@@ -52,9 +52,9 @@ module ivm_soc_v2 (
 	input  flash_io3_di
 );
 
-localparam i_cache_slice_size 	= 16*1024;
-localparam d_cache_slice_size 	= 64*1024;
-localparam l2_cache_slice_size	= 256*1024;
+localparam i_cache_slice_size 	= 4*1024		;
+localparam d_cache_slice_size 	= 64*1024		;
+localparam l2_cache_slice_size	= 256*1024	;
 localparam l2_is_64bit					= 1;
 localparam i_cache_ways					= 2;
 localparam d_cache_ways					= 1;
