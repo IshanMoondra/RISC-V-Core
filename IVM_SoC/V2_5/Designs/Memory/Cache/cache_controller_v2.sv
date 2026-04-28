@@ -351,6 +351,24 @@ for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
 	logic clr_fetch_count_instr;
 	logic clr_fetch_count_data;
 
+	// Emilie
+	logic [d_addr_width:0] wb_count;
+	logic enable_wb_count;
+	logic clr_wb_count;
+	logic update_l2_address_wb;
+	logic wr_bk_signal;
+	logic [31:0] wb_dcache_addr;
+
+	always_ff @(posedge clk, negedge rst_n)
+		if (~rst_n)
+			wb_count <= 0;
+		else if (clr_wb_count)
+			wb_count <= 0;
+		else if (enable_wb_count)
+			wb_count <= wb_count + 1;
+
+	assign wb_dcache_addr = d_base[0] + (wb_count << 2);
+
 	// // Need a 32 bit logic as well for that case.
 	// High Low Bufferring can be done later. For V1, just use the WEM. 
 	// logic [63:0] 	l2_line_buffer;
@@ -406,10 +424,11 @@ for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
 				l2_address <= 0;
 			else if (dis_i_cache)
 				l2_address <= pc_fetch;
+			else if (update_l2_address_wb)	//Emilie
+				l2_address <= wb_dcache_addr;
 			else if (update_l2_address)
 				l2_address <= l2_base_buffer;
 			else if (l2_full_word_ready)
-				// l2_address <= l2_address + 8;
 				l2_address <= l2_address + 4;
 	
 	// L2 Address Buffer Flopped, to fill the Caches properly
@@ -483,6 +502,16 @@ for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
 				d_way_sel           = d_cache_hit;
 				use_d_way_override  = 0;
 
+				//Emilie
+				d_way_override = '0;
+				clr_wb_count         = 1'b1;
+				enable_wb_count      = 1'b0;
+				update_l2_address_wb = 1'b0;
+				wr_bk_signal         = 1'b0;
+
+				l2_write_enable      = 1'b0;
+				l2_write_strobe      = 8'b0;
+
 				i_way_we            = 0;
 
 				i_cache_store       = (l2_address_ff[1]) ? (l2_fetch[63:32]) : (l2_fetch[31:0]);
@@ -530,8 +559,48 @@ for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
 				WR_BK  : 
 					begin
 						// BOZO: No Write Back for now, will get to it later. 
-						l2_clock_enable	= 1;
-						iNEXT_STATE = (LOCK_BB); // Directly going to Lock BB for now, will come back Write Back
+						// Emilie
+						l2_clock_enable = 1'b1;
+
+						// Force read the evicted D-cache way.
+						use_d_way_override = 1'b1;
+						d_way_override     = l1_d_way_evict;
+
+						// Keep the write-back counter alive.
+						clr_wb_count       = 1'b0;
+
+						// Read old data from the evicted L1 D-cache line.
+						d_cache_addr       = wb_dcache_addr;
+						wr_bk_signal       = 1'b1;
+
+						// Write the evicted word back to L2.
+						update_l2_address_wb = 1'b1;
+						l2_write_enable      = 1'b1;
+
+						if (wb_dcache_addr[2]) begin
+							// Address bit [2] = 1 means upper 32 bits of the 64-bit L2 word.
+							l2_store         = {d_way_out[0], 32'b0};
+							l2_write_strobe  = 8'b11110000;
+						end
+						else begin
+							// Address bit [2] = 0 means lower 32 bits of the 64-bit L2 word.
+							l2_store         = {32'b0, d_way_out[0]};
+							l2_write_strobe  = 8'b00001111;
+						end
+
+						// After the last word has been written back, refill the new block.
+						if (wb_count == (d_words_size - 1)) begin
+							enable_wb_count = 1'b0;
+							clr_wb_count    = 1'b1;
+							iNEXT_STATE     = LOCK_BB;
+						end
+						else begin
+							enable_wb_count = 1'b1;
+							iNEXT_STATE     = WR_BK;
+						end
+	
+						// l2_clock_enable	= 1;
+						// iNEXT_STATE = (LOCK_BB); // Directly going to Lock BB for now, will come back Write Back
 					end
 				LOCK_BB :
 					begin
@@ -623,8 +692,8 @@ assign i_cache_miss     = ~i_clk_en;
 assign d_cache_miss     = ~d_clk_en;
 
 // Non Supported Features
-assign l2_write_strobe		= 0;
-assign l2_write_enable		= 0;
+// assign l2_write_strobe		= 0;
+// assign l2_write_enable		= 0;
 assign l2_cache_busy			= 1;
 
 // MMIO Stuff to be done

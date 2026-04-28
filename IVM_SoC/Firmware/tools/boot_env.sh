@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$HOSTNAME" == "ogras-elab-zeus-ak-3539aeh" ]]; then
-		export PROJ_ROOT="/disk/imoondra/IVM_SOC/Tapeout_V1"
+		export PROJ_ROOT="/disk/elye/IVM_SOC/Tapeout_V1"
 		export VERDI_HOME="/cae/apps/data/synopsys-2025/verdi/X-2025.06/"
 	elif [[ "$HOSTNAME" == "compute-hal" ]]; then
 		export PROJ_ROOT="/raid2/IVM_SOC/Tapeout_V1"
