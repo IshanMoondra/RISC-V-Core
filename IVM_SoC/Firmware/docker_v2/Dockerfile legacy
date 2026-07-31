@@ -1,0 +1,44 @@
+FROM debian:12-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install basic utilities you already rely on
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      ca-certificates \
+      wget \
+      git \
+      make \
+      python3 \
+      build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Detect architecture and install the correct xPack RISC-V toolchain
+ARG TARGETARCH
+
+RUN echo "Detected architecture: $TARGETARCH" && \
+    if [ "$TARGETARCH" = "arm64" ]; then \
+        echo "Downloading ARM64 xPack toolchain"; \
+        wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v13.2.0-1/xpack-riscv-none-elf-gcc-13.2.0-1-linux-arm64.tar.gz; \
+        tar -xf xpack-riscv-none-elf-gcc-13.2.0-1-linux-arm64.tar.gz -C /opt; \
+        rm xpack-riscv-none-elf-gcc-13.2.0-1-linux-arm64.tar.gz; \
+    else \
+        echo "Downloading x86_64 xPack toolchain"; \
+        wget https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/download/v13.2.0-1/xpack-riscv-none-elf-gcc-13.2.0-1-linux-x64.tar.gz; \
+        tar -xf xpack-riscv-none-elf-gcc-13.2.0-1-linux-x64.tar.gz -C /opt; \
+        rm xpack-riscv-none-elf-gcc-13.2.0-1-linux-x64.tar.gz; \
+    fi && \
+    ln -s /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/* /usr/local/bin/
+
+# Preserve your existing structure
+RUN mkdir -p /in /out /tool
+
+# Copy your existing build scripts
+COPY build_v2.sh /tool/build_v2.sh
+RUN chmod +x /tool/build_v2.sh
+
+COPY bin_to_hex_v2.py /tool/bin_to_hex_v2.py
+
+WORKDIR /tool
+
+CMD ["/bin/bash"]

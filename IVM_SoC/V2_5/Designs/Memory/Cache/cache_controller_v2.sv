@@ -481,6 +481,7 @@ for (d_idx = 0; d_idx < num_d_ways; d_idx = d_idx + 1)
 
 				i_way_sel           = i_cache_hit;
 				d_way_sel           = d_cache_hit;
+				d_way_override			= d_cache_miss_active;
 				use_d_way_override  = 0;
 
 				i_way_we            = 0;

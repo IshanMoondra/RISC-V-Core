@@ -78,7 +78,7 @@ $SOC_HOME/Designs/Memory/Cache/cache_controller_v2.sv
 ### Peripherals: Perfmons, GPIO, UART, SPI, MMIO Decoders, etc
 $SOC_HOME/Designs/IO/perfmons.sv
 $SOC_HOME/Designs/IO/gpio_v1.sv
-$SOC_HOME/Designs/IO/spiflash.v
+// $SOC_HOME/Designs/IO/spiflash.v
 $SOC_HOME/Designs/IO/spimemio.v
 $SOC_HOME/Designs/IO/UART_rx.sv
 $SOC_HOME/Designs/IO/UART_tx.sv
@@ -112,4 +112,5 @@ $SOC_HOME/Designs/ivm_soc_v2.v
 
 ### Testbenches that instantiate the Top Level
 # $SOC_HOME/Testbenches/soc_tb_v1.sv
-$SOC_HOME/Testbenches/soc_fpga_tb_v1.sv
+# $SOC_HOME/Testbenches/soc_fpga_tb_v1.sv
+$SOC_HOME/Testbenches/soc_fpga_tb_v2.sv

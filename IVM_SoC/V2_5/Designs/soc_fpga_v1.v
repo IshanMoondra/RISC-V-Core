@@ -114,7 +114,7 @@ reg reset_n_ff0;
 reg reset_n_ff1;
 reg reset_n_ff2;
 
-always @(posedge clk)
+always @(posedge clk, negedge reset_n)
 begin
 	if (~reset_n)
 	begin

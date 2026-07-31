@@ -150,61 +150,6 @@ module soc_fpga_tb_v1;
 		tb_trmt				<= dpi_start_transmit;
 	end
 
-	// initial
-	// 	begin
-	// 		// Dumping the Waveforms // ModelSim dies around 47 ms
-	// 		if (!$value$plusargs("VERDI_ROOT=%s", verdi_root))
-	// 			begin
-	// 				verdi_root = ".";   // Fallback
-	// 			end
-	// 		if (!$value$plusargs("VIVADO_ROOT=%s", vivado_root))
-	// 			begin
-	// 				vivado_root = ".";   // Fallback
-	// 			end
-			
-	// 		// Master Arm for Dumping Waves
-	// 		// Followed by selecting the best way to dump waves, based on choice of simulator.
-	// 		if ($test$plusargs("dump_on"))
-	// 			begin
-	// 				$display("Waveform Dumping Enabled!");
-	// 				if 			($test$plusargs("FSDB"))
-	// 					begin
-	// 						$display("FSDB Dumping enabled!");
-	// 						$fsdbDumpfile({verdi_root, "/verdi_build/soc_fpga_tb_v1.fsdb"});
-	// 						$fsdbDumpvars(0, soc_fpga_tb_v1);
-	// 					end
-	// 				else if	($test$plusargs("WDB"))
-	// 					begin
-	// 						// Vivado TCL scripts handle the specifics.
-	// 						$display("Vivado TCL scripts handle the Wave Dumping.");
-	// 					end
-	// 				else
-	// 					begin
-	// 						// Legacy Mode aka Fallback to this.  // BOZO
-	// 						// Can first check which path is enabled, and if so, use that one.
-	// 						$display("VCD Dumping enabled!");
-	// 						if (verdi_root.len() > 0)
-	// 							begin
-	// 								$dumpfile({verdi_root, "/verdi_build/soc_fpga_tb_v1.vcd"});
-	// 								$dumpvars(0, soc_fpga_tb_v1);		
-	// 							end
-	// 						else if (vivado_root.len() > 0)
-	// 							begin
-	// 								$dumpfile({vivado_root, "/vivado_build/soc_fpga_tb_v1.vcd"});
-	// 								$dumpvars(0, soc_fpga_tb_v1);
-	// 							end
-	// 						else
-	// 							begin
-	// 								$display("No Simulation Root specified. Using default ./verdi_build/");
-	// 								$dumpfile({verdi_root, "/verdi_build/soc_fpga_tb_v1.vcd"});
-	// 								$dumpvars(0, soc_fpga_tb_v1);
-	// 							end	
-	// 					end
-	// 			end
-	// 		else
-	// 			$display("Wave Dumps disabled!");
-	// 	end
-
 	// -------------------------
 	// VCS uses FSDB
 	// -------------------------
@@ -281,8 +226,9 @@ module soc_fpga_tb_v1;
 		// Fork Join for easy tracking
 		fork
 			begin: Timeout
-				while (count < 64'd2000000000)
+				// while (count < 64'd2000000000)
 				// while (count < 64'd1000000000)
+				while (count < 64'd150000)
 				// while (count < 64'd50000)
 					begin
 						@(posedge clk);

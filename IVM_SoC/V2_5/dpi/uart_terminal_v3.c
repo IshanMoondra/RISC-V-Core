@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -250,3 +254,7 @@ void dpi_uart_get_ctrl_outputs_v2(
     *tx_buffer      = (int)g_tx_buffer;
     *start_transmit = (svBit)g_start_transmit;
 }
+
+#ifdef __cplusplus
+}
+#endif
