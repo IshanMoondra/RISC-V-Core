@@ -1,6 +1,8 @@
 #ifndef spi_uart
 #define spi_uart
 
+#include <stdbool.h>
+
 // char 	uart_getc					(bool blocking)																								__attribute__((weak, section(".spi_uart")));
 // void 	uart_putc					(char c) 																											__attribute__((weak, section(".spi_uart")));
 // void 	uart_print				(const char s[]) 																							__attribute__((weak, section(".spi_uart")));

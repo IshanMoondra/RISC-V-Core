@@ -3,10 +3,7 @@
 #include "soc_mmio.h"
 #include "soc_syscalls.h"
 
-using namespace std;
-using Mat3 = int[3][3];
-
-
+#ifdef __cplusplus
 // Instrumentation Template Thingy:
 	// Trying out this Template thingy. 
 	template<typename Func>
@@ -42,6 +39,8 @@ using Mat3 = int[3][3];
 		return result;
 	}
 
+#endif
+
 // The basis of my free function.
 	unsigned int get_free_bytes(void) 
 		{
@@ -68,11 +67,13 @@ using Mat3 = int[3][3];
 	void cmd_help(char *arg)
 		{
 			uart_print("Following commands supported: \n");
-			uart_print(">: 1. echo \n");
-			uart_print(">: 2. free \n");
-			uart_print(">: 3. EXIT \n");
-			uart_print(">: 4. help \n"); 
-			uart_print(">: 5. matrix \n"); 
+			uart_print(">: echo \n");
+			uart_print(">: free \n");
+			uart_print(">: EXIT \n");
+			uart_print(">: help \n"); 
+			#ifdef __cplusplus
+			uart_print(">: matrix \n"); 
+			#endif
 			uart_print(">: Type help to see this again. ");
 		}
 	// The EXIT Command
@@ -82,6 +83,7 @@ using Mat3 = int[3][3];
 			*running = false;
 		}
 
+#ifdef __cplusplus
 // Matrix Multiplier Function, aka the test function.
 	bool matmul		(const Mat3 A, Mat3 B, Mat3 C)
 		{
@@ -132,6 +134,7 @@ using Mat3 = int[3][3];
 			uart_print(">: Tada! \n>: ");
 
 		}
+#endif
 
 // Math Gauntlet Function
 	bool math_gauntlet(int *A, int *B, int *sum, int *diff, int *product, int *quotient, int *remainder)
@@ -157,13 +160,6 @@ using Mat3 = int[3][3];
 				magic = 0x01;
 			else
 				magic = 0x00;
-			
-			// dump_int(magic);
-			// asm volatile ("nop");
-			// dump_int(iter);
-			// asm volatile ("nop");
-			// dump_int(recur);
-			// asm volatile ("nop");
 		}
 
 // Independent Computing Functions
@@ -173,7 +169,7 @@ using Mat3 = int[3][3];
 				return count;
 			else
 				{
-					char internal_count = (count > 46) ? 46 : static_cast<char>(count);
+					char internal_count = (count > 46) ? 46 : (char)(count);
 					int sum, a, b;
 					sum = 0;
 					a		= 0;

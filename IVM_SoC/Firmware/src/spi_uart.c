@@ -6,8 +6,6 @@
 #define TX_DONE		 			(1 << 0)
 #define RX_PENDING 			(1 << 1)
 
-using namespace std;
-
 // UART Helpers
 	char uart_getc(bool blocking)
 		{
@@ -297,10 +295,12 @@ using namespace std;
 				{
 					cmd_free();
 				}
+			#ifdef __cplusplus
 			else if (strcmp(cmd, "matrix") == 0)
 				{
 					cmd_matrix_multiplier();
 				}
+			#endif
 			else if (strcmp(cmd, "EXIT") == 0)
 				{
 					cmd_exit(arg, running);

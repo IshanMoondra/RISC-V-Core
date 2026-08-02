@@ -1,6 +1,8 @@
 #ifndef soc_syscalls
 #define soc_syscalls
 
+#include <stdio.h>
+#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdint.h>
@@ -24,6 +26,10 @@ extern "C"
 		void		_exit			(int status															);
 		void 		__libc_init_array	(void														);
 		void 		__libc_fini_array	(void														);
+
+		int 		puts			(const char *s													); 
+		// size_t 	fwrite		(const void *ptr, size_t size, size_t nmemb, FILE *stream); 
+		int 		printf		(const char *fmt, ...										);
 
 		// static int 	*heap_end = &_heap_start;
     // static char *heap_end = &_heap_start;

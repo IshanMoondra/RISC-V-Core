@@ -2,8 +2,11 @@
 #define soc_mmio
 
 // Defining all the Linker Provided MMIO Addresses. 
+#ifdef __cplusplus
 extern "C" 
 	{
+#endif
+
 		extern char _stack_end;
 		extern char __stack_start;
 		extern char _heap_start;
@@ -72,9 +75,12 @@ extern "C"
 		extern int SET_GPIO_CHAN1;
 		extern int SET_GPIO_CHAN2;
 		extern int SET_GPIO_CHAN3;
-	}
 
-extern "C" void _start() 					__attribute__((naked, section(".bare_start")));
-void soc_bootup(int panic_high, int panic_low, int baud)				__attribute__((section(".start")));
+		void _start			(																				) 			__attribute__((naked, section(".bare_start")));
+		void soc_bootup	(int panic_high, int panic_low, int baud)				__attribute__((section(".start")))						;
+
+#ifdef __cplusplus
+	}
+#endif
 
 #endif // soc_mmio

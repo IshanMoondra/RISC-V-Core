@@ -72,43 +72,43 @@ SECTIONS {
   } > FLASH
 
 	.sdata ALIGN(0x800) : {
-    PROVIDE_HIDDEN(__sdata_start = .);
+    PROVIDE(__sdata_start = .);
     *(.sdata)
     *(.sdata.*)
     *(.srodata)
     *(.srodata.*)
-    PROVIDE_HIDDEN(__sdata_end = .);
+    PROVIDE(__sdata_end = .);
 	} > FLASH
 
 	.sbss ALIGN(0x800) : {
-			PROVIDE_HIDDEN(__sbss_start = .);
+			PROVIDE(__sbss_start = .);
 			*(.sbss)
 			*(.sbss.*)
-			PROVIDE_HIDDEN(__sbss_end = .);
+			PROVIDE(__sbss_end = .);
 	} > FLASH
 
   .bss ALIGN(0x800) : {
-    PROVIDE_HIDDEN(__bss_start = .);
+    PROVIDE(__bss_start = .);
     *(.bss)
     *(.bss.*)
     *(COMMON)
-    PROVIDE_HIDDEN(__bss_end = .);
+    PROVIDE(__bss_end = .);
   } > FLASH
 
   .heap ALIGN(0x800) : {
-    PROVIDE_HIDDEN(__heap_start = .);
+    PROVIDE(__heap_start = .);
     KEEP(*(.heap*))
 		/* 4KB Heap */
 		/* . = . + 0x1000; */
 		/* 16KB Heap */
 		. = . + 0x4000;
-    PROVIDE_HIDDEN(__heap_end = .);
+    PROVIDE(__heap_end = .);
   } > FLASH
 
   .stack ALIGN(0x800) : {
-    PROVIDE_HIDDEN(__stack_start = .);
+    PROVIDE(__stack_start = .);
     KEEP(*(.stack*))
-    PROVIDE_HIDDEN(__stack_end = 0x00040000);
+    PROVIDE(__stack_end = 0x00040000);
   } > FLASH
 
   _end = 0x00040000;

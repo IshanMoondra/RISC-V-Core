@@ -70,7 +70,7 @@ docker run --rm \
         $INCLUDES \
         $LINKER \
         $EXTRA_FLAGS \
-        '/in/src/*.cpp' \        
+        '/in/src/*.c' \        
 
 # ---------------------------------------------------------------------------
 # Organize output artifacts
@@ -85,6 +85,8 @@ mv "$OUT_DIR"/*.dump  "$OUT_DIR"/dump/
 mv "$OUT_DIR"/*.sym   "$OUT_DIR"/sym/ 
 mv "$OUT_DIR"/*.o   	"$OUT_DIR"/object/ 
 
+mv "$OUT_DIR"/hex/"${BASENAME%.*}".hex   "$OUT_DIR"/hex/l2_firmware.hex
+
 echo "Build complete. Artifacts stored in:"
 echo "  $OUT_DIR/elf"
 echo "  $OUT_DIR/bin"
@@ -93,3 +95,6 @@ echo "  $OUT_DIR/map"
 echo "  $OUT_DIR/asm"
 echo "  $OUT_DIR/dump"
 echo "  $OUT_DIR/sym"
+
+echo "New L2 Firmware generated at:"
+echo ""$OUT_DIR"/hex/l2_firmware.hex"

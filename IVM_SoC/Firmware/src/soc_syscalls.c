@@ -3,40 +3,55 @@
 #include "soc_mmio.h"
 #include "soc_syscalls.h"
 
+#include <stdarg.h>
+#include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <reent.h>
 
-extern "C" {
+#ifdef __cplusplus
+extern "C" 
+{
+#endif
+
+// -----------------------------------------------------------------------------
+// SOC Boot Up Function
+// -----------------------------------------------------------------------------
+void soc_bootup(int panic_high, int panic_low, int baud)
+	{
+		// Setting up the SOC on Boot
+		// Panic Watchdog Timer
+		*(volatile int*)&SET_WATCHDOG_HIGH = panic_high;
+		*(volatile int*)&SET_WATCHDOG_LOW	 = panic_low;
+		// UART Baud Rate
+		*(volatile int*)&UART_BAUD = baud;
+		// Prompt on UART
+		uart_print("\nREADY. \t");
+		cmd_free();
+		uart_print("\nWatchdog Timer set to: ");
+		long long panic_read = ((*(volatile int*)&GET_WATCHDOG_HIGH << 32) | *(volatile int*)&GET_WATCHDOG_LOW);
+		uart_print_int64(panic_read);
+		asm volatile ("nop");
+		uart_print("\t Clock Cycles.");
+		uart_print("\n>: ");
+		// Boot up complete
+	}
 
 // -----------------------------------------------------------------------------
 // Heap allocation (required for malloc/new/iostream)
 // -----------------------------------------------------------------------------
-char* __curr_heap_end_ptr = &_heap_start;
+extern char* __curr_heap_end_ptr = &_heap_start;
 
 void* _sbrk(ptrdiff_t incr)
 	{
-    char *prev = __curr_heap_end_ptr;
+    extern char* 	__curr_heap_end_ptr;
+		extern char 	_heap_start;
+		
+		char *prev = __curr_heap_end_ptr;
     unsigned int sp = get_sp();
 		
-		uart_print("\nRequested Increment: ");
-		uart_print_hex32((unsigned int)incr);
-		asm volatile ("nop");
-
-		uart_print("\nCurrent Heap in SBRK: ");
-		uart_print_hex32((unsigned int)*prev);
-		asm volatile ("nop");
-
-		uart_print("\nSBRK: &__curr_heap_end_ptr = ");
-		uart_print_hex32((unsigned int)&__curr_heap_end_ptr);
-		asm volatile ("nop");
-
-		uart_print("\nCurrent Stack Pointer: ");
-		uart_print_hex32(sp);
-		asm volatile ("nop");
-
-    if ((unsigned int)(*prev + incr) >= sp)
+    if ((unsigned int)(get_curr_heap() + incr) >= get_sp())
 			{
 				uart_print("\nOUT OF MEMORY\n");
 				errno = ENOMEM;
@@ -53,7 +68,6 @@ void* _sbrk(ptrdiff_t incr)
 
 int _write(int file, const char* ptr, int len) 
 	{
-		uart_print("_WRITE CALLED\n"); // raw, bypasses everything
 		for (int i = 0; i < len; i++)
 			{
 				uart_putc(ptr[i]);
@@ -181,4 +195,32 @@ void _exit(int status)
 		__asm__ volatile (".word 0xFFFFFFFF");
 	}
 
-} // extern "C"
+	int puts(const char *s) 
+		{
+			uart_print(s);
+			uart_putc('\n');
+			asm volatile ("nop");
+			return 1;
+		}	
+
+	// size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream) 
+	// 	{
+	// 		size_t total = size * nmemb;
+	// 		_write_r(_impure_ptr, 1, ptr, total);
+	// 		return nmemb;
+	// 	}
+
+	int printf(const char *fmt, ...) 
+		{
+			char buf[256];
+			va_list args;
+			va_start(args, fmt);
+			int len = vsiprintf(buf, fmt, args);
+			va_end(args);
+			uart_print(buf);
+			return len;
+		}
+
+#ifdef __cplusplus
+}
+#endif

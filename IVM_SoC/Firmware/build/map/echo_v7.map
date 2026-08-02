@@ -1,0 +1,1242 @@
+Archive member included to satisfy reference by file (symbol)
+
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                              /out/spi_uart.o (__divdi3)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                              /out/spi_uart.o (__moddi3)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                              /out/spi_compute.o (__mulsi3)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(div.o)
+                              /out/spi_compute.o (__divsi3)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o) (__clz_tab)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+                              /out/soc_start.o (exit)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+                              /out/soc_syscalls.o (vsiprintf)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o) (__stdio_exit_handler)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o) (_fwalk_sglue)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+                              /out/echo_v7.o (fwrite)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+                              /out/soc_start.o (setvbuf)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                              /out/soc_start.o (__sread)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o) (_close_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o) (errno)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+                              /out/echo_v7.o (_impure_ptr)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o) (_lseek_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o) (_read_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o) (_write_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+                              /out/soc_syscalls.o (__errno)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o) (__retarget_lock_init_recursive)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memset.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o) (memset)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o) (__call_exitprocs)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o) (atexit)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o) (_free_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o) (malloc)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o) (_malloc_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o) (__malloc_lock)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o) (_svfiprintf_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o) (_fclose_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o) (__sflush_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o) (__sfvwrite_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o) (__swhatbuf_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o) (__swsetup_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (memchr)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (strncpy)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (__global_locale)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (_localeconv_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o) (_fstat_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o) (_isatty_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o) (_sbrk_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (memmove)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (memcpy)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (strlen)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strcpy)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o) (__register_exitproc)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (_getenv_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (__ascii_mbtowc)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (_realloc_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strtol)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (__ascii_wctomb)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (_wcrtomb_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (_wcsrtombs_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (__set_ctype)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strcasecmp)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strcat)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strchr)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strlcpy)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o) (strncasecmp)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o) (environ)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o) (__env_lock)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o) (_wcsnrtombs_r)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (__udivdi3)
+/opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+                              /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o) (__umoddi3)
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x00040000         xr
+IO_MEM           0x00200000         0x00200000         rw
+TCM              0x10000000         0x00002000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /out/echo_v7.o
+LOAD /out/soc_start.o
+LOAD /out/soc_syscalls.o
+LOAD /out/spi_compute.o
+LOAD /out/spi_uart.o
+LOAD /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a
+START GROUP
+LOAD /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a
+LOAD /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libgloss.a
+END GROUP
+LOAD /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a
+
+.text           0x00000000     0xa8e4
+                0x00000000                        . = ORIGIN (FLASH)
+                0x00000000                        . = ALIGN (0x4)
+ *(.bare_start)
+ .bare_start    0x00000000      0x220 /out/soc_start.o
+                0x00000000                _start
+ *(.start)
+ .start         0x00000220       0xd4 /out/soc_syscalls.o
+                0x00000220                soc_bootup
+ *(.init)
+ *(.text.startup)
+ *(.text)
+ .text          0x000002f4      0x31c /out/echo_v7.o
+                0x000002f4                main
+ .text          0x00000610       0x1c /out/soc_start.o
+                0x00000610                stdio_exit_stub
+ .text          0x0000062c      0x4b4 /out/soc_syscalls.o
+                0x00000678                _sbrk
+                0x00000718                _write
+                0x00000788                _read
+                0x00000804                _close
+                0x00000828                _fstat
+                0x0000085c                _isatty
+                0x00000880                _lseek
+                0x000008ac                _open
+                0x000008d8                _kill
+                0x00000918                _getpid
+                0x00000938                __libc_fini_array
+                0x00000998                _exit
+                0x00000a1c                puts
+                0x00000a5c                printf
+ .text          0x00000ae0      0x44c /out/spi_compute.o
+                0x00000b2c                get_free_bytes
+                0x00000b68                cmd_free
+                0x00000bb0                cmd_echo
+                0x00000bec                cmd_help
+                0x00000c5c                cmd_exit
+                0x00000c9c                math_gauntlet
+                0x00000da8                compute
+                0x00000e10                fibonacci_iterative
+                0x00000ebc                fibonacci_recursive
+ .text          0x00000f2c      0xb20 /out/spi_uart.o
+                0x00000f2c                uart_getc
+                0x00000fa4                uart_putc
+                0x00001008                uart_print
+                0x00001088                dump_result
+                0x000011c8                strncmp
+                0x00001280                strcmp
+                0x00001324                dump_buffer
+                0x000013c0                uart_print_hex32
+                0x00001478                uart_print_int32
+                0x00001588                uart_print_int64
+                0x000016fc                uart_getline
+                0x00001844                cmd_arg_tokenizer
+                0x00001964                process_command
+ .text          0x00001a4c        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .text          0x00001a4c        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .text          0x00001a4c       0x24 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+                0x00001a4c                __mulsi3
+ .text          0x00001a70       0xb4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(div.o)
+                0x00001a70                __divsi3
+                0x00001a78                __hidden___udivsi3
+                0x00001a78                __udivsi3
+                0x00001ac0                __umodsi3
+                0x00001af4                __modsi3
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+ .text          0x00001b24        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+ .text          0x00001b24       0xdc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memset.o)
+                0x00001b24                memset
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+ .text          0x00001c00        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+ *(.text.*)
+ .text.__divdi3
+                0x00001c00      0x6d0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+                0x00001c00                __divdi3
+ .text.__moddi3
+                0x000022d0      0x654 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                0x000022d0                __moddi3
+ .text.exit     0x00002924       0x30 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+                0x00002924                exit
+ .text.vsiprintf
+                0x00002954       0x5c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+                0x00002954                vsiprintf
+ .text._vsiprintf_r
+                0x000029b0       0x4c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+                0x000029b0                _vsiprintf_r
+ .text.stdio_exit_handler
+                0x000029fc       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text.cleanup_stdio
+                0x00002a18       0x70 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text.__fp_lock
+                0x00002a88       0x40 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text.__fp_unlock
+                0x00002ac8       0x40 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text.global_stdio_init.part.0
+                0x00002b08      0x190 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .text.__sfp    0x00002c98      0x158 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002c98                __sfp
+ .text.__sinit  0x00002df0       0x70 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002df0                __sinit
+ .text.__sfp_lock_acquire
+                0x00002e60        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002e60                __sfp_lock_acquire
+ .text.__sfp_lock_release
+                0x00002e6c        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002e6c                __sfp_lock_release
+ .text.__fp_lock_all
+                0x00002e78       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002e78                __fp_lock_all
+ .text.__fp_unlock_all
+                0x00002eac       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00002eac                __fp_unlock_all
+ .text._fwalk_sglue
+                0x00002ee0       0xb4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+                0x00002ee0                _fwalk_sglue
+ .text._fwrite_r
+                0x00002f94      0x154 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+                0x00002f94                _fwrite_r
+ .text.fwrite   0x000030e8       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+                0x000030e8                fwrite
+ .text.setvbuf  0x00003104      0x29c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+                0x00003104                setvbuf
+ .text.__sread  0x000033a0       0x5c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                0x000033a0                __sread
+ .text.__seofread
+                0x000033fc        0x8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                0x000033fc                __seofread
+ .text.__swrite
+                0x00003404       0x88 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                0x00003404                __swrite
+ .text.__sseek  0x0000348c       0x78 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                0x0000348c                __sseek
+ .text.__sclose
+                0x00003504        0x8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+                0x00003504                __sclose
+ .text._close_r
+                0x0000350c       0x58 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+                0x0000350c                _close_r
+ .text._reclaim_reent
+                0x00003564       0xc8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+                0x00003564                _reclaim_reent
+ .text._lseek_r
+                0x0000362c       0x64 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+                0x0000362c                _lseek_r
+ .text._read_r  0x00003690       0x64 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+                0x00003690                _read_r
+ .text._write_r
+                0x000036f4       0x64 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+                0x000036f4                _write_r
+ .text.__errno  0x00003758        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+                0x00003758                __errno
+ .text.__retarget_lock_init
+                0x00003764        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003764                __retarget_lock_init
+ .text.__retarget_lock_init_recursive
+                0x00003768        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003768                __retarget_lock_init_recursive
+ .text.__retarget_lock_close
+                0x0000376c        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x0000376c                __retarget_lock_close
+ .text.__retarget_lock_close_recursive
+                0x00003770        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003770                __retarget_lock_close_recursive
+ .text.__retarget_lock_acquire
+                0x00003774        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003774                __retarget_lock_acquire
+ .text.__retarget_lock_acquire_recursive
+                0x00003778        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003778                __retarget_lock_acquire_recursive
+ .text.__retarget_lock_try_acquire
+                0x0000377c        0x8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x0000377c                __retarget_lock_try_acquire
+ .text.__retarget_lock_try_acquire_recursive
+                0x00003784        0x8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003784                __retarget_lock_try_acquire_recursive
+ .text.__retarget_lock_release
+                0x0000378c        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x0000378c                __retarget_lock_release
+ .text.__retarget_lock_release_recursive
+                0x00003790        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00003790                __retarget_lock_release_recursive
+ .text.startup.register_fini
+                0x00003794       0x18 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .text.__call_exitprocs
+                0x000037ac      0x158 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+                0x000037ac                __call_exitprocs
+ .text.atexit   0x00003904       0x14 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+                0x00003904                atexit
+ .text._malloc_trim_r
+                0x00003918      0x144 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+                0x00003918                _malloc_trim_r
+ .text._free_r  0x00003a5c      0x30c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+                0x00003a5c                _free_r
+ .text.malloc   0x00003d68       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+                0x00003d68                malloc
+ .text.free     0x00003d78       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+                0x00003d78                free
+ .text._malloc_r
+                0x00003d88      0x7e0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00003d88                _malloc_r
+ .text.__malloc_lock
+                0x00004568        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+                0x00004568                __malloc_lock
+ .text.__malloc_unlock
+                0x00004574        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+                0x00004574                __malloc_unlock
+ .text.__ssprint_r
+                0x00004580      0x1f8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+                0x00004580                __ssprint_r
+ .text._svfiprintf_r
+                0x00004778     0x1534 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+                0x00004778                _svfiprintf_r
+ .text._fclose_r
+                0x00005cac      0x170 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+                0x00005cac                _fclose_r
+ .text.fclose   0x00005e1c       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+                0x00005e1c                fclose
+ .text.__sflush_r
+                0x00005e2c      0x24c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+                0x00005e2c                __sflush_r
+ .text._fflush_r
+                0x00006078       0xe0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+                0x00006078                _fflush_r
+ .text.fflush   0x00006158       0xd4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+                0x00006158                fflush
+ .text.__sfvwrite_r
+                0x0000622c      0x514 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+                0x0000622c                __sfvwrite_r
+ .text.__smakebuf_r
+                0x00006740      0x198 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+                0x00006740                __smakebuf_r
+ .text.__swhatbuf_r
+                0x000068d8       0xd8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+                0x000068d8                __swhatbuf_r
+ .text.__swsetup_r
+                0x000069b0      0x144 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+                0x000069b0                __swsetup_r
+ .text.memchr   0x00006af4       0xc4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+                0x00006af4                memchr
+ .text.strncpy  0x00006bb8       0xac /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+                0x00006bb8                strncpy
+ .text.currentlocale
+                0x00006c64       0xd8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .text.__loadlocale
+                0x00006d3c      0x7bc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x00006d3c                __loadlocale
+ .text.__get_locale_env
+                0x000074f8       0x90 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x000074f8                __get_locale_env
+ .text._setlocale_r
+                0x00007588      0x44c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x00007588                _setlocale_r
+ .text.__locale_mb_cur_max
+                0x000079d4        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x000079d4                __locale_mb_cur_max
+ .text.setlocale
+                0x000079e0       0x14 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x000079e0                setlocale
+ .text.__localeconv_l
+                0x000079f4        0x8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+                0x000079f4                __localeconv_l
+ .text._localeconv_r
+                0x000079fc        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+                0x000079fc                _localeconv_r
+ .text.localeconv
+                0x00007a08        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+                0x00007a08                localeconv
+ .text._fstat_r
+                0x00007a14       0x60 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+                0x00007a14                _fstat_r
+ .text._isatty_r
+                0x00007a74       0x58 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+                0x00007a74                _isatty_r
+ .text._sbrk_r  0x00007acc       0x58 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+                0x00007acc                _sbrk_r
+ .text.memmove  0x00007b24      0x10c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+                0x00007b24                memmove
+ .text.memcpy   0x00007c30      0x1a4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+                0x00007c30                memcpy
+ .text.strlen   0x00007dd4       0x8c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+                0x00007dd4                strlen
+ .text.strcpy   0x00007e60       0xb0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+                0x00007e60                strcpy
+ .text.__register_exitproc
+                0x00007f10       0xf0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+                0x00007f10                __register_exitproc
+ .text._findenv_r
+                0x00008000      0x134 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+                0x00008000                _findenv_r
+ .text._getenv_r
+                0x00008134       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+                0x00008134                _getenv_r
+ .text._mbtowc_r
+                0x00008150        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x00008150                _mbtowc_r
+ .text.__ascii_mbtowc
+                0x0000815c       0x68 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x0000815c                __ascii_mbtowc
+ .text.__utf8_mbtowc
+                0x000081c4      0x2f8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x000081c4                __utf8_mbtowc
+ .text.__sjis_mbtowc
+                0x000084bc      0x170 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x000084bc                __sjis_mbtowc
+ .text.__eucjp_mbtowc
+                0x0000862c      0x20c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x0000862c                __eucjp_mbtowc
+ .text.__jis_mbtowc
+                0x00008838      0x1e8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+                0x00008838                __jis_mbtowc
+ .text._realloc_r
+                0x00008a20      0x570 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+                0x00008a20                _realloc_r
+ .text._strtol_l.isra.0
+                0x00008f90      0x288 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .text._strtol_r
+                0x00009218        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+                0x00009218                _strtol_r
+ .text.strtol_l
+                0x0000921c       0x18 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+                0x0000921c                strtol_l
+ .text.strtol   0x00009234       0x18 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+                0x00009234                strtol
+ .text._wctomb_r
+                0x0000924c        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x0000924c                _wctomb_r
+ .text.__ascii_wctomb
+                0x00009258       0x30 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x00009258                __ascii_wctomb
+ .text.__utf8_wctomb
+                0x00009288       0xec /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x00009288                __utf8_wctomb
+ .text.__sjis_wctomb
+                0x00009374       0x84 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x00009374                __sjis_wctomb
+ .text.__eucjp_wctomb
+                0x000093f8       0xac /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x000093f8                __eucjp_wctomb
+ .text.__jis_wctomb
+                0x000094a4       0xc0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+                0x000094a4                __jis_wctomb
+ .text._wcrtomb_r
+                0x00009564       0x8c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+                0x00009564                _wcrtomb_r
+ .text.wcrtomb  0x000095f0       0xa8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+                0x000095f0                wcrtomb
+ .text._wcsrtombs_r
+                0x00009698       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+                0x00009698                _wcsrtombs_r
+ .text.wcsrtombs
+                0x000096a8       0x20 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+                0x000096a8                wcsrtombs
+ .text.__set_ctype
+                0x000096c8       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+                0x000096c8                __set_ctype
+ .text.strcasecmp
+                0x000096d8       0x6c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+                0x000096d8                strcasecmp
+ .text.strcat   0x00009744       0x88 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+                0x00009744                strcat
+ .text.strchr   0x000097cc      0x140 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+                0x000097cc                strchr
+ .text.strlcpy  0x0000990c       0x44 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+                0x0000990c                strlcpy
+ .text.strncasecmp
+                0x00009950       0x7c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+                0x00009950                strncasecmp
+ .text.__env_lock
+                0x000099cc        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+                0x000099cc                __env_lock
+ .text.__env_unlock
+                0x000099d8        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+                0x000099d8                __env_unlock
+ .text._wcsnrtombs_l
+                0x000099e4      0x1c0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+                0x000099e4                _wcsnrtombs_l
+ .text._wcsnrtombs_r
+                0x00009ba4       0x14 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+                0x00009ba4                _wcsnrtombs_r
+ .text.wcsnrtombs
+                0x00009bb8       0x28 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+                0x00009bb8                wcsnrtombs
+ .text.__udivdi3
+                0x00009be0      0x6ac /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+                0x00009be0                __udivdi3
+ .text.__umoddi3
+                0x0000a28c      0x658 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+                0x0000a28c                __umoddi3
+ *(.fini)
+
+.spi_gpio
+ *(.spi_gpio)
+
+.spi_compute
+ *(.spi_compute)
+
+.spi_uart
+ *(.spi_uart)
+
+.eh_frame       0x0000ac00      0x2f8
+ *(.eh_frame)
+ .eh_frame      0x0000ac00       0xb8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .eh_frame      0x0000acb8       0x98 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+                                 0xac (size before relaxing)
+ .eh_frame      0x0000ad50       0xdc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+                                 0xf0 (size before relaxing)
+ .eh_frame      0x0000ae2c       0xcc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+                                 0xe0 (size before relaxing)
+
+.gcc_except_table
+ *(.gcc_except_table)
+
+.rtti
+ *(.rtti*)
+
+.vtable
+ *(.vtable*)
+
+.init_array     0x0000b000        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x0000b000        0x0
+                0x0000b000                        PROVIDE (__fini_array_start = .)
+ *(.fini_array)
+                0x0000b000                        PROVIDE (__fini_array_end = .)
+                0x00030000                        . = 0x30000
+
+.rodata         0x00030000      0xc3d
+ *(.rodata)
+ .rodata        0x00030000      0x199 /out/echo_v7.o
+ *fill*         0x00030199        0x3 
+ .rodata        0x0003019c       0x51 /out/soc_start.o
+ *fill*         0x000301ed        0x3 
+ .rodata        0x000301f0       0x9f /out/soc_syscalls.o
+ *fill*         0x0003028f        0x1 
+ .rodata        0x00030290       0x94 /out/spi_compute.o
+ .rodata        0x00030324       0x61 /out/spi_uart.o
+ *(.rodata.*)
+ *fill*         0x00030385        0x3 
+ .rodata.__clz_tab
+                0x00030388      0x100 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+                0x00030388                __clz_tab
+ .rodata._svfiprintf_r.str1.4
+                0x00030488      0x164 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+                                 0x2f (size before relaxing)
+ .rodata._svfiprintf_r
+                0x000305ec      0x16c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .rodata.zeroes.0
+                0x00030758       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .rodata.blanks.1
+                0x00030768       0x10 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .rodata.currentlocale.str1.4
+                0x00030778        0x2 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.__loadlocale.str1.4
+                0x00030778       0xd6 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.__loadlocale
+                0x00030778       0xd4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.__get_locale_env.str1.4
+                0x0003084c        0xd /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.str1.4
+                0x0003084c       0x4c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.__C_locale
+                0x0003084c      0x16c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x0003084c                __C_locale
+ .rodata.categories
+                0x000309b8       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .rodata.__jis_mbtowc
+                0x000309d4       0xd8 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .rodata.JIS_action_table
+                0x00030aac       0x48 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .rodata.JIS_state_table
+                0x00030af4       0x48 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .rodata._ctype_
+                0x00030b3c      0x101 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+                0x00030b3c                _ctype_
+ *(.const)
+ *(.const.*)
+
+.rela.dyn       0x00030c40        0x0
+ .rela.bare_start
+                0x00030c40        0x0 /out/echo_v7.o
+ .rela.text     0x00030c40        0x0 /out/echo_v7.o
+ .rela.start    0x00030c40        0x0 /out/echo_v7.o
+ .rela.sdata    0x00030c40        0x0 /out/echo_v7.o
+ .rela.text.startup.register_fini
+                0x00030c40        0x0 /out/echo_v7.o
+                0x00034000                        . = 0x34000
+
+.data           0x00034000      0x6c4
+                0x00034000                        __data_start = .
+ *(.data)
+ .data          0x00034000        0x0 /out/echo_v7.o
+ .data          0x00034000        0x0 /out/soc_start.o
+ .data          0x00034000        0x0 /out/soc_syscalls.o
+ .data          0x00034000        0x0 /out/spi_compute.o
+ .data          0x00034000        0x0 /out/spi_uart.o
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memset.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+ .data          0x00034000        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+ *(.data.*)
+ .data.__sglue  0x00034000        0xc /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00034000                __sglue
+ *fill*         0x0003400c        0x4 
+ .data._impure_data
+                0x00034010      0x120 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+                0x00034010                _impure_data
+ .data.__malloc_av_
+                0x00034130      0x408 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00034130                __malloc_av_
+ .data.__global_locale
+                0x00034538      0x16c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x00034538                __global_locale
+ .data.__default_locale
+                0x000346a4       0x20 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x000346a4                __default_locale
+                0x000346c4                        __data_end = .
+
+.init_array.00000
+                0x000346c4        0x4
+ .init_array.00000
+                0x000346c4        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+
+.sdata          0x00034800       0x18
+                0x00034800                        PROVIDE (__sdata_start = .)
+ *(.sdata)
+ .sdata         0x00034800        0x4 /out/soc_syscalls.o
+                0x00034800                __curr_heap_end_ptr
+ *(.sdata.*)
+ .sdata._impure_ptr
+                0x00034804        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+                0x00034804                _impure_ptr
+ .sdata.__atexit_recursive_mutex
+                0x00034808        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+                0x00034808                __atexit_recursive_mutex
+ .sdata.__malloc_sbrk_base
+                0x0003480c        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x0003480c                __malloc_sbrk_base
+ .sdata.__malloc_trim_threshold
+                0x00034810        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00034810                __malloc_trim_threshold
+ .sdata.environ
+                0x00034814        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+                0x00034814                environ
+ *(.srodata)
+ *(.srodata.*)
+                [!provide]                        PROVIDE (__sdata_end = .)
+
+.sbss           0x00035000       0x44
+                0x00035000                        PROVIDE (__sbss_start = .)
+ *(.sbss)
+ .sbss          0x00035000        0x4 /out/soc_syscalls.o
+                0x00035000                __dso_handle
+ *(.sbss.*)
+ .sbss.__stdio_exit_handler
+                0x00035004        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00035004                __stdio_exit_handler
+ .sbss.errno    0x00035008        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+                0x00035008                errno
+ .sbss.__lock___arc4random_mutex
+                0x0003500c        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x0003500c                __lock___arc4random_mutex
+ *fill*         0x0003500d        0x3 
+ .sbss.__lock___dd_hash_mutex
+                0x00035010        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035010                __lock___dd_hash_mutex
+ *fill*         0x00035011        0x3 
+ .sbss.__lock___tz_mutex
+                0x00035014        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035014                __lock___tz_mutex
+ *fill*         0x00035015        0x3 
+ .sbss.__lock___env_recursive_mutex
+                0x00035018        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035018                __lock___env_recursive_mutex
+ *fill*         0x00035019        0x3 
+ .sbss.__lock___malloc_recursive_mutex
+                0x0003501c        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x0003501c                __lock___malloc_recursive_mutex
+ *fill*         0x0003501d        0x3 
+ .sbss.__lock___at_quick_exit_mutex
+                0x00035020        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035020                __lock___at_quick_exit_mutex
+ *fill*         0x00035021        0x3 
+ .sbss.__lock___atexit_recursive_mutex
+                0x00035024        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035024                __lock___atexit_recursive_mutex
+ *fill*         0x00035025        0x3 
+ .sbss.__lock___sfp_recursive_mutex
+                0x00035028        0x1 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+                0x00035028                __lock___sfp_recursive_mutex
+ *fill*         0x00035029        0x3 
+ .sbss.__atexit
+                0x0003502c        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+                0x0003502c                __atexit
+ .sbss.__malloc_max_total_mem
+                0x00035030        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00035030                __malloc_max_total_mem
+ .sbss.__malloc_max_sbrked_mem
+                0x00035034        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00035034                __malloc_max_sbrked_mem
+ .sbss.__malloc_top_pad
+                0x00035038        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00035038                __malloc_top_pad
+ .sbss._PathLocale
+                0x0003503c        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+                0x0003503c                _PathLocale
+ .sbss.initial_env
+                0x00035040        0x4 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+                0x00035044                        PROVIDE (__sbss_end = .)
+
+.bss            0x00035800      0x598
+                0x00035800                        PROVIDE (__bss_start = .)
+ *(.bss)
+ .bss           0x00035800        0x0 /out/echo_v7.o
+ .bss           0x00035800        0x0 /out/soc_start.o
+ .bss           0x00035800        0x0 /out/soc_syscalls.o
+ .bss           0x00035800        0x0 /out/spi_compute.o
+ .bss           0x00035800        0x0 /out/spi_uart.o
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memset.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+ .bss           0x00035800        0x0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+ *(.bss.*)
+ .bss.__sf      0x00035800      0x138 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+                0x00035800                __sf
+ .bss.__malloc_current_mallinfo
+                0x00035938       0x28 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+                0x00035938                __malloc_current_mallinfo
+ .bss.saved_categories.0
+                0x00035960       0xe0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .bss.new_categories.1
+                0x00035a40       0xe0 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .bss.global_locale_string
+                0x00035b20       0xe7 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ *fill*         0x00035c07        0x1 
+ .bss.__atexit0
+                0x00035c08      0x190 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+                0x00035c08                __atexit0
+ *(COMMON)
+                0x00035d98                        PROVIDE (__bss_end = .)
+
+.heap           0x00036000     0x4000
+                0x00036000                        PROVIDE (__heap_start = .)
+ *(.heap*)
+                0x0003a000                        . = (. + 0x4000)
+ *fill*         0x00036000     0x4000 
+                [!provide]                        PROVIDE (__heap_end = .)
+
+.stack          0x0003a000        0x0
+                [!provide]                        PROVIDE (__stack_start = .)
+ *(.stack*)
+                [!provide]                        PROVIDE (__stack_end = 0x40000)
+                0x00040000                        _end = 0x40000
+                0x00040000                        PROVIDE (_stack_end = 0x40000)
+                0x00036000                        PROVIDE (_heap_start = __heap_start)
+                0x00035000                        PROVIDE (_global_pointer = (__sdata_start + 0x800))
+                0x00200000                        PROVIDE (IO_BASE = 0x200000)
+                [!provide]                        PROVIDE (SET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x0))
+                [!provide]                        PROVIDE (SET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0x4))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BASE = ((IO_BASE + 0x400) + 0x8))
+                [!provide]                        PROVIDE (GET_DYNAMIC_BOUND = ((IO_BASE + 0x400) + 0xc))
+                [!provide]                        PROVIDE (SET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x10))
+                [!provide]                        PROVIDE (GET_DIS_I_CACHE = ((IO_BASE + 0x400) + 0x14))
+                [!provide]                        PROVIDE (SET_I_LOCK = ((IO_BASE + 0x400) + 0x18))
+                [!provide]                        PROVIDE (SET_D_LOCK = ((IO_BASE + 0x400) + 0x1c))
+                [!provide]                        PROVIDE (GET_I_LOCK = ((IO_BASE + 0x400) + 0x20))
+                [!provide]                        PROVIDE (GET_D_LOCK = ((IO_BASE + 0x400) + 0x24))
+                0x00200800                        PROVIDE (UART_BAUD = ((IO_BASE + 0x800) + 0x0))
+                0x00200804                        PROVIDE (UART_RECV = ((IO_BASE + 0x800) + 0x4))
+                0x00200808                        PROVIDE (UART_SEND = ((IO_BASE + 0x800) + 0x8))
+                0x0020080c                        PROVIDE (UART_STAT = ((IO_BASE + 0x800) + 0xc))
+                [!provide]                        PROVIDE (SPI_BASE = (IO_BASE + 0xc00))
+                [!provide]                        PROVIDE (SET_PERFMON_STATUS = (IO_BASE + 0x1000))
+                [!provide]                        PROVIDE (SET_PERFMON_SCALAR = (IO_BASE + 0x1004))
+                [!provide]                        PROVIDE (SET_PERFMON_TIMER = (IO_BASE + 0x1008))
+                [!provide]                        PROVIDE (GET_PERFMON_STATUS = (IO_BASE + 0x100c))
+                [!provide]                        PROVIDE (GET_PERFMON_SOCH = (IO_BASE + 0x1010))
+                [!provide]                        PROVIDE (GET_PERFMON_SOCL = (IO_BASE + 0x1014))
+                [!provide]                        PROVIDE (GET_PERFMON_COREH = (IO_BASE + 0x1018))
+                [!provide]                        PROVIDE (GET_PERFMON_COREL = (IO_BASE + 0x101c))
+                [!provide]                        PROVIDE (GET_PERFMON_SCALAR = (IO_BASE + 0x1020))
+                [!provide]                        PROVIDE (GET_PERFMON_TIMER = (IO_BASE + 0x1024))
+                0x00201028                        PROVIDE (GET_PERFMON_MISS = (IO_BASE + 0x1028))
+                [!provide]                        PROVIDE (GET_PERFMON_RET_CNT = (IO_BASE + 0x102c))
+                [!provide]                        PROVIDE (PET_WATCHDOG = (IO_BASE + 0x1030))
+                0x00201034                        PROVIDE (SET_WATCHDOG_HIGH = (IO_BASE + 0x1034))
+                0x00201038                        PROVIDE (SET_WATCHDOG_LOW = (IO_BASE + 0x1038))
+                0x0020103c                        PROVIDE (GET_WATCHDOG_HIGH = (IO_BASE + 0x103c))
+                0x00201040                        PROVIDE (GET_WATCHDOG_LOW = (IO_BASE + 0x1040))
+                [!provide]                        PROVIDE (SET_DIS_SRAM_GATER = (IO_BASE + 0x1044))
+                [!provide]                        PROVIDE (GET_DIS_SRAM_GATER = (IO_BASE + 0x1048))
+                [!provide]                        PROVIDE (GET_GPIO_WORD = (IO_BASE + 0x1400))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_HIGH = (IO_BASE + 0x1404))
+                [!provide]                        PROVIDE (GET_GPIO_HALF_LOW = (IO_BASE + 0x1408))
+                [!provide]                        PROVIDE (GET_FLASH_SPECIAL = (IO_BASE + 0x140c))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN0 = (IO_BASE + 0x1410))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN1 = (IO_BASE + 0x1414))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN2 = (IO_BASE + 0x1418))
+                [!provide]                        PROVIDE (GET_GPIO_CHAN3 = (IO_BASE + 0x141c))
+                [!provide]                        PROVIDE (SET_GPIO_WORD = (IO_BASE + 0x1420))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_HIGH = (IO_BASE + 0x1424))
+                [!provide]                        PROVIDE (SET_GPIO_HALF_LOW = (IO_BASE + 0x1428))
+                [!provide]                        PROVIDE (SET_FLASH_SPECIAL = (IO_BASE + 0x142c))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN0 = (IO_BASE + 0x1430))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN1 = (IO_BASE + 0x1434))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN2 = (IO_BASE + 0x1438))
+                [!provide]                        PROVIDE (SET_GPIO_CHAN3 = (IO_BASE + 0x143c))
+OUTPUT(/out/echo_v7.elf elf32-littleriscv)
+
+.comment        0x00000000       0x33
+ .comment       0x00000000       0x33 /out/echo_v7.o
+                                 0x34 (size before relaxing)
+ .comment       0x00000033       0x34 /out/soc_start.o
+ .comment       0x00000033       0x34 /out/soc_syscalls.o
+ .comment       0x00000033       0x34 /out/spi_compute.o
+ .comment       0x00000033       0x34 /out/spi_uart.o
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+ .comment       0x00000033       0x34 /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)
+
+.riscv.attributes
+                0x00000000       0x1c
+ .riscv.attributes
+                0x00000000       0x1c /out/echo_v7.o
+ .riscv.attributes
+                0x0000001c       0x1c /out/soc_start.o
+ .riscv.attributes
+                0x00000038       0x1c /out/soc_syscalls.o
+ .riscv.attributes
+                0x00000054       0x1c /out/spi_compute.o
+ .riscv.attributes
+                0x00000070       0x1c /out/spi_uart.o
+ .riscv.attributes
+                0x0000008c       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_divdi3.o)
+ .riscv.attributes
+                0x000000a8       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_moddi3.o)
+ .riscv.attributes
+                0x000000c4       0x1a /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(muldi3.o)
+ .riscv.attributes
+                0x000000de       0x1a /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(div.o)
+ .riscv.attributes
+                0x000000f8       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_clz.o)
+ .riscv.attributes
+                0x00000114       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-exit.o)
+ .riscv.attributes
+                0x00000130       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-vsiprintf.o)
+ .riscv.attributes
+                0x0000014c       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-findfp.o)
+ .riscv.attributes
+                0x00000168       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwalk.o)
+ .riscv.attributes
+                0x00000184       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fwrite.o)
+ .riscv.attributes
+                0x000001a0       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-setvbuf.o)
+ .riscv.attributes
+                0x000001bc       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-stdio.o)
+ .riscv.attributes
+                0x000001d8       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-closer.o)
+ .riscv.attributes
+                0x000001f4       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reent.o)
+ .riscv.attributes
+                0x00000210       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-impure.o)
+ .riscv.attributes
+                0x0000022c       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lseekr.o)
+ .riscv.attributes
+                0x00000248       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-readr.o)
+ .riscv.attributes
+                0x00000264       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-writer.o)
+ .riscv.attributes
+                0x00000280       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-errno.o)
+ .riscv.attributes
+                0x0000029c       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-lock.o)
+ .riscv.attributes
+                0x000002b8       0x1a /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memset.o)
+ .riscv.attributes
+                0x000002d2       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__call_atexit.o)
+ .riscv.attributes
+                0x000002ee       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-atexit.o)
+ .riscv.attributes
+                0x0000030a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-freer.o)
+ .riscv.attributes
+                0x00000326       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-malloc.o)
+ .riscv.attributes
+                0x00000342       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mallocr.o)
+ .riscv.attributes
+                0x0000035e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mlock.o)
+ .riscv.attributes
+                0x0000037a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-svfiprintf.o)
+ .riscv.attributes
+                0x00000396       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fclose.o)
+ .riscv.attributes
+                0x000003b2       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fflush.o)
+ .riscv.attributes
+                0x000003ce       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fvwrite.o)
+ .riscv.attributes
+                0x000003ea       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-makebuf.o)
+ .riscv.attributes
+                0x00000406       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wsetup.o)
+ .riscv.attributes
+                0x00000422       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memchr.o)
+ .riscv.attributes
+                0x0000043e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncpy.o)
+ .riscv.attributes
+                0x0000045a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-locale.o)
+ .riscv.attributes
+                0x00000476       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-localeconv.o)
+ .riscv.attributes
+                0x00000492       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-fstatr.o)
+ .riscv.attributes
+                0x000004ae       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-isattyr.o)
+ .riscv.attributes
+                0x000004ca       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-sbrkr.o)
+ .riscv.attributes
+                0x000004e6       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memmove-stub.o)
+ .riscv.attributes
+                0x00000502       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-memcpy.o)
+ .riscv.attributes
+                0x0000051e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlen.o)
+ .riscv.attributes
+                0x0000053a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcpy.o)
+ .riscv.attributes
+                0x00000556       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-__atexit.o)
+ .riscv.attributes
+                0x00000572       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-getenv_r.o)
+ .riscv.attributes
+                0x0000058e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-mbtowc_r.o)
+ .riscv.attributes
+                0x000005aa       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-reallocr.o)
+ .riscv.attributes
+                0x000005c6       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strtol.o)
+ .riscv.attributes
+                0x000005e2       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wctomb_r.o)
+ .riscv.attributes
+                0x000005fe       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcrtomb.o)
+ .riscv.attributes
+                0x0000061a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsrtombs.o)
+ .riscv.attributes
+                0x00000636       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-ctype_.o)
+ .riscv.attributes
+                0x00000652       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcasecmp.o)
+ .riscv.attributes
+                0x0000066e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strcat.o)
+ .riscv.attributes
+                0x0000068a       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strchr.o)
+ .riscv.attributes
+                0x000006a6       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strlcpy.o)
+ .riscv.attributes
+                0x000006c2       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-strncasecmp.o)
+ .riscv.attributes
+                0x000006de       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-environ.o)
+ .riscv.attributes
+                0x000006fa       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-envlock.o)
+ .riscv.attributes
+                0x00000716       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/../../../../riscv-none-elf/lib/rv32i/ilp32/libc.a(libc_a-wcsnrtombs.o)
+ .riscv.attributes
+                0x00000732       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_udivdi3.o)
+ .riscv.attributes
+                0x0000074e       0x1c /opt/xpack-riscv-none-elf-gcc-13.2.0-1/bin/../lib/gcc/riscv-none-elf/13.2.0/rv32i/ilp32/libgcc.a(_umoddi3.o)

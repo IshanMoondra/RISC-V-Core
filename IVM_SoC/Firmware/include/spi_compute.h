@@ -1,7 +1,7 @@
 #ifndef spi_compute
 #define spi_compute
 
-using Mat3 = int[3][3];
+#include <stdbool.h>
 
 // // Sub Program / Utility Functions for the Shell.
 // void cmd_echo(char *arg)													 	__attribute__((weak, section(".spi_compute")));
@@ -33,9 +33,11 @@ void 												cmd_free	(void)				;
 // The Main Compute Function/Orchestrator
 void compute ()  																		;
 
+#ifdef __cplusplus
 // Matrix Multiplier Function Definition.
 bool matmul									(const Mat3 A, Mat3 B, Mat3 C) 	;
 void cmd_matrix_multiplier 	()															;
+#endif
 
 // Independent Computing Functions
 int fibonacci_iterative (int count)  								;
